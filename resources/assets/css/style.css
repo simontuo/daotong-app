@@ -1,0 +1,24 @@
+.background{
+    background: #f0f2f5;
+}
+a.topic {
+    background: #eff6fa;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    float: right;
+}
+
+a.topic:hover {
+    background: #259;
+    color: #fff;
+    text-decoration: none;
+}
+
+.mdui-car-topic{
+    margin: 8px 16px;
+}
