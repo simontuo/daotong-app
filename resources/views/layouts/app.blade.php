@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink padding-top">
     <div id="app">
         @include('layouts.navbar')
 
