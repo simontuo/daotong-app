@@ -11,6 +11,7 @@
 |
 */
 
+//test git
 Route::get('/', function () {
     return view('index');
 });
