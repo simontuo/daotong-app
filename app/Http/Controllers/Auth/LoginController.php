@@ -38,6 +38,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * [login 重构登录方法，增加登录flash提示（原方法在AuthenticatesUsers这个trait）]
+     * @method login
+     * @param  Request  $request [description]
+     * @return [type]            [description]
+     * @auth   simontuo
+     */
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -72,5 +79,24 @@ class LoginController extends Controller
         return $this->guard()->attempt(
             $this->credentials($request), $request->has('remember')
         );
+    }
+
+    /**
+     * [logout 重构登出方法，增加登出flash提示（原方法在AuthenticatesUsers这个trait）]
+     * @method logout
+     * @param  Request  $request [description]
+     * @return [type]            [description]
+     * @auth   simontuo
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        // 登出flash信息
+        alert()->success('已成功退出.', 'Good bye!');
+
+        return redirect('/');
     }
 }
