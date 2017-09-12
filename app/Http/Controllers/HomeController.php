@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class HomeController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('index');
     }
 
     /**
@@ -24,5 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function test(Request $request)
+    {
+        alert()->success('欢迎回来'.config('app.name'), 'Welcome Black!')->autoclose(2000);
+        return view('index');
     }
 }

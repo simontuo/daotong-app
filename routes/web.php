@@ -12,9 +12,7 @@
 */
 
 //test git orther user
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@test');
 
 Auth::routes();
 

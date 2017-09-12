@@ -16,14 +16,27 @@
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar">
     <div id="app">
         @include('layouts.navbar')
-        
+
         <div class="mdui-m-t-2">
             @yield('content')
         </div>
-        
+
     </div>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <!-- sweetalert -->
+    @include('sweet::alert')
+    <!-- <script>
+        @if (session('message'))
+            // swal({
+            //     title: "{{ session('message')['message']['title'] }}",
+            //     text: "{{ session('message')['message']['text'] }}",
+            //     type: "{{ session('message')['status'] }}",
+            //     timer: "{{ config('sweetalert.timer', 'Laravel') }}"
+            // });
+            swal("Oops!", "Something went wrong!", "error")
+        @endif
+    </script> -->
 </body>
 </html>
