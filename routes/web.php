@@ -11,7 +11,7 @@
 |
 */
 
-//test git
+//test git orther user
 Route::get('/', function () {
     return view('index');
 });
