@@ -1,5 +1,5 @@
 <div class="col-md-3">
-    <div class="mdui-list mdui-shadow-1">
+    <div class="mdui-list mdui-shadow-1 mdui-m-b-2">
 		<label class="mdui-list-item mdui-ripple">
 	        <div class="mdui-list-item-content">阅读量</div>
 	    </label>

@@ -1,4 +1,4 @@
-<div class="mdui-appbar mdui-color-theme mdui-m-b-2">
+<div class="mdui-appbar mdui-color-theme mdui-appbar-fixed">
     <div class="mdui-container">
         <div class="mdui-toolbar">
             <a href="javascript:;" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>

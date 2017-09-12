@@ -13,11 +13,14 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink padding-top">
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar">
     <div id="app">
         @include('layouts.navbar')
-
-        @yield('content')
+        
+        <div class="mdui-m-t-2">
+            @yield('content')
+        </div>
+        
     </div>
 
     <!-- Scripts -->
