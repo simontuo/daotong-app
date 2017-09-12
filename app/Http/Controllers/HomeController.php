@@ -29,7 +29,6 @@ class HomeController extends Controller
 
     public function test(Request $request)
     {
-        alert()->success('欢迎回来'.config('app.name'), 'Welcome Black!')->autoclose(2000);
         return view('index');
     }
 }
