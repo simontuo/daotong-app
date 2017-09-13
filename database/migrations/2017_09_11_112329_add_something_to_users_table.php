@@ -27,7 +27,7 @@ class AddSomethingToUsersTable extends Migration
             $table->integer('likes_count')->default(0); //点赞数量
             $table->integer('followers_count')->default(0); //关注数量
             $table->integer('be_follows_count')->default(0); //被关注数量
-            $table->json('settings')->nullable(); //设置
+            $table->text('settings')->nullable(); //设置
         });
     }
 
