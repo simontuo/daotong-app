@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Mailer\UserMailer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -62,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name'               => $data['name'],
             'email'              => $data['email'],
             'password'           => bcrypt($data['password']),
@@ -71,10 +72,23 @@ class RegisterController extends Controller
             'settings'           => ['city' => ''],
             'api_token'          => str_random(60),
         ]);
+
+        $this->sendVerifyEmailTo($user);
+
+        alert()->success('请尽快登录邮箱进行认证', '注册成功！')->persistent('ok');
+
+        return $user;
     }
 
+    /**
+     * [sendVerifyEmailTo 发送验证邮件]
+     * @method sendVerifyEmailTo
+     * @param  [type]            $user [description]
+     * @return [type]                  [description]
+     * @auth   simontuo
+     */
     public function sendVerifyEmailTo($user)
     {
-
+        (new UserMailer())->regusterVerify($user);
     }
 }

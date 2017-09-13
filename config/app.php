@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Naux\Mail\SendCloudServiceProvider::class,
 
         /*
          * Application Service Providers...

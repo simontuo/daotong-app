@@ -60,7 +60,6 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
 
-            // 登录flash信息
             alert()->success('欢迎回来'.config('app.name'), 'Welcome Black!')->autoclose(2000);
 
             return $this->sendLoginResponse($request);
@@ -104,7 +103,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        // 登出flash信息
         alert()->success('已成功退出.', 'Good bye!');
 
         return redirect('/');
