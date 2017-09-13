@@ -4,7 +4,12 @@
             <a href="javascript:;" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @if(Auth::check())
-	        	<button class="mdui-btn hidden-xs hidden-sm" mdui-menu="{target: '#user-attr'}"><i class="mdui-icon mdui-icon-right material-icons">&#xe5c5;</i>{{ Auth::user()->name }}</button>
+
+	        	<button class="mdui-btn hidden-xs hidden-sm" mdui-menu="{target: '#user-attr'}">
+                    <img class="mdui-img-circle mdui-icon-left" src="{{ user()->avatar }}" />
+                    <i class="mdui-icon mdui-icon-right material-icons">&#xe5c5;</i>
+                    {{ Auth::user()->name }}
+                </button>
 	        	<ul class="mdui-menu " id="user-attr">
 				    <li class="mdui-menu-item">
 				        <a href="{{ url('/') }}" class="mdui-ripple">
