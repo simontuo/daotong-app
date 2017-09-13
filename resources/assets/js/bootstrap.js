@@ -13,6 +13,7 @@ try {
     require('bootstrap-sass');
     require('mdui');
     require('./select2.min');
+    require('./sweetalert.min');
 
 } catch (e) {}
 
