@@ -60,7 +60,6 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
 
-            // 登录flash信息
             alert()->success('欢迎回来'.config('app.name'), 'Welcome Black!')->autoclose(2000);
 
             return $this->sendLoginResponse($request);
@@ -74,10 +73,20 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    /**
+     * [attemptLogin 重构验证方法（原方法在AuthenticatesUsers这个trait）]
+     * @method attemptLogin
+     * @param  Request      $request [description]
+     * @return [type]                [description]
+     * @auth   simontuo
+     */
     protected function attemptLogin(Request $request)
     {
+        // 增加激活验证条件
+        $credentials = array_merge($this->credentials($request), ['is_active' => 1]);
+
         return $this->guard()->attempt(
-            $this->credentials($request), $request->has('remember')
+            $credentials, $request->has('remember')
         );
     }
 
@@ -94,7 +103,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        // 登出flash信息
         alert()->success('已成功退出.', 'Good bye!');
 
         return redirect('/');
