@@ -23,4 +23,13 @@ class UserMailer extends Mailer
         $this->sendTo('daotong_register_verify', $user->email, $data);
     }
 
+    public function passwordReset($email, $token)
+    {
+        $data = [
+            'url' => config('app.url').route('password.reset', $token, false)
+        ];
+
+        $this->sendTo('daotong_password_reset', $email, $data);
+    }
+
 }

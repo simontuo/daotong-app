@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <div class="col-md-9">
+        <!-- laravel flash -->
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <!-- 工具栏 -->
         <div class="mdui-toolbar mdui-shadow-1 mdui-m-b-2">
             <a href="{{ url('/') }}" class="mdui-btn mdui-ripple">
