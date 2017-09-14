@@ -12,10 +12,13 @@
 */
 
 //test git orther user
-Route::get('/', 'HomeController@test');
+Route::get('/', 'HomeController@test')->name('index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailController@verify']);
+
+Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
+Route::patch('/users/{id}', 'UsersController@update')->name('users.update');

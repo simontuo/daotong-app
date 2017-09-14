@@ -12,7 +12,7 @@
                 </button>
 	        	<ul class="mdui-menu " id="user-attr">
 				    <li class="mdui-menu-item">
-				        <a href="{{ url('/') }}" class="mdui-ripple">
+				        <a href="{{ route('users.edit', user()->id) }}" class="mdui-ripple">
 				            <i class="mdui-menu-item-icon mdui-icon material-icons">&#xe3c9;</i>编辑资料
 				        </a>
 				    </li>

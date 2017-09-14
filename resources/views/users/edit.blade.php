@@ -1,0 +1,135 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="col-md-3">
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
+            <img src="{{ $user->avatar }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
+            <button type="button" class="mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1">
+                更换头像
+            </button>
+		</div>
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
+            <img src="{{ $user->wechat_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
+            <button type="button" class="mdui-btn mdui-color-teal mdui-hoverable mdui-center  mdui-m-b-1">
+                微信打赏码
+            </button>
+		</div>
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
+            <img src="{{ $user->alipay_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
+            <button type="button" class="mdui-btn mdui-color-indigo mdui-hoverable mdui-center mdui-m-b-1">
+                支付宝打赏码
+            </button>
+		</div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3><i class="fa fa-cog" aria-hidden="true"></i> 编辑个人资料</h3>
+                <hr>
+                <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
+                    {{ method_field('PATCH') }}
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" name="gender">
+                                <option value="unselected">未选择</option>
+                                <option value="male" @if($user->gender == 'male')selected @endif>男</option>
+                                <option value="female" @if($user->gender == 'female')selected @endif>女</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 help-block">
+        					@if ($errors->has('gender'))
+        						<span class="mdui-text-color-theme-accent">
+        							<strong>{{ $errors->first('gender') }}</strong>
+        						</span>
+        					@endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" name="phone" type="text" value="{{ $user->phone }}">
+                        </div>
+                        <div class="col-sm-4 help-block">
+        					@if ($errors->has('phone'))
+        						<span class="mdui-text-color-theme-accent">
+        							<strong>{{ $errors->first('phone') }}</strong>
+        						</span>
+        					@else
+        						如：name@website.com
+        					@endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" name="name" type="text" value="{{ $user->name }}">
+                        </div>
+                        <div class="col-sm-4 help-block">
+        					@if ($errors->has('name'))
+        						<span class="mdui-text-color-theme-accent">
+        							<strong>{{ $errors->first('name') }}</strong>
+        						</span>
+        					@else
+        						如：小明
+        					@endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">城市</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" name="city" type="text" value="{{ $user->settings['city'] }}">
+                        </div>
+                        <div class="col-sm-4 help-block">
+        					@if ($errors->has('city'))
+        						<span class="mdui-text-color-theme-accent">
+        							<strong>{{ $errors->first('city') }}</strong>
+        						</span>
+        					@else
+        						如：北京、广州
+        					@endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">微信</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" name="wechat" type="text" value="{{ $user->wechat }}">
+                        </div>
+                        <div class="col-sm-4 help-block">
+        					@if ($errors->has('wechat'))
+        						<span class="mdui-text-color-theme-accent">
+        							<strong>{{ $errors->first('wechat') }}</strong>
+        						</span>
+        					@else
+        						如：simontuo
+        					@endif
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">个人简介</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" rows="3" name="bio" cols="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">{{ $user->settings['bio'] }}</textarea>
+                        </div>
+                        <div class="col-sm-4 help-block">
+                            请一句话介绍你自己，大部分情况下会在你的头像和名字旁边显示
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-6">
+                            <input class="mdui-btn mdui-color-theme-accent mdui-hoverable" type="submit" value="提交">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

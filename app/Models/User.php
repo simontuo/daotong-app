@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token', 'settings'
+        'name', 'email', 'password', 'avatar', 'confirmation_token', 'api_token', 'settings', 'gender', 'phone', 'wechat'
     ];
 
     /**
@@ -35,6 +35,39 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * [protected 允许编辑的字段]
+     * @var [type]
+     */
+    protected $allowed = ['gender', 'name', 'wechat', 'phone', 'city', 'settings'];
+
+    /**
+     * [protected 允许编辑的settings字段]
+     * @var [type]
+     */
+    protected $allowedSettings = ['city', 'bio'];
+
+    public function owns(Model $model)
+    {
+        return $this->id == $model->user_id;
+    }
+
+    /**
+     * [merge 合并允许更新字段]
+     * @method merge
+     * @param  array    $attributes [description]
+     * @return [type]               [description]
+     * @auth   simontuo
+     */
+    public function merge(array $attributes)
+    {
+        $merge = array_merge($this->only($this->allowed), array_only($attributes, $this->allowed));
+
+        $merge['settings'] = array_merge($merge['settings'], array_only($attributes, $this->allowedSettings));
+
+        return $merge;
+    }
 
     /**
      * [sendPasswordResetNotification 重构重置密码邮件发送（原方法在PasswordBroker）]
