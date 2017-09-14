@@ -36,6 +36,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * [sendPasswordResetNotification 重构重置密码邮件发送（原方法在PasswordBroker）]
+     * @method sendPasswordResetNotification
+     * @param  [type]                        $token [description]
+     * @auth   simontuo
+     */
     public function sendPasswordResetNotification($token)
     {
         (new UserMailer())->passwordReset($this->email, $token);
