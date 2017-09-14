@@ -40,7 +40,7 @@ class User extends Authenticatable
      * [protected 允许编辑的字段]
      * @var [type]
      */
-    protected $allowed = ['gender', 'name', 'wechat', 'phone', 'city', 'settings'];
+    protected $allowed = ['gender', 'name', 'wechat', 'phone', 'settings'];
 
     /**
      * [protected 允许编辑的settings字段]

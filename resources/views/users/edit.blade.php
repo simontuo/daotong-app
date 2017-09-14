@@ -31,6 +31,13 @@
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}
                     <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-6">
+                            <input class="form-control" name="email" type="text" value="{{ $user->email }}" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="" class="col-sm-2 control-label">性别</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="gender">
