@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'name'               => $data['name'],
             'email'              => $data['email'],
             'password'           => bcrypt($data['password']),
-            'avatar'             => 'http://photo.maguas.com/default_avatar.png',
+            'avatar'             => gravatar($data['name']),
             'confirmation_token' => str_random(40),
             'settings'           => ['city' => ''],
             'api_token'          => str_random(60),

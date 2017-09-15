@@ -90,7 +90,7 @@
                     <div class="form-group">
                         <label for="" class="col-sm-2 control-label">城市</label>
                         <div class="col-sm-6">
-                            <input class="form-control" name="city" type="text" value="{{ $user->settings['city'] }}">
+                            <input class="form-control" name="city" type="text" value="{{ array_has($user->settings, 'city') ? $user->settings['city'] : ''}}">
                         </div>
                         <div class="col-sm-4 help-block">
         					@if ($errors->has('city'))
@@ -122,7 +122,7 @@
                     <div class="form-group">
                         <label for="" class="col-sm-2 control-label">个人简介</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control" rows="3" name="bio" cols="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">{{ $user->settings['bio'] }}</textarea>
+                            <textarea class="form-control" rows="3" name="bio" cols="50" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">{{ array_has($user->settings, 'bio') ? $user->settings['bio'] : ''}}</textarea>
                         </div>
                         <div class="col-sm-4 help-block">
                             请一句话介绍你自己，大部分情况下会在你的头像和名字旁边显示

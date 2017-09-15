@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'gravatar' => [
+        'url' => 'https://gravatar.cat.net/avatar',
+        'size' => '150',
+        'default' => 'retro',
+        'rating' => 'pg',
+    ],
 ];
