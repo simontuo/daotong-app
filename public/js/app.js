@@ -2457,25 +2457,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
  // es6 shim
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['avatar', 'token'],
+	props: ['avatar', 'token', 'id'],
 	data: function data() {
 		return {
 			show: false,
 			params: {
 				_token: this.token,
-				name: 'avatar'
+				name: 'img'
 			},
 			headers: {
 				smail: '*_~'
 			},
-			imgDataUrl: this.avatar
+			imgDataUrl: this.avatar,
+			url: '/users/' + this.id + '/update_avatar'
 		};
 	},
 
@@ -2494,7 +2493,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   * [param] field
   */
 		cropSuccess: function cropSuccess(imgDataUrl, field) {
-			console.log('-------- crop success --------');
 			this.imgDataUrl = imgDataUrl;
 		},
 
@@ -2504,10 +2502,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    * [param] jsonData  server api return data, already json encode
    * [param] field
    */
-		cropUploadSuccess: function cropUploadSuccess(jsonData, field) {
-			console.log('-------- upload success --------');
-			console.log(jsonData);
-			console.log('field: ' + field);
+		cropUploadSuccess: function cropUploadSuccess(response, field) {
+			$('#user-avatar').attr('src', response.url);
 		},
 
 		/**
@@ -49613,27 +49609,12 @@ module.exports = function normalizeComponent (
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center"
-  }, [_c('img', {
-    staticClass: "mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1",
-    attrs: {
-      "src": _vm.imgDataUrl,
-      "width": "100",
-      "height": "100"
-    }
-  }), _vm._v(" "), _c('button', {
-    staticClass: "mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.toggleShow
-    }
-  }, [_vm._v("\n                更换头像\n        ")]), _vm._v(" "), _c('my-upload', {
+  }, [_c('my-upload', {
     attrs: {
       "field": "img",
-      "width": 300,
-      "height": 300,
-      "url": "/upload",
+      "width": 150,
+      "height": 150,
+      "url": _vm.url,
       "params": _vm.params,
       "headers": _vm.headers,
       "img-format": "png"
@@ -49650,7 +49631,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "show"
     }
-  })], 1)
+  }), _vm._v(" "), _c('img', {
+    staticClass: "mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1",
+    attrs: {
+      "src": _vm.imgDataUrl,
+      "width": "100",
+      "height": "100"
+    }
+  }), _vm._v(" "), _c('button', {
+    staticClass: "mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.toggleShow
+    }
+  }, [_vm._v("\n            更换头像\n        ")])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -60494,6 +60490,10 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+var apiToken = document.head.querySelector('meta[name="api-token"]');
+
+window.axios.defaults.headers.common['Authorization'] = apiToken.content;
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -22,3 +22,5 @@ Route::get('/email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailCon
 
 Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{id}', 'UsersController@update')->name('users.update');
+
+Route::post('/users/{id}/update_avatar', 'UsersController@updateAvatar')->name('users.update_avatar');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -105,5 +106,24 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateAvatar(Request $request, $id)
+    {
+        $user = $this->user->byId($id);
+
+        if (user()->id == $user->id && $request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileName = '/avatars/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+            Storage::disk('qiniu')->writeStream($fileName, fopen($file->getRealPath(), 'r'));
+
+            $user->avatar = 'http://'.config('filesystems.disks.qiniu.domain').'/'.$fileName;
+            $user->save();
+
+            return response()->json(['url' => $user->avatar]);
+        }
+
+        abort(404);
     }
 }
