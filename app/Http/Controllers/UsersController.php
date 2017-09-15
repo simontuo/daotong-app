@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Storage;
+use App\Http\Requests\ChangePasswordRequest;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -68,7 +70,7 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if ($user->id == user()->id) {
+        if (user()->isMyself($user)) {
             return view('users.edit', compact('user'));
         }
 
@@ -86,7 +88,7 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if ($user->id == user()->id) {
+        if (user()->isMyself($user)) {
             $user->update($user->merge($request->all()));
 
             alert()->success('编辑用户信息成功')->autoclose(2000);
@@ -108,11 +110,19 @@ class UsersController extends Controller
         //
     }
 
+    /**
+     * [updateAvatar 头像上传（七牛）]
+     * @method updateAvatar
+     * @param  Request      $request [description]
+     * @param  [type]       $id      [description]
+     * @return [type]                [description]
+     * @auth   simontuo
+     */
     public function updateAvatar(Request $request, $id)
     {
         $user = $this->user->byId($id);
 
-        if (user()->id == $user->id && $request->hasFile('img')) {
+        if (user()->isMyself($user) && $request->hasFile('img')) {
             $file = $request->file('img');
             $fileName = '/avatars/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
 
@@ -125,5 +135,49 @@ class UsersController extends Controller
         }
 
         abort(404);
+    }
+
+    /**
+     * [editPassword 修改面密码页]
+     * @method editPassword
+     * @param  [type]       $id [description]
+     * @return [type]           [description]
+     * @auth   simontuo
+     */
+    public function editPassword($id)
+    {
+        $user = $this->user->byId($id);
+
+        if (user()->isMyself($user)) {
+            return view('users.password');
+        }
+
+        abort(404);
+    }
+
+    /**
+     * [updatePassword 更新密码]
+     * @method updatePassword
+     * @param  ChangePasswordRequest $request [description]
+     * @param  [type]                $id      [description]
+     * @return [type]                         [description]
+     * @auth   simontuo
+     */
+    public function updatePassword(ChangePasswordRequest $request, $id)
+    {
+        $user = $this->user->byId($id);
+
+        if (user()->isMyself($user) && Hash::check($request->get('old_password'), $user->password)) {
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+
+            alert()->success('修改密码成功！')->persistent('ok');
+
+            return back();
+        }
+
+        alert()->error('修改密码失败！')->persistent('ok');
+
+        return back();
     }
 }
