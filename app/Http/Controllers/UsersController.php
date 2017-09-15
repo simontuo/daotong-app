@@ -11,6 +11,7 @@ class UsersController extends Controller
 
     public function __construct(UserRepository $user)
     {
+        $this->middleware('auth');
         $this->user = $user;
     }
 
@@ -91,7 +92,7 @@ class UsersController extends Controller
 
             return back();
         }
-        
+
         abort(404);
     }
 
