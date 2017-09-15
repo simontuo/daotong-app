@@ -3,12 +3,7 @@
 @section('content')
 <div class="container">
     <div class="col-md-3">
-        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
-            <img src="{{ $user->avatar }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
-            <button type="button" class="mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1">
-                更换头像
-            </button>
-		</div>
+        <avatar avatar="{{ $user->avatar }}" token="{{ csrf_token() }}"></avatar>
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
             <img src="{{ $user->wechat_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
             <button type="button" class="mdui-btn mdui-color-teal mdui-hoverable mdui-center  mdui-m-b-1">
@@ -21,6 +16,7 @@
                 支付宝打赏码
             </button>
 		</div>
+        
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
