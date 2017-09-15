@@ -1,5 +1,5 @@
 <template>
-		
+
 	<div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
         <img :src="imgDataUrl" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
         <button type="button" class="mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1" @click="toggleShow">
@@ -31,7 +31,7 @@
         	return {
         		show: false,
 				params: {
-					_token: '123456798',
+					_token: this.token,
 					name: 'avatar'
 				},
 				headers: {

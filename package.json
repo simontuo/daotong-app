@@ -19,7 +19,9 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "mdui": "^0.3.0",
-    "sweetalert": "^2.0.3"
+    "sweetalert": "^2.0.3",
+    "vue-image-crop-upload": "^2.0.6"
   }
 }
