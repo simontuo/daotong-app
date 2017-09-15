@@ -14,7 +14,7 @@ class UserRepository
      */
     public function byId($id)
     {
-        return User::find($id);
+        return User::findOrFail($id);
     }
 
     /**
