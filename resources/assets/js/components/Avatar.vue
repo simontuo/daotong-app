@@ -1,17 +1,24 @@
+<style>
+	.vicp-wrap{
+		width: 300px;
+		height: 500px;
+	}
+
+</style>
+
 <template>
-		
 	<div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
         <img :src="imgDataUrl" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
         <button type="button" class="mdui-btn mdui-color-pink mdui-hoverable mdui-center mdui-m-b-1" @click="toggleShow">
-                更换头像
+            更换头像
         </button>
-        <my-upload field="img"
+    	<my-upload field="img"
 	        @crop-success="cropSuccess"
 	        @crop-upload-success="cropUploadSuccess"
 	        @crop-upload-fail="cropUploadFail"
 	        v-model="show"
-			:width="300"
-			:height="300"
+			:width="150"
+			:height="150"
 			url="/upload"
 			:params="params"
 			:headers="headers"
@@ -20,6 +27,7 @@
 	</div>
 
 </template>
+
 
 <script>
 	import 'babel-polyfill'; // es6 shim
