@@ -21,6 +21,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "mdui": "^0.3.0",
+    "select2-bootstrap-theme": "^0.1.0-beta.10",
     "sweetalert": "^2.0.3",
     "vue-image-crop-upload": "^2.0.6"
   }

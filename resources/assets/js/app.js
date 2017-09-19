@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('avatar', require('./components/Avatar.vue'));
+Vue.component('cover', require('./components/Cover.vue'));
 
 const app = new Vue({
     el: '#app'

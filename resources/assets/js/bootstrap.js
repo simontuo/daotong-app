@@ -14,6 +14,7 @@ try {
     require('mdui');
     require('./select2.min');
     require('./sweetalert.min');
+    require('./main');
 
 } catch (e) {}
 
