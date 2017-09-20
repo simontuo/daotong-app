@@ -48,6 +48,25 @@ class User extends Authenticatable
      */
     protected $allowedSettings = ['city', 'bio'];
 
+    /**
+     * [isMyself 登录用户是否资源所有者]
+     * @method isMyself
+     * @param  User     $user [description]
+     * @return boolean        [description]
+     * @auth   simontuo
+     */
+    public function isMyself(User $user)
+    {
+        return $this->id == $user->id;
+    }
+
+    /**
+     * [owns 登录用户是否资源所有者]
+     * @method owns
+     * @param  Model    $model [description]
+     * @return [type]          [description]
+     * @auth   simontuo
+     */
     public function owns(Model $model)
     {
         return $this->id == $model->user_id;

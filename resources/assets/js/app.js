@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.mavonEditor = require('mavon-editor');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -17,7 +18,12 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('avatar', require('./components/Avatar.vue'));
+Vue.component('editor', require('./components/Editor.vue'));
+
+Vue.use(mavonEditor);
 
 const app = new Vue({
     el: '#app'
 });
+
+
