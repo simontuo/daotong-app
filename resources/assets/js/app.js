@@ -19,8 +19,11 @@ window.mavonEditor = require('mavon-editor');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('avatar', require('./components/Avatar.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
+Vue.component('cover', require('./components/Cover.vue'));
 
 Vue.use(mavonEditor);
+
+
 
 const app = new Vue({
     el: '#app'

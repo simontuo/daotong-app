@@ -4,7 +4,14 @@
             <a href="{{ route('index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
             @if(Auth::check())
-
+                <a href="javascript:;" class="hidden-xs hidden-sm mdui-btn mdui-btn-icon mdui-text-color-theme-accent" mdui-menu="{target: '#add-attr'}"><i class="mdui-icon material-icons">&#xe145;</i></a>
+                <ul class="mdui-menu " id="add-attr">
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('articles.create') }}" class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe150;</i>写东西
+                        </a>
+                    </li>
+                </ul>
 	        	<button class="mdui-btn hidden-xs hidden-sm" mdui-menu="{target: '#user-attr'}">
                     <img class="mdui-img-circle mdui-icon-left" src="{{ user()->avatar }}" id="user-avatar"/>
                     <i class="mdui-icon mdui-icon-right material-icons">&#xe5c5;</i>

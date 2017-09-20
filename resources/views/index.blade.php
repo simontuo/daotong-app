@@ -112,8 +112,6 @@
         </div>
     </div>
 
-
-
     @include('layouts.rightBar')
 </div>
 @endsection
