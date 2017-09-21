@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.VueSimplemde = require('vue-simplemde');
+window.iView = require('iview');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,7 +20,14 @@ window.Vue = require('vue');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('avatar', require('./components/Avatar.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
+Vue.component('editor', require('./components/Editor.vue'));
+Vue.component('test', require('./components/Test.vue'));
+
+
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        eventHub: new Vue()
+    }
 });
