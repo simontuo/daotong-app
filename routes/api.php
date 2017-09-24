@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->post('/upload', function (Request $request) {
+    dd(request()->all());
+    return response()->json(['loadingStatus' => false,'name' => 'img', 'url' => 'http://photo.maguas.com//avatars/2512f102014dce572199eb5cc69456ae.png']);
+    // abort(404);
+});

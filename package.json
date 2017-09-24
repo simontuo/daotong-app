@@ -23,10 +23,12 @@
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.12.0",
     "iview": "^2.3.2",
+    "mavon-editor": "^2.2.6",
     "mdui": "^0.3.0",
     "select2-bootstrap-theme": "^0.1.0-beta.10",
     "sweetalert": "^2.0.3",
     "vue-image-crop-upload": "^2.0.6",
+    "vue-quill-editor": "^2.3.2",
     "vue-simplemde": "^0.4.4"
   }
 }

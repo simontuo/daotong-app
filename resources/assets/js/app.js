@@ -10,6 +10,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
+window.VueQuillEditor = require('vue-quill-editor');
+window.hljs = require('highlight');
+window.mavonEditor = require('mavon-editor');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,7 +25,8 @@ Vue.component('avatar', require('./components/Avatar.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('test', require('./components/Test.vue'));
-
+Vue.component('upload', require('./components/Upload.vue'));
+Vue.component('alert', require('./components/Alert.vue'));
 
 
 const app = new Vue({

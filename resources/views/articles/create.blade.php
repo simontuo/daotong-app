@@ -4,18 +4,19 @@
 <div class="container">
     <div class="col-md-9">
         <!-- 新增文章form -->
-
+        <alert></alert>
         <form action="{{ route('articles.store') }}" method="post">
             {{ csrf_field() }}
 
-            <cover cover="../avatars/1.jpg"></cover>
+            <cover api_token="{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}"></cover>
 
             <div class="mdui-textfield">
-                <input class="mdui-textfield-input" type="title" placeholder="文章标题" maxlength="20"/>
+                <input name="title" class="mdui-textfield-input" type="title" placeholder="文章标题" maxlength="20"/>
             </div>
 
-            <editor></edior>
+            <editor></editor>
 
+            <button class="mdui-btn mdui-color-theme">submit</button>
         </form>
 
     </div>
