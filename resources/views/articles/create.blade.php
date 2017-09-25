@@ -8,7 +8,7 @@
         <form action="{{ route('articles.store') }}" method="post">
             {{ csrf_field() }}
 
-            <cover api_token="{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}"></cover>
+            <cover></cover>
 
             <div class="mdui-textfield">
                 <input name="title" class="mdui-textfield-input" type="title" placeholder="文章标题" maxlength="20"/>

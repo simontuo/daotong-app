@@ -20,7 +20,7 @@
     export default {
         data() {
             return {
-                url: '/api/upload/image',
+                url: '/api/upload/markdownImage',
                 img_file: {},
                 toolbars: {
                     bold: true, // 粗体
@@ -70,7 +70,7 @@
                 var formdata = new FormData();
                 formdata.append('img', $file);
                 axios({
-                    url: '/upload',
+                    url: this.url,
                     method: 'post',
                     data: formdata,
                     headers: { 'Content-Type': 'multipart/form-data' },

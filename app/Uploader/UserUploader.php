@@ -37,4 +37,13 @@ class UserUploader extends Uploader
 
         return ['name' => $fileName, 'url' => $callBackUrl];
     }
+
+    public function uploadMarkdownImage(User $user, $file)
+    {
+        $fileName = '/markdown/images'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+        $callBackUrl = $this->uploadQiniu($fileName, $file);
+
+        return ['name' => $fileName, 'url' => $callBackUrl];
+    }
 }

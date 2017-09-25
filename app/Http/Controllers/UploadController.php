@@ -21,4 +21,13 @@ class UploadController extends Controller
 
         abort(500);
     }
+
+    public function markdownImage(Request $request)
+    {
+        if ($request->hasFile('img')) {
+            return (new UserUploader())->uploadMarkdownImage(user('api'), $request->file('img'));
+        }
+
+        abort(500);
+    }
 }

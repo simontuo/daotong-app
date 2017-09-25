@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('cover')->nullable(); // 封面图
             $table->string('title'); // 标题
             $table->text('bio'); // 内容
-            $tabel->integer('user_id')->unsigned(); // 创建者id
+            $table->integer('user_id')->unsigned(); // 创建者id
             $table->integer('comments_count')->default(0); // 评论数量
             $table->integer('followers_count')->default(0); // 关注数量
             $table->integer('reflections_count')->default(0); // 感想数量
