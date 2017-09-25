@@ -8,11 +8,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.VueSimplemde = require('vue-simplemde');
+window.iView = require('iview');
+window.VueQuillEditor = require('vue-quill-editor');
+window.hljs = require('highlight');
 window.mavonEditor = require('mavon-editor');
-window.VueSimplemde  = require('vue-simplemde');
-window.hljs  = require('highlight');
-window.iView  = require('iview');
-
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -25,17 +25,16 @@ Vue.component('avatar', require('./components/Avatar.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('editor1', require('./components/Editor1.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
-Vue.component('upload-image', require('./components/UploadImage.vue'));
-Vue.component('checkbox', require('./components/Checkbox.vue'));
-
-Vue.use(mavonEditor);
-Vue.use(VueSimplemde);
-Vue.use(iView);
+Vue.component('editor', require('./components/Editor.vue'));
+Vue.component('test', require('./components/Test.vue'));
+Vue.component('upload', require('./components/Upload.vue'));
+Vue.component('alert', require('./components/Alert.vue'));
 
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        eventHub: new Vue()
+    }
 });
-
-

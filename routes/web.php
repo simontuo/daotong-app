@@ -32,3 +32,7 @@ Route::resource('articles', 'ArticleController', ['names' => [
     'store'  => 'articles.store',
     'show'   => 'articles.show',
 ]]);
+
+Route::post('/upload', function() {
+    return response()->json(['loadingStatus' => true,'name' => 'img', 'url' => 'http://photo.maguas.com//avatars/2512f102014dce572199eb5cc69456ae.png']);
+});

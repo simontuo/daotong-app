@@ -30,5 +30,18 @@
     <!-- sweetalert -->
     @include('sweet::alert')
 
+    <!-- <script>
+        @if (session('message'))
+            // swal({
+            //     title: "{{ session('message')['message']['title'] }}",
+            //     text: "{{ session('message')['message']['text'] }}",
+            //     type: "{{ session('message')['status'] }}",
+            //     timer: "{{ config('sweetalert.timer', 'Laravel') }}"
+            // });
+            swal("Oops!", "Something went wrong!", "error")
+        @endif
+    </script> -->
+    
+
 </body>
 </html>

@@ -17,12 +17,11 @@
 @import "~select2-bootstrap-theme/dist/select2-bootstrap.min";
 // sweetalert
 @import "./../css/sweetalert.min";
-// Editor
-// @import "~mavon-editor/dist/css/index";
-
+// simplemde
 @import '~simplemde/dist/simplemde.min';
-//@import '~simplemde-theme-base/dist/simplemde-theme-base.min.css';
-@import '~highlight.js/styles/atom-one-dark';
+// github-markdown-css
 @import '~github-markdown-css';
-
+// highlight
+@import '~highlight.js/styles/atom-one-dark';
+// iView
 @import '~iview/dist/styles/iview';
