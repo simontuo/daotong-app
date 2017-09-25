@@ -7,6 +7,7 @@ use App\Repositories\UserRepository;
 use Storage;
 use App\Http\Requests\ChangePasswordRequest;
 use Hash;
+use App\Uploader\UserUploader;
 
 class UsersController extends Controller
 {
@@ -123,13 +124,7 @@ class UsersController extends Controller
         $user = $this->user->byId($id);
 
         if (user()->isMyself($user) && $request->hasFile('img')) {
-            $file = $request->file('img');
-            $fileName = '/avatars/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
-
-            Storage::disk('qiniu')->writeStream($fileName, fopen($file->getRealPath(), 'r'));
-
-            $user->avatar = 'http://'.config('filesystems.disks.qiniu.domain').'/'.$fileName;
-            $user->save();
+            (new UserUploader())->uploadAvatar($user, $request->file('img'));
 
             return response()->json(['url' => $user->avatar]);
         }
