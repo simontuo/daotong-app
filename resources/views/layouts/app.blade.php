@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 </head>
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar">
     <div id="app">
@@ -29,16 +29,6 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <!-- sweetalert -->
     @include('sweet::alert')
-    <!-- <script>
-        @if (session('message'))
-            // swal({
-            //     title: "{{ session('message')['message']['title'] }}",
-            //     text: "{{ session('message')['message']['text'] }}",
-            //     type: "{{ session('message')['status'] }}",
-            //     timer: "{{ config('sweetalert.timer', 'Laravel') }}"
-            // });
-            swal("Oops!", "Something went wrong!", "error")
-        @endif
-    </script> -->
+
 </body>
 </html>
