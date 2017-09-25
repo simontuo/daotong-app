@@ -170,8 +170,6 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Naux\Mail\SendCloudServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
-        LaravelChen\Editormd\EditorMdProvider::class,
-        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
 
         /*
          * Application Service Providers...
