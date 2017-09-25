@@ -100,5 +100,10 @@
         margin: auto;
         width: 100%;
     }
-
+    .v-note-wrapper {
+        z-index: 999 !important;
+    }
+    .v-note-wrapper.fullscreen {
+        z-index: 1500 !important;
+    }
 </style>
