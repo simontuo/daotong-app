@@ -3,10 +3,9 @@
         <Upload
             multiple
             type="drag"
-            action="/api/upload"
+            action="/api/upload/cover"
             :on-success="handleSuccess"
             :on-error="handleError"
-            :data="data"
             :headers="headers"
             >
             <div style="padding: 20px 0">
@@ -22,9 +21,6 @@
         props: ['api_token'],
         data() {
             return {
-                data: {
-                    _token: '123'
-                },
                 headers: {
                     Authorization: this.api_token
                 }
@@ -32,6 +28,7 @@
         },
         methods: {
             handleSuccess (response) {
+                console.log(response);
                 this.$Message.success('上传图片成功！');
             },
             handleError (response) {
