@@ -7,7 +7,10 @@
             :toolbars="toolbars"
             @imgAdd="$imgAdd"
             @imgDel="$imgDels"
+            @change="$change"
         ></mavon-editor>
+        <textarea name="bio" v-model="bio"  style="display:none"></textarea>
+        <textarea name="markdown_bio" v-model="markdown_bio"  style="display:none"></textarea>
     </div>
 </template>
 <script>
@@ -22,6 +25,8 @@
             return {
                 url: '/api/upload/markdownImage',
                 img_file: {},
+                bio: '',
+                markdown_bio: '',
                 toolbars: {
                     bold: true, // 粗体
                     italic: false, // 斜体
@@ -75,7 +80,7 @@
                     data: formdata,
                     headers: { 'Content-Type': 'multipart/form-data' },
                 }).then(response => {
-
+                    
                     md.$refs.toolbar_left.$imgDelByFilename(pos)
                     md.$img2Url(pos, response.data.url)
                     md.$refs.toolbar_left.$imgAddByFilename(response.data.url)
@@ -89,10 +94,11 @@
             $imgDels(pos){
                 delete this.img_file[pos];
             },
-        },
-        mounted() {
-            $('#editor').find('textarea').attr('name', 'bio');
-        },
+            $change(value, render){
+                this.bio = render;
+                this.markdown_bio = value;
+            }
+        }
     }
 </script>
 <style>

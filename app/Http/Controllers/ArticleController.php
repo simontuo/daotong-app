@@ -47,15 +47,16 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
         $data = [
-            'user_id' => Auth::id(),
-            'cover' => $request->get('cover'),
-            'title' => $request->get('title'),
-            'bio' => $request->get('bio'),
+            'user_id'      => Auth::id(),
+            'cover'        => $request->get('cover'),
+            'title'        => $request->get('title'),
+            'bio'          => $request->get('bio'),
+            'markdown_bio' => $request->get('markdown_bio'),
         ];
 
         $article = $this->article->create($data);
 
-        alert()->success('新增文章 '.$article->name.' 成功！')->autoclose(2000);
+        alert()->success('新增文章 '.$article->title.' 成功！')->autoclose(2000);
 
         return redirect()->route('articles.show', ['article' => $article->id]);
     }

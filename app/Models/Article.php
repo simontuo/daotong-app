@@ -9,7 +9,7 @@ class Article extends Model
     use Traits\Parsedown;
 
     protected $fillable = [
-        'user_id', 'title', 'cover', 'bio'
+        'user_id', 'title', 'cover', 'bio', 'markdown_bio',
     ];
 
 }

@@ -16,7 +16,7 @@
 
             <editor></editor>
 
-            <button class="mdui-btn mdui-color-theme">submit</button>
+            <button class="mdui-btn mdui-color-theme mdui-m-t-1">提交</button>
         </form>
     </div>
 

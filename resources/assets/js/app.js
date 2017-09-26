@@ -25,7 +25,6 @@ Vue.component('avatar', require('./components/Avatar.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
 Vue.component('test', require('./components/Test.vue'));
-Vue.component('upload', require('./components/Upload.vue'));
 Vue.component('alert', require('./components/Alert.vue'));
 
 
