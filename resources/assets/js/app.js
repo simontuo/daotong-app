@@ -27,6 +27,7 @@ Vue.component('cover', require('./components/Cover.vue'));
 Vue.component('test', require('./components/Test.vue'));
 Vue.component('alert', require('./components/Alert.vue'));
 Vue.component('back-top', require('./components/BackTop.vue'));
+Vue.component('like-card', require('./components/LikeCard.vue'));
 
 
 

@@ -1,4 +1,4 @@
-.background{
+.background {
     background: #f0f2f5;
 }
 a.topic {
@@ -19,6 +19,10 @@ a.topic:hover {
     text-decoration: none;
 }
 
-.mdui-car-topic{
+.mdui-car-topic {
     margin: 8px 16px;
+}
+
+.article-head {
+    text-align: center;
 }

@@ -8376,6 +8376,10 @@ a.topic:hover {
   margin: 8px 16px;
 }
 
+.article-head {
+  text-align: center;
+}
+
 /*!
  * mdui v0.3.0 (https://mdui.org)
  * Copyright 2016-2017 zdhxiong
