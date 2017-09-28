@@ -69,7 +69,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = $this->article->byId($id);
+        $article = $this->article->byIdWithUserAndAuthor($id);
+
+        $article->increment('reads_count');
 
         return view('articles.show', compact('article'));
     }
