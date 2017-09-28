@@ -26,6 +26,7 @@ Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
 Vue.component('test', require('./components/Test.vue'));
 Vue.component('alert', require('./components/Alert.vue'));
+Vue.component('back-top', require('./components/BackTop.vue'));
 
 
 

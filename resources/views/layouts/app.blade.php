@@ -23,6 +23,7 @@
             @yield('content')
         </div>
 
+        <back-top></back-top>
     </div>
 
     <!-- Scripts -->
