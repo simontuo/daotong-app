@@ -26,8 +26,12 @@ class LikeController extends Controller
      */
     public function index($type, $id)
     {
-        $likes = $this->like->getTypeLikeByid($type, $id);
+        if (in_array($type, $this->allowType)) {
+            $likes = $this->like->getTypeLikeByid($type, $id);
 
-        return response()->json(['likes' => $likes]);
+            return response()->json(['status' => true, 'likes' => $likes]);
+        }
+
+        return response()->json(['status' => false]);
     }
 }

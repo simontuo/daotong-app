@@ -33,7 +33,7 @@
         <!-- like-card -->
         <div class="row mdui-m-b-2">
             <!-- like-card -->
-            <like-card id="{{ $article->id }}"></like-card>
+            <like-card id="{{ $article->id }}" type="Article"></like-card>
         </div>
         <!-- comment-list -->
         <div class="row mdui-m-b-2">
