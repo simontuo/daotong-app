@@ -38,7 +38,7 @@
         <!-- comment-list -->
         <div class="row mdui-m-b-2">
             <!-- comment-->
-            <comment></comment>
+            <comment-list></comment-list>
         </div>
     </div>
 
