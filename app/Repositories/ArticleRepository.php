@@ -29,7 +29,7 @@ class ArticleRepository
         return Article::findOrFail($id);
     }
 
-    public function byIdWithUserAndAuthor($id)
+    public function getArticleUserAndAuthorById($id)
     {
         return Article::with(['users', 'authors'])->findOrFail($id);
     }

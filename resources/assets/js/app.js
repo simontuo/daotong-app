@@ -29,6 +29,7 @@ Vue.component('alert', require('./components/Alert.vue'));
 Vue.component('back-top', require('./components/BackTop.vue'));
 Vue.component('like-card', require('./components/LikeCard.vue'));
 Vue.component('comment-list', require('./components/CommentList.vue'));
+Vue.component('user-like-button', require('./components/UserLikeButton.vue'));
 
 
 

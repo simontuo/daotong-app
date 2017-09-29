@@ -4,10 +4,7 @@
             <!-- 打赏/点赞 -->
             <p slot="title" class="mdui-m-b-2">
                 <ButtonGroup>
-                    <Button type="success" size="large">
-                        <Icon type="android-favorite"></Icon>
-                        点赞
-                    </Button>
+                    <user-like-button></user-like-button>
                     <Button type="warning" size="large">
                         打赏
                         <Icon type="social-yen"></Icon>
@@ -34,7 +31,15 @@
 </template>
 <script>
     export default {
+        props: ['id'],
+        data () {
+            return {
 
+            }
+        },
+        mounted() {
+            
+        }
     }
 </script>
 <style>

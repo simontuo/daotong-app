@@ -35,4 +35,12 @@ class Article extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    /**
+     * [likes 文章点赞多态关联]
+     * @return [type] [description]
+     */
+    public function likes()
+    {
+        return $this->morphMany('App\Models\Like', 'likeable');
+    }
 }

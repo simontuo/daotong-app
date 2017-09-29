@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->post('/upload/cover', 'UploadController@cover');
 Route::middleware('auth:api')->post('/upload/markdownImage', 'UploadController@markdownImage');
+
+Route::get('/likes/{type}/{id}', 'LikeController@index');
