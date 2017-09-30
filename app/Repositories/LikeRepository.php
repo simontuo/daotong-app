@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Like;
 
 class LikeRepository
 {
@@ -12,8 +13,18 @@ class LikeRepository
      * @return [type]                [description]
      * @auth   simontuo
      */
-    public function getTypeLikeByid($type, $id)
+    public function getTypeLikeById($type, $id)
     {
         return app('App\Models\\'.$type)->findOrfail($id)->likes()->with('user')->get();
+    }
+
+    public function getTypeById($type, $id)
+    {
+        return app('App\Models\\'.$type)->findOrfail($id);
+    }
+
+    public function create(array $attributes)
+    {
+        return Like::create($attributes);
     }
 }

@@ -4,7 +4,7 @@
             <!-- 打赏/点赞 -->
             <p slot="title" class="mdui-m-b-2">
                 <ButtonGroup>
-                    <user-like-button></user-like-button>
+                    <user-like-button :id="id" :type="type" v-on:child-say="getLikeUser"></user-like-button>
                     <Button type="warning" size="large">
                         打赏
                         <Icon type="social-yen"></Icon>
@@ -38,6 +38,11 @@
                 this.users = response.data.likes;
                 this.spinShow = false;
             })
+        },
+        methods: {
+            getLikeUser (user) {
+                this.users.push(user);
+            }
         }
     }
 </script>

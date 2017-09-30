@@ -27,11 +27,35 @@ class LikeController extends Controller
     public function index($type, $id)
     {
         if (in_array($type, $this->allowType)) {
-            $likes = $this->like->getTypeLikeByid($type, $id);
+            $likes = $this->like->getTypeLikeById($type, $id);
 
             return response()->json(['status' => true, 'likes' => $likes]);
         }
 
         return response()->json(['status' => false]);
+    }
+
+
+    public function like(Request $request)
+    {
+        $type = $this->like->getTypeById($request->get('type'), $request->get('id'));
+
+        if (!$type) {
+            return response()->json(['status' => false]);
+        }
+
+        if ($type->likes()->where('user_id', user('api')->id)->count() < 1) {
+            $data = [
+                'user_id' => user('api')->id,
+                'likeable_id' => $type->id,
+                'likeable_type' => 'APP\Models\\'.$request->get('type'),
+            ];
+
+            $this->like->create($data);
+
+            return response()->json(['status' => true, 'user' => user('api')]);
+        }
+
+        return response()->json(['status' => false, 'message' => "已经点过攒了！"]);
     }
 }
