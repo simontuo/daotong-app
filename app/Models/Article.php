@@ -43,4 +43,15 @@ class Article extends Model
     {
         return $this->morphMany('App\Models\Like', 'likeable');
     }
+
+    /**
+     * [comments 文章评论多态关系]
+     * @method comments
+     * @return [type]   [description]
+     * @auth   simontuo
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'commentable');
+    }
 }

@@ -22,6 +22,12 @@ class Like extends Model
         return $this->morphTo();
     }
 
+    /**
+     * [user 用户关系]
+     * @method user
+     * @return [type]   [description]
+     * @auth   simontuo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

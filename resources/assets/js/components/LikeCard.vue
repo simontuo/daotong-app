@@ -4,7 +4,7 @@
             <!-- 打赏/点赞 -->
             <p slot="title" class="mdui-m-b-2">
                 <ButtonGroup>
-                    <user-like-button :id="id" :type="type" v-on:child-say="getLikeUser"></user-like-button>
+                    <user-like-button :id="model" :type="type" v-on:child-say="getLikeUser"></user-like-button>
                     <Button type="warning" size="large">
                         打赏
                         <Icon type="social-yen"></Icon>
@@ -16,14 +16,14 @@
                 <Avatar class="like-avatar" :src="user.user.avatar" />
             </a>
         </div>
-        <div class="spin-container mdui-center">
+        <div class="spin-container mdui-center" v-if="spinShow">
             <Spin size="large" fix v-if="spinShow"></Spin>
         </div>
     </Card>
 </template>
 <script>
     export default {
-        props: ['id', 'type'],
+        props: ['model', 'type'],
         data () {
             return {
                 spinShow: true,
@@ -31,7 +31,7 @@
             }
         },
         mounted() {
-            axios.get('/api/likes/' + this.type + '/' + this.id).then(response => {
+            axios.get('/api/likes/' + this.type + '/' + this.model).then(response => {
                 if (!response.data.status) {
                     this.$Message.error({content: '点赞加载失败！', duration: 5});
                 }

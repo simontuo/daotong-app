@@ -9,7 +9,7 @@ class LikeController extends Controller
 {
     protected $like;
 
-    protected $allowType = [
+    protected $allowLike = [
         'Article',
     ];
 
@@ -26,7 +26,7 @@ class LikeController extends Controller
      */
     public function index($type, $id)
     {
-        if (in_array($type, $this->allowType)) {
+        if (in_array($type, $this->allowLike)) {
             $likes = $this->like->getTypeLikeById($type, $id);
 
             return response()->json(['status' => true, 'likes' => $likes]);
@@ -36,7 +36,7 @@ class LikeController extends Controller
     }
 
 
-    public function like(Request $request)
+    public function store(Request $request)
     {
         $type = $this->like->getTypeById($request->get('type'), $request->get('id'));
 
