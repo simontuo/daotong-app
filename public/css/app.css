@@ -8380,6 +8380,10 @@ a.topic:hover {
   text-align: center;
 }
 
+.article-card-icons {
+  font-size: 15px;
+}
+
 /*!
  * mdui v0.3.0 (https://mdui.org)
  * Copyright 2016-2017 zdhxiong

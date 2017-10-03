@@ -17,15 +17,17 @@
                     <div  style="font-size:13px;text-align: center;margin-bottom: 5%">
         				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe192;</i> {{ $article->created_at->diffForHumans() }} -
         				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe417;</i> {{ $article->reads_count }} -
-        				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe8dc;</i> 12 -
-        				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe0b7;</i> 11
+        				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe8dc;</i> {{ $article->likes()->count() }} -
+        				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe0b7;</i> {{ $article->comments_count }}
         			</div>
                 </div>
                 <!-- bio -->
                 <div class="markdown-body code-github mdui-m-b-2">
                     {!! $article->bio !!}
                     <blockquote>
-                        <p><i class="mdui-icon material-icons mdui-text-color-theme-accent" mdui-tooltip="{content: '作者署名'}">&#xe55a;</i> : {{ $article->authors->settings['bio'] }}</p>
+                        <p>
+                            <i class="mdui-icon material-icons mdui-text-color-theme-accent" mdui-tooltip="{content: '作者署名'}">&#xe55a;</i> : {{ $article->author->settings['bio'] }}
+                        </p>
                     </blockquote>
                 </div>
             </div>

@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepository;
+use App\Repositories\ArticleRepository;
 
 class CommentsController extends Controller
 {
     protected $comment;
 
+    protected $article;
+
     protected $allowComment = [
         'Article',
     ];
 
-    public function __construct(CommentRepository $comment)
+    public function __construct(CommentRepository $comment, ArticleRepository $article)
     {
         $this->comment = $comment;
+        $this->article = $article;
     }
 
     /**
@@ -59,6 +63,8 @@ class CommentsController extends Controller
         $comment->user = $comment->user()->first();
         $comment->parent = $comment->parent()->first();
         $comment->created_time = $comment->created_at->diffForHumans();
+
+        app($comment->commentable_type)->findOrFail($comment->commentable_id)->increment('comments_count');
 
         return response()->json(['status' => true, 'comment' => $comment]);
     }

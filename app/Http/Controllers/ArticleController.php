@@ -25,7 +25,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = $this->article->index();
+
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -48,6 +50,7 @@ class ArticleController extends Controller
     {
         $data = [
             'user_id'      => Auth::id(),
+            'author_id'    => Auth::id(),
             'cover'        => $request->get('cover'),
             'title'        => $request->get('title'),
             'bio'          => $request->get('bio'),

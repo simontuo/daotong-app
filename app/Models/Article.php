@@ -10,7 +10,7 @@ class Article extends Model
     use Traits\Parsedown;
 
     protected $fillable = [
-        'user_id', 'title', 'cover', 'bio', 'markdown_bio',
+        'user_id', 'title', 'cover', 'bio', 'markdown_bio', 'author_id'
     ];
 
     /**
@@ -19,7 +19,7 @@ class Article extends Model
      * @return [type]   [description]
      * @auth   simontuo
      */
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -30,7 +30,7 @@ class Article extends Model
      * @return [type]   [description]
      * @auth   simontuo
      */
-    public function authors()
+    public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
@@ -53,5 +53,10 @@ class Article extends Model
     public function comments()
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
+    }
+
+    public function has_liked()
+    {
+        return !! $this->likes()->where('user_id', user()->id)->count();
     }
 }

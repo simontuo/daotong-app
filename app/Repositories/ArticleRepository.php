@@ -31,6 +31,11 @@ class ArticleRepository
 
     public function getArticleUserAndAuthorById($id)
     {
-        return Article::with(['users', 'authors'])->findOrFail($id);
+        return Article::with(['user', 'author'])->findOrFail($id);
+    }
+
+    public function index()
+    {
+        return Article::with('user')->latest('created_at')->get();
     }
 }

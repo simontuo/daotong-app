@@ -32,9 +32,9 @@
                         {{ comment.bio }}
                     </p>
                     <div class="mdui-btn-group mdui-m-y-1">
-                        <button class="mdui-btn mdui-ripple mdui-color-blue-50 mdui-text-color-blue-800">
+                        <!-- <button class="mdui-btn mdui-ripple mdui-color-blue-50 mdui-text-color-blue-800">
                             <i class="mdui-icon mdui-icon-left material-icons">&#xe8dc;</i>711
-                        </button>
+                        </button> -->
                         <button class="mdui-btn mdui-ripple" @click="listComment(comment.user.id)">
                             <i class="mdui-icon material-icons">&#xe15e;</i>
                             回复
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="mdui-dialog" id="comment-article-dialog">
-            <div class="mdui-dialog-title">回复：{{ title }} </div>
+            <div class="mdui-dialog-title">评论：{{ title }} </div>
             <div class="mdui-dialog-content">
                 <div class="mdui-textfield">
                     <textarea class="mdui-textfield-input" v-model="bio" placeholder="评论内容"></textarea>
@@ -108,6 +108,7 @@
                     }
                     this.count ++;
                     this.comments.push(response.data.comment);
+                    this.$Message.success({content: '评论新增成功！', duration: 2});
                 });
                 this.bio = '';
             },

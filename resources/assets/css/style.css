@@ -26,3 +26,7 @@ a.topic:hover {
 .article-head {
     text-align: center;
 }
+
+.article-card-icons {
+    font-size: 15px;
+}
