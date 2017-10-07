@@ -19,8 +19,9 @@
     <div id="app">
         @include('layouts.navbar')
 
-        <div class="mdui-m-t-2">
+        <div class="mdui-m-t-2 container">
             @yield('content')
+            @yield('rightBar')    
         </div>
 
         <back-top></back-top>

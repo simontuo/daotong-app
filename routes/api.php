@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->post('/upload/cover', 'UploadController@cover');
 Route::middleware('auth:api')->post('/upload/markdownImage', 'UploadController@markdownImage');
 
+Route::get('/articles/rankingList', 'ArticleController@rankingList');
+
 Route::get('/likes/{type}/{id}', 'LikeController@index');
 Route::middleware('auth:api')->post('/likes/store', 'LikeController@store');
 

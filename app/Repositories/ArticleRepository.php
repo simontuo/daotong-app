@@ -34,8 +34,17 @@ class ArticleRepository
         return Article::with(['user', 'author'])->findOrFail($id);
     }
 
+    /**
+     * [index 获取文章]
+     * @return [type] [description]
+     */
     public function index()
     {
         return Article::with('user')->latest('created_at')->get();
+    }
+
+    public function getRankingList($page)
+    {
+        return Article::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
     }
 }

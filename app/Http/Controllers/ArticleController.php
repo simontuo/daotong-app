@@ -13,7 +13,9 @@ class ArticleController extends Controller
 
     public function __construct(ArticleRepository $article)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except([
+            'rankingList'
+        ]);
         $this->article = $article;
 
     }
@@ -111,5 +113,14 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function rankingList()
+    {
+        $page = is_null(request('page')) ? 0 : request('page');
+
+        $rankingList = $this->article->getRankingList($page);
+
+        return response()->json(['rankingList' => $rankingList]);
     }
 }

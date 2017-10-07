@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="col-md-9">
         <!-- laravel flash -->
         @if (session('status'))
@@ -53,8 +52,11 @@
               </div>
         </div>
         @endforeach
-    </div>
-
-    @include('layouts.rightBar')
 </div>
+@endsection
+
+@section('rightBar')
+    <div class="col-md-3">
+        <ranking-list></ranking-list>
+    </div>
 @endsection

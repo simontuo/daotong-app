@@ -11,7 +11,6 @@ window.Vue = require('vue');
 window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
-window.hljs = require('highlight');
 window.mavonEditor = require('mavon-editor');
 
 /**
@@ -30,6 +29,7 @@ Vue.component('back-top', require('./components/BackTop.vue'));
 Vue.component('like-card', require('./components/LikeCard.vue'));
 Vue.component('comment-list', require('./components/CommentList.vue'));
 Vue.component('user-like-button', require('./components/UserLikeButton.vue'));
+Vue.component('ranking-list', require('./components/RankingList.vue'));
 
 
 
