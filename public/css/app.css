@@ -8384,6 +8384,14 @@ a.topic:hover {
   font-size: 15px;
 }
 
+.card-avatar {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
 /*!
  * mdui v0.3.0 (https://mdui.org)
  * Copyright 2016-2017 zdhxiong

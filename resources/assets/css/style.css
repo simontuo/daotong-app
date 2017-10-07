@@ -30,3 +30,11 @@ a.topic:hover {
 .article-card-icons {
     font-size: 15px;
 }
+
+.card-avatar {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
