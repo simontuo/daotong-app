@@ -99,16 +99,29 @@ class User extends Authenticatable
         (new UserMailer())->passwordReset($this->email, $token);
     }
 
+    /**
+     * [followers 用户的关注用户]
+     * @return [type] [description]
+     */
     public function followers()
     {
         return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id');
     }
 
+    /**
+     * [followersUser 用户的被关注用户]
+     * @return [type] [description]
+     */
     public function followersUser()
     {
         return $this->belongsToMany(self::class, 'followers', 'followed_id', 'follower_id');
     }
 
+    /**
+     * [followThisUser 关注用户]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
     public function followThisUser($user)
     {
         return $this->followers()->toggle($user);

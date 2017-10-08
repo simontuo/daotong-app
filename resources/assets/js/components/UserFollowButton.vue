@@ -27,8 +27,12 @@
         methods: {
             follow() {
                 axios.post('/api/user/follow', {'user': this.user}).then(response => {
-                    this.followed = response.data.followed;
-                    this.$Message.success({content: this.followed ? '已关注' : '已取消关注', duration: 2});
+                    if (response.data.status) {
+                        this.$Message.success({content: response.data.message, duration: 2});
+                    }else {
+                        this.followed = response.data.followed;
+                        this.$Message.success({content: this.followed ? '已关注' : '已取消关注', duration: 2});
+                    }
                 })
             }
         }
