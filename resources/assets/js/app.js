@@ -30,6 +30,8 @@ Vue.component('like-card', require('./components/LikeCard.vue'));
 Vue.component('comment-list', require('./components/CommentList.vue'));
 Vue.component('user-like-button', require('./components/UserLikeButton.vue'));
 Vue.component('ranking-list', require('./components/RankingList.vue'));
+Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
+Vue.component('user-message-button', require('./components/UserMessageButton.vue'));
 
 
 

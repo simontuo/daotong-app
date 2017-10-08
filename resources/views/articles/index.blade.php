@@ -47,7 +47,12 @@
             <div class="mdui-card-actions mdui-m-x-1 mdui-m-t-0">
                 <span class="mdui-float-right article-card-icons mdui-m-x-1 mdui-text-color-teal"><i class="mdui-icon material-icons">&#xe0b9;</i> {{ $article->comments_count }} </span>
                 <span class="mdui-float-right article-card-icons mdui-m-x-1
-                {{ $article->has_liked() ? 'mdui-text-color-theme-accent' : 'mdui-card-header-subtitle' }}"><i class="mdui-icon material-icons">&#xe87d;</i> {{ $article->likes()->count() }}</span>
+                @if(Auth::check())
+                    {{ $article->has_liked() ? 'mdui-text-color-theme-accent' : 'mdui-card-header-subtitle' }}
+                @else
+                    mdui-card-header-subtitle
+                @endif
+                "><i class="mdui-icon material-icons">&#xe87d;</i> {{ $article->likes()->count() }}</span>
                 <span class="mdui-float-right article-card-icons mdui-m-x-1 mdui-text-color-theme"><i class="mdui-icon material-icons">&#xe417;</i> {{ $article->reads_count }}</span>
               </div>
         </div>

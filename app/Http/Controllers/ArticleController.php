@@ -14,7 +14,7 @@ class ArticleController extends Controller
     public function __construct(ArticleRepository $article)
     {
         $this->middleware('auth')->except([
-            'rankingList'
+            'index', 'show', 'rankingList'
         ]);
         $this->article = $article;
 

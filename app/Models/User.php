@@ -98,4 +98,19 @@ class User extends Authenticatable
     {
         (new UserMailer())->passwordReset($this->email, $token);
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id');
+    }
+
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'follower_id');
+    }
+
+    public function followThisUser($user)
+    {
+        return $this->followers()->toggle($user);
+    }
 }
