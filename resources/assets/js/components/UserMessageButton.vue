@@ -1,27 +1,43 @@
 <template>
-    <Button type="success" size="large" @click="like">
-        <Icon type="chatbubbles"></Icon>
-        发私信
-    </Button>
+    <span>
+        <Button type="success" size="large" @click="showmModal">
+            <Icon type="chatbubbles"></Icon>
+            发私信
+        </Button>
+        <!-- 私信dialog -->
+        <div class="mdui-dialog" id="message-dialog">
+            <div class="mdui-dialog-title">发送私信给：simontuo</div>
+            <div class="mdui-dialog-content">
+                <div class="mdui-textfield">
+                    <textarea class="mdui-textfield-input" v-model="bio" placeholder="私信内容"></textarea>
+                </div>
+            </div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-confirm @click="message()">发送</button>
+                <button class="mdui-btn mdui-ripple" mdui-dialog-cancel @click="emptyTextarea">取消</button>
+            </div>
+        </div>
+    </span>
 </template>
 
 <script>
     export default {
-        props: ['type', 'id'],
+        props: ['user'],
+        data () {
+            return {
+                bio: '',
+            }
+        },
         methods: {
-            like () {
-                axios.post('/api/likes/store', {'type': this.type, 'id': this.id}).then(response => {
-                    if (!response.data.status) {
-                        if (response.data.message) {
-                            this.$Message.info({content: response.data.message, duration: 5});
-                        }else {
-                            this.$Message.error({content: '点赞失败！', duration: 5});
-                        }
-                    }else{
-                        this.$emit('child-say', response.data);
-                        this.$Message.success({content: '点赞成功！', duration: 2});
-                    }
-                })
+            showmModal () {
+                var dialog = new mdui.Dialog('#message-dialog');
+                dialog.open();
+            },
+            message () {
+
+            },
+            emptyTextarea () {
+                this.bio = '';
             }
         }
     }
