@@ -30,3 +30,6 @@ Route::patch('/users/{id}', 'UsersController@update')->name('users.update');
 Route::post('/users/{id}/update_avatar', 'UsersController@updateAvatar')->name('users.update_avatar');
 Route::get('/users/{id}/edit_password', 'UsersController@editPassword')->name('users.edit_password');
 Route::post('/users/{id}/update_password', 'UsersController@updatePassword')->name('users.update_password');
+Route::get('/users/{id}/center', 'UsersController@center')->name('users.center');
+
+// Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');

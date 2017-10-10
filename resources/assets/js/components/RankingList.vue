@@ -11,7 +11,7 @@
                 <div class="mdui-list-item-content mdui-text-truncate">
                     <span>{{ item.title }}</span>
                 </div>
-                <span class="hidden-xs label label-success mdui-float-right">{{ item.reads_count }}</span>
+                <span class="label label-success mdui-float-right">{{ item.reads_count }}</span>
             </label>
         </a>
 

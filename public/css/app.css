@@ -8392,6 +8392,21 @@ a.topic:hover {
   border-radius: 60px;
 }
 
+.center-user-card {
+  border-radius: 3px;
+}
+
+.center-user-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+.center-user-card-font {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 /*!
  * mdui v0.3.0 (https://mdui.org)
  * Copyright 2016-2017 zdhxiong

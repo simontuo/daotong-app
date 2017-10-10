@@ -32,6 +32,8 @@ Vue.component('user-like-button', require('./components/UserLikeButton.vue'));
 Vue.component('ranking-list', require('./components/RankingList.vue'));
 Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
 Vue.component('user-message-button', require('./components/UserMessageButton.vue'));
+Vue.component('user-center-tab', require('./components/UserCenterTab.vue'));
+Vue.component('new-user-follow-notification', require('./components/notifications/new_user_follow_notification.vue'));
 
 
 

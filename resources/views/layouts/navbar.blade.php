@@ -19,7 +19,7 @@
                 </button>
 	        	<ul class="mdui-menu " id="user-attr">
                     <li class="mdui-menu-item">
-				        <a href="{{ route('users.edit', user()->id) }}" class="mdui-ripple">
+				        <a href="{{ route('users.center', user()->id) }}" class="mdui-ripple">
 				            <i class="mdui-menu-item-icon mdui-icon material-icons">&#xe853;</i>个人中心
 				        </a>
 				    </li>

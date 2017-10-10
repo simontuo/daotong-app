@@ -175,4 +175,11 @@ class UsersController extends Controller
 
         return back();
     }
+
+    public function center($id)
+    {
+        $user = $this->user->byId($id);
+
+        return view('users.center', compact('user'));
+    }
 }

@@ -34,7 +34,7 @@
                 dialog.open();
             },
             message () {
-
+                this.$Message.info({content: '建设中！', duration: 2});
             },
             emptyTextarea () {
                 this.bio = '';

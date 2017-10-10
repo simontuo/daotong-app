@@ -38,3 +38,18 @@ a.topic:hover {
     height: 60px;
     border-radius: 60px;
 }
+
+.center-user-card {
+    border-radius: 3px;
+}
+
+.center-user-card img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
+
+.center-user-card-font {
+    font-weight: bold;
+    font-size: 18px;
+}
