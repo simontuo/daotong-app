@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\CommentRepository;
 use App\Repositories\ArticleRepository;
+use App\Repositories\UserRepository;
 
 class CommentsController extends Controller
 {
@@ -16,10 +17,11 @@ class CommentsController extends Controller
         'Article',
     ];
 
-    public function __construct(CommentRepository $comment, ArticleRepository $article)
+    public function __construct(CommentRepository $comment, ArticleRepository $article, UserRepository $user)
     {
         $this->comment = $comment;
         $this->article = $article;
+        $this->user = $user;
     }
 
     /**
@@ -79,5 +81,14 @@ class CommentsController extends Controller
     public function getModelType($type)
     {
         return 'App\Models\\'.$type;
+    }
+
+    public function getUserComments($id)
+    {
+        $user = $this->user->byId($id);
+
+        $comments = $user->comments()->with('user')->get();
+
+        return response()->json(['comments' => $comments]);
     }
 }

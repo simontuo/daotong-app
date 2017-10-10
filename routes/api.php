@@ -29,8 +29,11 @@ Route::get('/likes/{type}/{id}', 'LikeController@index');
 Route::middleware('auth:api')->post('/likes/store', 'LikeController@store');
 
 Route::get('/comments/{type}/{id}', 'CommentsController@index');
+Route::get('/comments/{id}', 'CommentsController@getUserComments');
+
 Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
 
 Route::get('/notifications/{id}', 'NotificationsController@index');
 
 Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
+Route::get('/messages/{id}', 'MessagesController@index');

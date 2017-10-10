@@ -18,6 +18,15 @@ class MessagesController extends Controller
         $this->user = $user;
     }
 
+    public function index($id)
+    {
+        $user = $this->user->byId($id);
+
+        $messages = $user->messages()->with('fromUser')->get();
+
+        return response()->json(['messages' => $messages]);
+    }
+
     public function store()
     {
         if (user('api')->isMyself($this->user->byId(request('user')))) {

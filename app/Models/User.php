@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mailer\UserMailer;
 use App\Models\Message;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
@@ -140,5 +141,10 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class, 'to_user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }
