@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     protected $fillable = [
-        'from_user_id', 'to_user_id', 'bio',
+        'from_user_id', 'to_user_id', 'bio', 'dialog_id',
     ];
 
     public function fromUser()
@@ -17,6 +17,6 @@ class Message extends Model
 
     public function toUser()
     {
-        return $this->belongsTo(User::class, 'to_user_id'),
+        return $this->belongsTo(User::class, 'to_user_id');
     }
 }

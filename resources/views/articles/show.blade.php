@@ -90,7 +90,7 @@
                     <user-follow-button
                         user="{{ $article->author_id }}"
                     ></user-follow-button>
-                    <user-message-button></user-message-button>
+                    <user-message-button user="{{ $article->author_id }}"></user-message-button>
                 </p>
             </div>
         </div>

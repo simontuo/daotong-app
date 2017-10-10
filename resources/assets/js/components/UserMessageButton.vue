@@ -34,7 +34,16 @@
                 dialog.open();
             },
             message () {
-                this.$Message.info({content: '建设中！', duration: 2});
+                axios.post('/api/messages/store', {'user': this.user, 'bio': this.bio}).then(response => {
+                    this.bio = '';
+                    if (response.data.status && response.data.status !== 'info') {
+                        this.$Message.success({content: response.data.message, duration: 2});
+                    }else if (!response.data.status) {
+                        this.$Message.error({content: response.data.message, duration: 2});
+                    }else {
+                        this.$Message.info({content: response.data.message, duration: 2});
+                    }
+                });
             },
             emptyTextarea () {
                 this.bio = '';
