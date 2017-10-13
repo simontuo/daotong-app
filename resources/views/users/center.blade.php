@@ -86,7 +86,7 @@
                         <user-follow-button
                             user="{{ $user->id }}"
                         ></user-follow-button>
-                        <user-message-button></user-message-button>
+                        <user-message-button user="{{ $user->id }}"></user-message-button>
                     </p>
                 </div>
 
