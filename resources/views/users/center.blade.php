@@ -31,22 +31,21 @@
                 </div>
                 <div class="mdui-divider mdui-m-b-2"></div>
                 <div class="row">
-
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
                                 100
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
                                 101
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
                                 11
@@ -54,30 +53,28 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center">
                                 关注
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center">
                                 评论
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         <div class="mdui-valign mdui-m-b-1">
                             <p class="mdui-center">
                                 创作
                             </p>
                         </div>
                     </div>
-
                 </div>
                 <div class="mdui-divider mdui-m-y-2"></div>
 
@@ -86,7 +83,7 @@
                         <user-follow-button
                             user="{{ $user->id }}"
                         ></user-follow-button>
-                        <user-message-button user="{{ $user->id }}"></user-message-button>
+                        <user-message-button user="{{ $user->id }}" name="{{ $user->name }}"></user-message-button>
                     </p>
                 </div>
 

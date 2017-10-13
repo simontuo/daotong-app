@@ -8407,6 +8407,18 @@ a.topic:hover {
   font-size: 18px;
 }
 
+.article-list-avatar {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.mdui-list-item-avatar {
+  line-height: 0px !important;
+}
+
 /*!
  * mdui v0.3.0 (https://mdui.org)
  * Copyright 2016-2017 zdhxiong

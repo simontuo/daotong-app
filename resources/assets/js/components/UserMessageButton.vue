@@ -6,7 +6,7 @@
         </Button>
         <!-- 私信dialog -->
         <div class="mdui-dialog" id="message-dialog">
-            <div class="mdui-dialog-title">发送私信给：simontuo</div>
+            <div class="mdui-dialog-title">发送私信给：{{ this.name }}</div>
             <div class="mdui-dialog-content">
                 <div class="mdui-textfield">
                     <textarea class="mdui-textfield-input" v-model="bio" placeholder="私信内容"></textarea>
@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: ['user', 'name'],
         data () {
             return {
                 bio: '',
