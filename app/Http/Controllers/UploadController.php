@@ -22,6 +22,11 @@ class UploadController extends Controller
         abort(500);
     }
 
+    /**
+     * [markdownImage 上传markdown图片]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function markdownImage(Request $request)
     {
         if ($request->hasFile('img')) {
@@ -30,4 +35,19 @@ class UploadController extends Controller
 
         abort(500);
     }
+
+    /**
+     * [listImage 上传图片列]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function listImage(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            return (new UserUploader())->uploadListImage(user('api'), $request->file('file'));
+        }
+
+        abort(500);
+    }
+
 }

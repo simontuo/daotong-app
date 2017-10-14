@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mailer\UserMailer;
+use App\Models\Message;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
@@ -72,6 +74,11 @@ class User extends Authenticatable
         return $this->id == $model->user_id;
     }
 
+    public function number()
+    {
+        return $this->where('id', '<=', $this->id)->count();
+    }
+
     /**
      * [merge 合并允许更新字段]
      * @method merge
@@ -97,5 +104,47 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         (new UserMailer())->passwordReset($this->email, $token);
+    }
+
+    /**
+     * [followers 用户的关注用户]
+     * @return [type] [description]
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id')->withTimestamps();
+    }
+
+    /**
+     * [followersUser 用户的被关注用户]
+     * @return [type] [description]
+     */
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'follower_id')->withTimestamps();
+    }
+
+    /**
+     * [followThisUser 关注用户]
+     * @param  [type]  $user [description]
+     * @return boolean       [description]
+     */
+    public function followThisUser($user)
+    {
+        return $this->followers()->toggle($user);
+    }
+
+    /**
+     * [messages 用户收到的信息]
+     * @return [type] [description]
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'to_user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
     }
 }

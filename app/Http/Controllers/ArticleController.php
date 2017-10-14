@@ -13,7 +13,9 @@ class ArticleController extends Controller
 
     public function __construct(ArticleRepository $article)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except([
+            'index', 'show', 'rankingList', 'articleList'
+        ]);
         $this->article = $article;
 
     }
@@ -111,5 +113,23 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * [rankingList 文章阅读量列表]
+     * @return [type] [description]
+     */
+    public function rankingList()
+    {
+        $rankingList = $this->article->getRankingList();
+
+        return response()->json(['rankingList' => $rankingList]);
+    }
+
+    public function articleList()
+    {
+        $articles = $this->article->addCreatedTime($this->article->index());
+
+        return response()->json(['articles' => $articles]);
     }
 }

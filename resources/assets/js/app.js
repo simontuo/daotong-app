@@ -11,7 +11,6 @@ window.Vue = require('vue');
 window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
-window.hljs = require('highlight');
 window.mavonEditor = require('mavon-editor');
 
 /**
@@ -31,8 +30,16 @@ Vue.component('back-top', require('./components/BackTop.vue'));
 Vue.component('like-card', require('./components/LikeCard.vue'));
 Vue.component('comment-list', require('./components/CommentList.vue'));
 Vue.component('user-like-button', require('./components/UserLikeButton.vue'));
-Vue.component('wechat-code-upload', require('./components/WechatCodeUpload.vue'));
-
+Vue.component('ranking-list', require('./components/RankingList.vue'));
+Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
+Vue.component('user-message-button', require('./components/UserMessageButton.vue'));
+Vue.component('user-center-tab', require('./components/UserCenterTab.vue'));
+Vue.component('new-user-follow-notification', require('./components/notifications/new_user_follow_notification.vue'));
+Vue.component('user-comment-list', require('./components/UserCommentList.vue'));
+Vue.component('user-message-list', require('./components/UserMessageList.vue'));
+Vue.component('article-list', require('./components/ArticleList.vue'));
+Vue.component('navbar-menu', require('./components/NavbarMenu.vue'));
+Vue.component('upload-img-list', require('./components/UploadImgList.vue'));
 
 
 const app = new Vue({

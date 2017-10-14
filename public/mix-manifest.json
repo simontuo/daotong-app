@@ -1,4 +1,9 @@
 {
+<<<<<<< HEAD
     "/js/app.js": "/js/app.js?id=255b10516f441bb073e5",
     "/css/app.css": "/css/app.css?id=1f7d02dbc29ef99b91f1"
+=======
+    "/js/app.js": "/js/app.js?id=b1ea678c002f03a383d3",
+    "/css/app.css": "/css/app.css?id=d97becc52ef38d588ce9"
+>>>>>>> temp
 }

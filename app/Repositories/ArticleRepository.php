@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Article;
+use Carbon\Carbon;
 
 class ArticleRepository
 {
@@ -34,8 +35,34 @@ class ArticleRepository
         return Article::with(['user', 'author'])->findOrFail($id);
     }
 
+    /**
+     * [index 获取文章]
+     * @return [type] [description]
+     */
     public function index()
     {
-        return Article::with('user')->latest('created_at')->get();
+        return Article::with(['user', 'likes'])->latest('created_at')->paginate(30);
+    }
+
+    public function getRankingList()
+    {
+        return Article::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
+    }
+
+    /**
+     * [addCreatedTime 新增距离时间(处理分页数据)]
+     * @param [type] $articles [description]
+     */
+    public function addCreatedTime($articles)
+    {
+        return collect($articles)->map(function ($article, $key) {
+            if ($key == 'data') {
+                foreach ($article as $k => $value) {
+                    $article[$k]['created_time'] = Carbon::parse($value['created_at'])->diffForHumans();
+                }
+            }
+
+            return $article;
+        });
     }
 }
