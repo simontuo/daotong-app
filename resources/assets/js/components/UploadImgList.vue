@@ -16,7 +16,7 @@
                     <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
                 </template>
             </div>
-            <input type="hidden" name="imgs[]" v-for="item in uploadList" :value="item.url">
+            <input type="hidden" name="images[]" v-for="item in uploadList" :value="item.url">
             <Upload
                 ref="upload"
                 :headers="headers"

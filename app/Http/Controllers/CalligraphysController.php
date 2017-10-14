@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\CalligraphyRepository;
+use App\Http\Requests\StoreCalligraphyRequest;
 
 class CalligraphysController extends Controller
 {
+    protected $calligraphy;
+
+    public function __construct(CalligraphyRepository $calligraphy)
+    {
+        $this->calligraphy = $calligraphy;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,9 @@ class CalligraphysController extends Controller
      */
     public function index()
     {
-        //
+        $calligraphys = $this->calligraphy->index();
+
+        return view('calligraphys.index', compact('calligraphys'));
     }
 
     /**
@@ -32,9 +43,22 @@ class CalligraphysController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCalligraphyRequest $request)
     {
-        dd($request->get('imgs'));
+        $data = [
+            'user_id' => user()->id,
+            'title' => $request->get('title'),
+            'images' => $request->get('images'),
+            'bio' => $request->get('bio'),
+        ];
+
+        $calligraphy = $this->calligraphy->create($data);
+        $calligraphy->update([
+            'images' => $request->get('images')
+        ]);
+        alert()->success('新增文章 '.$calligraphy->title.' 成功！')->autoclose(2000);
+        return redirect()->back();
+        return redirect()->route('calligraphy', ['calligraphy' => $calligraphy->id]);
     }
 
     /**

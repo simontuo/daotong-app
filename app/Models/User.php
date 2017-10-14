@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mailer\UserMailer;
 use App\Models\Message;
 use App\Models\Comment;
+use App\Models\Calligraphy;
 
 class User extends Authenticatable
 {
@@ -143,8 +144,21 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'to_user_id');
     }
 
+    /**
+     * [comments description]
+     * @return [type] [description]
+     */
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'user_id');
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * [calligraphys description]
+     * @return [type] [description]
+     */
+    public function calligraphys()
+    {
+        return $this->hasMany(Calligraphy::class);
     }
 }
