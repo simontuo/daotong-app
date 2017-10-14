@@ -34,7 +34,7 @@ class CalligraphysController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->get('imgs'));
     }
 
     /**

@@ -16,6 +16,7 @@
                     <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
                 </template>
             </div>
+            <input type="hidden" name="imgs[]" v-for="item in uploadList" :value="item.url">
             <Upload
                 ref="upload"
                 :headers="headers"
@@ -54,7 +55,8 @@
                 ],
                 imgName: '',
                 visible: false,
-                uploadList: []
+                uploadList: [],
+                url: [],
             }
         },
         methods: {
@@ -69,8 +71,8 @@
             },
             handleSuccess (res, file) {
                 // 因为上传过程为实例，这里模拟添加 url
-                file.url = res.url
-                file.name = res.url
+                file.url = res.url;
+                file.name = res.url;
             },
             handleFormatError (file) {
                 this.$Notice.warning({
