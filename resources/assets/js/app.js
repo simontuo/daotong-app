@@ -38,7 +38,7 @@ Vue.component('user-comment-list', require('./components/UserCommentList.vue'));
 Vue.component('user-message-list', require('./components/UserMessageList.vue'));
 Vue.component('article-list', require('./components/ArticleList.vue'));
 Vue.component('navbar-menu', require('./components/NavbarMenu.vue'));
-
+Vue.component('upload-img-list', require('./components/UploadImgList.vue'));
 
 
 const app = new Vue({

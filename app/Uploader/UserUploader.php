@@ -46,4 +46,13 @@ class UserUploader extends Uploader
 
         return ['name' => $fileName, 'url' => $callBackUrl];
     }
+
+    public function uploadListImage(User $user, $file)
+    {
+        $fileName = '/list/images'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+        $callBackUrl = $this->uploadQiniu($fileName, $file);
+
+        return ['name' => $fileName, 'url' => $callBackUrl];
+    }
 }

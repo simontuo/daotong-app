@@ -7,8 +7,13 @@
                 <a href="javascript:;" class="hidden-xs hidden-sm mdui-btn mdui-btn-icon mdui-text-color-theme-accent" mdui-menu="{target: '#add-attr'}"><i class="mdui-icon material-icons">&#xe145;</i></a>
                 <ul class="mdui-menu " id="add-attr">
                     <li class="mdui-menu-item">
+                        <a href="{{ route('calligraphys.create') }}" class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe6dd;</i>发布书法
+                        </a>
+                    </li>
+                    <li class="mdui-menu-item">
                         <a href="{{ route('articles.create') }}" class="mdui-ripple">
-                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe150;</i>写东西
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe865;</i>发布文章
                         </a>
                     </li>
                 </ul>

@@ -30,4 +30,14 @@ class UploadController extends Controller
 
         abort(500);
     }
+
+    public function listImage(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            return (new UserUploader())->uploadListImage(user('api'), $request->file('file'));
+        }
+
+        abort(500);
+    }
+
 }

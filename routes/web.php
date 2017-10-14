@@ -17,6 +17,12 @@ Route::resource('articles', 'ArticleController', ['names' => [
     'store'  => 'articles.store',
     'show'   => 'articles.show',
 ]]);
+Route::resource('calligraphys', 'CalligraphysController', ['names' => [
+    'index' => 'calligraphys.index',
+    'create' => 'calligraphys.create',
+    'store'  => 'calligraphys.store',
+    'show'   => 'calligraphys.show',
+]]);
 
 Auth::routes();
 

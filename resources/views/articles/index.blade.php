@@ -8,7 +8,7 @@
         article_url="{{ route('articles.index') }}"
         question_url="{{ route('articles.index') }}"></navbar-menu>
 
-        <article-list></article-list>
+        <article-list class="mdui-m-b-2"></article-list>
 </div>
 @endsection
 
