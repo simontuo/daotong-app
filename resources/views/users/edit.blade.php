@@ -3,12 +3,13 @@
 @section('content')
 <div class="container">
     <div class="col-md-3">
-        <avatar avatar="{{ $user->avatar }}" token="{{ csrf_token() }}" id="{{ $user->id }}"></avatar>
+        <avatar-upload avatar="{{ $user->avatar }}" token="{{ csrf_token() }}" id="{{ $user->id }}"></avatar-upload>
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
-            <img src="{{ $user->wechat_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
+            <!-- <img src="{{ $user->wechat_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
             <button type="button" class="mdui-btn mdui-color-teal mdui-hoverable mdui-center  mdui-m-b-1">
                 微信打赏码
-            </button>
+            </button> -->
+            <wechat-code-upload></wechat-code-upload>
 		</div>
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
             <img src="{{ $user->alipay_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
@@ -22,7 +23,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3><i class="fa fa-cog" aria-hidden="true"></i> 编辑个人资料</h3>
-                <hr>
+                <hr class="mdui-m-y-2">
                 <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}

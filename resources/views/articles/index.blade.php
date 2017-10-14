@@ -35,7 +35,7 @@
                 <div class="mdui-card-header-title">{{ $article->user->name }}</div>
                 <div class="mdui-card-header-subtitle">{{ $article->user->settings['bio'] }}</div>
             </div>
-            <div class="mdui-card-media mdui-m-b-0">
+            <div class="mdui-card-media mdui-m-b-0 article-card-cover">
                 <a href="{{ route('articles.show', ['id' => $article->id] ) }}"><img src="{{ $article->cover }}"/></a>
 
                 <div class="mdui-card-menu">
