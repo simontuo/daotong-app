@@ -22,9 +22,7 @@ class CalligraphysController extends Controller
      */
     public function index()
     {
-        $calligraphys = $this->calligraphy->index();
-
-        return view('calligraphys.index', compact('calligraphys'));
+        return view('calligraphys.index');
     }
 
     /**
@@ -104,5 +102,12 @@ class CalligraphysController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function calligraphyList()
+    {
+        $calligraphys = $this->calligraphy->index();
+
+        return response()->json(['calligraphys' => $calligraphys]);
     }
 }

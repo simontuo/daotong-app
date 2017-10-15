@@ -27,6 +27,8 @@ Route::middleware('auth:api')->post('/user/follow', 'FollowerController@follow')
 Route::get('/articles/rankingList', 'ArticleController@rankingList');
 Route::get('/articles/articleList', 'ArticleController@articleList');
 
+Route::get('/calligraphys/calligraphyList', 'CalligraphysController@calligraphyList');
+
 Route::get('/likes/{type}/{id}', 'LikeController@index');
 Route::middleware('auth:api')->post('/likes/store', 'LikeController@store');
 

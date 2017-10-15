@@ -39,6 +39,7 @@ Vue.component('user-message-list', require('./components/UserMessageList.vue'));
 Vue.component('article-list', require('./components/ArticleList.vue'));
 Vue.component('navbar-menu', require('./components/NavbarMenu.vue'));
 Vue.component('upload-img-list', require('./components/UploadImgList.vue'));
+Vue.component('calligraphy-list', require('./components/CalligraphyList.vue'));
 
 
 const app = new Vue({

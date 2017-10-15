@@ -21,6 +21,6 @@ class CalligraphyRepository
      */
     public function index()
     {
-        return Calligraphy::with('user')->get();
+        return Calligraphy::with('user')->latest('created_at')->paginate(30);
     }
 }

@@ -4,7 +4,7 @@
     <div class="col-md-9">
 
         <navbar-menu
-        calligraphy_url="{{ route('articles.index') }}"
+        calligraphy_url="{{ route('calligraphys.index') }}"
         article_url="{{ route('articles.index') }}"
         question_url="{{ route('articles.index') }}"></navbar-menu>
 
