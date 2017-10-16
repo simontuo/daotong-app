@@ -15,6 +15,10 @@ class CreateCalligraphiesTable extends Migration
     {
         Schema::create('calligraphies', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('title');
+            $table->text('images');
+            $table->text('bio');
             $table->timestamps();
         });
     }
