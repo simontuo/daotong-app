@@ -51,12 +51,10 @@ class CalligraphysController extends Controller
         ];
 
         $calligraphy = $this->calligraphy->create($data);
-        $calligraphy->update([
-            'images' => $request->get('images')
-        ]);
+
         alert()->success('新增文章 '.$calligraphy->title.' 成功！')->autoclose(2000);
-        return redirect()->back();
-        return redirect()->route('calligraphy', ['calligraphy' => $calligraphy->id]);
+
+        return redirect()->route('calligraphys.show', ['calligraphy' => $calligraphy->id]);
     }
 
     /**
