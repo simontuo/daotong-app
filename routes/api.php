@@ -28,13 +28,13 @@ Route::get('/articles/rankingList', 'ArticleController@rankingList');
 Route::get('/articles/articleList', 'ArticleController@articleList');
 
 Route::get('/calligraphys/calligraphyList', 'CalligraphysController@calligraphyList');
+Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');
 
 Route::get('/likes/{type}/{id}', 'LikeController@index');
 Route::middleware('auth:api')->post('/likes/store', 'LikeController@store');
 
 Route::get('/comments/{type}/{id}', 'CommentsController@index');
 Route::get('/comments/{id}', 'CommentsController@getUserComments');
-
 Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
 
 Route::get('/notifications/{id}', 'NotificationsController@index');

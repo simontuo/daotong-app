@@ -10,7 +10,7 @@ class LikeController extends Controller
     protected $like;
 
     protected $allowLike = [
-        'Article',
+        'Article', 'Calligraphy'
     ];
 
     public function __construct(LikeRepository $like)

@@ -29,10 +29,11 @@
 
 <script>
     export default {
+        props: ['type'],
         data() {
             return {
                 padding: 0,
-                url: '/articles/',
+                url: '/' + this.type + '/',
                 rankingList: [],
                 nextPageUrl: '',
                 prevPageUrl: '',
@@ -55,7 +56,7 @@
             },
         },
         mounted() {
-            axios.get('/api/articles/rankingList').then(resopnse => {
+            axios.get('/api/' + this.type + '/rankingList').then(resopnse => {
                 this.rankingList = resopnse.data.rankingList.data;
                 this.nextPageUrl = resopnse.data.rankingList.next_page_url;
                 this.prevPageUrl = resopnse.data.rankingList.prev_page_url;

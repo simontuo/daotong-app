@@ -14,6 +14,6 @@
 
 @section('rightBar')
     <div class="col-md-3">
-
+        <ranking-list type="calligraphys"></ranking-list>
     </div>
 @endsection

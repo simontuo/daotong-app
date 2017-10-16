@@ -67,7 +67,11 @@ class CalligraphysController extends Controller
      */
     public function show($id)
     {
-        //
+        $calligraphy = $this->calligraphy->byId($id);
+
+        $calligraphy->increment('reads_count');
+
+        return view('calligraphys.show', compact('calligraphy'));
     }
 
     /**
@@ -104,10 +108,25 @@ class CalligraphysController extends Controller
         //
     }
 
+    /**
+     * [calligraphyList 获取书法列表]
+     * @return [type] [description]
+     */
     public function calligraphyList()
     {
         $calligraphys = $this->calligraphy->index();
 
         return response()->json(['calligraphys' => $calligraphys]);
+    }
+
+    /**
+     * [rankingList 获取书法排行列]
+     * @return [type] [description]
+     */
+    public function rankingList()
+    {
+        $rankingList = $this->calligraphy->getRankingList();
+
+        return response()->json(['rankingList' => $rankingList]);
     }
 }

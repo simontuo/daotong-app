@@ -1,8 +1,8 @@
 <template>
     <div>
         <div v-for="calligraphy in calligraphys" class="mdui-m-b-2">
-            <Card>
-                <p slot="title">
+            <Card >
+                <p slot="title" @click="show(calligraphy.id)">
                     {{ calligraphy.title }}
                 </p>
                 <a href="#" slot="extra" @click.prevent="changeLimit">
@@ -13,6 +13,11 @@
                     <div class="demo-upload-list-cover">
                         <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
                     </div>
+                </div>
+                <div class="row">
+                    <span class="mdui-float-right article-card-icons mdui-m-x-1 mdui-text-color-teal"><i class="mdui-icon material-icons">&#xe0b9;</i>  {{ calligraphy.comments_count }}</span>
+                    <span class="mdui-float-right article-card-icons mdui-m-x-1 mdui-card-header-subtitle"><i class="mdui-icon material-icons">&#xe87d;</i>  {{ calligraphy.likes.length }} </span>
+                    <span class="mdui-float-right article-card-icons mdui-m-x-1 mdui-text-color-theme"><i class="mdui-icon material-icons">&#xe417;</i> {{ calligraphy.reads_count }} </span>
                 </div>
             </Card>
         </div>
@@ -49,6 +54,9 @@
             },
             toLoading() {
 
+            },
+            show(id) {
+                window.location.href = '/calligraphys/' + id;
             }
         },
         mounted() {
