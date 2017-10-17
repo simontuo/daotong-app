@@ -34,10 +34,10 @@ class MessagesController extends Controller
         }
 
         $data = [
-            'to_user_id' => request('user'),
+            'to_user_id'   => request('user'),
             'from_user_id' => user('api')->id,
-            'bio' => request('bio'),
-            'dialog_id' => user('api')->id.request('user'),
+            'bio'          => request('bio'),
+            'dialog_id'    => user('api')->id.request('user'),
         ];
 
         $message = $this->message->create($data);

@@ -45,9 +45,9 @@ class CalligraphysController extends Controller
     {
         $data = [
             'user_id' => user()->id,
-            'title' => $request->get('title'),
-            'images' => $request->get('images'),
-            'bio' => $request->get('bio'),
+            'title'   => $request->get('title'),
+            'images'  => $request->get('images'),
+            'bio'     => $request->get('bio'),
         ];
 
         $calligraphy = $this->calligraphy->create($data);

@@ -46,8 +46,8 @@ class LikeController extends Controller
 
         if ($type->likes()->where('user_id', user('api')->id)->count() < 1) {
             $data = [
-                'user_id' => user('api')->id,
-                'likeable_id' => $type->id,
+                'user_id'       => user('api')->id,
+                'likeable_id'   => $type->id,
                 'likeable_type' => 'APP\Models\\'.$request->get('type'),
             ];
 
