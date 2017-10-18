@@ -18,15 +18,22 @@ class MessagesController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * [index description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function index($id)
     {
-        $user = $this->user->byId($id);
+        $messages = $this->message->addCreatedTime($this->message->getToUserMessages($id));
 
-        $messages = $user->messages()->with('fromUser')->get();
-
-        return response()->json(['messages' => $messages]);
+        return response()->json(['messages' => $messages->groupBy('dialog_id')]);
     }
 
+    /**
+     * [store description]
+     * @return [type] [description]
+     */
     public function store()
     {
         if (user('api')->isMyself($this->user->byId(request('user')))) {
