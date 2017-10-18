@@ -45,18 +45,16 @@ class CalligraphysController extends Controller
     {
         $data = [
             'user_id' => user()->id,
-            'title' => $request->get('title'),
-            'images' => $request->get('images'),
-            'bio' => $request->get('bio'),
+            'title'   => $request->get('title'),
+            'images'  => $request->get('images'),
+            'bio'     => $request->get('bio'),
         ];
 
         $calligraphy = $this->calligraphy->create($data);
-        $calligraphy->update([
-            'images' => $request->get('images')
-        ]);
+
         alert()->success('新增文章 '.$calligraphy->title.' 成功！')->autoclose(2000);
-        return redirect()->back();
-        return redirect()->route('calligraphy', ['calligraphy' => $calligraphy->id]);
+
+        return redirect()->route('calligraphys.show', ['calligraphy' => $calligraphy->id]);
     }
 
     /**
@@ -67,7 +65,11 @@ class CalligraphysController extends Controller
      */
     public function show($id)
     {
-        //
+        $calligraphy = $this->calligraphy->byId($id);
+
+        $calligraphy->increment('reads_count');
+
+        return view('calligraphys.show', compact('calligraphy'));
     }
 
     /**
@@ -104,10 +106,25 @@ class CalligraphysController extends Controller
         //
     }
 
+    /**
+     * [calligraphyList 获取书法列表]
+     * @return [type] [description]
+     */
     public function calligraphyList()
     {
         $calligraphys = $this->calligraphy->index();
 
         return response()->json(['calligraphys' => $calligraphys]);
+    }
+
+    /**
+     * [rankingList 获取书法排行列]
+     * @return [type] [description]
+     */
+    public function rankingList()
+    {
+        $rankingList = $this->calligraphy->getRankingList();
+
+        return response()->json(['rankingList' => $rankingList]);
     }
 }

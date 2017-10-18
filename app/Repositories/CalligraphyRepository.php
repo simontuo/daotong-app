@@ -21,6 +21,25 @@ class CalligraphyRepository
      */
     public function index()
     {
-        return Calligraphy::with('user')->latest('created_at')->paginate(30);
+        return Calligraphy::with(['user', 'likes'])->latest('created_at')->paginate(30);
+    }
+
+    /**
+     * [byId 根据ID获取书法]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function byId($id)
+    {
+        return Calligraphy::findOrFail($id);
+    }
+
+    /**
+     * [getRankingList 获取阅读量排行数据]
+     * @return [type] [description]
+     */
+    public function getRankingList()
+    {
+        return Calligraphy::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
     }
 }

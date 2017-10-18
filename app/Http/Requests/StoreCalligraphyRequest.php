@@ -24,9 +24,9 @@ class StoreCalligraphyRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title'  => 'required',
             'images' => 'required',
-            'bio' => 'required',
+            'bio'    => 'required',
         ];
     }
 
@@ -38,9 +38,9 @@ class StoreCalligraphyRequest extends FormRequest
     {
         return [
             'user_id.required' => '创建者ID不能为空！',
-            'title.required' => '标题不能为空!',
-            'images.required' => '图片不能为空！',
-            'bio.required' => '描述不能为空！',
+            'title.required'   => '标题不能为空!',
+            'images.required'  => '图片不能为空！',
+            'bio.required'     => '描述不能为空！',
         ];
     }
 }

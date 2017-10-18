@@ -55,6 +55,10 @@ class Article extends Model
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
 
+    /**
+     * [has_liked 文章是否已点赞]
+     * @return boolean [description]
+     */
     public function has_liked()
     {
         return !! $this->likes()->where('user_id', user()->id)->count();

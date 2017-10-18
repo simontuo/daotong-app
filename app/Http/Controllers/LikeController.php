@@ -10,7 +10,7 @@ class LikeController extends Controller
     protected $like;
 
     protected $allowLike = [
-        'Article',
+        'Article', 'Calligraphy'
     ];
 
     public function __construct(LikeRepository $like)
@@ -46,8 +46,8 @@ class LikeController extends Controller
 
         if ($type->likes()->where('user_id', user('api')->id)->count() < 1) {
             $data = [
-                'user_id' => user('api')->id,
-                'likeable_id' => $type->id,
+                'user_id'       => user('api')->id,
+                'likeable_id'   => $type->id,
                 'likeable_type' => 'APP\Models\\'.$request->get('type'),
             ];
 

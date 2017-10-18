@@ -33,10 +33,10 @@ class StoreArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'cover.url' => "封面必须为有效的图片地址！",
+            'cover.url'      => "封面必须为有效的图片地址！",
             'title.required' => '标题不能为空！',
-            'title.max' => '标题不能超过20个字符！',
-            'bio.required' => '文章内容不能为空！',
+            'title.max'      => '标题不能超过20个字符！',
+            'bio.required'   => '文章内容不能为空！',
         ];
     }
 }
