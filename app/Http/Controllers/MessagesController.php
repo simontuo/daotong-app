@@ -25,9 +25,9 @@ class MessagesController extends Controller
      */
     public function index($id)
     {
-        $messages = $this->message->addCreatedTime($this->message->getToUserMessages($id));
+        $messages = $this->message->addCreatedTime($this->message->getUserMessages($id));
 
-        return response()->json(['messages' => $messages->groupBy('dialog_id')]);
+        return response()->json(['messages' => $messages->unique('dialog_id')->groupBy('to_user_id')]);
     }
 
     /**
@@ -54,5 +54,12 @@ class MessagesController extends Controller
         }
 
         return response()->json(['status' => false, 'message' => '发送失败！']);
+    }
+
+    public function userMessageDialog($id, $dialog)
+    {
+        $messages = $this->message->getUserMessageDialog($id, $dialog);
+
+        return response()->json(['messages' => $messages]);
     }
 }

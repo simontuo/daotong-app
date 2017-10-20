@@ -41,3 +41,4 @@ Route::get('/notifications/{id}', 'NotificationsController@index');
 
 Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
 Route::get('/messages/{id}', 'MessagesController@index');
+Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');

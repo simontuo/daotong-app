@@ -43,6 +43,7 @@ Vue.component('calligraphy-list', require('./components/CalligraphyList.vue'));
 Vue.component('badge', require('./components/Badge.vue'));
 Vue.component('search-input', require('./components/SearchInput.vue'));
 Vue.component('messages-list', require('./components/MessagesList.vue'));
+Vue.component('message-dialog', require('./components/MessageDialog.vue'));
 
 
 const app = new Vue({

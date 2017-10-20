@@ -5,20 +5,23 @@
                 <Icon type="chatboxes"></Icon>
                 我的对话
             </p>
-            <a href="#" slot="extra" @click.prevent="changeLimit">
+            <a href="#" slot="extra">
                 <Icon type="ios-loop-strong"></Icon>
                 刷新
             </a>
             <ul class="mdui-list">
-                <li class="mdui-list-item mdui-m-b-1" v-for="item in messagesGroup">
-                    <Badge dot>
-                        <div class="mdui-list-item-avatar">
-                            <img :src="item[0].from_user.avatar" />
-                        </div>
-                    </Badge>
-                    <div class="mdui-list-item-content"> {{ item[0].bio }}</div>
-                    <span>{{ item[0].created_time }}</span>
-                </li>
+                <a :href="'/inboxs/' + user + '/' + item[0].dialog_id" v-for="item in messagesGroup">
+                    <li class="mdui-list-item mdui-m-b-1">
+                        <Badge dot>
+                            <div class="mdui-list-item-avatar">
+                                <img :src="item[0].to_user.avatar" v-if="this.user == item[0].from_user.id" />
+                                <img :src="item[0].from_user.avatar" v-if="this.user != item[0].from_user.id" />
+                            </div>
+                        </Badge>
+                        <div class="mdui-list-item-content"> {{ item[0].bio }}</div>
+                        <span>{{ item[0].created_time }}</span>
+                    </li>
+                </a>
             </ul>
         </Card>
     </div>
@@ -33,7 +36,6 @@
             }
         },
         mounted() {
-
             axios.get('/api/messages/' + this.user).then(response => {
                 this.messagesGroup = response.data.messages;
             });

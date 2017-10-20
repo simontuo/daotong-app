@@ -20,9 +20,18 @@ class MessageRepository
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function getToUserMessages($id)
+    public function getUserMessages($id)
     {
-        return Message::where('to_user_id', $id)->with(['fromUser'])->orderBy('created_at', 'DESC')->get();
+        return Message::where('to_user_id', $id)
+            ->orWhere('from_user_id', $id)
+            ->with(['fromUser', 'toUser'])
+            ->latest()
+            ->get();
+    }
+
+    public function getUserMessageDialog($id, $dialog)
+    {
+        return Message::where('to_user_id', $id)->where('dialog_id', $dialog)->with(['fromUser', 'toUser'])->get();
     }
 
     /**
