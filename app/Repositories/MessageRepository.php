@@ -29,9 +29,37 @@ class MessageRepository
             ->get();
     }
 
+    /**
+     * [getUserMessageDialog description]
+     * @param  [type] $id     [description]
+     * @param  [type] $dialog [description]
+     * @return [type]         [description]
+     */
     public function getUserMessageDialog($id, $dialog)
     {
         return Message::where('to_user_id', $id)->where('dialog_id', $dialog)->with(['fromUser', 'toUser'])->get();
+    }
+
+    /**
+     * [FunctionName description]
+     * @param string $value [description]
+     */
+    public function isHadDialog($fromUserId, $toUserId)
+    {
+        return !! Message::where('from_user_id', $fromUserId)
+            ->where('to_user_id', $toUserId)
+            ->orWhere(function($query) use($fromUserId, $toUserId) {
+                $query->where('from_user_id', $toUserId)->where('to_user_id', $fromUserId);
+            })->count();
+    }
+
+    public function getHadDialog($fromUserId, $toUserId)
+    {
+        return Message::where('from_user_id', $fromUserId)
+            ->where('to_user_id', $toUserId)
+            ->orWhere(function($query) use($fromUserId, $toUserId) {
+                $query->where('from_user_id', $toUserId)->where('to_user_id', $fromUserId);
+            })->first();
     }
 
     /**

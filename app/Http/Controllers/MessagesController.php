@@ -27,7 +27,7 @@ class MessagesController extends Controller
     {
         $messages = $this->message->addCreatedTime($this->message->getUserMessages($id));
 
-        return response()->json(['messages' => $messages->unique('dialog_id')->groupBy('to_user_id')]);
+        return response()->json(['messages' => $messages->groupBy('dialog_id')]);
     }
 
     /**
@@ -40,11 +40,13 @@ class MessagesController extends Controller
             return response()->json(['status' => 'info', 'message' => '不能发私信给自己！']);
         }
 
+        $dialogId = $this->message->isHadDialog(user('api')->id, request('user')) ? $this->message->getHadDialog(user('api')->id, request('user'))->dialog_id  : user('api')->id.request('user');
+
         $data = [
             'to_user_id'   => request('user'),
             'from_user_id' => user('api')->id,
             'bio'          => request('bio'),
-            'dialog_id'    => user('api')->id.request('user'),
+            'dialog_id'    => $dialogId,
         ];
 
         $message = $this->message->create($data);

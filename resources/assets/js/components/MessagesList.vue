@@ -14,8 +14,9 @@
                     <li class="mdui-list-item mdui-m-b-1">
                         <Badge dot>
                             <div class="mdui-list-item-avatar">
-                                <img :src="item[0].to_user.avatar" v-if="this.user == item[0].from_user.id" />
-                                <img :src="item[0].from_user.avatar" v-if="this.user != item[0].from_user.id" />
+                                <img :src="item[0].to_user.avatar" v-if="user == item[0].from_user_id" />
+                                <img :src="item[0].from_user.avatar" v-if="user != item[0].from_user_id" />
+
                             </div>
                         </Badge>
                         <div class="mdui-list-item-content"> {{ item[0].bio }}</div>
