@@ -170,6 +170,7 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Naux\Mail\SendCloudServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
          * Application Service Providers...

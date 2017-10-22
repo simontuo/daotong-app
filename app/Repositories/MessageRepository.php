@@ -53,6 +53,12 @@ class MessageRepository
             })->count();
     }
 
+    /**
+     * [getHadDialog description]
+     * @param  [type] $fromUserId [description]
+     * @param  [type] $toUserId   [description]
+     * @return [type]             [description]
+     */
     public function getHadDialog($fromUserId, $toUserId)
     {
         return Message::where('from_user_id', $fromUserId)

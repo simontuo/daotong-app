@@ -18,11 +18,13 @@
                         <Avatar size="large" :src="item.from_user.avatar" />
                     </Tooltip>
                 </div>
+
                 <div class="pull-right mdui-m-b-2">
                     <Tooltip content="Right Center 文字提示" placement="left" :always="this.always">
                         <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
                     </Tooltip>
                 </div>
+
             </div>
             <Form>
                 <FormItem>

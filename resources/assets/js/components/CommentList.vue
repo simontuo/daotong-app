@@ -32,9 +32,6 @@
                         {{ comment.bio }}
                     </p>
                     <div class="mdui-btn-group mdui-m-y-1">
-                        <!-- <button class="mdui-btn mdui-ripple mdui-color-blue-50 mdui-text-color-blue-800">
-                            <i class="mdui-icon mdui-icon-left material-icons">&#xe8dc;</i>711
-                        </button> -->
                         <button class="mdui-btn mdui-ripple" @click="listComment(comment.user.id)">
                             <i class="mdui-icon material-icons">&#xe15e;</i>
                             回复
