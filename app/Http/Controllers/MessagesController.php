@@ -58,10 +58,44 @@ class MessagesController extends Controller
         return response()->json(['status' => false, 'message' => '发送失败！']);
     }
 
+    /**
+     * [userMessageDialog description]
+     * @param  [type] $id     [description]
+     * @param  [type] $dialog [description]
+     * @return [type]         [description]
+     */
     public function userMessageDialog($id, $dialog)
     {
-        $messages = $this->message->getUserMessageDialog($id, $dialog);
+        $messages = $this->message->addCreatedTime($this->message->getUserMessageDialog($id, $dialog));
 
         return response()->json(['messages' => $messages]);
+    }
+
+    /**
+     * [reply description]
+     * @return [type] [description]
+     */
+    public function reply()
+    {
+        $message = $this->message->getFirstMessageByDialogId(request('dialog'));
+
+        $toUserId = $message->from_user_id === user('api')->id ? $message->to_user_id : $message->from_user_id;
+
+        $data = [
+            'to_user_id'   => $toUserId,
+            'from_user_id' => user('api')->id,
+            'bio'          => request('bio'),
+            'dialog_id'    => request('dialog'),
+        ];
+
+        $message = $this->message->create($data);
+        $message->from_user = $message->fromUser()->first();
+        $message->created_time = $message->created_at->diffForHumans();
+
+        if ($message) {
+            return response()->json(['status' => true, 'message' => '发送成功！', 'data' => $message]);
+        }
+
+        return response()->json(['status' => false, 'message' => '发送失败！']);
     }
 }

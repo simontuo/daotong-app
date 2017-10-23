@@ -40,5 +40,6 @@ Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store
 Route::get('/notifications/{id}', 'NotificationsController@index');
 
 Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
+Route::middleware('auth:api')->post('/messages/reply', 'MessagesController@reply');
 Route::get('/messages/{id}', 'MessagesController@index');
 Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');

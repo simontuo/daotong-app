@@ -37,7 +37,7 @@ class MessageRepository
      */
     public function getUserMessageDialog($id, $dialog)
     {
-        return Message::where('to_user_id', $id)->where('dialog_id', $dialog)->with(['fromUser', 'toUser'])->get();
+        return Message::where('dialog_id', $dialog)->with(['fromUser', 'toUser'])->get();
     }
 
     /**
@@ -78,5 +78,15 @@ class MessageRepository
             $message->created_time = $message->created_at->diffForHumans();
             return $message;
         });
+    }
+
+    /**
+     * [getFirstMessageByDialogId description]
+     * @param  [type] $dialogId [description]
+     * @return [type]           [description]
+     */
+    public function getFirstMessageByDialogId($dialogId)
+    {
+        return Message::where('dialog_id', $dialogId)->first();
     }
 }
