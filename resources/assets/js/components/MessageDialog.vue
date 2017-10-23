@@ -28,9 +28,7 @@
             </div>
             <Form>
                 <FormItem>
-                    <Input v-model="bio" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
-                </FormItem>
-                <FormItem>
+                    <Input class="mdui-m-b-1" v-model="bio" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
                     <Button class="pull-right" type="primary" @click="send">回复</Button>
                 </FormItem>
             </Form>
