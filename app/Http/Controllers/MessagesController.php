@@ -18,26 +18,35 @@ class MessagesController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * [index description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function index($id)
     {
-        $user = $this->user->byId($id);
+        $messages = $this->message->addCreatedTime($this->message->getUserMessages($id));
 
-        $messages = $user->messages()->with('fromUser')->get();
-
-        return response()->json(['messages' => $messages]);
+        return response()->json(['messages' => $messages->groupBy('dialog_id')]);
     }
 
+    /**
+     * [store description]
+     * @return [type] [description]
+     */
     public function store()
     {
         if (user('api')->isMyself($this->user->byId(request('user')))) {
             return response()->json(['status' => 'info', 'message' => '不能发私信给自己！']);
         }
 
+        $dialogId = $this->message->isHadDialog(user('api')->id, request('user')) ? $this->message->getHadDialog(user('api')->id, request('user'))->dialog_id  : user('api')->id.request('user');
+
         $data = [
             'to_user_id'   => request('user'),
             'from_user_id' => user('api')->id,
             'bio'          => request('bio'),
-            'dialog_id'    => user('api')->id.request('user'),
+            'dialog_id'    => $dialogId,
         ];
 
         $message = $this->message->create($data);
@@ -47,5 +56,12 @@ class MessagesController extends Controller
         }
 
         return response()->json(['status' => false, 'message' => '发送失败！']);
+    }
+
+    public function userMessageDialog($id, $dialog)
+    {
+        $messages = $this->message->getUserMessageDialog($id, $dialog);
+
+        return response()->json(['messages' => $messages]);
     }
 }

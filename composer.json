@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "^2.5",
         "elfsundae/laravel-gravatar": "^1.0",
         "fideloper/proxy": "~3.3",

@@ -3,6 +3,9 @@
         <div class="mdui-toolbar">
             <a href="{{ route('articles.index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
+
+            <search-input></search-input>
+
             @if(Auth::check())
                 <a href="javascript:;" class="hidden-xs hidden-sm mdui-btn mdui-btn-icon mdui-text-color-theme-accent" mdui-menu="{target: '#add-attr'}"><i class="mdui-icon material-icons">&#xe145;</i></a>
                 <ul class="mdui-menu " id="add-attr">
@@ -17,11 +20,14 @@
                         </a>
                     </li>
                 </ul>
+
+                <badge url="{{ route('inboxs.index', ['id' => Auth::id()]) }}"></badge>
 	        	<button class="mdui-btn hidden-xs hidden-sm" mdui-menu="{target: '#user-attr'}">
                     <img class="mdui-img-circle mdui-icon-left" src="{{ user()->avatar }}" id="user-avatar"/>
                     <i class="mdui-icon mdui-icon-right material-icons">&#xe5c5;</i>
                     {{ Auth::user()->name }}
                 </button>
+
 	        	<ul class="mdui-menu " id="user-attr">
                     <li class="mdui-menu-item">
 				        <a href="{{ route('users.center', user()->id) }}" class="mdui-ripple">

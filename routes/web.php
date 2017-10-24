@@ -39,3 +39,6 @@ Route::post('/users/{id}/update_password', 'UsersController@updatePassword')->na
 Route::get('/users/{id}/center', 'UsersController@center')->name('users.center');
 
 // Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+
+Route::get('/inboxs/{id}', 'InboxsController@index')->name('inboxs.index');
+Route::get('/inboxs/{id}/{dialog}', 'InboxsController@show')->name('inboxs.show');

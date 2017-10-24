@@ -122,7 +122,7 @@ class ArticleController extends Controller
     public function rankingList()
     {
         $rankingList = $this->article->getRankingList();
-
+    
         return response()->json(['rankingList' => $rankingList]);
     }
 
