@@ -31,6 +31,7 @@
     "sweetalert": "^2.0.3",
     "vue-image-crop-upload": "^2.0.6",
     "vue-quill-editor": "^2.3.2",
+    "vue-select": "^2.3.0",
     "vue-simplemde": "^0.4.4"
   }
 }

@@ -50,6 +50,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+        dd($request->topics);
         $data = [
             'user_id'      => Auth::id(),
             'author_id'    => Auth::id(),
@@ -122,7 +123,7 @@ class ArticleController extends Controller
     public function rankingList()
     {
         $rankingList = $this->article->getRankingList();
-    
+
         return response()->json(['rankingList' => $rankingList]);
     }
 

@@ -12,6 +12,7 @@ window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
 window.mavonEditor = require('mavon-editor');
+// window.vSelect = require('vue-select');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -44,7 +45,7 @@ Vue.component('badge', require('./components/Badge.vue'));
 Vue.component('search-input', require('./components/SearchInput.vue'));
 Vue.component('messages-list', require('./components/MessagesList.vue'));
 Vue.component('message-dialog', require('./components/MessageDialog.vue'));
-
+Vue.component('topics', require('./components/Topics.vue'));
 
 const app = new Vue({
     el: '#app',
