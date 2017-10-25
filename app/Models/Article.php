@@ -63,4 +63,13 @@ class Article extends Model
     {
         return !! $this->likes()->where('user_id', user()->id)->count();
     }
+
+    /**
+     * [topics description]
+     * @return [type] [description]
+     */
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class)->withTimestamps();
+    }
 }

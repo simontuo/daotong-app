@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticleRequest;
 use Auth;
 use App\Repositories\ArticleRepository;
+use App\Repositories\TopicRepository;
 
 class ArticleController extends Controller
 {
     protected $article;
+    protected $topic;
 
-    public function __construct(ArticleRepository $article)
+    public function __construct(ArticleRepository $article, TopicRepository $topic)
     {
         $this->middleware('auth')->except([
             'index', 'show', 'rankingList', 'articleList'
         ]);
         $this->article = $article;
+        $this->topic   = $topic;
 
     }
 
@@ -50,17 +53,20 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        dd($request->topics);
+        $topics = $this->topic->normalizeTopic($request->get('topics'), 'articles_count');
+
         $data = [
             'user_id'      => Auth::id(),
             'author_id'    => Auth::id(),
-            'cover'        => $request->get('cover'),
+            // 'cover'        => $request->get('cover'),
             'title'        => $request->get('title'),
             'bio'          => $request->get('bio'),
             'markdown_bio' => $request->get('markdown_bio'),
         ];
 
         $article = $this->article->create($data);
+
+        $article->topics()->attach($topics);
 
         alert()->success('新增文章 '.$article->title.' 成功！')->autoclose(2000);
 
