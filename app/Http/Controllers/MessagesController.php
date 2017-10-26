@@ -25,7 +25,9 @@ class MessagesController extends Controller
      */
     public function index($id)
     {
-        $messages = $this->message->addCreatedTime($this->message->getUserMessages($id));
+        $messages = $this->message->getUserMessages($id);
+
+        $messages->addCreatedTime();
 
         return response()->json(['messages' => $messages->groupBy('dialog_id')]);
     }
@@ -66,7 +68,11 @@ class MessagesController extends Controller
      */
     public function userMessageDialog($id, $dialog)
     {
-        $messages = $this->message->addCreatedTime($this->message->getUserMessageDialog($id, $dialog));
+        $messages = $this->message->getUserMessageDialog($id, $dialog);
+
+        $messages->markAsRead();
+
+        $messages->addCreatedTime();
 
         return response()->json(['messages' => $messages]);
     }

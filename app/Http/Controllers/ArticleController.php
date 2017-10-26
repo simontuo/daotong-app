@@ -133,9 +133,15 @@ class ArticleController extends Controller
         return response()->json(['rankingList' => $rankingList]);
     }
 
+    /**
+     * [articleList description]
+     * @return [type] [description]
+     */
     public function articleList()
     {
-        $articles = $this->article->addCreatedTime($this->article->index());
+        $articles = $this->article->index();
+
+        $articles->addCreatedTime();
 
         return response()->json(['articles' => $articles]);
     }

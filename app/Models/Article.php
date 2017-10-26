@@ -4,14 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Collections\ArticleCollection;
 
 class Article extends Model
 {
     use Traits\Parsedown;
+    use Traits\AddCreatedTime;
 
     protected $fillable = [
         'user_id', 'title', 'cover', 'bio', 'markdown_bio', 'author_id'
     ];
+
+    public function newCollection(array $models = [])
+    {
+        return new ArticleCollection($models);
+    }
 
     /**
      * [users 创建者关系]

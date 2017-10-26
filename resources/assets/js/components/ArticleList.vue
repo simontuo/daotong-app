@@ -5,7 +5,9 @@
                 <a :href="'/articles/' + article.id" v-for="article in articles">
                     <li class="mdui-list-item mdui-ripple list-border">
                         <div class="mdui-list-item-avatar"><img :src="article.user.avatar"/></div>
-                        <div class="mdui-list-item-content mdui-text-truncate"><span class="label label-info">文章</span> {{ article.title }}</div>
+                        <div class="mdui-list-item-content mdui-text-truncate">
+                            <span class="label label-info">文章</span> {{ article.title }}
+                        </div>
                         <span class="pull-right mdui-m-l-1 mdui-text-color-theme-accent" mdui-tooltip="{content: '点赞数'}">{{ article.likes.length }}</span>
                         <span class="pull-right mdui-m-l-1 mdui-card-header-subtitle">/</span>
                         <span class="pull-right mdui-m-l-1 mdui-card-header-subtitle" mdui-tooltip="{content: '评论数'}">{{ article.comments_count }}</span>

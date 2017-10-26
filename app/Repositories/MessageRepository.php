@@ -69,18 +69,6 @@ class MessageRepository
     }
 
     /**
-     * [addCreatedTime 添加距离时间]
-     * @param [type] $messages [description]
-     */
-    public function addCreatedTime($messages)
-    {
-        return collect($messages)->map(function($message) {
-            $message->created_time = $message->created_at->diffForHumans();
-            return $message;
-        });
-    }
-
-    /**
      * [getFirstMessageByDialogId description]
      * @param  [type] $dialogId [description]
      * @return [type]           [description]
