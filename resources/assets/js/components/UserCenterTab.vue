@@ -8,6 +8,7 @@
                         <div class="panel-body">
                             <ul v-for="notification in notifications">
                                 <new-user-follow-notification v-if="notification.component_type === 'new_user_follow_notification'" :notification="notification"></new-user-follow-notification>
+                                <new-message-notification v-if="notification.component_type === 'new_message_notificaiton'" :notification="notification"></new-message-notification>
                             </ul>
                         </div>
                     </div>

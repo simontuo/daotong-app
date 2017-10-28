@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\MessageRepository;
 use App\Repositories\UserRepository;
+use App\Notifications\NewMessageNotificaiton;
 
 class MessagesController extends Controller
 {
@@ -38,20 +39,25 @@ class MessagesController extends Controller
      */
     public function store()
     {
-        if (user('api')->isMyself($this->user->byId(request('user')))) {
+        $toUser = $this->user->byId(request('user'));
+
+        if (user('api')->isMyself($toUser)) {
             return response()->json(['status' => 'info', 'message' => '不能发私信给自己！']);
         }
 
-        $dialogId = $this->message->isHadDialog(user('api')->id, request('user')) ? $this->message->getHadDialog(user('api')->id, request('user'))->dialog_id  : user('api')->id.request('user');
+        $dialogId = $this->message->isHadDialog(user('api')->id, $toUser->id) ? $this->message->getHadDialog(user('api')->id, $toUser->id)->dialog_id  : user('api')->id.$toUser->id;
+
 
         $data = [
-            'to_user_id'   => request('user'),
+            'to_user_id'   => $toUser->id,
             'from_user_id' => user('api')->id,
             'bio'          => request('bio'),
             'dialog_id'    => $dialogId,
         ];
 
         $message = $this->message->create($data);
+
+        $toUser->notify(new NewMessageNotificaiton());
 
         if ($message) {
             return response()->json(['status' => true, 'message' => '发送成功！']);
