@@ -37,7 +37,8 @@ Route::get('/comments/{type}/{id}', 'CommentsController@index');
 Route::get('/comments/{id}', 'CommentsController@getUserComments');
 Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
 
-Route::get('/notifications/{id}', 'NotificationsController@index');
+Route::middleware('auth:api')->get('/notifications/{id}', 'NotificationsController@index');
+Route::middleware('auth:api')->get('/notifications/noRead', 'NotificationsController@noRead');
 
 Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
 Route::middleware('auth:api')->post('/messages/reply', 'MessagesController@reply');
