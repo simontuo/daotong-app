@@ -4,25 +4,27 @@
 <div class="container">
     <div class="col-md-3">
         <avatar avatar="{{ $user->avatar }}" token="{{ csrf_token() }}" id="{{ $user->id }}"></avatar>
-        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
-            <img src="{{ $user->wechat_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
-            <button type="button" class="mdui-btn mdui-color-teal mdui-hoverable mdui-center  mdui-m-b-1">
-                微信打赏码
-            </button>
+
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
+            <div class="mdui-center">
+                <img src="{{ array_has($user->settings, 'wechatCode') ? $user->settings['wechatCode'] : '' }}" class="mdui-img-fluid mdui-img-rounded  mdui-m-b-1 wechatCode" width="100" height="100">
+                <upload-img-button url="{{ route('users.uploadWechatCode', ['id' => $user->id]) }}" src="wechatCode"></upload-img-button>
+            </div>
+
+
 		</div>
-        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-center">
-            <img src="{{ $user->alipay_code }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1" width="100" height="100">
-            <button type="button" class="mdui-btn mdui-color-indigo mdui-hoverable mdui-center mdui-m-b-1">
-                支付宝打赏码
-            </button>
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
+            <div class="mdui-center">
+                <img src="{{ array_has($user->settings, 'alipayCode') ? $user->settings['alipayCode'] : '' }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1 alipayCode" width="100" height="100">
+                <upload-img-button url="{{ route('users.uploadAlipayCode', ['id' => $user->id]) }}" src="alipayCode"></upload-img-button>
+            </div>
 		</div>
 
     </div>
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h3><i class="fa fa-cog" aria-hidden="true"></i> 编辑个人资料</h3>
-                <hr>
+                <h3 class="mdui-m-b-2"><i class="fa fa-cog" aria-hidden="true"></i> 编辑个人资料</h3>
                 <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}

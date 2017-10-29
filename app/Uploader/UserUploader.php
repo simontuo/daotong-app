@@ -24,6 +24,38 @@ class UserUploader extends Uploader
     }
 
     /**
+     * [uploadWechatCode 上传微信二维码]
+     * @param  User   $user [description]
+     * @param  [type] $file [description]
+     * @return [type]       [description]
+     */
+    public function uploadWechatCode(User $user, $file)
+    {
+        $fileName = '/wechatCode/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+        $callBackUrl = $this->uploadQiniu($fileName, $file);
+
+        $user->update($user->merge(['wechatCode' => $callBackUrl]));
+        $user->save();
+    }
+
+    /**
+     * [uploadAlipayCode 上传Alipay二维码]
+     * @param  User   $user [description]
+     * @param  [type] $file [description]
+     * @return [type]       [description]
+     */
+    public function uploadAlipayCode(User $user, $file)
+    {
+        $fileName = '/alipayCode/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+        $callBackUrl = $this->uploadQiniu($fileName, $file);
+
+        $user->update($user->merge(['alipayCode' => $callBackUrl]));
+        $user->save();
+    }
+
+    /**
      * [uploadCover 上传封面]
      * @param  User   $user [description]
      * @param  [type] $file [description]

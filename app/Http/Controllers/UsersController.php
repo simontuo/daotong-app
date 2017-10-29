@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -127,6 +127,44 @@ class UsersController extends Controller
             (new UserUploader())->uploadAvatar($user, $request->file('img'));
 
             return response()->json(['url' => $user->avatar]);
+        }
+
+        abort(404);
+    }
+
+    /**
+     * [uploadWechatCode 微信二维码上传（七牛）]
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
+    public function uploadWechatCode(Request $request, $id)
+    {
+        $user = $this->user->byId($id);
+
+        if (user()->isMyself($user) && $request->hasFile('file')) {
+            (new UserUploader())->uploadWechatCode($user, $request->file('file'));
+
+            return response()->json(['url' => $user->settings['wechatCode']]);
+        }
+
+        abort(404);
+    }
+
+    /**
+     * [uploadAlipayCode 上传Alipay二维码]
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
+    public function uploadAlipayCode(Request $request, $id)
+    {
+        $user = $this->user->byId($id);
+
+        if (user()->isMyself($user) && $request->hasFile('file')) {
+            (new UserUploader())->uploadAlipayCode($user, $request->file('file'));
+
+            return response()->json(['url' => $user->settings['alipayCode']]);
         }
 
         abort(404);
