@@ -73,6 +73,8 @@ class CommentsController extends Controller
         $commentable->increment('comments_count');
         $commentableUser = $this->user->byId($comment->user_id)->notify(new NewCommentNotification());
 
+        $comment->actionLog(user('api'));
+
         return response()->json(['status' => true, 'comment' => $comment]);
     }
 
