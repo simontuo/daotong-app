@@ -15,7 +15,7 @@ class CommentRepository
      */
     public function getCommentsByIdAndType($id, $type)
     {
-        return $this->addCreatedTime(app('App\Models\\'.$type)->findOrFail($id)->comments()->with(['user', 'parent'])->get());
+        return app('App\Models\\'.$type)->findOrFail($id)->comments()->with(['user', 'parent'])->get();
     }
 
     /**
@@ -28,19 +28,5 @@ class CommentRepository
     public function create(array $attributes)
     {
         return Comment::create($attributes);
-    }
-
-    /**
-     * [addCreatedTime 新增距离时间]
-     * @method addCreatedTime
-     * @param  [type]         $comments [description]
-     * @auth   simontuo
-     */
-    public function addCreatedTime($comments)
-    {
-        return collect($comments)->map(function ($comment) {
-            $comment->created_time = $comment->created_at->diffForHumans();
-            return $comment;
-        });
     }
 }

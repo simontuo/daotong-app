@@ -4,12 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Collections\CommentCollection;
 
 class Comment extends Model
 {
+    use Traits\AddCreatedTime;
+    use Traits\WorkLog;
+
     protected $fillable = [
         'user_id', 'bio', 'commentable_id', 'commentable_type', 'parent_id'
     ];
+
+    public function newCollection(array $models = [])
+    {
+        return new CommentCollection($models);
+    }
 
     /**
      * [user 用户关系]
@@ -43,4 +52,5 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
 }

@@ -12,6 +12,7 @@ window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
 window.mavonEditor = require('mavon-editor');
+// window.vSelect = require('vue-select');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,17 +36,19 @@ Vue.component('user-follow-button', require('./components/UserFollowButton.vue')
 Vue.component('user-message-button', require('./components/UserMessageButton.vue'));
 Vue.component('user-center-tab', require('./components/UserCenterTab.vue'));
 Vue.component('new-user-follow-notification', require('./components/notifications/new_user_follow_notification.vue'));
+Vue.component('new-message-notification', require('./components/notifications/new_message_notification.vue'));
 Vue.component('user-comment-list', require('./components/UserCommentList.vue'));
 Vue.component('user-message-list', require('./components/UserMessageList.vue'));
 Vue.component('article-list', require('./components/ArticleList.vue'));
 Vue.component('navbar-menu', require('./components/NavbarMenu.vue'));
 Vue.component('upload-img-list', require('./components/UploadImgList.vue'));
+Vue.component('upload-img-button', require('./components/UploadImageButton.vue'));
 Vue.component('calligraphy-list', require('./components/CalligraphyList.vue'));
 Vue.component('badge', require('./components/Badge.vue'));
 Vue.component('search-input', require('./components/SearchInput.vue'));
 Vue.component('messages-list', require('./components/MessagesList.vue'));
 Vue.component('message-dialog', require('./components/MessageDialog.vue'));
-
+Vue.component('topics', require('./components/Topics.vue'));
 
 const app = new Vue({
     el: '#app',

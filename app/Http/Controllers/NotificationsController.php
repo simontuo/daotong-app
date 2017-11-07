@@ -27,4 +27,11 @@ class NotificationsController extends Controller
 
         return response()->json(['notifications' => $notifications]);
     }
+
+    public function noRead()
+    {
+        $notifications = user('api')->notifications()->whereNull('read_ta')->get();
+
+        return response()->json(['notifications' => $notifications]);
+    }
 }

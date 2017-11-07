@@ -29,6 +29,7 @@ class InboxsController extends Controller
     public function show($id, $dialog)
     {
         $user = $this->user->byId($id);
+
         $user->dialog = $dialog;
         
         return view('inboxs.show', compact('user'));

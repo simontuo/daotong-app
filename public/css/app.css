@@ -28553,8 +28553,13 @@ samp {
 
 @font-face {
   font-family: Ionicons;
+<<<<<<< HEAD
   src: url(/fonts/vendor/_iview@2.3.2@iview/dist/styles/ionicons.eot?2c2ae068be3b089e0a5b59abb1831550);
   src: url(/fonts/vendor/_iview@2.3.2@iview/dist/styles/ionicons.eot?2c2ae068be3b089e0a5b59abb1831550) format("embedded-opentype"), url(/fonts/vendor/_iview@2.3.2@iview/dist/styles/ionicons.ttf?24712f6c47821394fba7942fbb52c3b2) format("truetype"), url(/fonts/vendor/_iview@2.3.2@iview/dist/styles/ionicons.woff?05acfdb568b3df49ad31355b19495d4a) format("woff"), url(/fonts/vendor/_iview@2.3.2@iview/dist/styles/ionicons.svg?621bd386841f74e0053cb8e67f8a0604) format("svg");
+=======
+  src: url(/fonts/vendor/iview/dist/styles/ionicons.eot?2c2ae068be3b089e0a5b59abb1831550);
+  src: url(/fonts/vendor/iview/dist/styles/ionicons.eot?2c2ae068be3b089e0a5b59abb1831550) format("embedded-opentype"), url(/fonts/vendor/iview/dist/styles/ionicons.ttf?24712f6c47821394fba7942fbb52c3b2) format("truetype"), url(/fonts/vendor/iview/dist/styles/ionicons.woff?05acfdb568b3df49ad31355b19495d4a) format("woff"), url(/fonts/vendor/iview/dist/styles/ionicons.svg?621bd386841f74e0053cb8e67f8a0604) format("svg");
+>>>>>>> temp
   font-weight: 400;
   font-style: normal;
 }

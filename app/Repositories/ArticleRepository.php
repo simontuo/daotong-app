@@ -49,20 +49,4 @@ class ArticleRepository
         return Article::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
     }
 
-    /**
-     * [addCreatedTime 新增距离时间(处理分页数据)]
-     * @param [type] $articles [description]
-     */
-    public function addCreatedTime($articles)
-    {
-        return collect($articles)->map(function ($article, $key) {
-            if ($key == 'data') {
-                foreach ($article as $k => $value) {
-                    $article[$k]['created_time'] = Carbon::parse($value['created_at'])->diffForHumans();
-                }
-            }
-
-            return $article;
-        });
-    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CommentRepository;
 use App\Repositories\ArticleRepository;
 use App\Repositories\UserRepository;
+use App\Notifications\NewCommentNotification;
 
 class CommentsController extends Controller
 {
@@ -37,6 +38,7 @@ class CommentsController extends Controller
         if (in_array($type, $this->allowComment)) {
             $comments = $this->comment->getCommentsByIdAndType($id, $type);
 
+            $comments->addCreatedTime();
 
             return response()->json(['status' => true, 'comments' => $comments]);
         }
@@ -64,9 +66,14 @@ class CommentsController extends Controller
         $comment = $this->comment->create($data);
         $comment->user = $comment->user()->first();
         $comment->parent = $comment->parent()->first();
-        $comment->created_time = $comment->created_at->diffForHumans();
+        $comment->addCreatedTime();
 
-        app($comment->commentable_type)->findOrFail($comment->commentable_id)->increment('comments_count');
+
+        $commentable = app($comment->commentable_type)->findOrFail($comment->commentable_id);
+        $commentable->increment('comments_count');
+        $commentableUser = $this->user->byId($comment->user_id)->notify(new NewCommentNotification());
+
+        $comment->actionLog(user('api'));
 
         return response()->json(['status' => true, 'comment' => $comment]);
     }

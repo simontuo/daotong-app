@@ -49,7 +49,7 @@ class User extends Authenticatable
      * [protected 允许编辑的settings字段]
      * @var [type]
      */
-    protected $allowedSettings = ['city', 'bio'];
+    protected $allowedSettings = ['city', 'bio', 'wechatCode', 'alipayCode'];
 
     /**
      * [isMyself 登录用户是否资源所有者]
