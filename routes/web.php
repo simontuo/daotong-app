@@ -42,5 +42,7 @@ Route::get('/users/{id}/center', 'UsersController@center')->name('users.center')
 
 // Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 Route::get('/inboxs/{id}', 'InboxsController@index')->name('inboxs.index');
 Route::get('/inboxs/{id}/{dialog}', 'InboxsController@show')->name('inboxs.show');
