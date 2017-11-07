@@ -22,6 +22,7 @@ window.mavonEditor = require('mavon-editor');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('avatar', require('./components/Avatar.vue'));
+Vue.component('avatar-upload', require('./components/AvatarUpload.vue'));
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('cover', require('./components/Cover.vue'));
 Vue.component('test', require('./components/Test.vue'));

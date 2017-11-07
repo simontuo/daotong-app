@@ -27,8 +27,13 @@ a.topic:hover {
     text-align: center;
 }
 
+.article-card-cover {
+    max-height: 300px;
+    overflow: hidden;
+}
+
 .article-card-icons {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .card-avatar {
