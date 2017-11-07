@@ -9,7 +9,8 @@ use App\Collections\CommentCollection;
 class Comment extends Model
 {
     use Traits\AddCreatedTime;
-    use Traits\WorkLog;
+    // use Traits\WorkLog;
+    use Traits\ActionLog;
 
     protected $fillable = [
         'user_id', 'bio', 'commentable_id', 'commentable_type', 'parent_id'
