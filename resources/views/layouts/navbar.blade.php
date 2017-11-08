@@ -44,6 +44,11 @@
 				            <i class="mdui-menu-item-icon mdui-icon material-icons">&#xe898;</i>修改密码
 				        </a>
 				    </li>
+                    <li class="mdui-menu-item">
+				        <a href="{{ route('admin.home.index') }}" class="mdui-ripple">
+				            <i class="mdui-menu-item-icon mdui-icon material-icons">&#xe85e;</i>后台管理
+				        </a>
+				    </li>
 				    <li class="mdui-divider"></li>
 				    <li class="mdui-menu-item"
 						onclick="event.preventDefault();

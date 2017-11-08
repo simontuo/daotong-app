@@ -46,3 +46,8 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/inboxs/{id}', 'InboxsController@index')->name('inboxs.index');
 Route::get('/inboxs/{id}/{dialog}', 'InboxsController@show')->name('inboxs.show');
+
+
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::get('/', 'HomesController@index')->name('admin.home.index');
+});

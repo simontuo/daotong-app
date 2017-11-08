@@ -50,6 +50,7 @@ Vue.component('messages-list', require('./components/MessagesList.vue'));
 Vue.component('message-dialog', require('./components/MessageDialog.vue'));
 Vue.component('topics', require('./components/Topics.vue'));
 
+
 const app = new Vue({
     el: '#app',
     data: {
