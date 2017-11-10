@@ -84,6 +84,7 @@
             axios.get('/api/users/getUsers', {params: {'pageSize': this.pageSize}}).then(response => {
                 this.data = response.data.users.data;
                 this.total = parseInt(response.data.users.total);
+                this.loading = false;
             });
         },
         methods: {
@@ -91,6 +92,7 @@
                 axios.get('/api/users/getUsers', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.users.data;
                     this.total = parseInt(response.data.users.total);
+                    this.loading = false;
                 });
             },
             pageSizeChange (pageSize) {
@@ -98,6 +100,7 @@
                 axios.get('/api/users/getUsers', {params: {'page': 1, 'pageSize': pageSize}}).then(response => {
                     this.data = response.data.users.data;
                     this.total = parseInt(response.data.users.total);
+                    this.loading = false;
                 });
             }
         }

@@ -19,7 +19,7 @@
     <div id="app">
         @include('layouts.admins.navbar')
 
-        <div class="mdui-m-t-2">
+        <div class="mdui-m-a-2">
             @yield('content')
         </div>
 
