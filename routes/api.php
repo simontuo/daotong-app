@@ -46,3 +46,5 @@ Route::get('/messages/{id}', 'MessagesController@index');
 Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');
 
 Route::get('/topics', 'TopicsController@index');
+
+Route::middleware('auth:api')->get('/users/getUsers', 'UsersController@getUsers');

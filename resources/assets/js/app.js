@@ -51,6 +51,11 @@ Vue.component('message-dialog', require('./components/MessageDialog.vue'));
 Vue.component('topics', require('./components/Topics.vue'));
 
 
+Vue.component('users-table', require('./components/UsersTable.vue'));
+
+
+
+
 const app = new Vue({
     el: '#app',
     data: {

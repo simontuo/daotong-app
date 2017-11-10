@@ -19,8 +19,8 @@
     <div id="app">
         @include('layouts.admins.navbar')
 
-        <div>
-
+        <div class="mdui-m-t-2">
+            @yield('content')
         </div>
 
         <back-top></back-top>
