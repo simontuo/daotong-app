@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-
+        return view('admins.users.index');
     }
 
     /**
@@ -219,5 +219,14 @@ class UsersController extends Controller
         $user = $this->user->byId($id);
 
         return view('users.center', compact('user'));
+    }
+
+    public function getUsers()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.user');
+
+        $users = $this->user->index($pageSize);
+
+        return response()->json(['users' => $users]);
     }
 }

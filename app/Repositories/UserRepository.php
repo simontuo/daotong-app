@@ -28,4 +28,9 @@ class UserRepository
     {
         return User::where('confirmation_token', $confirmationToken)->first();
     }
+
+    public function index($pageSize)
+    {
+        return User::paginate($pageSize);
+    }
 }

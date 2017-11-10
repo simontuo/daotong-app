@@ -40,6 +40,8 @@ Route::get('/users/{id}/edit_password', 'UsersController@editPassword')->name('u
 Route::post('/users/{id}/update_password', 'UsersController@updatePassword')->name('users.update_password');
 Route::get('/users/{id}/center', 'UsersController@center')->name('users.center');
 
+Route::get('/users', 'UsersController@index')->name('admins.users.index');
+
 // Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
