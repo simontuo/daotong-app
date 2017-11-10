@@ -9,7 +9,6 @@ trait ActionLog
     {
         $action = '新增了评论！';
 
-
         dispatch(new ActionLogSlug($user, $action, $this));
     }
 }
