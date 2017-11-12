@@ -25,7 +25,7 @@
                     if (error.response.status == 401) {
                         this.showNote(error);
                     }
-                })
+                });
             },
             showNote(error) {
                 this.$Notice.info({

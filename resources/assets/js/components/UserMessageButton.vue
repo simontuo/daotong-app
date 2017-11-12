@@ -43,10 +43,21 @@
                     }else {
                         this.$Message.info({content: response.data.message, duration: 2});
                     }
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        this.showNote(error);
+                    }
                 });
             },
             emptyTextarea () {
                 this.bio = '';
+            },
+            showNote(error) {
+                this.$Notice.info({
+                    title: '请先登录再进行相关操作！',
+                    desc: error.response.data.message,
+                    duration: 2
+                });
             }
         }
     }

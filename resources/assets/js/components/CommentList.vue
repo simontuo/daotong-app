@@ -106,6 +106,10 @@
                     this.count ++;
                     this.comments.push(response.data.comment);
                     this.$Message.success({content: '评论新增成功！', duration: 2});
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        this.showNote(error);
+                    }
                 });
                 this.bio = '';
             },
@@ -115,6 +119,13 @@
             show (modal) {
                 var dialog = new mdui.Dialog(modal);
                 dialog.open();
+            },
+            showNote(error) {
+                this.$Notice.info({
+                    title: '请先登录再进行相关操作！',
+                    desc: error.response.data.message,
+                    duration: 2
+                });
             }
         },
         mounted() {
