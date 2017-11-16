@@ -70,3 +70,16 @@ a.topic:hover {
 .mdui-list-item-avatar {
     line-height: 0px !important ;
 }
+
+.footer {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 14px;
+    color: #9fadc7;
+    background: #eef5f9;
+}
+.links {
+    margin-bottom: 25px;
+    padding: 0;
+    list-style: none;
+}

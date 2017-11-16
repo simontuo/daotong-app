@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/test', function () {
+    return view('welcome');
+});
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('articles', 'ArticleController', ['names' => [
     'create' => 'articles.create',
