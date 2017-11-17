@@ -1,95 +1,29 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<div class="row">
+    <div class="col-md-4">
+        <type-card type="书法" image="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510857579050&di=acbfd429f8b2504906d1ceb2eee1d142&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20150903%2F1441210152866249.png"></type-card>
+    </div>
+    <div class="col-md-4">
+        <type-card type="文章" image="http://www.logomr.com/logomrdata/2017/11/06/f16e1002-fd9f-4558-8f3e-96911a901e8f.png"></type-card>
+    </div>
+    <div class="col-md-4">
+        <type-card type="问道" image="http://www.logomr.com/logomrdata/2017/11/02/fb2d36f9c22fc7b164462919afd0d37a.svg"></type-card>
+    </div>
+    <div class="col-md-4">
+        <type-card type="读后感" image="http://www.logomr.com/logomrdata/2017/11/01/f2a592981ce5a55fd2aa8251f37219f4.svg"></type-card>
+    </div>
+    <div class="col-md-4">
+        <type-card type="推荐" image="http://www.logomr.com/logomrdata/2017/10/28/da7594ae6c0cc899d8a5c3475e3c0289.svg"></type-card>
+    </div>
+    <div class="col-md-4">
+        <type-card type="收藏" image="http://www.logomr.com/logomrdata/2017/11/07/59d7ad03-f3d6-41e5-970f-4c7bb495cab3.png"></type-card>
+    </div>
+</div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+@endsection

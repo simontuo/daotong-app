@@ -15,7 +15,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar" style="background: #f5f7f9;">
+<!-- <body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar" style="background: #f5f7f9;"> -->
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar" style="background: #eef5f9;">
     <div id="app">
         @include('layouts.navbar')
 
@@ -25,6 +26,8 @@
         </div>
 
         <back-top></back-top>
+
+        @include('layouts.footer')
     </div>
 
     <!-- Scripts -->
