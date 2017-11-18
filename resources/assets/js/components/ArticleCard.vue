@@ -3,7 +3,7 @@
         <Card style="border-radius:6px">
             <div>
                 <img :src="this.image" class="type-card-image mdui-shadow-1 mdui-hoverable">
-                <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">为 Web 艺术家创造的 PHP 框架</p>
+                <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
                         <Icon type="android-people"></Icon>
@@ -20,7 +20,7 @@
 </template>
 <script>
     export default {
-        props: ['type', 'image']
+        props: ['title', 'image']
     }
 </script>
 

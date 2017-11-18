@@ -1,29 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="col-md-9">
 
-<div class="row">
-    <div class="col-md-4">
-        <type-card type="书法" image="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510857579050&di=acbfd429f8b2504906d1ceb2eee1d142&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20150903%2F1441210152866249.png"></type-card>
-    </div>
-    <div class="col-md-4">
-        <type-card type="文章" image="http://www.logomr.com/logomrdata/2017/11/06/f16e1002-fd9f-4558-8f3e-96911a901e8f.png"></type-card>
-    </div>
-    <div class="col-md-4">
-        <type-card type="问道" image="http://www.logomr.com/logomrdata/2017/11/02/fb2d36f9c22fc7b164462919afd0d37a.svg"></type-card>
-    </div>
-    <div class="col-md-4">
-        <type-card type="读后感" image="http://www.logomr.com/logomrdata/2017/11/01/f2a592981ce5a55fd2aa8251f37219f4.svg"></type-card>
-    </div>
-    <div class="col-md-4">
-        <type-card type="推荐" image="http://www.logomr.com/logomrdata/2017/10/28/da7594ae6c0cc899d8a5c3475e3c0289.svg"></type-card>
-    </div>
-    <div class="col-md-4">
-        <type-card type="收藏" image="http://www.logomr.com/logomrdata/2017/11/07/59d7ad03-f3d6-41e5-970f-4c7bb495cab3.png"></type-card>
-    </div>
+        <navbar-menu
+        calligraphy_url="{{ route('calligraphys.index') }}"
+        article_url="{{ route('articles.index') }}"
+        question_url="{{ route('articles.index') }}"></navbar-menu>
+
+        <article-list class="mdui-m-b-2"></article-list>
 </div>
+@endsection
 
-
-
-
+@section('rightBar')
+    <div class="col-md-3">
+        <ranking-list type="articles"></ranking-list>
+    </div>
 @endsection

@@ -1,9 +1,8 @@
 <div class="mdui-appbar mdui-color-theme mdui-appbar-fixed">
     <div class="mdui-container">
         <div class="mdui-toolbar">
-            <a href="{{ route('articles.index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
+            <a href="{{ route('index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
-
             <search-input></search-input>
 
             @if(Auth::check())

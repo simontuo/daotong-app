@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/test', function () {
-    return view('welcome');
-});
+
 Route::get('/test/bak', function () {
     return view('index_bak');
 });
 
-Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::get('/', 'HomeController@index')->name('index');
+
+// Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('articles', 'ArticleController', ['names' => [
+    '/'      => 'articles.index',
     'create' => 'articles.create',
     'store'  => 'articles.store',
     'show'   => 'articles.show',

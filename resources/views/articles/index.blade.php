@@ -1,19 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-9">
+<div class="col-md-1 mdui-m-y-3 mdui-valign">
 
-        <navbar-menu
-        calligraphy_url="{{ route('calligraphys.index') }}"
-        article_url="{{ route('articles.index') }}"
-        question_url="{{ route('articles.index') }}"></navbar-menu>
-
-        <article-list class="mdui-m-b-2"></article-list>
 </div>
-@endsection
+<div class="col-md-10">
+    <div class="row">
+        @foreach($articles as $article)
+            <div class="col-md-3">
+                <a href="{{ route('articles.show', [ 'id' => $article->id ]) }}">
+                    <article-card
+                    image="{{ $article->user->avatar }}"
+                    title="{{ $article->title }}"
+                    ></article-card>
+                </a>
+            </div>
+        @endforeach
 
-@section('rightBar')
-    <div class="col-md-3">
-        <ranking-list type="articles"></ranking-list>
+
     </div>
+</div>
+
 @endsection
