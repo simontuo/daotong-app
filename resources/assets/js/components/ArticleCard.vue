@@ -3,6 +3,11 @@
         <Card style="border-radius:6px">
             <div>
                 <img :src="this.image" class="type-card-image mdui-shadow-1 mdui-hoverable">
+                <div class="pull-right type-card-title ">
+                    <p class="type-card-icon">
+                        {{ this.createdTime }}
+                    </p>
+                </div>
                 <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
@@ -20,7 +25,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'image']
+        props: ['title', 'image', 'createdTime']
     }
 </script>
 

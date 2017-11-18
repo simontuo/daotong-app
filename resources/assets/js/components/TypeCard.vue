@@ -12,7 +12,6 @@
                     </p>
                     <h3>{{ this.type }}</h3>
                 </div>
-
             </div>
             <div class="mdui-divider mdui-m-a-2 mdui-valign">
                 <p class="mdui-m-t-4 mdui-center type-card-subtitle">为 Web 艺术家创造的 PHP 框架</p>
