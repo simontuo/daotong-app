@@ -49,4 +49,13 @@ class ArticleRepository
         return Article::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
     }
 
+    public function getAllArticlesCount()
+    {
+        return Article::count();
+    }
+
+    public function getReadsTotal()
+    {
+        return Article::sum('reads_count');
+    }
 }

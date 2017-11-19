@@ -12,10 +12,6 @@
 */
 
 
-Route::get('/test/bak', function () {
-    return view('index_bak');
-});
-
 Route::get('/', 'HomeController@index')->name('index');
 
 // Route::get('/', 'ArticleController@index')->name('articles.index');

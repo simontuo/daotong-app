@@ -29,4 +29,9 @@ class CommentRepository
     {
         return Comment::create($attributes);
     }
+
+    public function getAllCommnetBy($commentableType)
+    {
+        return Comment::where('commentable_type', 'App\Models\\'.$commentableType)->count();
+    }
 }

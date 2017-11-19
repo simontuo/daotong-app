@@ -11,12 +11,19 @@
                 <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
-                        <Icon type="android-people"></Icon>
-                        12
+                        <Icon type="heart" class="mdui-text-color-theme-accent"></Icon>
                     </span>
-                    <span class="type-card-icon pull-right">
-                        <Icon type="ios-list"></Icon>
-                        50
+                    <span class="type-card-icon pull-right" mdui-tooltip="{content: '评论数'}">
+                        <Icon type="android-chat"></Icon>
+                        {{ this.commentsCount }}
+                    </span>
+                    <span class="type-card-icon pull-right mdui-m-r-1" mdui-tooltip="{content: '点赞数'}">
+                        <Icon type="thumbsup"></Icon>
+                        {{ this.likesCount }}
+                    </span>
+                    <span class="type-card-icon pull-right mdui-m-r-1" mdui-tooltip="{content: '阅读量'}">
+                        <Icon type="eye"></Icon>
+                        {{ this.readsCount }}
                     </span>
                 </div>
             </div>
@@ -25,7 +32,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'image', 'createdTime']
+        props: ['title', 'image', 'createdTime', 'readsCount', 'commentsCount', 'likesCount']
     }
 </script>
 
