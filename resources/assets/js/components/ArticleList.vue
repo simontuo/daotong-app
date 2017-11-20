@@ -1,5 +1,8 @@
 <template>
     <div class="">
+        <ButtonGroup class="mdui-m-y-2">
+            <button class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">Button</button>
+        </ButtonGroup>
         <div class="row">
             <div class="col-md-3" v-for="article in articles">
                 <a :href="'/articles/' + article.id">
@@ -53,7 +56,6 @@
                 this.loading = true;
                 axios.get(this.nextPageUrl).then(response => {
                     this.articles = this.articles.concat(response.data.articles.data);
-                    console.log(response.data.articles.next_page_url)
                     if (!response.data.articles.next_page_url) {
                         this.noMoreData = true;
                     }

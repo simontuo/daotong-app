@@ -20,7 +20,7 @@
     <div id="app">
         @include('layouts.navbar')
 
-        <div class="mdui-m-t-2 container">
+        <div class="mdui-m-t-2 mdui-container">
             @yield('content')
             @yield('rightBar')
         </div>
