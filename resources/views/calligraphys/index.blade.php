@@ -1,19 +1,12 @@
+
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-9">
+<div class="col-md-1 mdui-m-y-3 mdui-valign">
 
-        <navbar-menu
-        calligraphy_url="{{ route('articles.index') }}"
-        article_url="{{ route('articles.index') }}"
-        question_url="{{ route('articles.index') }}"></navbar-menu>
-
-        <calligraphy-list></calligraphy-list>
 </div>
-@endsection
+<div class="col-md-10">
+    <calligraphy-list></calligraphy-list>
+</div>
 
-@section('rightBar')
-    <div class="col-md-3">
-        <ranking-list type="calligraphys"></ranking-list>
-    </div>
 @endsection

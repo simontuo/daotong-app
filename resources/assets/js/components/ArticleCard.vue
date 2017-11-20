@@ -41,7 +41,7 @@
         width: 50px;
         height: 50px;
         margin: -40px 20px 0 0;
-        border-radius: 3px;
+        border-radius: 6px;
         text-align: center;
     }
     .type-card-title {
@@ -51,7 +51,6 @@
         color: #BDCDDE;
         margin-bottom: 0;
         margin-top: -5px;
-        /*margin-bottom: 15px;*/
         font-size: 13px;
     }
     .type-card-subtitle {
