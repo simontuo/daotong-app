@@ -2,12 +2,11 @@
     <div class="mdui-m-y-4">
         <Card style="border-radius:6px">
             <div>
-                <img  :src="this.user.avatar" class="type-card-image mdui-shadow-1 mdui-hoverable mdui-m-l-2">
-                <!-- <img v-for="item in this.image" :src="item" class="type-card-image mdui-shadow-1 mdui-hoverable mdui-m-l-2"> -->
+                <img  :src="this.calligraphy.user.avatar" class="type-card-image mdui-shadow-1 mdui-hoverable mdui-m-l-2">
                 <div class="pull-right mdui-m-r-2 type-card-title">
                     <span class="type-card-icons" mdui-tooltip="{content: '阅读量'}">
                         <Icon type="eye"></Icon>
-                        1
+                        {{ this.calligraphy.reads_count }}
                     </span>
                     <span class="type-card-icon" mdui-tooltip="{content: '总新建数'}">
                         <Icon type="ios-list"></Icon>
@@ -15,27 +14,34 @@
                     </span>
                     <span class="type-card-icon" mdui-tooltip="{content: '评论数'}">
                         <Icon type="android-chat" ></Icon>
-                        3
+                        {{ this.calligraphy.comments_count }}
                     </span>
                     <span class="type-card-icon" mdui-tooltip="{content: '点赞数'}">
                         <Icon type="thumbsup"></Icon>
-                        4
+                        {{ this.calligraphy.likes.length }}
                     </span>
                     <h3 class="mdui-m-t-1">{{ this.title }}</h3>
                 </div>
-                    <p class="mdui-m-t-2 type-card-subtitle">为 Web 艺术家创造的 PHP 框架</p>
+                    <p class="mdui-m-t-2 type-card-subtitle">{{ this.calligraphy.title }}</p>
             </div>
-            <div class="mdui-divider mdui-m-t-2  mdui-m-x-2">
-
-            </div>
+            <div class="mdui-divider mdui-m-t-2  mdui-m-x-2"></div>
             <div class="mdui-m-a-2 mdui-valign">
-                <div class="demo-upload-list mdui-center" v-for="item in this.image">
-                    <img :src="item">
-                    <div class="demo-upload-list-cover">
-                        <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
+                <div class="mdui-row-xs-3 mdui-grid-list mdui-center">
+                    <div class="mdui-col" v-for="item in this.calligraphy.images">
+                        <div class="mdui-grid-tile">
+                            <div class="demo-upload-list">
+                                <img :src="item">
+                                <div class="demo-upload-list-cover">
+                                    <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="mdui-divider mdui-m-t-2  mdui-m-x-2"></div>
+            <p class="mdui-m-t-2 type-card-subtitle">{{ this.calligraphy.bio }}</p>
+
             <Modal title="查看图片" v-model="visible">
                 <img :src="imgName" v-if="visible" style="width: 100%">
             </Modal>
@@ -44,7 +50,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'image', 'user', 'createdTime', 'readsCount', 'commentsCount', 'likesCount'],
+        props: ['title', 'calligraphy', 'createdTime', 'readsCount', 'commentsCount', 'likesCount'],
         data () {
             return {
                 calligraphys: [],
@@ -100,10 +106,10 @@
 
     .demo-upload-list{
         display: inline-block;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         text-align: center;
-        line-height: 80px;
+        line-height: 60px;
         border: 1px solid transparent;
         border-radius: 4px;
         overflow: hidden;

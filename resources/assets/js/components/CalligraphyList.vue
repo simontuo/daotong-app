@@ -2,8 +2,7 @@
     <div class="row">
         <div class="col-md-4" v-for="calligraphy in calligraphys">
             <calligraphy-card
-                :user="calligraphy.user"
-                :image="calligraphy.images"
+                :calligraphy="calligraphy"
             ></calligraphy-card>
         </div>
         <!-- <div v-for="calligraphy in calligraphys" class="mdui-m-b-2">
