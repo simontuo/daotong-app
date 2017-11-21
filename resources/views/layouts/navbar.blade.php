@@ -1,9 +1,9 @@
-<div class="mdui-appbar mdui-color-theme mdui-appbar-fixed">
+<div class="mdui-appbar mdui-color-indigo-a200 mdui-appbar-fixed">
     <div class="mdui-container">
         <div class="mdui-toolbar">
             <a href="{{ route('index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
-            <search-input></search-input>
+            <!-- <search-input></search-input> -->
 
             @if(Auth::check())
                 <a href="javascript:;" class="hidden-xs hidden-sm mdui-btn mdui-btn-icon mdui-text-color-theme-accent" mdui-menu="{target: '#add-attr'}"><i class="mdui-icon material-icons">&#xe145;</i></a>

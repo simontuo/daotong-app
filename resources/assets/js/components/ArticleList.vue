@@ -1,8 +1,23 @@
 <template>
     <div class="">
-        <ButtonGroup class="mdui-m-y-2">
-            <button class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">Button</button>
-        </ButtonGroup>
+
+
+        <div class="row mdui-m-y-1">
+            <div class="col-md-1">
+                <ButtonGroup>
+                    <button class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">Button</button>
+                </ButtonGroup>
+            </div>
+            <div class="col-md-4 mdui-m-b-1 pull-right">
+                <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                    <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+                    <input class="mdui-textfield-input" type="text" placeholder="Search" />
+                    <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+                </div>
+            </div>
+
+        </div>
+
         <div class="row">
             <div class="col-md-3" v-for="article in articles">
                 <a :href="'/articles/' + article.id">
