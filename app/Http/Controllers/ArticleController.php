@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function __construct(ArticleRepository $article, TopicRepository $topic)
     {
         $this->middleware('auth')->except([
-            'index', 'show', 'rankingList', 'articleList'
+            'index', 'show', 'rankingList', 'articleList', 'search'
         ]);
         $this->article = $article;
         $this->topic   = $topic;
@@ -142,6 +142,13 @@ class ArticleController extends Controller
         $articles = $this->article->index();
 
         $articles->addCreatedTime();
+
+        return response()->json(['articles' => $articles]);
+    }
+
+    public function search(Request $request)
+    {
+        $articles = $this->article->search($request->get('query'));
 
         return response()->json(['articles' => $articles]);
     }

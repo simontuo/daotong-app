@@ -6,25 +6,11 @@ use Carbon\Carbon;
 
 class ArticleRepository
 {
-    /**
-     * [create 创建]
-     * @method create
-     * @param  array    $attributes [description]
-     * @return [type]               [description]
-     * @auth   simontuo
-     */
     public function create(array $attributes)
     {
         return Article::create($attributes);
     }
 
-    /**
-     * [byId 根据ID获取文章]
-     * @method byId
-     * @param  [type]   $id [description]
-     * @return [type]       [description]
-     * @auth   simontuo
-     */
     public function byId($id)
     {
         return Article::findOrFail($id);
@@ -35,10 +21,6 @@ class ArticleRepository
         return Article::with(['user', 'author'])->findOrFail($id);
     }
 
-    /**
-     * [index 获取文章]
-     * @return [type] [description]
-     */
     public function index()
     {
         return Article::with(['user', 'likes'])->latest('created_at')->paginate(30);
@@ -57,5 +39,16 @@ class ArticleRepository
     public function getReadsTotal()
     {
         return Article::sum('reads_count');
+    }
+
+    public function search($query)
+    {
+        return Article::join('users', 'users.id', '=', 'articles.user_id')
+                ->select('articles.id', 'user_id', 'title')
+                ->where('users.name', 'like', '%'.$query.'%')
+                ->orWhere('articles.title', 'like', '%'.$query.'%')
+                ->with(['user', 'likes'])
+                ->latest('articles.created_at')
+                ->paginate(30);
     }
 }

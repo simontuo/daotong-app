@@ -11,7 +11,7 @@
             <div class="col-md-4 mdui-m-b-1 pull-right">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                    <input class="mdui-textfield-input" type="text" placeholder="Search" />
+                    <input class="mdui-textfield-input" type="text" placeholder="搜索" v-on:input="search" v-model="query"/>
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
@@ -55,16 +55,17 @@
                 loading: false,
                 nextPageUrl: '',
                 noMoreData: false,
+                query: ''
             }
         },
         mounted() {
-            axios.get('/api/articles/articleList').then(response => {
-                this.articles = response.data.articles.data;
-                this.nextPageUrl = response.data.articles.next_page_url;
-                if (!response.data.articles.next_page_url) {
-                    this.noMoreData = true;
-                }
-            });
+            // axios.get('/api/articles/articleList').then(response => {
+            //     this.articles = response.data.articles.data;
+            //     this.nextPageUrl = response.data.articles.next_page_url;
+            //     if (!response.data.articles.next_page_url) {
+            //         this.noMoreData = true;
+            //     }
+            // });
         },
         methods: {
             toLoading () {
@@ -78,6 +79,17 @@
                     this.loading = false;
                 });
             },
+            search () {
+                console.log(this.query);
+                axios.get('api/articles/search', {'params': {'query': this.query}}).then(response => {
+                    this.articles = response.data.articles.data;
+                    if (!response.data.articles.next_page_url) {
+                        this.noMoreData = true;
+                    }
+                    this.nextPageUrl = response.data.articles.next_page_url;
+                    this.loading = false;
+                });
+            }
         }
     }
 </script>
