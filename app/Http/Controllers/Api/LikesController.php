@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Repositories\LikeRepository;
 
-class LikeController extends Controller
+class LikesController extends Controller
 {
     protected $like;
 
@@ -34,6 +35,7 @@ class LikeController extends Controller
 
         return response()->json(['status' => false]);
     }
+
 
     public function store(Request $request)
     {
