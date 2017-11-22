@@ -30,7 +30,7 @@ class NotificationsController extends Controller
 
     public function noRead()
     {
-        $notifications = user('api')->notifications()->whereNull('read_ta')->get();
+        $notifications = user('api')->notifications()->whereNull('read_at')->get();
 
         return response()->json(['notifications' => $notifications]);
     }

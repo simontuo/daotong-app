@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::namespace('Api')->group(function () {
+    Route::get('/articles/rankingList', 'ArticleController@rankingList');
+    Route::get('/articles/search', 'ArticleController@search');
+    Route::get('/articles/index', 'ArticlesController@index');
+});
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -24,9 +31,9 @@ Route::middleware('auth:api')->post('/upload/listImage', 'UploadController@listI
 Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowerController@index');
 Route::middleware('auth:api')->post('/user/follow', 'FollowerController@follow');
 
-Route::get('/articles/rankingList', 'ArticleController@rankingList');
-Route::get('/articles/articleList', 'ArticleController@articleList');
-Route::get('/articles/search', 'ArticleController@search');
+// Route::get('/articles/rankingList', 'ArticleController@rankingList');
+// Route::get('/articles/articleList', 'ArticleController@articleList');
+// Route::get('/articles/search', 'ArticleController@search');
 
 Route::get('/calligraphys/calligraphyList', 'CalligraphysController@calligraphyList');
 Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');

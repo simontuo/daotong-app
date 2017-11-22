@@ -58,15 +58,6 @@
                 query: ''
             }
         },
-        mounted() {
-            // axios.get('/api/articles/articleList').then(response => {
-            //     this.articles = response.data.articles.data;
-            //     this.nextPageUrl = response.data.articles.next_page_url;
-            //     if (!response.data.articles.next_page_url) {
-            //         this.noMoreData = true;
-            //     }
-            // });
-        },
         methods: {
             toLoading () {
                 this.loading = true;

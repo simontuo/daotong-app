@@ -35,7 +35,6 @@ class LikeController extends Controller
         return response()->json(['status' => false]);
     }
 
-
     public function store(Request $request)
     {
         $type = $this->like->getTypeById($request->get('type'), $request->get('id'));
