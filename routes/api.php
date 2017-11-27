@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function () {
     Route::get('/articles/rankingList', 'ArticleController@rankingList');
-    Route::get('/articles/search', 'ArticleController@search');
+    Route::get('/articles/search', 'ArticlesController@search');
     Route::get('/articles/index', 'ArticlesController@index');
 });
 
