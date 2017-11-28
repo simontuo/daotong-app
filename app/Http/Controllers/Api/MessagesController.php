@@ -20,11 +20,6 @@ class MessagesController extends Controller
         $this->user = $user;
     }
 
-    /**
-     * [index description]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
-     */
     public function index($id)
     {
         $messages = $this->message->getUserMessages($id);
@@ -34,10 +29,6 @@ class MessagesController extends Controller
         return response()->json(['messages' => $messages->groupBy('dialog_id')]);
     }
 
-    /**
-     * [store description]
-     * @return [type] [description]
-     */
     public function store()
     {
         $toUser = $this->user->byId(request('user'));
@@ -67,12 +58,6 @@ class MessagesController extends Controller
         return response()->json(['status' => false, 'message' => '发送失败！']);
     }
 
-    /**
-     * [userMessageDialog description]
-     * @param  [type] $id     [description]
-     * @param  [type] $dialog [description]
-     * @return [type]         [description]
-     */
     public function userMessageDialog($id, $dialog)
     {
         $messages = $this->message->getUserMessageDialog($id, $dialog);
@@ -84,10 +69,6 @@ class MessagesController extends Controller
         return response()->json(['messages' => $messages]);
     }
 
-    /**
-     * [reply description]
-     * @return [type] [description]
-     */
     public function reply()
     {
         $message = $this->message->getFirstMessageByDialogId(request('dialog'));

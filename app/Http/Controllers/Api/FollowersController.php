@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Notifications\NewUserFollowNotification;
 
 class FollowersController extends Controller
 {

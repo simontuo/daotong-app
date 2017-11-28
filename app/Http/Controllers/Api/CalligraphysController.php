@@ -15,7 +15,7 @@ class CalligraphysController extends Controller
         $this->calligraphy = $calligraphy;
     }
 
-    public function calligraphyList()
+    public function index()
     {
         $calligraphys = $this->calligraphy->index();
 

@@ -81,7 +81,7 @@
             }
         },
         mounted () {
-            axios.get('/api/users/getUsers', {params: {'pageSize': this.pageSize}}).then(response => {
+            axios.get('/api/users/index', {params: {'pageSize': this.pageSize}}).then(response => {
                 this.data = response.data.users.data;
                 this.total = parseInt(response.data.users.total);
                 this.loading = false;
@@ -89,7 +89,7 @@
         },
         methods: {
             changePage (page) {
-                axios.get('/api/users/getUsers', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/users/index', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.users.data;
                     this.total = parseInt(response.data.users.total);
                     this.loading = false;
@@ -97,7 +97,7 @@
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/users/getUsers', {params: {'page': 1, 'pageSize': pageSize}}).then(response => {
+                axios.get('/api/users/index', {params: {'page': 1, 'pageSize': pageSize}}).then(response => {
                     this.data = response.data.users.data;
                     this.total = parseInt(response.data.users.total);
                     this.loading = false;
