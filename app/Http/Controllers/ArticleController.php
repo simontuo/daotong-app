@@ -121,35 +121,4 @@ class ArticleController extends Controller
     {
         //
     }
-
-    /**
-     * [rankingList 文章阅读量列表]
-     * @return [type] [description]
-     */
-    public function rankingList()
-    {
-        $rankingList = $this->article->getRankingList();
-
-        return response()->json(['rankingList' => $rankingList]);
-    }
-
-    /**
-     * [articleList description]
-     * @return [type] [description]
-     */
-    public function articleList()
-    {
-        $articles = $this->article->index();
-
-        $articles->addCreatedTime();
-
-        return response()->json(['articles' => $articles]);
-    }
-
-    public function search(Request $request)
-    {
-        $articles = $this->article->search($request->get('query'));
-
-        return response()->json(['articles' => $articles]);
-    }
 }

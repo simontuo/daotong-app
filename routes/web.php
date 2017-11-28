@@ -46,7 +46,6 @@ Route::get('/users/{id}/center', 'UsersController@center')->name('users.center')
 
 Route::get('/users', 'UsersController@index')->name('admins.users.index');
 
-// Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

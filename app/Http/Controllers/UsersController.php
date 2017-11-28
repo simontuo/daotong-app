@@ -220,13 +220,4 @@ class UsersController extends Controller
 
         return view('users.center', compact('user'));
     }
-
-    public function getUsers()
-    {
-        $pageSize = request('pageSize') ? request('pageSize') : config('page.user');
-
-        $users = $this->user->index($pageSize);
-
-        return response()->json(['users' => $users]);
-    }
 }
