@@ -8,6 +8,7 @@
                         {{ this.createdTime }}
                     </p>
                 </div>
+                <!-- <span class="label label-info mdui-m-r-1" v-for="item in this.topics">{{ item.name }}</span> -->
                 <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
@@ -32,7 +33,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'image', 'createdTime', 'readsCount', 'commentsCount', 'likesCount']
+        props: ['title', 'image', 'createdTime', 'readsCount', 'commentsCount', 'likesCount', 'topics']
     }
 </script>
 

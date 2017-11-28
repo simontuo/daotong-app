@@ -26,7 +26,9 @@ class ArticlesController extends Controller
 
     public function search(Request $request)
     {
-        $articles = $this->article->search($request->get('query'));
+        $articles = $this->article->search($request->get('query'), $request->get('quickQuery'));
+
+        $articles->addCreatedTime();
 
         return response()->json(['articles' => $articles]);
     }

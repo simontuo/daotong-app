@@ -2,11 +2,17 @@
     <div class="">
 
 
-        <div class="row mdui-m-y-1">
-            <div class="col-md-1">
-                <ButtonGroup>
-                    <button class="mdui-center mdui-btn mdui-btn-raised mdui-ripple mdui-color-white">Button</button>
-                </ButtonGroup>
+        <div class="row mdui-m-t-1">
+            <div class="col-md-8">
+                <!-- <select class="mdui-select" @change="quickSearch()" id="articlesQuickSearchType">
+                    <option value="1" selected>最新文章</option>
+                    <option value="2">热门文章</option>
+                    <option value="3">评论最多</option>
+                    <option value="4">点赞最多</option>
+                </select> -->
+                <Select v-model="quickQuery" size="large" style="width:100px" :on-change="search">
+                    <Option v-for="item in quickType" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
             </div>
             <div class="col-md-4 mdui-m-b-1 pull-right">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
@@ -19,7 +25,8 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3" v-for="article in articles">
+
+            <div class="col-md-4" v-for="article in articles">
                 <a :href="'/articles/' + article.id">
                     <article-card
                     :image="article.user.avatar"
@@ -28,7 +35,7 @@
                     :readsCount="article.reads_count"
                     :commentsCount="article.comments_count"
                     :likesCount="article.likes.length"
-
+                    :topics="article.topics"
                     ></article-card>
                 </a>
             </div>
@@ -55,7 +62,26 @@
                 loading: false,
                 nextPageUrl: '',
                 noMoreData: false,
-                query: ''
+                query: '',
+                quickQuery: '',
+                quickType: [
+                    {
+                        value: 0,
+                        label: '最新文章'
+                    },
+                    {
+                        value: 1,
+                        label: '热门文章'
+                    },
+                    {
+                        value: 2,
+                        label: '评论最多'
+                    },
+                    {
+                        value: 3,
+                        label: '点赞最多'
+                    },
+                ]
             }
         },
         methods: {
@@ -71,8 +97,8 @@
                 });
             },
             search () {
-                console.log(this.query);
-                axios.get('api/articles/search', {'params': {'query': this.query}}).then(response => {
+                console.log(1);
+                axios.get('api/articles/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery}}).then(response => {
                     this.articles = response.data.articles.data;
                     if (!response.data.articles.next_page_url) {
                         this.noMoreData = true;
@@ -80,6 +106,9 @@
                     this.nextPageUrl = response.data.articles.next_page_url;
                     this.loading = false;
                 });
+            },
+            qucikSearch () {
+                console.log(1);
             }
         }
     }

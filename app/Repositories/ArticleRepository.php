@@ -6,6 +6,10 @@ use Carbon\Carbon;
 
 class ArticleRepository
 {
+    protected $quickQueryType = [
+        'created_at', 'reads_count', 'comments_count', 'likes_count'
+    ];
+
     public function create(array $attributes)
     {
         return Article::create($attributes);
@@ -41,14 +45,16 @@ class ArticleRepository
         return Article::sum('reads_count');
     }
 
-    public function search($query)
+    public function search($query, $quickQuery = null)
     {
+        $quickQueryType = is_null($quickQuery) ? 'created_at' : $this->quickQueryType[$quickQuery];
+
         return Article::join('users', 'users.id', '=', 'articles.user_id')
-                ->select('articles.id', 'user_id', 'title')
+                ->select('articles.id', 'articles.user_id', 'articles.title', 'articles.created_at', 'articles.comments_count', 'articles.reads_count')
                 ->where('users.name', 'like', '%'.$query.'%')
                 ->orWhere('articles.title', 'like', '%'.$query.'%')
-                ->with(['user', 'likes'])
-                ->latest('articles.created_at')
+                ->with(['user', 'likes', 'topics'])
+                ->orderBy($quickQueryType, 'DESC')
                 ->paginate(30);
     }
 }
