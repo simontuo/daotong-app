@@ -1,23 +1,15 @@
 <template>
     <div class="">
-
-
         <div class="row mdui-m-t-1">
             <div class="col-md-8">
-                <!-- <select class="mdui-select" @change="quickSearch()" id="articlesQuickSearchType">
-                    <option value="1" selected>最新文章</option>
-                    <option value="2">热门文章</option>
-                    <option value="3">评论最多</option>
-                    <option value="4">点赞最多</option>
-                </select> -->
-                <Select v-model="quickQuery" size="large" style="width:100px" :on-change="search">
+                <Select v-model="quickQuery" size="large" style="width:100px" @on-change="search">
                     <Option v-for="item in quickType" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </div>
             <div class="col-md-4 mdui-m-b-1 pull-right">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                    <input class="mdui-textfield-input" type="text" placeholder="搜索" v-on:input="search" v-model="query"/>
+                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
@@ -29,7 +21,7 @@
             <div class="col-md-4" v-for="article in articles">
                 <a :href="'/articles/' + article.id">
                     <article-card
-                    :image="article.user.avatar"
+                    :user="article.user"
                     :title="article.title"
                     :createdTime="article.created_time"
                     :readsCount="article.reads_count"
@@ -78,7 +70,7 @@
                         label: '评论最多'
                     },
                     {
-                        value: 3,
+                        value: 4,
                         label: '点赞最多'
                     },
                 ]
@@ -97,7 +89,6 @@
                 });
             },
             search () {
-                console.log(1);
                 axios.get('api/articles/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery}}).then(response => {
                     this.articles = response.data.articles.data;
                     if (!response.data.articles.next_page_url) {
@@ -107,9 +98,6 @@
                     this.loading = false;
                 });
             },
-            qucikSearch () {
-                console.log(1);
-            }
         }
     }
 </script>

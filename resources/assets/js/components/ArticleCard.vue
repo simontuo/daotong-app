@@ -2,13 +2,16 @@
     <div class="mdui-m-y-3">
         <Card style="border-radius:6px">
             <div>
-                <img :src="this.image" class="type-card-image mdui-shadow-1 mdui-hoverable">
-                <div class="pull-right type-card-title ">
-                    <p class="type-card-icon">
-                        {{ this.createdTime }}
-                    </p>
+                <img :src="this.user.avatar" class="type-card-image mdui-shadow-1 mdui-hoverable">
+                <div class="pull-right type-card-title">
+                    <!-- <span class="type-card-icon">
+                        {{ this.user.name }}
+                    </span> -->
+                    {{ this.user.name }}
+                    <span class="type-card-icon">
+                        创建于：{{ this.createdTime }}
+                    </span>
                 </div>
-                <!-- <span class="label label-info mdui-m-r-1" v-for="item in this.topics">{{ item.name }}</span> -->
                 <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
@@ -33,7 +36,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'image', 'createdTime', 'readsCount', 'commentsCount', 'likesCount', 'topics']
+        props: ['title', 'user', 'createdTime', 'readsCount', 'commentsCount', 'likesCount', 'topics']
     }
 </script>
 
@@ -47,6 +50,7 @@
     }
     .type-card-title {
         text-align: end;
+        margin-top: -5px;
     }
     .type-card-icon {
         color: #BDCDDE;
@@ -58,6 +62,7 @@
         color: #BDCDDE;
         margin-bottom: 0;
         font-weight: 400;
+        font-size: 18px;
     }
     .type-card-footer {
         padding: 0px 0px 10px;
