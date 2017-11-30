@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Collections\CalligraphyCollection;
 
 class Calligraphy extends Model
 {
+    use Traits\AddCreatedTime;
+
     protected $fillable = [
         'user_id', 'title', 'bio', 'images'
     ];
@@ -18,6 +21,11 @@ class Calligraphy extends Model
     protected $casts = [
         'images' => 'array'
     ];
+
+    public function newCollection(array $models = [])
+    {
+        return new CalligraphyCollection($models);
+    }
 
     /**
      * [user 书法对应用户]

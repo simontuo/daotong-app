@@ -28,4 +28,13 @@ class CalligraphysController extends Controller
 
         return response()->json(['rankingList' => $rankingList]);
     }
+
+    public function search(Request $request)
+    {
+        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'));
+
+        $calligraphys->addCreatedTime();
+
+        return response()->json(['calligraphys' => $calligraphys]);
+    }
 }

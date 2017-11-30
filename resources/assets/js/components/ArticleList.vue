@@ -13,7 +13,6 @@
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
-
         </div>
 
         <div class="row">

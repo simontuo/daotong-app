@@ -26,7 +26,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/articles/search', 'ArticlesController@search');
     Route::get('/articles/index', 'ArticlesController@index');
 
-    Route::get('/calligraphys/calligraphyList', 'CalligraphysController@index');
+    Route::get('/calligraphys/index', 'CalligraphysController@index');
+    Route::get('/calligraphys/search', 'CalligraphysController@search');
     Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');
 
     Route::get('/likes/{type}/{id}', 'LikesController@index');

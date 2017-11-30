@@ -63,6 +63,7 @@
         margin-bottom: 0;
         font-weight: 400;
         font-size: 18px;
+        text-align: center;
     }
     .type-card-footer {
         padding: 0px 0px 10px;

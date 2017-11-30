@@ -1,7 +1,21 @@
 <template>
     <div class="">
+        <div class="row mdui-m-t-1">
+            <div class="col-md-8">
+                <Select v-model="quickQuery" size="large" style="width:100px" @on-change="search">
+                    <Option v-for="item in quickType" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+            </div>
+            <div class="col-md-4 mdui-m-b-1 pull-right">
+                <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                    <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
+                    <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-4" v-for="calligraphy in calligraphys">
+            <div class="col-md-4" v-for="calligraphy in this.calligraphys">
                 <calligraphy-card
                     :calligraphy="calligraphy"
                 ></calligraphy-card>
@@ -29,15 +43,35 @@
                 visible: false,
                 loading: false,
                 noMoreData: false,
-                nextPageUrl: ''
+                nextPageUrl: '',
+                query: '',
+                quickQuery: '',
+                quickType: [
+                    {
+                        value: 0,
+                        label: '最新文章'
+                    },
+                    {
+                        value: 1,
+                        label: '热门文章'
+                    },
+                    {
+                        value: 2,
+                        label: '评论最多'
+                    },
+                    {
+                        value: 4,
+                        label: '点赞最多'
+                    },
+                ]
             }
         },
         methods: {
-            handleView(name) {
+            handleView (name) {
                 this.imgName = name;
                 this.visible = true;
             },
-            toLoading() {
+            toLoading () {
                 this.loading = true;
                 axios.get(this.nextPageUrl).then(response => {
                     this.calligraphys = this.calligraphys.concat(response.data.calligraphys.data);
@@ -48,19 +82,29 @@
                     this.loading = false;
                 });
             },
-            show(id) {
+            show (id) {
                 window.location.href = '/calligraphys/' + id;
+            },
+            search () {
+                axios.get('/api/calligraphys/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery}}).then(response => {
+                    console.log(response.data.calligraphys.data)
+                    this.calligraphys = response.data.calligraphys.data;
+                    this.nextPageUrl = response.data.calligraphys.next_page_url;
+                    if (!response.data.calligraphys.next_page_url) {
+                        this.noMoreData = true;
+                    }
+                });
             }
         },
         mounted() {
-            axios.get('/api/calligraphys/calligraphyList').then(response => {
-                console.log(response.data.calligraphys)
-                this.calligraphys = response.data.calligraphys.data;
-                this.nextPageUrl = response.data.calligraphys.next_page_url;
-                if (!response.data.calligraphys.next_page_url) {
-                    this.noMoreData = true;
-                }
-            });
+            // axios.get('/api/calligraphys/calligraphyList').then(response => {
+            //     console.log(response.data.calligraphys)
+            //     this.calligraphys = response.data.calligraphys.data;
+            //     this.nextPageUrl = response.data.calligraphys.next_page_url;
+            //     if (!response.data.calligraphys.next_page_url) {
+            //         this.noMoreData = true;
+            //     }
+            // });
         }
     }
 </script>

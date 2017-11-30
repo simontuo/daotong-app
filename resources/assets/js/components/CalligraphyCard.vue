@@ -98,6 +98,7 @@
         margin-bottom: 0;
         font-weight: 400;
         text-align: center;
+        font-size: 18px;
     }
     .type-card-footer {
         padding: 0px 0px 10px;
