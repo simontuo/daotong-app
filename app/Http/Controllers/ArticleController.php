@@ -30,9 +30,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = $this->article->index();
-
-        return view('articles.index', compact('articles'));
+        return view('articles.index');
     }
 
     /**
