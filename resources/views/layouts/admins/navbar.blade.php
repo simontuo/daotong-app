@@ -67,7 +67,7 @@
 				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/permissionList') }}'">权限管理</li>
 			</ul>
 		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/articleList') }}'">
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.articles.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">&#xe838;</i>
 			<div class="mdui-list-item-content">文章管理</div>
 		</li>

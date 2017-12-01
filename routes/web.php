@@ -55,4 +55,5 @@ Route::get('/inboxs/{id}/{dialog}', 'InboxsController@show')->name('inboxs.show'
 
 Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/', 'HomesController@index')->name('admin.home.index');
+    Route::get('/articles/index', 'HomesController@articleIndex')->name('admin.articles.index');
 });

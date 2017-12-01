@@ -51,7 +51,8 @@ Vue.component('message-dialog', require('./components/MessageDialog.vue'));
 Vue.component('topics', require('./components/Topics.vue'));
 
 
-Vue.component('users-table', require('./components/UsersTable.vue'));
+Vue.component('user-table', require('./components/UserTable.vue'));
+Vue.component('article-table', require('./components/ArticleTable.vue'));
 
 Vue.component('type-card', require('./components/TypeCard.vue'));
 Vue.component('article-card', require('./components/ArticleCard.vue'));

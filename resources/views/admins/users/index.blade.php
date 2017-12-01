@@ -3,6 +3,6 @@
 @section('content')
 
 <div class="container">
-    <users-table></users-table>
+    <user-table></user-table>
 </div>
 @endsection

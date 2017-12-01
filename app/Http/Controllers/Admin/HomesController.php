@@ -11,4 +11,9 @@ class HomesController extends Controller
     {
         return view('admins.homes.index');
     }
+
+    public function articleIndex()
+    {
+        return view('admins.articles.index');
+    }
 }

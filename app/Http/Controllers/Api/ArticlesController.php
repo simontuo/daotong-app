@@ -17,7 +17,9 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = $this->article->index();
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
+
+        $articles = $this->article->index($pageSize);
 
         $articles->addCreatedTime();
 

@@ -2,5 +2,5 @@
 
 return [
     'user' => 10,
-    'article' => 30
+    'article' => 10
 ];
