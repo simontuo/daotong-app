@@ -20,4 +20,11 @@ class MessageCollection extends Collection
             $message->addCreatedTime();
         });
     }
+
+    public function CombinationField()
+    {
+        $this->each(function($article) {
+            $article->CombinationField();
+        });
+    }
 }

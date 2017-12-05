@@ -32,6 +32,8 @@ class CommentsController extends Controller
 
         $comments = $this->comment->index($pageSize);
 
+        $comments->CombinationField();
+
         return response()->json(['comments' => $comments]);
     }
 

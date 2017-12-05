@@ -14,6 +14,10 @@ class Calligraphy extends Model
         'user_id', 'title', 'bio', 'images'
     ];
 
+    protected $combinationField = [
+        'user_name' => 'user.name'
+    ];
+
     /**
      * [protected description]
      * @var [type]

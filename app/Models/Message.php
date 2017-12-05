@@ -14,6 +14,10 @@ class Message extends Model
         'from_user_id', 'to_user_id', 'bio', 'dialog_id', 'read_at', 'has_read'
     ];
 
+    protected $combinationField = [
+        'user_name' => 'fromUser.name'
+    ];
+
     public function newCollection(array $models = [])
     {
         return new MessageCollection($models);

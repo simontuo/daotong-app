@@ -12,10 +12,10 @@ class ArticleCollection extends Collection
         });
     }
 
-    public function arrayDot()
+    public function CombinationField()
     {
         $this->each(function($article) {
-            $article->arrayDot();
+            $article->CombinationField();
         });
     }
 }

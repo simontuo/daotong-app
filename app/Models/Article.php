@@ -15,6 +15,11 @@ class Article extends Model
         'user_id', 'title', 'cover', 'bio', 'markdown_bio', 'author_id'
     ];
 
+    protected $combinationField = [
+        'user_name' => 'user.name',
+        'user_avatar' => 'user.avatar'
+    ];
+
     public function newCollection(array $models = [])
     {
         return new ArticleCollection($models);

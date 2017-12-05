@@ -21,6 +21,8 @@ class CalligraphysController extends Controller
 
         $calligraphys = $this->calligraphy->index($pageSize);
 
+        $calligraphys->CombinationField();
+
         return response()->json(['calligraphys' => $calligraphys]);
     }
 

@@ -23,7 +23,7 @@ class ArticlesController extends Controller
 
         $articles->addCreatedTime();
 
-        $articles->arrayDot();
+        $articles->CombinationField();
 
         return response()->json(['articles' => $articles]);
     }

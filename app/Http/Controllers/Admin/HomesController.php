@@ -26,4 +26,9 @@ class HomesController extends Controller
     {
         return view('admins.comments.index');
     }
+
+    public function messageIndex()
+    {
+        return view('admins.messages.index');
+    }
 }

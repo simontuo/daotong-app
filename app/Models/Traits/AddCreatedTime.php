@@ -8,8 +8,14 @@ trait AddCreatedTime
         $this->created_time = $this->created_at->diffForHumans();
     }
 
-    public function arrayDot()
+    public function CombinationField()
     {
-        $this->user_name = $this->user->name;
+        foreach ($this->combinationField as $key => $value) {
+            $group = array_first(explode('.', $value));
+
+            $filed = array_last(explode('.', $value));
+
+            $this->$key = $this->$group->$filed;
+        }
     }
 }

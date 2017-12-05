@@ -20,7 +20,18 @@ class MessagesController extends Controller
         $this->user = $user;
     }
 
-    public function index($id)
+    public function index()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.messages');
+
+        $messages = $this->message->index($pageSize);
+
+        $messages->CombinationField();
+
+        return response()->json(['messages' => $messages]);
+    }
+
+    public function getUserMessages($id)
     {
         $messages = $this->message->getUserMessages($id);
 

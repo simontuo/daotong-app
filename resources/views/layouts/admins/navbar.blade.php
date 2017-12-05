@@ -72,13 +72,17 @@
 			<div class="mdui-list-item-content">文章管理</div>
 		</li>
 		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.calligraphys.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe168;</i>
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">&#xe168;</i>
 			<div class="mdui-list-item-content">书法管理</div>
 		</li>
 
 		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.comments.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe151;</i>
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe0ca;</i>
 			<div class="mdui-list-item-content">评论管理</div>
+		</li>
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.messages.index') }}'">
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow">&#xe151;</i>
+			<div class="mdui-list-item-content">信息管理</div>
 		</li>
 		<li class="mdui-subheader">Subheader</li>
 		<li class="mdui-collapse-item">

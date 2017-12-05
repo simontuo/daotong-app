@@ -5,21 +5,16 @@ use App\Models\Message;
 
 class MessageRepository
 {
-    /**
-     * [create 新增信息]
-     * @param  array  $attributes [description]
-     * @return [type]             [description]
-     */
+    public function index($pageSize)
+    {
+        return Message::with('fromUser')->latest('created_at')->paginate($pageSize);
+    }
+
     public function create(array $attributes)
     {
         return Message::create($attributes);
     }
 
-    /**
-     * [getToUserMessages 获取用户收到的信息]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
-     */
     public function getUserMessages($id)
     {
         return Message::where('to_user_id', $id)
@@ -29,21 +24,11 @@ class MessageRepository
             ->get();
     }
 
-    /**
-     * [getUserMessageDialog description]
-     * @param  [type] $id     [description]
-     * @param  [type] $dialog [description]
-     * @return [type]         [description]
-     */
     public function getUserMessageDialog($id, $dialog)
     {
         return Message::where('dialog_id', $dialog)->with(['fromUser', 'toUser'])->get();
     }
 
-    /**
-     * [FunctionName description]
-     * @param string $value [description]
-     */
     public function isHadDialog($fromUserId, $toUserId)
     {
         return !! Message::where('from_user_id', $fromUserId)
@@ -53,12 +38,6 @@ class MessageRepository
             })->count();
     }
 
-    /**
-     * [getHadDialog description]
-     * @param  [type] $fromUserId [description]
-     * @param  [type] $toUserId   [description]
-     * @return [type]             [description]
-     */
     public function getHadDialog($fromUserId, $toUserId)
     {
         return Message::where('from_user_id', $fromUserId)
@@ -68,11 +47,6 @@ class MessageRepository
             })->first();
     }
 
-    /**
-     * [getFirstMessageByDialogId description]
-     * @param  [type] $dialogId [description]
-     * @return [type]           [description]
-     */
     public function getFirstMessageByDialogId($dialogId)
     {
         return Message::where('dialog_id', $dialogId)->first();

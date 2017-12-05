@@ -11,4 +11,11 @@ class CommentCollection extends Collection
             $comment->addCreatedTime();
         });
     }
+
+    public function CombinationField()
+    {
+        $this->each(function($comment) {
+            $comment->CombinationField();
+        });
+    }
 }

@@ -21,18 +21,15 @@
                 pageSize: 10,
                 columns: [
                     {
-                        type: 'selection',
-                        width: 60,
-                        align: 'center'
-                    },
-                    {
                         type: 'index',
                         width: 60,
                         align: 'center'
                     },
                     {
                         title: '创建人',
-                        key: 'user_id',
+                        width: 120,
+                        key: 'user_name',
+                        align: 'center'
                     },
                     {
                         title: '内容',
@@ -41,7 +38,7 @@
                     {
                         title: 'Action',
                         key: 'action',
-                        width: 150,
+                        width: 295,
                         align: 'center',
                         render: (h, params) => {
                             return h('div', [
@@ -58,7 +55,21 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, 'View'),
+                                }, '查看'),
+                                h('Button', {
+                                    props: {
+                                        type: 'warning',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '屏蔽'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -69,7 +80,7 @@
                                             this.remove(params.index)
                                         }
                                     }
-                                }, 'Delete')
+                                }, '删除')
                             ]);
                         }
                     }
