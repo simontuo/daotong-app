@@ -16,4 +16,14 @@ class HomesController extends Controller
     {
         return view('admins.articles.index');
     }
+
+    public function calligraphyIndex()
+    {
+        return view('admins.calligraphys.index');
+    }
+
+    public function commentIndex()
+    {
+        return view('admins.comments.index');
+    }
 }

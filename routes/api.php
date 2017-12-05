@@ -33,7 +33,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/likes/{type}/{id}', 'LikesController@index');
     Route::middleware('auth:api')->post('/likes/store', 'LikesController@store');
 
-    Route::get('/comments/{type}/{id}', 'CommentsController@index');
+    Route::get('/comments/index', 'CommentsController@index');
+    Route::get('/comments/{type}/{id}', 'CommentsController@getCommentsByIdAndType');
     Route::get('/comments/{id}', 'CommentsController@getUserComments');
     Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
 

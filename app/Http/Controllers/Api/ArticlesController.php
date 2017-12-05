@@ -23,6 +23,8 @@ class ArticlesController extends Controller
 
         $articles->addCreatedTime();
 
+        $articles->arrayDot();
+
         return response()->json(['articles' => $articles]);
     }
 

@@ -26,7 +26,16 @@ class CommentsController extends Controller
         $this->user = $user;
     }
 
-    public function index($type, $id)
+    public function index()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.comment');
+
+        $comments = $this->comment->index($pageSize);
+
+        return response()->json(['comments' => $comments]);
+    }
+
+    public function getCommentsByIdAndType($type, $id)
     {
         if (in_array($type, $this->allowComment)) {
             $comments = $this->comment->getCommentsByIdAndType($id, $type);

@@ -17,7 +17,9 @@ class CalligraphysController extends Controller
 
     public function index()
     {
-        $calligraphys = $this->calligraphy->index();
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
+
+        $calligraphys = $this->calligraphy->index($pageSize);
 
         return response()->json(['calligraphys' => $calligraphys]);
     }

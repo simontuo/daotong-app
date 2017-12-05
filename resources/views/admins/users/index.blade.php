@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div>
     <user-table></user-table>
 </div>
 @endsection

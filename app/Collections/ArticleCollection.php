@@ -11,4 +11,11 @@ class ArticleCollection extends Collection
             $article->addCreatedTime();
         });
     }
+
+    public function arrayDot()
+    {
+        $this->each(function($article) {
+            $article->arrayDot();
+        });
+    }
 }

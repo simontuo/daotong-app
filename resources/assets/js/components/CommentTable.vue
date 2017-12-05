@@ -31,20 +31,12 @@
                         align: 'center'
                     },
                     {
-                        title: '名称',
-                        key: 'name'
+                        title: '创建人',
+                        key: 'user_id',
                     },
                     {
-                        title: '邮箱',
-                        key: 'email'
-                    },
-                    {
-                        title: '手机',
-                        key: 'phone'
-                    },
-                    {
-                        title: '微信',
-                        key: 'wechat'
+                        title: '内容',
+                        key: 'bio'
                     },
                     {
                         title: 'Action',
@@ -86,25 +78,25 @@
             }
         },
         mounted () {
-            axios.get('/api/users/index', {params: {'pageSize': this.pageSize}}).then(response => {
-                this.data = response.data.users.data;
-                this.total = parseInt(response.data.users.total);
+            axios.get('/api/comments/index').then(response => {
+                this.data = response.data.comments.data;
+                this.total = parseInt(response.data.comments.total);
                 this.loading = false;
             });
         },
         methods: {
             changePage (page) {
-                axios.get('/api/users/index', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.users.data;
-                    this.total = parseInt(response.data.users.total);
+                axios.get('/api/comments/index', {params: {'page': page}}).then(response => {
+                    this.data = response.data.comments.data;
+                    this.total = parseInt(response.data.comments.total);
                     this.loading = false;
                 });
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/users/index', {params: {'page': 1, 'pageSize': pageSize}}).then(response => {
-                    this.data = response.data.users.data;
-                    this.total = parseInt(response.data.users.total);
+                axios.get('/api/comments/index', {params: {'page': 1}}).then(response => {
+                    this.data = response.data.comments.data;
+                    this.total = parseInt(response.data.comments.total);
                     this.loading = false;
                 });
             }

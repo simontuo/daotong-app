@@ -14,9 +14,9 @@ class CalligraphyRepository
         return Calligraphy::create($attributes);
     }
 
-    public function index()
+    public function index($pageSize)
     {
-        return Calligraphy::with(['user', 'likes'])->latest('created_at')->paginate(30);
+        return Calligraphy::with(['user', 'likes'])->latest('created_at')->paginate($pageSize);
     }
 
     public function byId($id)

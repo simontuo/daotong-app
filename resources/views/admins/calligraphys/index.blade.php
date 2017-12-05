@@ -3,6 +3,6 @@
 @section('content')
 
 <div>
-    <article-table></article-table>
+    <calligraphy-table></calligraphy-table>
 </div>
 @endsection

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <Table border ref="selection" :columns="columns" :data="data" :loading="loading"></Table>
+        <Button type="primary" @click="exportData()" class="mdui-m-b-1"><Icon type="ios-download-outline"></Icon> 导出数据</Button>
+        <Table border ref="table" :columns="columns" :data="data" :loading="loading"></Table>
         <Page class="mdui-m-t-1 pull-right"
         @on-change="changePage"
         @on-page-size-change="pageSizeChange"
@@ -21,22 +22,37 @@
                 pageSize: 10,
                 columns: [
                     {
-                        type: 'selection',
+                        type: 'index',
                         width: 60,
                         align: 'center'
                     },
                     {
                         title: '创建人',
-                        key: 'user_id',
+                        width: 120,
+                        key: 'user_name',
+                        align: 'center'
                     },
                     {
                         title: '标题',
-                        key: 'title'
+                        key: 'title',
+                        align: 'center'
+                    },
+                    {
+                        title: '阅读量',
+                        width: 80,
+                        key: 'reads_count',
+                        align: 'center'
+                    },
+                    {
+                        title: '评论数',
+                        width: 80,
+                        key: 'comments_count',
+                        align: 'center'
                     },
                     {
                         title: 'Action',
                         key: 'action',
-                        width: 150,
+                        width: 295,
                         align: 'center',
                         render: (h, params) => {
                             return h('div', [
@@ -53,7 +69,21 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, 'View'),
+                                }, '查看'),
+                                h('Button', {
+                                    props: {
+                                        type: 'warning',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '屏蔽'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -64,7 +94,7 @@
                                             this.remove(params.index)
                                         }
                                     }
-                                }, 'Delete')
+                                }, '删除')
                             ]);
                         }
                     }
@@ -93,6 +123,11 @@
                     this.data = response.data.articles.data;
                     this.total = parseInt(response.data.articles.total);
                     this.loading = false;
+                });
+            },
+            exportData () {
+                this.$refs.table.exportCsv({
+                    filename: 'The original data'
                 });
             }
         }
