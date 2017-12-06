@@ -22,7 +22,7 @@ class MessagesController extends Controller
 
     public function index()
     {
-        $pageSize = request('pageSize') ? request('pageSize') : config('page.messages');
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.message');
 
         $messages = $this->message->index($pageSize);
 

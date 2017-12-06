@@ -1,5 +1,17 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-md-6">
+                <Button type="primary" @click="exportData()" class="mdui-m-b-1"><Icon type="ios-download-outline"></Icon> 导出数据</Button>
+            </div>
+            <div class="col-md-6">
+                <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                    <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+                    <input class="mdui-textfield-input" type="text" placeholder="Search"/>
+                    <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+                </div>
+            </div>
+        </div>
         <Table border ref="selection" :columns="columns" :data="data" :loading="loading"></Table>
         <Page class="mdui-m-t-1 pull-right"
         @on-change="changePage"

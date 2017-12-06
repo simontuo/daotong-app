@@ -1,5 +1,17 @@
 <template>
     <div>
+        <div class="row">
+            <div class="col-md-6">
+                <Button type="primary" @click="exportData()" class="mdui-m-b-1"><Icon type="ios-download-outline"></Icon> 导出数据</Button>
+            </div>
+            <div class="col-md-6">
+                <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                    <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
+                    <input class="mdui-textfield-input" type="text" placeholder="Search"/>
+                    <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
+                </div>
+            </div>
+        </div>
         <Table border ref="selection" :columns="columns" :data="data" :loading="loading"></Table>
         <Page class="mdui-m-t-1 pull-right"
         @on-change="changePage"
@@ -21,26 +33,27 @@
                 pageSize: 10,
                 columns: [
                     {
-                        type: 'selection',
-                        width: 60,
-                        align: 'center'
-                    },
-                    {
                         type: 'index',
                         width: 60,
                         align: 'center'
                     },
                     {
                         title: '名称',
-                        key: 'name'
+                        key: 'name',
+                        width: 120,
+                        align: 'center'
                     },
                     {
                         title: '邮箱',
-                        key: 'email'
+                        key: 'email',
+                        width: 200,
+                        align: 'center'
                     },
                     {
                         title: '手机',
-                        key: 'phone'
+                        key: 'phone',
+                        width: 200,
+                        align: 'center',
                     },
                     {
                         title: '微信',
@@ -49,7 +62,7 @@
                     {
                         title: 'Action',
                         key: 'action',
-                        width: 150,
+                        width: 295,
                         align: 'center',
                         render: (h, params) => {
                             return h('div', [
@@ -66,7 +79,21 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, 'View'),
+                                }, '查看'),
+                                h('Button', {
+                                    props: {
+                                        type: 'warning',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '屏蔽'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -77,7 +104,7 @@
                                             this.remove(params.index)
                                         }
                                     }
-                                }, 'Delete')
+                                }, '删除')
                             ]);
                         }
                     }
