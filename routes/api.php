@@ -50,6 +50,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/topics', 'TopicsController@index');
 
     Route::middleware('auth:api')->get('/users/index', 'UsersController@index');
+    Route::middleware('auth:api')->get('/users/search', 'UsersController@search');
 });
 
 

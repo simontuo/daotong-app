@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                    <input class="mdui-textfield-input" type="text" placeholder="Search"/>
+                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
@@ -31,6 +31,8 @@
                 pageSizeOpts: [10, 20, 30, 50],
                 total: 0,
                 pageSize: 10,
+                query: '',
+                quickQuery: '',
                 columns: [
                     {
                         type: 'index',
@@ -38,9 +40,30 @@
                         align: 'center'
                     },
                     {
+                        title: '头像',
+                        key: 'avatar',
+                        width: 80,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Avatar', {
+                                    props: {
+                                        src: params.row.avatar
+                                    }
+                                })
+                            ]);
+                        }
+                    },
+                    {
                         title: '名称',
                         key: 'name',
                         width: 120,
+                        align: 'center'
+                    },
+                    {
+                        title: '注册时间',
+                        key: 'created_at',
+                        width: 150,
                         align: 'center'
                     },
                     {
@@ -76,7 +99,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.show(params.index)
+                                            this.show(params.row)
                                         }
                                     }
                                 }, '查看'),
@@ -93,7 +116,7 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, '屏蔽'),
+                                }, '禁言'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -120,6 +143,13 @@
             });
         },
         methods: {
+            search () {
+                axios.get('/api/users/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.users.data;
+                    this.total = parseInt(response.data.users.total);
+                    this.loading = false;
+                });
+            },
             changePage (page) {
                 axios.get('/api/users/index', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.users.data;
@@ -134,6 +164,9 @@
                     this.total = parseInt(response.data.users.total);
                     this.loading = false;
                 });
+            },
+            show (info) {
+                console.log(info)
             }
         }
     }

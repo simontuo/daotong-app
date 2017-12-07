@@ -5,25 +5,15 @@ use App\Models\User;
 
 class UserRepository
 {
-    /**
-     * [byId 根据id获取用户]
-     * @method byId
-     * @param  [type]   $id [description]
-     * @return [type]       [description]
-     * @auth   simontuo
-     */
+    protected $quickQueryType = [
+
+    ];
+
     public function byId($id)
     {
         return User::findOrFail($id);
     }
 
-    /**
-     * [byConfirmationToken 根据confirmation_token查找用户]
-     * @method byConfirmationToken
-     * @param  [type]              $confirmationToken [description]
-     * @return [type]                                 [description]
-     * @auth   simontuo
-     */
     public function byConfirmationToken($confirmationToken)
     {
         return User::where('confirmation_token', $confirmationToken)->first();
@@ -32,5 +22,15 @@ class UserRepository
     public function index($pageSize)
     {
         return User::paginate($pageSize);
+    }
+
+    public function search($query, $quickQuery = null, $pageSize)
+    {
+        $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickQuery, 'created_at');
+
+        return User::where('name', 'like', '%'.$query.'%')
+            ->orWhere('phone', 'like', '%'.$query.'%')
+            ->orderBy($quickQueryType, 'DESC')
+            ->paginate($pageSize);
     }
 }

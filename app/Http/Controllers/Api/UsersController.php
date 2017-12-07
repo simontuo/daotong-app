@@ -23,4 +23,13 @@ class UsersController extends Controller
 
         return response()->json(['users' => $users]);
     }
+
+    public function search()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.user');
+
+        $users = $this->user->search(request('query'), request('quickQuery'), $pageSize);
+
+        return response()->json(['users' => $users]);
+    }
 }

@@ -50,11 +50,11 @@ class ArticleRepository
         $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickQuery, 'created_at');
 
         return Article::join('users', 'users.id', '=', 'articles.user_id')
-                ->select('articles.id', 'articles.user_id', 'articles.title', 'articles.created_at', 'articles.comments_count', 'articles.reads_count')
-                ->where('users.name', 'like', '%'.$query.'%')
-                ->orWhere('articles.title', 'like', '%'.$query.'%')
-                ->with(['user', 'likes', 'topics'])
-                ->orderBy($quickQueryType, 'DESC')
-                ->paginate($pageSize);
+            ->select('articles.id', 'articles.user_id', 'articles.title', 'articles.created_at', 'articles.comments_count', 'articles.reads_count')
+            ->where('users.name', 'like', '%'.$query.'%')
+            ->orWhere('articles.title', 'like', '%'.$query.'%')
+            ->with(['user', 'likes', 'topics'])
+            ->orderBy($quickQueryType, 'DESC')
+            ->paginate($pageSize);
     }
 }

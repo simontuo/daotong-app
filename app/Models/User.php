@@ -80,6 +80,11 @@ class User extends Authenticatable
         return $this->where('id', '<=', $this->id)->count();
     }
 
+    public function isBanComment()
+    {
+        return !! $this->is_ban_comment;
+    }
+
     /**
      * [merge 合并允许更新字段]
      * @method merge
