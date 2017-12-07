@@ -35,9 +35,13 @@ class CalligraphysController extends Controller
 
     public function search(Request $request)
     {
-        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'));
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
+
+        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 
         $calligraphys->addCreatedTime();
+
+        $calligraphys->CombinationField();
 
         return response()->json(['calligraphys' => $calligraphys]);
     }

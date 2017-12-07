@@ -39,7 +39,7 @@ class CalligraphyRepository
         return Calligraphy::sum('reads_count');
     }
 
-    public function search($query, $quickQuery = null)
+    public function search($query, $quickQuery = null, $pageSize)
     {
         $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickQuery, 'created_at');
 
@@ -49,6 +49,6 @@ class CalligraphyRepository
                 ->orWhere('calligraphies.title', 'like', '%'.$query.'%')
                 ->with(['user', 'likes'])
                 ->orderBy($quickQueryType, 'DESC')
-                ->paginate(30);
+                ->paginate($pageSize);
     }
 }

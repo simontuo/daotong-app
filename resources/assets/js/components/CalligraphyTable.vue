@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                    <input class="mdui-textfield-input" type="text" placeholder="Search"/>
+                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
@@ -31,6 +31,8 @@
                 pageSizeOpts: [10, 20, 30, 50],
                 total: 0,
                 pageSize: 10,
+                query: '',
+                quickQuery: '',
                 columns: [
                     {
                         type: 'index',
@@ -100,16 +102,16 @@
                 data: []
             }
         },
-        mounted () {
-            axios.get('/api/calligraphys/index').then(response => {
-                this.data = response.data.calligraphys.data;
-                this.total = parseInt(response.data.calligraphys.total);
-                this.loading = false;
-            });
-        },
         methods: {
+            search () {
+                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.calligraphys.data;
+                    this.total = parseInt(response.data.calligraphys.total);
+                    this.loading = false;
+                });
+            },
             changePage (page) {
-                axios.get('/api/calligraphys/index', {params: {'page': page}}).then(response => {
+                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.calligraphys.data;
                     this.total = parseInt(response.data.calligraphys.total);
                     this.loading = false;
@@ -117,7 +119,7 @@
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/calligraphys/index', {params: {'page': 1}}).then(response => {
+                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.calligraphys.data;
                     this.total = parseInt(response.data.calligraphys.total);
                     this.loading = false;

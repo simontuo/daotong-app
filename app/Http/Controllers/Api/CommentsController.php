@@ -37,6 +37,17 @@ class CommentsController extends Controller
         return response()->json(['comments' => $comments]);
     }
 
+    public function search()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.comment');
+
+        $comments = $this->comment->search(request('query'), request('quickQuery'), $pageSize);
+
+        $comments->CombinationField();
+
+        return response()->json(['comments' => $comments]);
+    }
+
     public function getCommentsByIdAndType($type, $id)
     {
         if (in_array($type, $this->allowComment)) {
