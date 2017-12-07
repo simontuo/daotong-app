@@ -21,7 +21,6 @@
         @on-page-size-change="pageSizeChange"
         :page-size-opts="pageSizeOpts"
         :total="total"
-        :current="1"
         show-total
         :page-size="pageSize"
         show-sizer></Page>
@@ -32,9 +31,9 @@
         data () {
             return {
                 loading: true,
-                pageSizeOpts: [1, 2, 3, 5],
+                pageSizeOpts: [10, 20, 30, 50],
                 total: 0,
-                pageSize: 1,
+                pageSize: 10,
                 query: '',
                 quickQuery: '',
                 quickType: [
@@ -143,7 +142,6 @@
                     this.data = response.data.articles.data;
                     this.total = parseInt(response.data.articles.total);
                     this.loading = false;
-                    console.log(this.total);
                 });
             },
             changePage (page) {
