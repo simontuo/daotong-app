@@ -30,9 +30,13 @@ class ArticlesController extends Controller
 
     public function search(Request $request)
     {
-        $articles = $this->article->search($request->get('query'), $request->get('quickQuery'));
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
+
+        $articles = $this->article->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 
         $articles->addCreatedTime();
+
+        $articles->CombinationField();
 
         return response()->json(['articles' => $articles]);
     }
