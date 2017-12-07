@@ -31,6 +31,17 @@ class MessagesController extends Controller
         return response()->json(['messages' => $messages]);
     }
 
+    public function search()
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.message');
+
+        $messages = $this->message->search(request('query'), request('quickQuery'), $pageSize);
+
+        $messages->CombinationField();
+
+        return response()->json(['messages' => $messages]);
+    }
+
     public function getUserMessages($id)
     {
         $messages = $this->message->getUserMessages($id);

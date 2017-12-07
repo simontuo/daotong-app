@@ -46,8 +46,6 @@ let apiToken = document.head.querySelector('meta[name="api-token"]');
 
 window.axios.defaults.headers.common['Authorization'] = apiToken.content;
 
-window.axios.defaults.headers.common['Content-Type'] = 'text/json';
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

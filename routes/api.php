@@ -41,6 +41,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
     Route::middleware('auth:api')->post('/messages/reply', 'MessagesController@reply');
     Route::get('/messages/index', 'MessagesController@index');
+    Route::get('/messages/search', 'MessagesController@search');
     Route::get('/messages/{id}', 'MessagesController@getUserMessages');
     Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');
 

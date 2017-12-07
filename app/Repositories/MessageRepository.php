@@ -5,9 +5,26 @@ use App\Models\Message;
 
 class MessageRepository
 {
+    protected $quickQueryType = [
+
+    ];
+
     public function index($pageSize)
     {
         return Message::with('fromUser')->latest('created_at')->paginate($pageSize);
+    }
+
+    public function search($query, $quickQuery = null, $pageSize)
+    {
+        $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickType, 'created_at');
+
+        return Message::join('users', 'users.id', '=', 'messages.from_user_id')
+            ->select('messages.id', 'messages.from_user_id', 'messages.bio', 'messages.created_at', 'messages.has_read')
+            ->where('users.name', 'like', '%'.$query.'%')
+            ->orWhere('messages.bio', 'like', '%'.$query.'%')
+            ->with('fromUser')
+            ->orderBy($quickQueryType, 'DESC')
+            ->paginate($pageSize);
     }
 
     public function create(array $attributes)
