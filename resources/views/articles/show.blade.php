@@ -34,7 +34,7 @@
         <!-- like-card -->
         <div class="row mdui-m-b-2">
             <!-- like-card -->
-            <like-card model="{{ $article->id }}" type="Article" code="{{ array_has(user()->settings, 'wechatCode') ? user()->settings['wechatCode'] : '' }}"></like-card>
+            <like-card model="{{ $article->id }}" type="Article" code="{{ array_has($article->user->settings, 'wechatCode') ? $article->user->settings['wechatCode'] : '' }}"></like-card>
         </div>
         <!-- comment-list -->
         <div class="row mdui-m-b-2">
