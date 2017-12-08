@@ -4,15 +4,20 @@
             <div>
                 <img :src="this.user.avatar" class="type-card-image mdui-shadow-1 mdui-hoverable">
                 <div class="pull-right type-card-title">
-                    <!-- <span class="type-card-icon">
-                        {{ this.user.name }}
-                    </span> -->
                     {{ this.user.name }}
                     <span class="type-card-icon">
                         创建于：{{ this.createdTime }}
                     </span>
                 </div>
-                <p class="mdui-m-y-2 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
+                <div class="article-card-topic">
+                    <span  v-for="item in topics">
+                        <Tag checkable color="blue" size="small">{{ item.name }}</Tag>
+                    </span>
+                    <span  v-if="topics.length == 0">
+                        <Tag checkable color="yellow" size="small">无Topic</Tag>
+                    </span>
+                </div>
+                <p class="mdui-m-b-1 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
                         <Icon type="heart" class="mdui-text-color-theme-accent"></Icon>
@@ -67,5 +72,10 @@
     }
     .type-card-footer {
         padding: 0px 0px 10px;
+    }
+
+    .article-card-topic{
+        height: 34px;
+        overflow: scroll;
     }
 </style>

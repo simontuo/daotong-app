@@ -18,6 +18,9 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/upload/cover', 'UploadsController@cover');
     Route::middleware('auth:api')->post('/upload/markdownImage', 'UploadsController@markdownImage');
     Route::middleware('auth:api')->post('/upload/listImage', 'UploadsController@listImage');
+    Route::middleware('auth:api')->post('/upload/users/{id}/avatar', 'UploadsController@avatar')->name('api.users.uploadAvatar');
+    Route::middleware('auth:api')->post('/upload/users/{id}/wechatCode', 'UploadsController@wechatCode')->name('api.users.uploadWechatCode');
+    Route::middleware('auth:api')->post('/upload/users/{id}/alipayCode', 'UploadsController@alipayCode')->name('api.users.uploadAlipayCode');
 
     Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowersController@index');
     Route::middleware('auth:api')->post('/user/follow', 'FollowersController@follow');

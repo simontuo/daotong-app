@@ -3,20 +3,22 @@
 @section('content')
 <div class="container">
     <div class="col-md-3">
-        <avatar avatar="{{ $user->avatar }}" token="{{ csrf_token() }}" id="{{ $user->id }}"></avatar>
-
+        <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
+            <div class="mdui-center">
+                <img src="{{ $user->avatar }}" class="mdui-img-fluid mdui-img-rounded  mdui-m-b-1 userAvatar" width="100" height="100">
+                <upload-img-button url="{{ route('api.users.uploadAvatar', ['id' => $user->id]) }}" src="userAvatar"></upload-img-button>
+            </div>
+		</div>
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
             <div class="mdui-center">
                 <img src="{{ array_has($user->settings, 'wechatCode') ? $user->settings['wechatCode'] : '' }}" class="mdui-img-fluid mdui-img-rounded  mdui-m-b-1 wechatCode" width="100" height="100">
-                <upload-img-button url="{{ route('users.uploadWechatCode', ['id' => $user->id]) }}" src="wechatCode"></upload-img-button>
+                <upload-img-button url="{{ route('api.users.uploadWechatCode', ['id' => $user->id]) }}" src="wechatCode"></upload-img-button>
             </div>
-
-
 		</div>
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
             <div class="mdui-center">
                 <img src="{{ array_has($user->settings, 'alipayCode') ? $user->settings['alipayCode'] : '' }}" class="mdui-img-fluid mdui-img-rounded mdui-center mdui-m-b-1 alipayCode" width="100" height="100">
-                <upload-img-button url="{{ route('users.uploadAlipayCode', ['id' => $user->id]) }}" src="alipayCode"></upload-img-button>
+                <upload-img-button url="{{ route('api.users.uploadAlipayCode', ['id' => $user->id]) }}" src="alipayCode"></upload-img-button>
             </div>
 		</div>
 

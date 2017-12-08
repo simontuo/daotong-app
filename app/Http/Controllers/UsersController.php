@@ -112,65 +112,6 @@ class UsersController extends Controller
     }
 
     /**
-     * [updateAvatar 头像上传（七牛）]
-     * @method updateAvatar
-     * @param  Request      $request [description]
-     * @param  [type]       $id      [description]
-     * @return [type]                [description]
-     * @auth   simontuo
-     */
-    public function updateAvatar(Request $request, $id)
-    {
-        $user = $this->user->byId($id);
-
-        if (user()->isMyself($user) && $request->hasFile('img')) {
-            (new UserUploader())->uploadAvatar($user, $request->file('img'));
-
-            return response()->json(['url' => $user->avatar]);
-        }
-
-        abort(404);
-    }
-
-    /**
-     * [uploadWechatCode 微信二维码上传（七牛）]
-     * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
-     */
-    public function uploadWechatCode(Request $request, $id)
-    {
-        $user = $this->user->byId($id);
-
-        if (user()->isMyself($user) && $request->hasFile('file')) {
-            (new UserUploader())->uploadWechatCode($user, $request->file('file'));
-
-            return response()->json(['url' => $user->settings['wechatCode']]);
-        }
-
-        abort(404);
-    }
-
-    /**
-     * [uploadAlipayCode 上传Alipay二维码]
-     * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
-     */
-    public function uploadAlipayCode(Request $request, $id)
-    {
-        $user = $this->user->byId($id);
-
-        if (user()->isMyself($user) && $request->hasFile('file')) {
-            (new UserUploader())->uploadAlipayCode($user, $request->file('file'));
-
-            return response()->json(['url' => $user->settings['alipayCode']]);
-        }
-
-        abort(404);
-    }
-
-    /**
      * [editPassword 修改面密码页]
      * @method editPassword
      * @param  [type]       $id [description]

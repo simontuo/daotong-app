@@ -16,7 +16,6 @@
         </div>
 
         <div class="row">
-
             <div class="col-md-4" v-for="article in articles">
                 <a :href="'/articles/' + article.id">
                     <article-card

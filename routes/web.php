@@ -14,7 +14,6 @@
 
 Route::get('/', 'HomeController@index')->name('index');
 
-// Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('articles', 'ArticleController', ['names' => [
     '/'      => 'articles.index',
     'create' => 'articles.create',
@@ -36,10 +35,6 @@ Route::get('/email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailCon
 
 Route::get('/users/{id}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{id}', 'UsersController@update')->name('users.update');
-
-Route::post('/users/{id}/update_avatar', 'UsersController@updateAvatar')->name('users.update_avatar');
-Route::post('/users/{id}/uploadWechatCode', 'UsersController@uploadWechatCode')->name('users.uploadWechatCode');
-Route::post('/users/{id}/uploadAlipayCode', 'UsersController@uploadAlipayCode')->name('users.uploadAlipayCode');
 Route::get('/users/{id}/edit_password', 'UsersController@editPassword')->name('users.edit_password');
 Route::post('/users/{id}/update_password', 'UsersController@updatePassword')->name('users.update_password');
 Route::get('/users/{id}/center', 'UsersController@center')->name('users.center');
