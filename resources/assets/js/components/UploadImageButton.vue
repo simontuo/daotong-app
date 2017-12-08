@@ -22,7 +22,7 @@
                 showUploadList: false,
                 loading: false,
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'Authorization': $('meta[name="api-token"]').attr('content')
                 }
             }
         },

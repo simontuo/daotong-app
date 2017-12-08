@@ -22,7 +22,7 @@
 
                 <badge url="{{ route('inboxs.index', ['id' => Auth::id()]) }}" user="{{ Auth::id() }}"></badge>
 	        	<button class="mdui-btn hidden-xs hidden-sm" mdui-menu="{target: '#user-attr'}">
-                    <img class="mdui-img-circle mdui-icon-left" src="{{ user()->avatar }}" id="user-avatar"/>
+                    <img class="mdui-img-circle mdui-icon-left userAvatar" src="{{ user()->avatar }}" id="user-avatar"/>
                     <i class="mdui-icon mdui-icon-right material-icons">&#xe5c5;</i>
                     {{ Auth::user()->name }}
                 </button>

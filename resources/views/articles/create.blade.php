@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-9">
+    <div class="col-md-9 mdui-color-white mdui-p-y-1 mdui-img-rounded">
         <!-- 新增文章form -->
         <alert
             type="info"
