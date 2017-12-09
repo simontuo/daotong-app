@@ -4,7 +4,7 @@
         v-bind:class="{'ivu-btn-error': this.state}"
         size="small"
         :icon="icon"
-        @click="banComment"
+        @click="banLogin"
     >登录</Button>
 </template>
 
@@ -18,7 +18,7 @@
             }
         },
         methods: {
-            banComment () {
+            banLogin () {
                 axios.post('/api/users/' + this.user.id + '/banLogin').then(response => {
                     if (response.data.state == 1) {
                         this.$Message.success({content: "禁止登录成功！", duration: 2});

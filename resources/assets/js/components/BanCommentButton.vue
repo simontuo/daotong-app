@@ -23,11 +23,11 @@
                     if (response.data.state == 1) {
                         this.$Message.success({content: "禁言成功！", duration: 2});
                         this.state = true;
-                        this.text = 'close-circled';
+                        this.icon = 'close-circled';
                     } else {
                         this.$Message.success({content: "取消禁言成功！", duration: 2});
                         this.state = false;
-                        this.text = 'checkmark-circled';
+                        this.icon = 'checkmark-circled';
                     }
                 });
             }
