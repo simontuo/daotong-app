@@ -103,11 +103,18 @@
                                         }
                                     }
                                 }, '查看'),
+                                h('ban-comment', {
+                                    props: {
+                                        user: params.row
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                }),
                                 h('Button', {
                                     props: {
                                         type: 'warning',
-                                        size: 'small',
-                                        text: 'jinyan'
+                                        size: 'small'
                                     },
                                     style: {
                                         marginRight: '5px'
@@ -115,17 +122,6 @@
                                     on: {
                                         click: () => {
                                             this.banComment(params.row)
-                                        }
-                                    }
-                                }, '禁言'),
-                                h('Button', {
-                                    props: {
-                                        type: 'error',
-                                        size: 'small'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.row)
                                         }
                                     }
                                 }, '删除')
@@ -161,15 +157,6 @@
             },
             show (info) {
                 console.log(info)
-            },
-            banComment (user) {
-                axios.post('/api/users/' + user.id + '/banComment').then(response => {
-                    if (response.data.state == 1) {
-                        this.$Message.success({content: "禁言成功！", duration: 2});
-                    } else {
-                        this.$Message.success({content: "取消禁言成功！", duration: 2});
-                    }
-                });
             }
         }
     }
