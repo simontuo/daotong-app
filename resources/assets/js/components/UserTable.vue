@@ -103,31 +103,22 @@
                                         }
                                     }
                                 }, '查看'),
-                                h('Button', {
+                                h('ban-comment-button', {
                                     props: {
-                                        type: 'warning',
-                                        size: 'small'
+                                        user: params.row
                                     },
                                     style: {
                                         marginRight: '5px'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.show(params.index)
-                                        }
-                                    }
-                                }, '禁言'),
-                                h('Button', {
+                                }),
+                                h('ban-login-button', {
                                     props: {
-                                        type: 'error',
-                                        size: 'small'
+                                        user: params.row
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.index)
-                                        }
+                                    style: {
+                                        marginRight: '5px'
                                     }
-                                }, '删除')
+                                })
                             ]);
                         }
                     }

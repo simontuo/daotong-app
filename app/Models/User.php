@@ -85,6 +85,11 @@ class User extends Authenticatable
         return !! $this->is_ban_comment;
     }
 
+    public function isBanLogin()
+    {
+        return !! $this->is_ban_login;
+    }
+
     /**
      * [merge 合并允许更新字段]
      * @method merge

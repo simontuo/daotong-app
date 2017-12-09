@@ -56,6 +56,8 @@ Route::namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->get('/users/index', 'UsersController@index');
     Route::middleware('auth:api')->get('/users/search', 'UsersController@search');
+    Route::middleware('auth:api')->post('/users/{id}/banComment', 'UsersController@banComment');
+    Route::middleware('auth:api')->post('/users/{id}/banLogin', 'UsersController@banLogin');
 });
 
 
