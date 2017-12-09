@@ -49,7 +49,8 @@ Vue.component('search-input', require('./components/SearchInput.vue'));
 Vue.component('messages-list', require('./components/MessagesList.vue'));
 Vue.component('message-dialog', require('./components/MessageDialog.vue'));
 Vue.component('topics', require('./components/Topics.vue'));
-Vue.component('ban-comment', require('./components/BanComment.vue'));
+Vue.component('ban-comment-button', require('./components/BanCommentButton.vue'));
+Vue.component('ban-login-button', require('./components/BanLoginButton.vue'));
 
 
 Vue.component('user-table', require('./components/UserTable.vue'));

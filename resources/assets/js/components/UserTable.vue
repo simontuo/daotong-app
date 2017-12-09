@@ -103,7 +103,7 @@
                                         }
                                     }
                                 }, '查看'),
-                                h('ban-comment', {
+                                h('ban-comment-button', {
                                     props: {
                                         user: params.row
                                     },
@@ -111,20 +111,14 @@
                                         marginRight: '5px'
                                     },
                                 }),
-                                h('Button', {
+                                h('ban-login-button', {
                                     props: {
-                                        type: 'warning',
-                                        size: 'small'
+                                        user: params.row
                                     },
                                     style: {
                                         marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.banComment(params.row)
-                                        }
                                     }
-                                }, '删除')
+                                })
                             ]);
                         }
                     }
