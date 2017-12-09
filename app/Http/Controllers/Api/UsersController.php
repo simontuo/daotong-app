@@ -32,4 +32,17 @@ class UsersController extends Controller
 
         return response()->json(['users' => $users]);
     }
+
+    public function banComment($id)
+    {
+        $user = $this->user->byId($id);
+
+        $state = $user->is_ban_comment ? 0 : 1;
+
+        $user->is_ban_comment = $state;
+
+        $user->save();
+
+        return response()->json(['state' => $state]);
+    }
 }
