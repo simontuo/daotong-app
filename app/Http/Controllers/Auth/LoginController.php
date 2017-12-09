@@ -60,6 +60,8 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
 
+            user()->loginLog('登入');
+
             alert()->success('欢迎回来'.config('app.name'), 'Welcome Black!')->autoclose(2000);
 
             return $this->sendLoginResponse($request);
@@ -99,6 +101,8 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
+        user()->loginLog('登出');
+
         $this->guard()->logout();
 
         $request->session()->invalidate();

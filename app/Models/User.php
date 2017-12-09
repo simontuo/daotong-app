@@ -8,6 +8,7 @@ use App\Mailer\UserMailer;
 use App\Models\Message;
 use App\Models\Comment;
 use App\Models\Calligraphy;
+use App\Jobs\LoginLogSlug;
 
 class User extends Authenticatable
 {
@@ -170,5 +171,10 @@ class User extends Authenticatable
     public function calligraphys()
     {
         return $this->hasMany(Calligraphy::class);
+    }
+
+    public function loginLog($action)
+    {
+        dispatch(new LoginLogSlug($this, $action));
     }
 }
