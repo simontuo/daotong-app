@@ -22,6 +22,15 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * [protected 额外的凭证字段]
+     * @var [type]
+     */
+    protected $additionalCredentials = [
+        'is_active'    => 1,
+        'is_ban_login' => 0
+    ];
+
+    /**
      * Where to redirect users after login.
      *
      * @var string
@@ -85,7 +94,7 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         // 增加激活验证条件
-        $credentials = array_merge($this->credentials($request), ['is_active' => 1]);
+        $credentials = array_merge($this->credentials($request), $this->additionalCredentials);
 
         return $this->guard()->attempt(
             $credentials, $request->has('remember')

@@ -63,6 +63,10 @@ class CommentsController extends Controller
 
     public function store(Request $request)
     {
+        if (user('api')->isBanComment()) {
+            return response()->json(['status' => false, 'message' => '你已被管理员禁言无法评论！']);
+        }
+
         $data = [
             'user_id'          => user('api')->id,
             'bio'              => $request->get('bio'),
@@ -83,7 +87,7 @@ class CommentsController extends Controller
 
         $comment->actionLog(user('api'));
 
-        return response()->json(['status' => true, 'comment' => $comment]);
+        return response()->json(['status' => true, 'message' => '评论新增成功！', 'comment' => $comment]);
     }
 
     public function getModelType($type)

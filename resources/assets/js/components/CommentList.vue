@@ -101,11 +101,12 @@
             comment () {
                 axios.post('/api/comments/store', {'parentId': this.parentId, 'bio': this.bio, 'type': this.type, 'model': this.model}).then(response => {
                     if (!response.data.status) {
-                        this.$Message.error({content: '评论新增失败！', duration: 5});
+                        this.$Message.error({content: response.data.message, duration: 4});
+                    } else {
+                        this.count ++;
+                        this.comments.push(response.data.comment);
+                        this.$Message.success({content: response.data.message, duration: 2});
                     }
-                    this.count ++;
-                    this.comments.push(response.data.comment);
-                    this.$Message.success({content: '评论新增成功！', duration: 2});
                 }).catch(error => {
                     if (error.response.status == 401) {
                         this.showNote(error);
