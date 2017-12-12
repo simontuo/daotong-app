@@ -3,6 +3,9 @@
         <div class="row">
             <div class="col-md-6">
                 <Button type="primary" @click="exportData()" class="mdui-m-b-1"><Icon type="ios-download-outline"></Icon> 导出数据</Button>
+                <Select  class="mdui-m-b-1" v-model="file"  style="width:100px" @on-change="search">
+                    <Option v-for="item in files" :value="item" :key="item">{{ item }}</Option>
+                </Select>
             </div>
             <div class="col-md-6">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
@@ -31,8 +34,9 @@
                 pageSizeOpts: [10, 20, 30, 50],
                 total: 0,
                 pageSize: 10,
+                file: 'laravel.log',
+                files: [],
                 query: '',
-                quickQuery: '',
                 columns: [
                     {
                         type: 'index',
@@ -40,14 +44,27 @@
                         align: 'center'
                     },
                     {
-                        title: '创建人',
+                        title: 'Context',
                         width: 120,
-                        key: 'user_name',
+                        key: 'context',
                         align: 'center'
                     },
                     {
-                        title: '内容',
-                        key: 'bio'
+                        title: 'Level',
+                        width: 120,
+                        key: 'level',
+                        align: 'center'
+                    },
+                    {
+                        title: 'Time',
+                        width: 180,
+                        key: 'date',
+                        align: 'center'
+                    },
+                    {
+                        title: 'Text',
+                        key: 'text',
+                        align: 'center'
                     },
                     {
                         title: 'Action',
@@ -102,27 +119,37 @@
                 data: []
             }
         },
+        mounted() {
+            axios.get('/api/admin/logs/getFiles').then(response => {
+                this.files = this.files = response.data.files;
+            });
+        },
         methods: {
             search () {
-                axios.get('/api/comments/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.comments.data;
-                    this.total = parseInt(response.data.comments.total);
+                axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.logs;
+                    console.log(this.data);
+                    this.total = parseInt(response.data.total);
                     this.loading = false;
+                    this.files = response.data.files
                 });
             },
             changePage (page) {
-                axios.get('/api/comments/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.comments.data;
-                    this.total = parseInt(response.data.comments.total);
+                axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.logs;
+                    console.log(this.data);
+                    this.total = parseInt(response.data.total);
                     this.loading = false;
+                    this.files = response.data.files
                 });
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/comments/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.comments.data;
-                    this.total = parseInt(response.data.comments.total);
+                axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.logs;
+                    this.total = parseInt(response.data.total);
                     this.loading = false;
+                    this.files = response.data.files
                 });
             }
         }

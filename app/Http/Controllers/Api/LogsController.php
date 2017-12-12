@@ -15,19 +15,39 @@ class LogsController extends Controller
         $this->request = app('request');
     }
 
-    public function search($file)
+    public function search(Request $request, $file)
     {
         LaravelLogViewer::setFile($file);
-        return LaravelLogViewer::all();
-        $logs = LaravelLogViewer::all();
+
+        $page = $request->get('page');
+
+        $pageSize = $request->get('pageSize');
+
+
+
+        $logsCollect = collect(LaravelLogViewer::all());
+
+        $logs = $logsCollect->forPage($page, $pageSize);
+
+        $total = $logsCollect->count();
+
         $files = LaravelLogViewer::getFiles(true);
+
         $current_file = LaravelLogViewer::getFileName();
 
         return response()->json([
             'logs' => $logs,
             'files' => $files,
-            'current_file' => $current_file
+            'current_file' => $current_file,
+            'total' => $total
         ]);
+    }
+
+    public function getFiles()
+    {
+        $files = LaravelLogViewer::getFiles(true);
+
+        return response()->json(['files' => $files]);
     }
 
 }
