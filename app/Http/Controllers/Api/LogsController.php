@@ -8,13 +8,6 @@ use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 
 class LogsController extends Controller
 {
-    protected $request;
-
-    public function __construct ()
-    {
-        $this->request = app('request');
-    }
-
     public function search(Request $request, $file)
     {
         LaravelLogViewer::setFile($file);
@@ -23,11 +16,13 @@ class LogsController extends Controller
 
         $pageSize = $request->get('pageSize');
 
-
-
         $logsCollect = collect(LaravelLogViewer::all());
 
-        $logs = $logsCollect->forPage($page, $pageSize);
+        $logs = [];
+
+        foreach ($logsCollect->forPage($page, $pageSize) as $key => $value) {
+            $logs[] = $value;
+        }
 
         $total = $logsCollect->count();
 
@@ -36,10 +31,10 @@ class LogsController extends Controller
         $current_file = LaravelLogViewer::getFileName();
 
         return response()->json([
-            'logs' => $logs,
-            'files' => $files,
+            'logs'         => $logs,
+            'files'        => $files,
             'current_file' => $current_file,
-            'total' => $total
+            'total'        => $total
         ]);
     }
 

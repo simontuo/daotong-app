@@ -19,9 +19,11 @@
         <Page class="mdui-m-t-1 pull-right"
         @on-change="changePage"
         @on-page-size-change="pageSizeChange"
+        @on-row-click="rowDblclick"
         :page-size-opts="pageSizeOpts"
         :total="total"
         show-total
+        highlight-row
         :page-size="pageSize"
         show-sizer></Page>
     </div>
@@ -64,7 +66,8 @@
                     {
                         title: 'Text',
                         key: 'text',
-                        align: 'center'
+                        align: 'center',
+                        ellipsis:'true'
                     },
                     {
                         title: 'Action',
@@ -128,7 +131,6 @@
             search () {
                 axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': 1, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.logs;
-                    console.log(this.data);
                     this.total = parseInt(response.data.total);
                     this.loading = false;
                     this.files = response.data.files
@@ -137,7 +139,6 @@
             changePage (page) {
                 axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.logs;
-                    console.log(this.data);
                     this.total = parseInt(response.data.total);
                     this.loading = false;
                     this.files = response.data.files
@@ -151,6 +152,9 @@
                     this.loading = false;
                     this.files = response.data.files
                 });
+            },
+            rowDblclick (index) {
+                console.log(index);
             }
         }
     }
