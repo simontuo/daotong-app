@@ -83,12 +83,12 @@ class User extends Authenticatable
 
     public function isBanComment()
     {
-        return !! $this->is_ban_comment;
+        return $this->is_ban_comment === 'T';
     }
 
     public function isBanLogin()
     {
-        return !! $this->is_ban_login;
+        return $this->is_ban_login === 'T';
     }
 
     /**

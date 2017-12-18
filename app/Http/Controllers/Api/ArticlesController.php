@@ -47,4 +47,30 @@ class ArticlesController extends Controller
 
         return response()->json(['rankingList' => $rankingList]);
     }
+
+    public function closeComment($id)
+    {
+        $article = $this->article->byId($id);
+
+        $state = $article->closeComment() ? 'F' : 'T';
+
+        $article->close_comment = $state;
+
+        $article->save();
+
+        return response()->json(['state' => $state]);
+    }
+
+    public function isHidden($id)
+    {
+        $article = $this->article->byId($id);
+
+        $state = $article->isHidden() ? 'F' : 'T';
+
+        $article->is_hidden = $state;
+
+        $article->save();
+
+        return response()->json(['state' => $state]);
+    }
 }

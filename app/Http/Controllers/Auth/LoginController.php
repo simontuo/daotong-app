@@ -27,7 +27,7 @@ class LoginController extends Controller
      */
     protected $additionalCredentials = [
         'is_active'    => 1,
-        'is_ban_login' => 0
+        'is_ban_login' => 'F'
     ];
 
     /**

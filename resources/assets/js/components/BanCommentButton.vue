@@ -13,14 +13,14 @@
         props: ['user'],
         data () {
             return {
-                state: this.user.is_ban_comment == 1 ? true : false,
-                icon: this.user.is_ban_comment == 1 ? 'close-circled' : 'checkmark-circled'
+                state: this.user.is_ban_comment === 'T' ? true : false,
+                icon: this.user.is_ban_comment === 'T' ? 'close-circled' : 'checkmark-circled'
             }
         },
         methods: {
             banComment () {
                 axios.post('/api/users/' + this.user.id + '/banComment').then(response => {
-                    if (response.data.state == 1) {
+                    if (response.data.state === 'T') {
                         this.$Message.success({content: "禁言成功！", duration: 2});
                         this.state = true;
                         this.icon = 'close-circled';

@@ -28,6 +28,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/articles/rankingList', 'ArticleController@rankingList');
     Route::get('/articles/search', 'ArticlesController@search');
     Route::get('/articles/index', 'ArticlesController@index');
+    Route::middleware('auth:api')->post('/articles/{id}/closeComment', 'ArticlesController@closeComment');
+    Route::middleware('auth:api')->post('/articles/{id}/isHidden', 'ArticlesController@isHidden');
 
     Route::get('/calligraphys/index', 'CalligraphysController@index');
     Route::get('/calligraphys/search', 'CalligraphysController@search');

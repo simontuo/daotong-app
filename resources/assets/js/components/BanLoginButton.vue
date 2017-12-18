@@ -13,14 +13,14 @@
         props: ['user'],
         data () {
             return {
-                state: this.user.is_ban_login == 1 ? true : false,
-                icon: this.user.is_ban_login == 1 ? 'close-circled' : 'checkmark-circled'
+                state: this.user.is_ban_login === 'T' ? true : false,
+                icon: this.user.is_ban_login === 'T' ? 'close-circled' : 'checkmark-circled'
             }
         },
         methods: {
             banLogin () {
                 axios.post('/api/users/' + this.user.id + '/banLogin').then(response => {
-                    if (response.data.state == 1) {
+                    if (response.data.state === 'T') {
                         this.$Message.success({content: "禁止登录成功！", duration: 2});
                         this.state = true;
                         this.icon = 'close-circled';

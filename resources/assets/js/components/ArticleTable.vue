@@ -104,31 +104,22 @@
                                         }
                                     }
                                 }, '查看'),
-                                h('Button', {
+                                h('close-comment-button', {
                                     props: {
-                                        type: 'warning',
-                                        size: 'small'
+                                        article: params.row
                                     },
                                     style: {
                                         marginRight: '5px'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.show(params.index)
-                                        }
-                                    }
-                                }, '屏蔽'),
-                                h('Button', {
+                                }),
+                                h('is-hidden-button', {
                                     props: {
-                                        type: 'error',
-                                        size: 'small'
+                                        article: params.row
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.index)
-                                        }
-                                    }
-                                }, '删除')
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                })
                             ]);
                         }
                     }

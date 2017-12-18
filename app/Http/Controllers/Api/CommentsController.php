@@ -67,6 +67,10 @@ class CommentsController extends Controller
             return response()->json(['status' => false, 'message' => '你已被管理员禁言无法评论！']);
         }
 
+        if ($this->comment->closeComment($this->comment->getModelObject($request->get('model'), $request->get('type')))) {
+            return response()->json(['status' => false, 'message' => '该资源关闭了评论！']);
+        }
+
         $data = [
             'user_id'          => user('api')->id,
             'bio'              => $request->get('bio'),

@@ -38,7 +38,7 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        $state = $user->isBanComment() ? 0 : 1;
+        $state = $user->isBanComment() ? 'F' : 'T';
 
         $user->is_ban_comment = $state;
 
@@ -51,7 +51,7 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        $state = $user->isBanLogin() ? 0 : 1;
+        $state = $user->isBanLogin() ? 'F' : 'T';
 
         $user->is_ban_login = $state;
 

@@ -41,4 +41,14 @@ class CommentRepository
             ->orderBy($quickQueryType, 'DESC')
             ->paginate($pageSize);
     }
+
+    public function getModelObject($id, $type)
+    {
+        return app('App\Models\\'.$type)->findOrFail($id);
+    }
+
+    public function closeComment($model)
+    {
+        return $model->close_comment === 'T';
+    }
 }

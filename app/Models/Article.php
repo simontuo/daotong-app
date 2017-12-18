@@ -84,4 +84,14 @@ class Article extends Model
     {
         return $this->belongsToMany(Topic::class)->withTimestamps();
     }
+
+    public function closeComment()
+    {
+        return $this->close_comment === 'T';
+    }
+
+    public function isHidden()
+    {
+        return $this->is_hidden === 'T';
+    }
 }
