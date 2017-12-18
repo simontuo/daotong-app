@@ -16,7 +16,17 @@ class LogsController extends Controller
 
         $pageSize = $request->get('pageSize');
 
-        $logsCollect = collect(LaravelLogViewer::all());
+        $query = request('query');
+
+        $logsCollect = collect(LaravelLogViewer::all())->filter(function ($item, $key) use($query) {
+            if (is_null($query)) {
+                return $item;
+            }
+
+            if (strpos($item['text'], $query)) {
+                return $item;
+            }
+        });
 
         $logs = [];
 

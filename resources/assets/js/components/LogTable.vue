@@ -129,7 +129,7 @@
         },
         methods: {
             search () {
-                axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/logs/' + this.file + '/search', {params: {'page': 1, 'pageSize': this.pageSize, 'query': this.query}}).then(response => {
                     this.data = response.data.logs;
                     this.total = parseInt(response.data.total);
                     this.loading = false;
