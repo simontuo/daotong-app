@@ -42,7 +42,7 @@ Route::get('/users/{id}/center', 'UsersController@center')->name('users.center')
 Route::get('/users', 'UsersController@index')->name('admins.users.index');
 
 
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+// Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
 Route::get('/inboxs/{id}', 'InboxsController@index')->name('inboxs.index');
@@ -53,8 +53,10 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/', 'HomesController@index')->name('admin.home.index');
     Route::get('/articles/index', 'HomesController@articleIndex')->name('admin.articles.index');
     Route::get('/calligraphys/index', 'HomesController@calligraphyIndex')->name('admin.calligraphys.index');
-    Route::get('/comments/index', 'HomesController@CommentIndex')->name('admin.comments.index');
-    Route::get('/messages/index', 'HomesController@MessageIndex')->name('admin.messages.index');
 
-    Route::get('logs', 'LogController@index');
+    Route::get('/comments/index', 'HomesController@commentIndex')->name('admin.comments.index');
+    Route::get('/messages/index', 'HomesController@messageIndex')->name('admin.messages.index');
+
+    Route::get('/logs', 'HomesController@logIndex')->name('admin.logs.index');
+
 });

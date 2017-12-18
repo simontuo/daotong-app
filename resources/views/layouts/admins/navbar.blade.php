@@ -85,6 +85,10 @@
 			<div class="mdui-list-item-content">信息管理</div>
 		</li>
 		<li class="mdui-subheader">Subheader</li>
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.logs.index') }}'">
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">&#xe241;</i>
+			<div class="mdui-list-item-content">日志</div>
+		</li>
 		<li class="mdui-collapse-item">
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-cyan">&#xe8b8;</i>

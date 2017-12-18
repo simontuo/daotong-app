@@ -59,7 +59,9 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/users/{id}/banComment', 'UsersController@banComment');
     Route::middleware('auth:api')->post('/users/{id}/banLogin', 'UsersController@banLogin');
 
-    Route::get('/getLog', 'UsersController@getLog');
+    Route::middleware('auth:api')->get('/admin/logs/{file}/search', 'LogsController@search');
+    Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');
+
 });
 
 

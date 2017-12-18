@@ -31,4 +31,9 @@ class HomesController extends Controller
     {
         return view('admins.messages.index');
     }
+
+    public function logIndex()
+    {
+        return view('admins.logs.index');
+    }
 }

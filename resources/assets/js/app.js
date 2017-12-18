@@ -58,6 +58,7 @@ Vue.component('article-table', require('./components/ArticleTable.vue'));
 Vue.component('calligraphy-table', require('./components/CalligraphyTable.vue'));
 Vue.component('comment-table', require('./components/CommentTable.vue'));
 Vue.component('message-table', require('./components/MessageTable.vue'));
+Vue.component('log-table', require('./components/LogTable.vue'));
 
 Vue.component('type-card', require('./components/TypeCard.vue'));
 Vue.component('article-card', require('./components/ArticleCard.vue'));
