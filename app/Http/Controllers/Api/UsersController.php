@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -57,5 +58,10 @@ class UsersController extends Controller
         $user->save();
 
         return response()->json(['state' => $state]);
+    }
+
+    public function getLog()
+    {
+        return \File::get(storage_path('logs\loginLog.log'));
     }
 }

@@ -110,7 +110,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        user()->loginLog('登出');
+        // user()->loginLog('登出');
 
         $this->guard()->logout();
 
