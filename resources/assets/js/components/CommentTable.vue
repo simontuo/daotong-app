@@ -83,18 +83,16 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, '屏蔽'),
-                                h('Button', {
+                                }, '删除'),
+                                h('is-hidden-button', {
                                     props: {
-                                        type: 'error',
-                                        size: 'small'
+                                        model: params.row,
+                                        type: 'comments'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.index)
-                                        }
-                                    }
-                                }, '删除')
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                })
                             ]);
                         }
                     }

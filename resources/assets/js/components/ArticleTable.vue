@@ -114,7 +114,8 @@
                                 }),
                                 h('is-hidden-button', {
                                     props: {
-                                        article: params.row
+                                        model: params.row,
+                                        type: 'articles'
                                     },
                                     style: {
                                         marginRight: '5px'

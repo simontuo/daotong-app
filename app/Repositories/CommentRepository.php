@@ -9,6 +9,15 @@ class CommentRepository
 
     ];
 
+    protected $prefixQuery = [
+        'comments.is_hidden' => 'F'
+    ];
+
+    public function byId($id)
+    {
+        return Comment::findOrFail($id);
+    }
+
     public function index($pageSize)
     {
         return Comment::with('user')->latest('created_at')->paginate($pageSize);
@@ -16,7 +25,9 @@ class CommentRepository
 
     public function getCommentsByIdAndType($id, $type)
     {
-        return app('App\Models\\'.$type)->findOrFail($id)->comments()->with(['user', 'parent'])->get();
+        $prefixQuery = $this->prefixQuery;
+
+        return app('App\Models\\'.$type)->findOrFail($id)->comments()->where($this->prefixQuery)->with(['user', 'parent'])->get();
     }
 
     public function create(array $attributes)

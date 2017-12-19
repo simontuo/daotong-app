@@ -57,4 +57,8 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    public function isHidden()
+    {
+        return $this->is_hidden === 'T';
+    }
 }

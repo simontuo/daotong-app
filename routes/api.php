@@ -43,6 +43,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/comments/{type}/{id}', 'CommentsController@getCommentsByIdAndType');
     Route::get('/comments/{id}', 'CommentsController@getUserComments');
     Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
+    Route::middleware('auth:api')->post('/comments/{id}/isHidden', 'CommentsController@isHidden');
 
     Route::middleware('auth:api')->post('/messages/store', 'MessagesController@store');
     Route::middleware('auth:api')->post('/messages/reply', 'MessagesController@reply');

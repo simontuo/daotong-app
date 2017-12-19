@@ -107,4 +107,17 @@ class CommentsController extends Controller
 
         return response()->json(['comments' => $comments]);
     }
+
+    public function isHidden($id)
+    {
+        $comment = $this->comment->byId($id);
+
+        $state = $comment->isHidden() ? 'F' : 'T';
+
+        $comment->is_hidden = $state;
+
+        $comment->save();
+
+        return response()->json(['state' => $state]);
+    }
 }
