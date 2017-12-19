@@ -1,12 +1,12 @@
 <template>
     <div class="">
         <div class="row mdui-m-t-1">
-            <div class="col-md-8">
+            <div class="col-lg-6 ol-md-6 col-sm-3 col-xs-3">
                 <Select v-model="quickQuery" size="large" style="width:100px" @on-change="search">
                     <Option v-for="item in quickType" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </div>
-            <div class="col-md-4 mdui-m-b-1 pull-right">
+            <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9 mdui-m-b-1 pull-right">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
                     <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
