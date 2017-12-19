@@ -129,14 +129,14 @@
         },
         methods: {
             search () {
-                axios.get('/api/articles/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/articles/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.articles.data;
                     this.total = parseInt(response.data.articles.total);
                     this.loading = false;
                 });
             },
             changePage (page) {
-                axios.get('/api/articles/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/articles/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.articles.data;
                     this.total = parseInt(response.data.articles.total);
                     this.loading = false;
@@ -144,7 +144,7 @@
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/articles/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/articles/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.articles.data;
                     this.total = parseInt(response.data.articles.total);
                     this.loading = false;

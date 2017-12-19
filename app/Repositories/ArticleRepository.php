@@ -10,6 +10,14 @@ class ArticleRepository
         'created_at', 'reads_count', 'comments_count', 'likes_count'
     ];
 
+    protected $prefixQuery = [
+        'articles.is_hidden' => 'F'
+    ];
+
+    protected $modelColumn = [
+        'articles.id', 'articles.user_id', 'articles.title', 'articles.created_at', 'articles.comments_count', 'articles.reads_count', 'articles.close_comment', 'articles.is_hidden'
+    ];
+
     public function create(array $attributes)
     {
         return Article::create($attributes);
@@ -45,16 +53,26 @@ class ArticleRepository
         return Article::sum('reads_count');
     }
 
-    public function search($query, $quickQuery = null, $pageSize)
+    public function search($query, $quickQuery = null, $pageSize, $prefixQueryState = false)
     {
         $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickQuery, 'created_at');
 
-        return Article::join('users', 'users.id', '=', 'articles.user_id')
-            ->select('articles.id', 'articles.user_id', 'articles.title', 'articles.created_at', 'articles.comments_count', 'articles.reads_count', 'articles.close_comment', 'articles.is_hidden')
+        $prefixQuery = $this->checkPrefixQuery($prefixQueryState);
+
+        return Article::join('users', function ($join) use ($prefixQuery){
+                $join->on('users.id', '=', 'articles.user_id')
+                     ->where($prefixQuery);
+            })
+            ->select($this->modelColumn)
             ->where('users.name', 'like', '%'.$query.'%')
             ->orWhere('articles.title', 'like', '%'.$query.'%')
             ->with(['user', 'likes', 'topics'])
             ->orderBy($quickQueryType, 'DESC')
             ->paginate($pageSize);
+    }
+
+    public function checkPrefixQuery($prefixQueryState)
+    {
+        return $prefixQueryState ? $this->prefixQuery : [];
     }
 }

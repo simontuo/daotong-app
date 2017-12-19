@@ -32,6 +32,19 @@ class ArticlesController extends Controller
     {
         $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
 
+        $articles = $this->article->search($request->get('query'), $request->get('quickQuery'), $pageSize, true);
+
+        $articles->addCreatedTime();
+
+        $articles->CombinationField();
+
+        return response()->json(['articles' => $articles]);
+    }
+
+    public function adminSearch(Request $request)
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
+
         $articles = $this->article->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 
         $articles->addCreatedTime();
