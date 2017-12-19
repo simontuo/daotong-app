@@ -13,7 +13,7 @@
                 <!-- head -->
                 <div class="article-head mdui-m-b-2">
                     <h2 class="mdui-m-b-1">{{ $calligraphy->title }}</h2>
-                    <div  style="font-size:13px;text-align: center;margin-bottom: 5%">
+                    <div  style="font-size:13px;text-align: center;">
         				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe192;</i> {{ $calligraphy->created_at->diffForHumans() }} -
         				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe417;</i> {{ $calligraphy->reads_count }} -
         				<i class="mdui-icon mdui-icon-right material-icons" style="font-size:13px;">&#xe8dc;</i> {{ $calligraphy->likes()->count() }} -
@@ -23,12 +23,11 @@
                 <!-- bio -->
                 <div class="markdown-body code-github mdui-m-b-2">
                     <div class="mdui-m-b-1 mdui-valign">
-                        <ul class="">
+                        <ul class="mdui-center">
                             @foreach($calligraphy->images as $image)
                                 <li class="mdui-m-b-1 "><img src="{{ $image }}" class="mdui-img-fluid mdui-img-rounded mdui-hoverable mdui-shadow-1 mdui-center"></li>
                             @endforeach
                         </ul>
-
                     </div>
                     <blockquote>
                         <p>{{ $calligraphy->bio }}</p>
@@ -51,6 +50,32 @@
 
 @section('rightBar')
     <div class="col-md-3">
-
+        <div class="mdui-card mdui-m-b-2 ">
+            <div class="mdui-valign mdui-m-y-2">
+                <p class="mdui-center" style="font-size:18px">创建者信息</p>
+            </div>
+            <div class="mdui-valign mdui-m-y-2">
+                <p class="mdui-center like-avatar"><img src="{{ $calligraphy->user->avatar }}" /></p>
+            </div>
+            <div class="mdui-valign mdui-m-y-1">
+                <p class="mdui-center"><span class="label label-success">{{ $calligraphy->user->name }}</span></p>
+            </div>
+            <div class="mdui-valign mdui-m-b-2">
+                <p class="mdui-center">
+                    <span>已关注：{{ $calligraphy->user->followers_count }}</span>
+                    <span>被关注：{{ $calligraphy->user->followings_count }}</span>
+                    <span>文章：311</span>
+                    <span>评论：{{ $calligraphy->user->comments_count }}</span>
+                </p>
+            </div>
+            <div class="mdui-valign mdui-m-b-2">
+                <p class="mdui-center">
+                    <user-follow-button
+                        user="{{ $calligraphy->user_id }}"
+                    ></user-follow-button>
+                    <user-message-button user="{{ $calligraphy->user_id }}" name="{{ $calligraphy->user->name }}"></user-message-button>
+                </p>
+            </div>
+        </div>
     </div>
 @endsection

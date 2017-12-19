@@ -16,9 +16,11 @@
         </div>
         <div class="row">
             <div class="col-md-4" v-for="calligraphy in this.calligraphys">
-                <calligraphy-card
-                    :calligraphy="calligraphy"
-                ></calligraphy-card>
+                <a :href="'/calligraphys/' + calligraphy.id">
+                    <calligraphy-card
+                        :calligraphy="calligraphy"
+                    ></calligraphy-card>
+                </a>
             </div>
         </div>
         <div class="mdui-valign mdui-m-b-1">
