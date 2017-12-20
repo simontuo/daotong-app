@@ -177,4 +177,14 @@ class User extends Authenticatable
     {
         dispatch(new LoginLogSlug($this, $action));
     }
+
+    public function isSuperAdmin()
+    {
+        return $this->super_admin === 'T';
+    }
+
+    public function isAdmin()
+    {
+        return $this->admin === 'T';
+    }
 }

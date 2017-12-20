@@ -65,6 +65,8 @@ class ArticlesController extends Controller
     {
         $article = $this->article->byId($id);
 
+        $this->authorize('closeComment', $article);
+
         $state = $article->closeComment() ? 'F' : 'T';
 
         $article->close_comment = $state;
