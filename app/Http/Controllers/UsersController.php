@@ -71,11 +71,9 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if (user()->isMyself($user)) {
-            return view('users.edit', compact('user'));
-        }
+        $this->authorize('view', $user);
 
-        abort(404);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -89,15 +87,13 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if (user()->isMyself($user)) {
-            $user->update($user->merge($request->all()));
+        $this->authorize('update', $user);
 
-            alert()->success('编辑用户信息成功')->autoclose(2000);
+        $user->update($user->merge($request->all()));
 
-            return back();
-        }
+        alert()->success('编辑用户信息成功')->autoclose(2000);
 
-        abort(404);
+        return back();
     }
 
     /**
@@ -122,11 +118,9 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if (user()->isMyself($user)) {
-            return view('users.password');
-        }
+        $this->authorize('view', $user);
 
-        abort(404);
+        return view('users.password');
     }
 
     /**
@@ -141,7 +135,9 @@ class UsersController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if (user()->isMyself($user) && Hash::check($request->get('old_password'), $user->password)) {
+        $this->authorize('changePassword', $user);
+
+        if (Hash::check($request->get('old_password'), $user->password)) {
             $user->password = bcrypt($request->get('password'));
             $user->save();
 
