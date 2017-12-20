@@ -81,6 +81,8 @@ class ArticleController extends Controller
     {
         $article = $this->article->getArticleUserAndAuthorById($id);
 
+        $this->authorize('view', $article);
+
         $article->increment('reads_count');
 
         return view('articles.show', compact('article'));

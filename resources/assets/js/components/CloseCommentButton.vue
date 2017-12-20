@@ -32,6 +32,12 @@
                         this.state = false;
                         this.icon = 'checkmark-circled';
                     }
+                }).catch(error => {
+                    this.$Notice.info({
+                        title: error.response.status,
+                        desc: error.response.data.message,
+                        duration: 2
+                    });
                 });
             }
         }
