@@ -10,19 +10,19 @@
 
 <script>
     export default {
-        props: ['article'],
+        props: ['model', 'type'],
         data () {
             return {
-                state: this.article.close_comment === 'T' ? true : false,
-                icon: this.article.close_comment === 'T' ? 'close-circled' : 'checkmark-circled'
+                state: this.model.close_comment === 'T' ? true : false,
+                icon: this.model.close_comment === 'T' ? 'close-circled' : 'checkmark-circled'
             }
         },
         mounted(){
-            console.log(this.article);
+            console.log(this.model);
         },
         methods: {
             closeComment () {
-                axios.post('/api/articles/' + this.article.id + '/closeComment').then(response => {
+                axios.post('/api/' + this.type + '/' + this.model.id + '/closeComment').then(response => {
                     if (response.data.state === 'T') {
                         this.$Message.success({content: "关闭评论成功！", duration: 2});
                         this.state = true;

@@ -70,31 +70,24 @@
                                         }
                                     }
                                 }, '查看'),
-                                h('Button', {
+                                h('close-comment-button', {
                                     props: {
-                                        type: 'warning',
-                                        size: 'small'
+                                        model: params.row,
+                                        type: 'calligraphys'
                                     },
                                     style: {
                                         marginRight: '5px'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.show(params.index)
-                                        }
-                                    }
-                                }, '屏蔽'),
-                                h('Button', {
+                                }),
+                                h('is-hidden-button', {
                                     props: {
-                                        type: 'error',
-                                        size: 'small'
+                                        model: params.row,
+                                        type: 'calligraphys'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.index)
-                                        }
-                                    }
-                                }, '删除')
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                })
                             ]);
                         }
                     }
@@ -104,14 +97,14 @@
         },
         methods: {
             search () {
-                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.calligraphys.data;
                     this.total = parseInt(response.data.calligraphys.total);
                     this.loading = false;
                 });
             },
             changePage (page) {
-                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.calligraphys.data;
                     this.total = parseInt(response.data.calligraphys.total);
                     this.loading = false;
@@ -119,7 +112,7 @@
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
                     this.data = response.data.calligraphys.data;
                     this.total = parseInt(response.data.calligraphys.total);
                     this.loading = false;

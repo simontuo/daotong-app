@@ -57,14 +57,14 @@
 
 <div class="mdui-drawer mdui-color-grey-50" id="drawer">
 	<ul class="mdui-list" mdui-collapse="{accordion: true}">
-		<li class="mdui-collapse-item" onclick="javascrtpt:window.location.href='{{ route('admins.users.index') }}'">
+		<li class="mdui-collapse-item" onclick="javascrtpt:window.location.href='{{ route('admin.users.index') }}'">
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe7fb;</i>
 				<div class="mdui-list-item-content">用户管理</div>
 				<!-- <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i> -->
 			</div>
 			<!-- <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admins.users.index') }}'">用户管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href=''">用户管理</li>
 				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/roleList') }}'">角色管理</li>
 				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/permissionList') }}'">权限管理</li>
 			</ul> -->

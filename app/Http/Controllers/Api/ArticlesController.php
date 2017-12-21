@@ -43,6 +43,8 @@ class ArticlesController extends Controller
 
     public function adminSearch(Request $request)
     {
+        $this->authorize('viewAdmin', user('api'));
+
         $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
 
         $articles = $this->article->search($request->get('query'), $request->get('quickQuery'), $pageSize);
@@ -63,9 +65,9 @@ class ArticlesController extends Controller
 
     public function closeComment($id)
     {
-        $article = $this->article->byId($id);
+        $this->authorize('closeComment', user('api'));
 
-        $this->authorize('closeComment', $article);
+        $article = $this->article->byId($id);
 
         $state = $article->closeComment() ? 'F' : 'T';
 
@@ -78,6 +80,8 @@ class ArticlesController extends Controller
 
     public function isHidden($id)
     {
+        $this->authorize('isHidden', user('api'));
+
         $article = $this->article->byId($id);
 
         $state = $article->isHidden() ? 'F' : 'T';

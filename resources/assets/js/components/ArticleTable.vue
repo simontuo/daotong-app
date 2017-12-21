@@ -106,7 +106,8 @@
                                 }, '查看'),
                                 h('close-comment-button', {
                                     props: {
-                                        article: params.row
+                                        model: params.row,
+                                        type: 'articles'
                                     },
                                     style: {
                                         marginRight: '5px'

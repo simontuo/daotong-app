@@ -8,7 +8,7 @@ use App\Collections\MessageCollection;
 
 class Message extends Model
 {
-    use Traits\AddCreatedTime;
+    use Traits\PublicOperation;
 
     protected $fillable = [
         'from_user_id', 'to_user_id', 'bio', 'dialog_id', 'read_at', 'has_read'

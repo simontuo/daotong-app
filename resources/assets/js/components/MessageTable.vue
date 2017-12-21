@@ -70,20 +70,15 @@
                                         }
                                     }
                                 }, '查看'),
-                                h('Button', {
+                                h('is-hidden-button', {
                                     props: {
-                                        type: 'warning',
-                                        size: 'small'
+                                        model: params.row,
+                                        type: 'messages'
                                     },
                                     style: {
                                         marginRight: '5px'
                                     },
-                                    on: {
-                                        click: () => {
-                                            this.show(params.index)
-                                        }
-                                    }
-                                }, '屏蔽'),
+                                }),
                                 h('Button', {
                                     props: {
                                         type: 'error',

@@ -9,6 +9,15 @@ class MessageRepository
 
     ];
 
+    protected $modelColumn = [
+        'messages.id', 'messages.from_user_id', 'messages.bio', 'messages.created_at', 'messages.has_read', 'is_hidden'
+    ];
+
+    public function byId($id)
+    {
+        return Message::findOrFail($id);
+    }
+
     public function index($pageSize)
     {
         return Message::with('fromUser')->latest('created_at')->paginate($pageSize);
@@ -19,7 +28,7 @@ class MessageRepository
         $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickType, 'created_at');
 
         return Message::join('users', 'users.id', '=', 'messages.from_user_id')
-            ->select('messages.id', 'messages.from_user_id', 'messages.bio', 'messages.created_at', 'messages.has_read')
+            ->select($this->modelColumn)
             ->where('users.name', 'like', '%'.$query.'%')
             ->orWhere('messages.bio', 'like', '%'.$query.'%')
             ->with('fromUser')

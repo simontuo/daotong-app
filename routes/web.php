@@ -39,7 +39,7 @@ Route::get('/users/{id}/edit_password', 'UsersController@editPassword')->name('u
 Route::post('/users/{id}/update_password', 'UsersController@updatePassword')->name('users.update_password');
 Route::get('/users/{id}/center', 'UsersController@center')->name('users.center');
 
-Route::get('/users', 'UsersController@index')->name('admins.users.index');
+// Route::get('/users', 'UsersController@index')->name('admins.users.index');
 
 
 // Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
@@ -51,6 +51,7 @@ Route::get('/inboxs/{id}/{dialog}', 'InboxsController@show')->name('inboxs.show'
 
 Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/', 'HomesController@index')->name('admin.home.index');
+    Route::get('/users/index', 'HomesController@userIndex')->name('admin.users.index');
     Route::get('/articles/index', 'HomesController@articleIndex')->name('admin.articles.index');
     Route::get('/calligraphys/index', 'HomesController@calligraphyIndex')->name('admin.calligraphys.index');
 
