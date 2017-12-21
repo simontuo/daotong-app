@@ -19,6 +19,13 @@ class HomesController extends Controller
         return view('admins.homes.index');
     }
 
+    public function userIndex()
+    {
+        $this->authorize('viewAdmin', user());
+
+        return view('admins.users.index');
+    }
+
     public function articleIndex()
     {
         $this->authorize('viewAdmin', user());

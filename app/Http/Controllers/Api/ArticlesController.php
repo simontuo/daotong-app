@@ -43,6 +43,8 @@ class ArticlesController extends Controller
 
     public function adminSearch(Request $request)
     {
+        $this->authorize('viewAdmin', user());
+        
         $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
 
         $articles = $this->article->search($request->get('query'), $request->get('quickQuery'), $pageSize);

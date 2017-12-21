@@ -10,6 +10,8 @@ class LogsController extends Controller
 {
     public function search(Request $request, $file)
     {
+        $this->authorize('viewAdminLog', user('api'));
+
         LaravelLogViewer::setFile($file);
 
         $page = $request->get('page');
