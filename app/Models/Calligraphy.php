@@ -8,7 +8,7 @@ use App\Collections\CalligraphyCollection;
 
 class Calligraphy extends Model
 {
-    use Traits\AddCreatedTime;
+    use Traits\PublicOperation;
 
     protected $fillable = [
         'user_id', 'title', 'bio', 'images'

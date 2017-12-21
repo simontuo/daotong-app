@@ -8,7 +8,7 @@ use App\Collections\CommentCollection;
 
 class Comment extends Model
 {
-    use Traits\AddCreatedTime;
+    use Traits\PublicOperation;
     use Traits\ActionLog;
 
     protected $fillable = [
@@ -55,10 +55,5 @@ class Comment extends Model
     public function commentable()
     {
         return $this->morphTo();
-    }
-
-    public function isHidden()
-    {
-        return $this->is_hidden === 'T';
     }
 }

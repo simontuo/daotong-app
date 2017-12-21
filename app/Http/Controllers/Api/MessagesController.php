@@ -114,4 +114,19 @@ class MessagesController extends Controller
 
         return response()->json(['status' => false, 'message' => '发送失败！']);
     }
+
+    public function isHidden($id)
+    {
+        $this->authorize('isHidden', user('api'));
+
+        $message = $this->message->byId($id);
+
+        $state = $message->isHidden() ? 'F' : 'T';
+
+        $message->is_hidden = $state;
+
+        $message->save();
+
+        return response()->json(['state' => $state]);
+    }
 }

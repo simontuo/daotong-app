@@ -110,6 +110,8 @@ class CommentsController extends Controller
 
     public function isHidden($id)
     {
+        $this->authorize('isHidden', user('api'));
+
         $comment = $this->comment->byId($id);
 
         $state = $comment->isHidden() ? 'F' : 'T';

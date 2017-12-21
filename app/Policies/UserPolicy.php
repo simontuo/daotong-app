@@ -75,6 +75,16 @@ class UserPolicy
         }
     }
 
+    public function closeComment(User $user)
+    {
+        return $user->isAdmin();
+    }
+
+    public function isHidden(User $user)
+    {
+        return $user->isAdmin();
+    }
+
     public function viewAdmin(User $user)
     {
         return $user->isAdmin();

@@ -40,9 +40,4 @@ class ArticlePolicy
             return true;
         }
     }
-
-    public function closeComment(User $user)
-    {
-        return $user->isAdmin();
-    }
 }

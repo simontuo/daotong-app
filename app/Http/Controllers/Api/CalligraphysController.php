@@ -37,6 +37,21 @@ class CalligraphysController extends Controller
     {
         $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
 
+        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize, true);
+
+        $calligraphys->addCreatedTime();
+
+        $calligraphys->CombinationField();
+
+        return response()->json(['calligraphys' => $calligraphys]);
+    }
+
+    public function adminSearch(Request $request)
+    {
+        $this->authorize('viewAdmin', user('api'));
+
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
+
         $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 
         $calligraphys->addCreatedTime();
@@ -44,5 +59,35 @@ class CalligraphysController extends Controller
         $calligraphys->CombinationField();
 
         return response()->json(['calligraphys' => $calligraphys]);
+    }
+
+    public function closeComment($id)
+    {
+        $this->authorize('closeComment', user('api'));
+
+        $calligraphy = $this->calligraphy->byId($id);
+
+        $state = $calligraphy->closeComment() ? 'F' : 'T';
+
+        $calligraphy->close_comment = $state;
+
+        $calligraphy->save();
+
+        return response()->json(['state' => $state]);
+    }
+
+    public function isHidden($id)
+    {
+        $this->authorize('isHidden', user('api'));
+
+        $calligraphy = $this->calligraphy->byId($id);
+
+        $state = $calligraphy->isHidden() ? 'F' : 'T';
+
+        $calligraphy->is_hidden = $state;
+
+        $calligraphy->save();
+
+        return response()->json(['state' => $state]);
     }
 }

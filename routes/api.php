@@ -34,6 +34,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/calligraphys/index', 'CalligraphysController@index');
     Route::get('/calligraphys/search', 'CalligraphysController@search');
     Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');
+    Route::middleware('auth:api')->post('/calligraphys/{id}/closeComment', 'CalligraphysController@closeComment');
+    Route::middleware('auth:api')->post('/calligraphys/{id}/isHidden', 'CalligraphysController@isHidden');
 
     Route::get('/likes/{type}/{id}', 'LikesController@index');
     Route::middleware('auth:api')->post('/likes/store', 'LikesController@store');
@@ -51,6 +53,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/messages/search', 'MessagesController@search');
     Route::get('/messages/{id}', 'MessagesController@getUserMessages');
     Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');
+    Route::middleware('auth:api')->post('/messages/{id}/isHidden', 'MessagesController@isHidden');
 
     Route::middleware('auth:api')->get('/notifications/{id}', 'NotificationsController@index');
     Route::middleware('auth:api')->get('/notifications/noRead', 'NotificationsController@noRead');
@@ -63,6 +66,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/users/{id}/banLogin', 'UsersController@banLogin');
 
     Route::middleware('auth:api')->get('/admin/articles/search', 'ArticlesController@adminSearch');
+    Route::middleware('auth:api')->get('/admin/calligraphys/search', 'CalligraphysController@adminSearch');
 
     Route::middleware('auth:api')->get('/admin/logs/{file}/search', 'LogsController@search');
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');

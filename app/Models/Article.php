@@ -9,7 +9,7 @@ use App\Collections\ArticleCollection;
 class Article extends Model
 {
     use Traits\Parsedown;
-    use Traits\AddCreatedTime;
+    use Traits\PublicOperation;
 
     protected $fillable = [
         'user_id', 'title', 'cover', 'bio', 'markdown_bio', 'author_id'
@@ -83,15 +83,5 @@ class Article extends Model
     public function topics()
     {
         return $this->belongsToMany(Topic::class)->withTimestamps();
-    }
-
-    public function closeComment()
-    {
-        return $this->close_comment === 'T';
-    }
-
-    public function isHidden()
-    {
-        return $this->is_hidden === 'T';
     }
 }
