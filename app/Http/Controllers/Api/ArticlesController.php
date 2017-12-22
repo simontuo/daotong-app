@@ -92,4 +92,15 @@ class ArticlesController extends Controller
 
         return response()->json(['state' => $state]);
     }
+
+    public function getUserArticles($id)
+    {
+        $articles = $this->article->getArticlesByUser($id);
+
+        $articles->addCreatedTime();
+
+        $articles->CombinationField();
+
+        return response()->json(['articles' => $articles]);
+    }
 }

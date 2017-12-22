@@ -75,4 +75,9 @@ class ArticleRepository
     {
         return $prefixQueryState ? $this->prefixQuery : [];
     }
+
+    public function getArticlesByUser($id)
+    {
+        return Article::where($this->prefixQuery)->where('user_id', $id)->with(['user', 'likes', 'topics'])->get();
+    }
 }
