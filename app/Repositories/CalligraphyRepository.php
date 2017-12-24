@@ -69,4 +69,9 @@ class CalligraphyRepository
     {
         return $prefixQueryState ? $this->prefixQuery : [];
     }
+
+    public function getCalligraphysByUser($id)
+    {
+        return Calligraphy::where($this->prefixQuery)->where('user_id', $id)->with(['user', 'likes'])->get();
+    }
 }

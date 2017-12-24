@@ -4,7 +4,11 @@
             <p slot="title">最新评论</p>
             <ul class="list-group">
                 <li class="list-group-item" v-for="item in comments">
-                    <a href="#">{{ item.bio }}</a>
+                    <a href="#">{{ item.commentable.title }}</a>
+                    <span class="meta mdui-m-l-1">
+                        <span>在 {{ item.created_time }}</span>
+                    </span>
+                    <p>{{ item.bio }}</p>
                 </li>
             </ul>
         </Card>
@@ -19,7 +23,7 @@
             }
         },
         mounted () {
-            axios.get('/api/comments/getUsercomments/' + this.user).then(response => {
+            axios.get('/api/comments/' + this.user).then(response => {
                 this.comments = response.data.comments;
             });
         }

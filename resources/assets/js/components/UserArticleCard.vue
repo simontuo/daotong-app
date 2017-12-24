@@ -30,7 +30,7 @@
             }
         },
         mounted () {
-            axios.get('/api/articles/getUserArticles/' + this.user).then(response => {
+            axios.get('/api/articles/' + this.user).then(response => {
                 this.articles = response.data.articles;
             });
         }

@@ -90,4 +90,15 @@ class CalligraphysController extends Controller
 
         return response()->json(['state' => $state]);
     }
+
+    public function getUserCalligraphys($id)
+    {
+        $calligraphys = $this->calligraphy->getCalligraphysByUser($id);
+
+        $calligraphys->addCreatedTime();
+
+        $calligraphys->CombinationField();
+
+        return response()->json(['calligraphys' => $calligraphys]);
+    }
 }

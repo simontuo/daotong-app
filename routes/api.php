@@ -28,13 +28,14 @@ Route::namespace('Api')->group(function () {
     Route::get('/articles/rankingList', 'ArticlesController@rankingList');
     Route::get('/articles/search', 'ArticlesController@search');
     Route::get('/articles/index', 'ArticlesController@index');
-    Route::get('/articles/getUserArticles/{id}', 'ArticlesController@getUserArticles');
+    Route::get('/articles/{id}', 'ArticlesController@getUserArticles');
     Route::middleware('auth:api')->post('/articles/{id}/closeComment', 'ArticlesController@closeComment');
     Route::middleware('auth:api')->post('/articles/{id}/isHidden', 'ArticlesController@isHidden');
 
     Route::get('/calligraphys/index', 'CalligraphysController@index');
     Route::get('/calligraphys/search', 'CalligraphysController@search');
     Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');
+    Route::get('/calligraphys/{id}', 'CalligraphysController@getUserCalligraphys');
     Route::middleware('auth:api')->post('/calligraphys/{id}/closeComment', 'CalligraphysController@closeComment');
     Route::middleware('auth:api')->post('/calligraphys/{id}/isHidden', 'CalligraphysController@isHidden');
 
@@ -44,7 +45,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/comments/index', 'CommentsController@index');
     Route::get('/comments/search', 'CommentsController@search');
     Route::get('/comments/{type}/{id}', 'CommentsController@getCommentsByIdAndType');
-    Route::get('/comments/getUserComments/{id}', 'CommentsController@getUserComments');
+    Route::get('/comments/{id}', 'CommentsController@getUserComments');
     Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
     Route::middleware('auth:api')->post('/comments/{id}/isHidden', 'CommentsController@isHidden');
 

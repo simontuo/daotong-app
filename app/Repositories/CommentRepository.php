@@ -6,7 +6,7 @@ use App\Models\Comment;
 class CommentRepository
 {
     protected $quickQueryType = [
-
+        'comments.is_hidden' => 'F',
     ];
 
     protected $prefixQuery = [
@@ -65,6 +65,6 @@ class CommentRepository
 
     public function getCommentsByUser($id)
     {
-        return Comment::where($prefixQuery)->where('user_id', $id)->get();
+        return Comment::where($this->prefixQuery)->where('user_id', $id)->with('user')->get();
     }
 }

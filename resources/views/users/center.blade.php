@@ -80,7 +80,7 @@
                 </p>
             </div>
 
-            <div class="mdui-valign mdui-m-t-4">
+            <!-- <div class="mdui-valign mdui-m-t-4">
                 <p class="mdui-center">
                     <a href="#"><Icon type="ios-book"></Icon> 他发布的文章</a>
                 </p>
@@ -109,12 +109,13 @@
                     <a href="#"><Icon type="heart"></Icon> 他点赞的文章</a>
                 </p>
             </div>
-            <div class="mdui-divider mdui-m-t-1"></div>
+            <div class="mdui-divider mdui-m-t-1"></div> -->
         </Card>
 
     </div>
 
     <div class="col-md-9">
+        <user-calligraphy-card user="{{ $user->id }}"></user-calligraphy-card>
         <user-article-card user="{{ $user->id }}"></user-article-card>
         <user-comment-card user="{{ $user->id }}"></user-comment-card>
         <!-- <user-center-tab user="{{ $user->id }}"></user-center-tab> -->

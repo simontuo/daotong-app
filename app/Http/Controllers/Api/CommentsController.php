@@ -103,7 +103,11 @@ class CommentsController extends Controller
     {
         $comments = $this->comment->getCommentsByUser($id);
 
+        $comments->findModelAble();
+
         $comments->addCreatedTime();
+
+        $comments->CombinationField();
 
         return response()->json(['comments' => $comments]);
     }

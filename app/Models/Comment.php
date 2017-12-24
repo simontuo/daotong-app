@@ -56,4 +56,9 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function findModelAble()
+    {
+        $this->commentable;
+    }
 }

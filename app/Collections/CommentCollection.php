@@ -18,4 +18,11 @@ class CommentCollection extends Collection
             $comment->CombinationField();
         });
     }
+
+    public function findModelAble()
+    {
+        $this->each(function($comment) {
+            $comment->findModelAble();
+        });
+    }
 }
