@@ -9,6 +9,7 @@ use App\Collections\CalligraphyCollection;
 class Calligraphy extends Model
 {
     use Traits\PublicOperation;
+    use Traits\ActionLog;
 
     protected $fillable = [
         'user_id', 'title', 'bio', 'images'

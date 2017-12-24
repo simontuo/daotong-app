@@ -10,6 +10,7 @@ class Article extends Model
 {
     use Traits\Parsedown;
     use Traits\PublicOperation;
+    use Traits\ActionLog;
 
     protected $fillable = [
         'user_id', 'title', 'cover', 'bio', 'markdown_bio', 'author_id'

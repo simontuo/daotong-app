@@ -75,6 +75,27 @@ class UserPolicy
         }
     }
 
+    public function uploadAvatar(User $user, User $model)
+    {
+        if ($user->id == $model->id || $user->isAdmin()) {
+            return true;
+        }
+    }
+
+    public function uploadWechatCode(User $user, User $model)
+    {
+        if ($user->id == $model->id || $user->isAdmin()) {
+            return true;
+        }
+    }
+
+    public function uploadAlipayCode(User $user, User $model)
+    {
+        if ($user->id == $model->id || $user->isAdmin()) {
+            return true;
+        }
+    }
+
     public function closeComment(User $user)
     {
         return $user->isAdmin();

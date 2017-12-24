@@ -75,6 +75,10 @@ class ArticlesController extends Controller
 
         $article->save();
 
+        $action = $article->closeComment() ? '关闭了文章评论:'.$article->title : '取消关闭文章的评论:'.$article->title;
+
+        $article->actionLog(user('api'), $action);
+
         return response()->json(['state' => $state]);
     }
 
@@ -89,6 +93,10 @@ class ArticlesController extends Controller
         $article->is_hidden = $state;
 
         $article->save();
+
+        $action = $article->isHidden() ? '屏蔽了该文章:'.$article->title : '取消屏蔽了该文章:'.$article->title;
+
+        $article->actionLog(user('api'), $action);
 
         return response()->json(['state' => $state]);
     }

@@ -7,6 +7,8 @@ use App\Models\Article;
 
 class Topic extends Model
 {
+    use Traits\ActionLog;
+    
     protected $fillable = [
         'name', 'bio'
     ];

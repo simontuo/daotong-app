@@ -127,6 +127,10 @@ class MessagesController extends Controller
 
         $message->save();
 
+        $action = $message->isHidden() ? '屏蔽了信息:'.$message->bio : '取消屏蔽信息:'.$message->bio;
+
+        $message->actionLog(user('api'), $action);
+
         return response()->json(['state' => $state]);
     }
 }

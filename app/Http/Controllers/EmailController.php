@@ -39,6 +39,8 @@ class EmailController extends Controller
 
         Auth::login($user);
 
+        $user->actionLog($user, '新用户:'.$user->name.'成功激活了账号:'.$user->email);
+
         alert()->success('邮箱验证成功！')->persistent('ok');
 
         return redirect('/');

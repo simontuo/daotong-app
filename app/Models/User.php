@@ -13,6 +13,7 @@ use App\Jobs\LoginLogSlug;
 class User extends Authenticatable
 {
     use Notifiable;
+    use Traits\ActionLog;
 
     /**
      * The attributes that are mass assignable.
@@ -186,5 +187,10 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->admin === 'T';
+    }
+
+    public function isActive()
+    {
+        return !! $this->is_active;
     }
 }

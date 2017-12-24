@@ -73,6 +73,10 @@ class CalligraphysController extends Controller
 
         $calligraphy->save();
 
+        $action = $calligraphy->closeComment() ? '关闭了书法评论:'.$calligraphy->title : '取消关闭书法的评论:'.$calligraphy->title;
+
+        $calligraphy->actionLog(user('api'), $action);
+
         return response()->json(['state' => $state]);
     }
 
@@ -87,6 +91,10 @@ class CalligraphysController extends Controller
         $calligraphy->is_hidden = $state;
 
         $calligraphy->save();
+
+        $action = $calligraphy->isHidden() ? '屏蔽了书法:'.$calligraphy->title : '取消了屏蔽书法:'.$calligraphy->title;
+
+        $calligraphy->actionLog(user('api'), $action);
 
         return response()->json(['state' => $state]);
     }

@@ -44,10 +44,14 @@ class FollowersController extends Controller
 
             $userToFollow->increment('followers_count');
 
+            user('api')->actionLog(user('api'), user('api')->name.'关注了'.$userToFollow->name);
+
             return response()->json(['followed' => true]);
         }
 
         $userToFollow->decrement('followers_count');
+
+        user('api')->actionLog(user('api'), user('api')->name.'取消关注了'.$userToFollow->name);
 
         return response()->json(['followed' => false]);
     }

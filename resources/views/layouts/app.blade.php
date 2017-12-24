@@ -23,6 +23,7 @@
         @include('layouts.navbar')
 
         <div class="mdui-m-t-2 mdui-container">
+            @include('layouts.note')
             @yield('content')
             @yield('rightBar')
         </div>

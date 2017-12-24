@@ -89,7 +89,7 @@ class CommentsController extends Controller
         $commentable->increment('comments_count');
         $commentableUser = $this->user->byId($comment->user_id)->notify(new NewCommentNotification());
 
-        $comment->actionLog(user('api'));
+        $comment->actionLog(user('api'), '新增了评论:'.$comment->bio);
 
         return response()->json(['status' => true, 'message' => '评论新增成功！', 'comment' => $comment]);
     }
@@ -123,6 +123,10 @@ class CommentsController extends Controller
         $comment->is_hidden = $state;
 
         $comment->save();
+
+        $action = $comment->isHidden() ? '屏蔽了评论:'.$comment->bio : '取消了屏蔽评论:'.$comment->bio;
+
+        $comment->actionLog(user('api'), $action);
 
         return response()->json(['state' => $state]);
     }

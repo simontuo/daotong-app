@@ -60,21 +60,27 @@ class UploadsController extends Controller
     {
         $user = $this->user->byId($id);
 
-        if (user('api')->isMyself($user) && $request->hasFile('file')) {
+        $this->authorize('uploadAvatar', $user);
+
+        if ($request->hasFile('file')) {
             (new UserUploader())->uploadAvatar($user, $request->file('file'));
+
+            user('api')->actionLog(user('api'), user('api')->name.'上传了用户'.$user->name.'的头像:'.$user->avatar);
 
             return response()->json(['url' => $user->avatar]);
         }
-
-        abort(401);
     }
 
     public function wechatCode(Request $request, $id)
     {
         $user = $this->user->byId($id);
 
-        if (user('api')->isMyself($user) && $request->hasFile('file')) {
+        $this->authorize('uploadWechatCode', $user);
+
+        if ($request->hasFile('file')) {
             (new UserUploader())->uploadWechatCode($user, $request->file('file'));
+
+            user('api')->actionLog(user('api'), user('api')->name.'上传了用户'.$user->name.'的微信二维码:'.$user->settings['wechatCode']);
 
             return response()->json(['url' => $user->settings['wechatCode']]);
         }
@@ -86,8 +92,12 @@ class UploadsController extends Controller
     {
         $user = $this->user->byId($id);
 
+        $this->authorize('uploadAlipayCode', $user);
+
         if (user('api')->isMyself($user) && $request->hasFile('file')) {
             (new UserUploader())->uploadAlipayCode($user, $request->file('file'));
+
+            user('api')->actionLog(user('api'), user('api')->name.'上传了用户'.$user->name.'的支付宝二维码:'.$user->settings['alipayCode']);
 
             return response()->json(['url' => $user->settings['alipayCode']]);
         }

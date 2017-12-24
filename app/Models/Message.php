@@ -9,6 +9,7 @@ use App\Collections\MessageCollection;
 class Message extends Model
 {
     use Traits\PublicOperation;
+    use Traits\ActionLog;
 
     protected $fillable = [
         'from_user_id', 'to_user_id', 'bio', 'dialog_id', 'read_at', 'has_read'

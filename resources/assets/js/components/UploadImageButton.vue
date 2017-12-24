@@ -34,6 +34,7 @@
                 console.log(response);
                 if (this.src) {
                     $('.' + this.src).attr('src', response.url);
+                    this.$Message.success({content: "上传成功！", duration: 2});
                 }
                 this.loading = false;
             }

@@ -14,8 +14,8 @@ class AddColumnAdminForUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('super_admin', 8)->defult('F');
-            $table->string('admin', 8)->defult('F');
+            $table->string('super_admin', 8)->default('F');
+            $table->string('admin', 8)->default('F');
         });
     }
 

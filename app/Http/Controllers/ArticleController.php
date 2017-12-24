@@ -11,6 +11,7 @@ use App\Repositories\TopicRepository;
 class ArticleController extends Controller
 {
     protected $article;
+
     protected $topic;
 
     public function __construct(ArticleRepository $article, TopicRepository $topic)
@@ -65,6 +66,8 @@ class ArticleController extends Controller
         $article = $this->article->create($data);
 
         $article->topics()->attach($topics);
+
+        $article->actionLog(user(), '新增了文章:'.$article->title);
 
         alert()->success('新增文章 '.$article->title.' 成功！')->autoclose(2000);
 

@@ -52,7 +52,9 @@ class LikesController extends Controller
                 'likeable_type' => 'APP\Models\\'.$request->get('type'),
             ];
 
-            $this->like->create($data);
+            $like = $this->like->create($data);
+
+            user('api')->actionLog(user('api'), user('api')->name.'点赞了'.$like->likeable_type.'：'.$like->likeable->title);
 
             return response()->json(['status' => true, 'user' => user('api')]);
         }
