@@ -115,6 +115,8 @@
     </div>
 
     <div class="col-md-9">
-        <user-center-tab user="{{ $user->id }}"></user-center-tab>
+        <user-article-card user="{{ $user->id }}"></user-article-card>
+        <user-comment-card user="{{ $user->id }}"></user-comment-card>
+        <!-- <user-center-tab user="{{ $user->id }}"></user-center-tab> -->
     </div>
 @endsection

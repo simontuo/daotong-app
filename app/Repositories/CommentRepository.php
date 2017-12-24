@@ -62,4 +62,9 @@ class CommentRepository
     {
         return $model->close_comment === 'T';
     }
+
+    public function getCommentsByUser($id)
+    {
+        return Comment::where($prefixQuery)->where('user_id', $id)->get();
+    }
 }

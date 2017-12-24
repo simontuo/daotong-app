@@ -101,9 +101,9 @@ class CommentsController extends Controller
 
     public function getUserComments($id)
     {
-        $user = $this->user->byId($id);
+        $comments = $this->comment->getCommentsByUser($id);
 
-        $comments = $user->comments()->with('user')->get();
+        $comments->addCreatedTime();
 
         return response()->json(['comments' => $comments]);
     }

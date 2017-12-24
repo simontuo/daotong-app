@@ -25,9 +25,10 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowersController@index');
     Route::middleware('auth:api')->post('/user/follow', 'FollowersController@follow');
 
-    Route::get('/articles/rankingList', 'ArticleController@rankingList');
+    Route::get('/articles/rankingList', 'ArticlesController@rankingList');
     Route::get('/articles/search', 'ArticlesController@search');
     Route::get('/articles/index', 'ArticlesController@index');
+    Route::get('/articles/getUserArticles/{id}', 'ArticlesController@getUserArticles');
     Route::middleware('auth:api')->post('/articles/{id}/closeComment', 'ArticlesController@closeComment');
     Route::middleware('auth:api')->post('/articles/{id}/isHidden', 'ArticlesController@isHidden');
 
@@ -43,7 +44,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/comments/index', 'CommentsController@index');
     Route::get('/comments/search', 'CommentsController@search');
     Route::get('/comments/{type}/{id}', 'CommentsController@getCommentsByIdAndType');
-    Route::get('/comments/{id}', 'CommentsController@getUserComments');
+    Route::get('/comments/getUserComments/{id}', 'CommentsController@getUserComments');
     Route::middleware('auth:api')->post('/comments/store', 'CommentsController@store');
     Route::middleware('auth:api')->post('/comments/{id}/isHidden', 'CommentsController@isHidden');
 

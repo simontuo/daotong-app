@@ -54,6 +54,8 @@ Vue.component('ban-login-button', require('./components/BanLoginButton.vue'));
 Vue.component('close-comment-button', require('./components/CloseCommentButton.vue'));
 Vue.component('is-hidden-button', require('./components/IsHiddenButton.vue'));
 Vue.component('bread-crumb', require('./components/BreadCrumb.vue'));
+Vue.component('user-article-card', require('./components/UserArticleCard.vue'));
+Vue.component('user-comment-card', require('./components/UserCommentCard.vue'));
 
 
 Vue.component('user-table', require('./components/UserTable.vue'));
