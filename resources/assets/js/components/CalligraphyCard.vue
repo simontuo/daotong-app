@@ -26,7 +26,7 @@
             </div>
             <div class="mdui-divider mdui-m-t-2  mdui-m-x-2"></div>
             <div class="mdui-m-a-2 mdui-valign">
-                <div class="mdui-row-xs-3 mdui-grid-list mdui-center">
+                <div class="mdui-row-xs-3 mdui-grid-list mdui-center type-card-image-body">
                     <div class="mdui-col" v-for="item in this.calligraphy.images">
                         <div class="mdui-grid-tile">
                             <div class="demo-upload-list">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="mdui-divider mdui-m-t-2  mdui-m-x-2"></div>
-            <p class="mdui-m-t-2 type-card-subtitle">{{ this.calligraphy.bio }}</p>
+            <p class="mdui-m-t-2 type-card-subtitle"><a :href="'/calligraphys/' + calligraphy.id">{{ this.calligraphy.bio }}</a></p>
 
             <Modal title="查看图片" v-model="visible">
                 <img :src="imgName" v-if="visible" style="width: 100%">
@@ -107,10 +107,10 @@
 
     .demo-upload-list{
         display: inline-block;
-        width: 60px;
-        height: 60px;
+        /* width: 60px; */
+        /* height: 60px; */
         text-align: center;
-        line-height: 60px;
+        /* line-height: 60px; */
         border: 1px solid transparent;
         border-radius: 4px;
         overflow: hidden;
@@ -140,5 +140,9 @@
         font-size: 20px;
         cursor: pointer;
         margin: 0 2px;
+    }
+    .type-card-image-body{
+        height: 100px;
+        overflow: scroll;
     }
 </style>
