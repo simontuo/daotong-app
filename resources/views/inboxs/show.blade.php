@@ -79,37 +79,6 @@
                     <user-message-button user="{{ $user->id }}" name="{{ $user->name }}"></user-message-button>
                 </p>
             </div>
-
-            <div class="mdui-valign mdui-m-t-4">
-                <p class="mdui-center">
-                    <a href="#"><Icon type="ios-book"></Icon> 他发布的文章</a>
-                </p>
-            </div>
-
-            <div class="mdui-divider mdui-m-y-1"></div>
-
-            <div class="mdui-valign mdui-m-b-1">
-                <p class="mdui-center">
-                    <a href="#"><Icon type="chatbox-working"></Icon> 他发出的评论</a>
-                </p>
-            </div>
-
-            <div class="mdui-divider mdui-m-y-1"></div>
-
-            <div class="mdui-valign mdui-m-b-1">
-                <p class="mdui-center">
-                    <a href="#"><Icon type="plus-round"></Icon> 他关注的用户</a>
-                </p>
-            </div>
-
-            <div class="mdui-divider mdui-m-y-1"></div>
-
-            <div class="mdui-valign">
-                <p class="mdui-center">
-                    <a href="#"><Icon type="heart"></Icon> 他点赞的文章</a>
-                </p>
-            </div>
-            <div class="mdui-divider mdui-m-t-1"></div>
         </Card>
 
     </div>
