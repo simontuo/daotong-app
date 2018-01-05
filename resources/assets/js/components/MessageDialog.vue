@@ -11,18 +11,33 @@
             </a>
             <div class="row chat-div mdui-m-x-2 mdui-m-b-2" id="chat-div">
                 <div class="media" v-for="item in messages">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mdui-img-rounded" width="50" :src="item.from_user.avatar">
-                        </a>
+                    <div v-if="parseInt(item.from_user.id) == user">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object mdui-img-circle" width="45" :src="item.from_user.avatar">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading media-heading-line"> :
+                                <span>{{ item.bio }}</span>
+                                <span class="pull-right mdui-typo-caption-opacity media-heading-line">{{ item.created_time }}</span>
+                            </h4>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{ item.from_user.name }}</h4>
-                        <p>
-                            {{ item.bio }}
-                            <span class="pull-right">{{ item.created_time }}</span>
-                        </p>
+                    <div v-if="item.from_user.id != user">
+                        <div class="media-body">
+                            <div class="">
+                                <h4 class="media-heading pull-right media-heading-line"><span>{{ item.bio }}</span> : </h4>
+                            </div>
+                            <span class="mdui-typo-caption-opacity media-heading-line">{{ item.created_time }}</span>
+                        </div>
+                        <div class="media-right">
+                            <a href="#">
+                                <img class="media-object mdui-img-circle" width="45" :src="item.from_user.avatar">
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
             </div>
@@ -92,5 +107,8 @@
         min-height: 300px;
         max-height: 500px;
         overflow: auto;
+    }
+    .media-heading-line {
+        line-height: 2.5;
     }
 </style>
