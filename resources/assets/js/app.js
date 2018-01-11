@@ -71,7 +71,7 @@ Vue.component('article-card', require('./components/ArticleCard.vue'));
 Vue.component('calligraphy-card', require('./components/CalligraphyCard.vue'));
 
 Vue.component('question-list', require('./components/QuestionList.vue'));
-Vue.component('lebal-card', require('./components/LebalCard.vue'));
+Vue.component('label-card', require('./components/LabelCard.vue'));
 
 
 

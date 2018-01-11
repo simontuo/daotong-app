@@ -18,6 +18,11 @@
                             <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe865;</i>发布文章
                         </a>
                     </li>
+                    <li class="mdui-menu-item">
+                        <a href="{{ route('questions.create') }}" class="mdui-ripple">
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe887;</i>发布问题
+                        </a>
+                    </li>
                 </ul>
 
                 <badge url="{{ route('inboxs.index', ['id' => Auth::id()]) }}" user="{{ Auth::id() }}"></badge>

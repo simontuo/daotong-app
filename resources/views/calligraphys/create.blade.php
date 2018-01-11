@@ -36,5 +36,8 @@
             <button class="mdui-btn mdui-color-theme mdui-m-t-1">提交</button>
         </form>
     </div>
+    <div class="col-md-3">
+        <label-card></label-card>
+    </div>
 </div>
 @endsection
