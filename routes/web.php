@@ -26,6 +26,14 @@ Route::resource('calligraphys', 'CalligraphysController', ['names' => [
     'store'  => 'calligraphys.store',
     'show'   => 'calligraphys.show',
 ]]);
+Route::resource('questions', 'QuestionsController', ['names' => [
+    'index'  => 'questions.index',
+    'create' => 'questions.create',
+    'store'  => 'questions.store',
+    'show'   => 'questions.show',
+]]);
+
+
 
 Auth::routes();
 
