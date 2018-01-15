@@ -8,7 +8,7 @@ use App\Models\Article;
 class Topic extends Model
 {
     use Traits\ActionLog;
-    
+
     protected $fillable = [
         'name', 'bio'
     ];
@@ -20,5 +20,10 @@ class Topic extends Model
     public function articles()
     {
         return $this->belongsToMany(Article::class)->withTimestamps();
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class)->withTimestamps();
     }
 }
