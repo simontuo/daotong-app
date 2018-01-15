@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Collections\QuestionCollection;
 use App\Models\User;
 use App\Models\Topic;
 
@@ -15,13 +16,18 @@ class Question extends Model
         'user_id', 'title', 'bio'
     ];
 
+    public function newCollection(array $models = [])
+    {
+        return new QuestionCollection($models);
+    }
+
     public function user()
     {
-        return belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function topics()
     {
-        return belongsToMany(Topic::class)->withTimestamps();
+        return $this->belongsToMany(Topic::class)->withTimestamps();
     }
 }

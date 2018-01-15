@@ -3,9 +3,9 @@
         <a class="list-group-item">
             <span class="mdui-typo-headline-opacity">问题列表</span>
         </a>
-        <a class="list-group-item">
-            <h4 class="mdui-m-b-1"><small> 副标题 Secondary text</small> - <small>副标题 Secondary text</small></h4>
-            <h4 class="mdui-m-b-2">h4 标题 heading</h4>
+        <a class="list-group-item" v-for="item in questions">
+            <h4 class="mdui-m-b-1"><small> {{ item.user.name }}</small> - <small>{{ item.created_time }}</small></h4>
+            <h4 class="mdui-m-b-2">{{ item.title }}</h4>
             <ButtonGroup >
                 <Button type="ghost" size="small" class="question-list-button">
                     <Icon type="heart"></Icon>
@@ -23,8 +23,15 @@
 
 <script>
     export default {
+        data() {
+            return {
+                questions: [],
+            }
+        },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/api/questions/index').then(response => {
+                this.questions = response.data.questions.data;
+            });
         }
     }
 </script>

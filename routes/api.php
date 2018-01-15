@@ -73,4 +73,6 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->get('/admin/logs/{file}/search', 'LogsController@search');
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');
 
+    Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
+
 });
