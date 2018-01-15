@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mailer\UserMailer;
 use App\Models\Message;
 use App\Models\Comment;
+use App\Models\Question;
 use App\Models\Calligraphy;
 use App\Jobs\LoginLogSlug;
 
@@ -192,5 +193,10 @@ class User extends Authenticatable
     public function isActive()
     {
         return !! $this->is_active;
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }
