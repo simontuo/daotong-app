@@ -28,14 +28,16 @@
         </a>
     </div>
     <div class="col-md-4">
-        <type-card
-            type="问道"
-            image="http://www.logomr.com/logomrdata/2017/11/02/fb2d36f9c22fc7b164462919afd0d37a.svg"
-            reads="1"
-            count="0"
-            comments="0"
-            likes="0">
-        </type-card>
+        <a href="{{ route('questions.index') }}">
+            <type-card
+                type="问道"
+                image="http://www.logomr.com/logomrdata/2017/11/02/fb2d36f9c22fc7b164462919afd0d37a.svg"
+                reads="1"
+                count="0"
+                comments="0"
+                likes="0">
+            </type-card>
+        </a>
     </div>
     <div class="col-md-4">
         <type-card
