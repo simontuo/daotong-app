@@ -45,4 +45,11 @@ class QuestionsController extends Controller
 
         return redirect()->route('questions.show', ['id' => $question->id]);
     }
+
+    public function show($id)
+    {
+        $question = $this->question->byId($id);
+
+        return view('questions.show', compact('question'));
+    }
 }

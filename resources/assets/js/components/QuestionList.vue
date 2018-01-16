@@ -3,7 +3,7 @@
         <a class="list-group-item">
             <span class="mdui-typo-headline-opacity">问题列表</span>
         </a>
-        <a class="list-group-item" v-for="item in questions">
+        <a class="list-group-item" v-for="item in questions" :href="'/questions/' + item.id">
             <h4 class="mdui-m-b-1"><small> {{ item.user.name }}</small> - <small>{{ item.created_time }}</small></h4>
             <h4 class="mdui-m-b-2">{{ item.title }}</h4>
             <ButtonGroup >
@@ -17,7 +17,7 @@
                 </Button>
             </ButtonGroup>
         </a>
-        <a class="list-group-item mdui-valign"><h4 class="mdui-center mdui-m-b-1"><small>没有人提问哦</small></h4></a>
+        <a class="list-group-item mdui-valign" v-if="questions.length == 0"><h4 class="mdui-center mdui-m-b-1"><small>没有人提问哦</small></h4></a>
     </ul>
 </template>
 

@@ -14,4 +14,9 @@ class QuestionRepository
     {
         return Question::create($attributes);
     }
+
+    public function byId(string $id)
+    {
+        return Question::with('topics')->findOrFail($id);
+    }
 }
