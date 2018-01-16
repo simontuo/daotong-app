@@ -6,8 +6,23 @@
             </span>
 
             <Tag class="question-tag" v-if="question.topics.length == 0">没有对应的topic</Tag>
-            <div class="mdui-typo-title">{{ question.title }}</div>
-            <div class="mdui-typo-subheading">{{ question.bio }}</div>
+            <div class="mdui-typo-title"><strong>{{ question.title }}</strong></div>
+            <div class="mdui-typo-subheading mdui-m-y-1">{{ question.bio }}</div>
+            <Button type="primary" class="question-button"><strong>关注该问题</strong></Button>
+            <Button type="ghost" class="question-button" icon="edit"><strong>回答问题</strong></Button>
+            <ButtonGroup>
+                <Button type="text"  class="question-button question-button-color" icon="chatbubble"><strong></Icon>25 条评论</strong></Button>
+                <Button type="text"  class="question-button question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
+                <Button type="text"  class="question-button question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
+             </ButtonGroup>
+        </Card>
+        <Card class="mdui-m-y-1">
+            <div class=" mdui-valign">
+                <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#">查看全部 25 个回答</a></p>
+            </div>
+        </Card>
+        <Card class="mdui-m-y-1">
+
         </Card>
     </div>
 </template>
@@ -34,5 +49,11 @@
     }
     .question-tag, .question-tag a, .question-tag a:hover {
         color: #3e7ac2;
+    }
+    .question-button {
+        font-size: 14px;
+    }
+    .question-button-color {
+        color: #8590a6;
     }
 </style>
