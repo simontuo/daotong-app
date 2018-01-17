@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Collections\QuestionCollection;
 use App\Models\User;
 use App\Models\Topic;
+use App\Models\Answer;
 
 class Question extends Model
 {
@@ -29,5 +30,10 @@ class Question extends Model
     public function topics()
     {
         return $this->belongsToMany(Topic::class)->withTimestamps();
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }

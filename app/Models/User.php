@@ -9,6 +9,7 @@ use App\Models\Message;
 use App\Models\Comment;
 use App\Models\Question;
 use App\Models\Calligraphy;
+use App\Models\Answer;
 use App\Jobs\LoginLogSlug;
 
 class User extends Authenticatable
@@ -198,5 +199,10 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }
