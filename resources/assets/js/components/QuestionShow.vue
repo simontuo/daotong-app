@@ -8,7 +8,7 @@
             <Tag class="question-tag" v-if="question.topics.length == 0">没有对应的topic</Tag>
             <div class="mdui-typo-title"><strong>{{ question.title }}</strong></div>
             <div class="mdui-typo-subheading mdui-m-y-1">{{ question.bio }}</div>
-            <Button type="primary" class="question-button"><strong>关注该问题</strong></Button>
+            <question-follow-button :model="question.id"></question-follow-button>
             <Button type="ghost" class="question-button" icon="edit"><strong>回答问题</strong></Button>
             <ButtonGroup>
                 <Button type="text"  class="question-button question-button-color" icon="chatbubble"><strong></Icon>25 条评论</strong></Button>
@@ -36,7 +36,7 @@
             }
         },
         mounted() {
-            console.log(this.question);
+            // console.log(this.question);
         }
     }
 </script>

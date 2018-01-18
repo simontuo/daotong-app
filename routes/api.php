@@ -24,6 +24,7 @@ Route::namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowersController@index');
     Route::middleware('auth:api')->post('/user/follow', 'FollowersController@follow');
+    Route::middleware('auth:api')->get('/user/questions/followed/{id}', 'FollowersController@questionFollowed');
 
     Route::get('/articles/rankingList', 'ArticlesController@rankingList');
     Route::get('/articles/search', 'ArticlesController@search');
@@ -74,5 +75,6 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');
 
     Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
+    Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
 
 });

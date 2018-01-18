@@ -55,4 +55,15 @@ class FollowersController extends Controller
 
         return response()->json(['followed' => false]);
     }
+
+    public function questionFollowed($id)
+    {
+        $questionFollowedId = user('api')->followedQuestion()->pluck('question_id')->toArray();
+
+        if (in_array(user('api')->id, $questionFollowedId)) {
+            return response()->json(['followed' => true]);
+        }
+
+        return response()->json(['followed' => false]);
+    }
 }

@@ -21,4 +21,26 @@ class QuestionsController extends Controller
 
         return response()->json(['questions' => $questions]);
     }
+
+    public function follow(Request $request)
+    {
+        $question = $this->question->byId($request->get('question'));
+
+        $followed = $question->follower()->toggle(user('api'));
+
+        if (count($followed['attached']) > 0) {
+
+            $question->increment('followers_count');
+
+            $question->actionLog(user('api'), user('api')->name.'关注了问题'.$question->title);
+
+            return response()->json(['followed' => true]);
+        }
+
+        $question->decrement('followers_count');
+
+        $question->actionLog(user('api'), user('api')->name.'取消关注了问题'.$question->title);
+
+        return response()->json(['followed' => false]);
+    }
 }

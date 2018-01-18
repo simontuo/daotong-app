@@ -72,6 +72,7 @@ Vue.component('calligraphy-card', require('./components/CalligraphyCard.vue'));
 
 Vue.component('question-list', require('./components/QuestionList.vue'));
 Vue.component('question-show', require('./components/QuestionShow.vue'));
+Vue.component('question-follow-button', require('./components/QuestionFollowButton.vue'));
 Vue.component('label-card', require('./components/LabelCard.vue'));
 
 
