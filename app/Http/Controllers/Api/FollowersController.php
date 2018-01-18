@@ -60,7 +60,7 @@ class FollowersController extends Controller
     {
         $questionFollowedId = user('api')->followedQuestion()->pluck('question_id')->toArray();
 
-        if (in_array(user('api')->id, $questionFollowedId)) {
+        if (in_array($id, $questionFollowedId)) {
             return response()->json(['followed' => true]);
         }
 
