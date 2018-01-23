@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-md-9">
-        <question-show data="{{ $question }}" token="{{ csrf_token() }}" ></question-show>
+        <question-show data="{{ $question }}" token="{{ csrf_token() }}" user="{{ user() }}"></question-show>
     </div>
     <div class="col-md-3">
         <label-card></label-card>

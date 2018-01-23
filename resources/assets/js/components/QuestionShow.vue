@@ -25,13 +25,13 @@
             <div class="media">
                 <div class="media-left">
                     <a href="#">
-                        <Avatar size="large" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                        <Avatar size="large" :src="userInfo.avatar" />
                     </a>
                 </div>
                 <div class="media-body">
                     <div class="" style="max-width: 90%;">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p class="mdui-text-truncate" >我是程序猿，只要我脑子没被门夹，我就不会有哪怕一丁点自己比省委办公厅公务员牛逼的错觉，他要是凭自己本事进去的那我自愧不如</p>
+                        <h4 class="media-heading mdui-text-capitalize">{{ userInfo.name }}</h4>
+                        <p class="mdui-text-truncate" >{{ userInfo.settings.bio }}</p>
                     </div>
                 </div>
             </div>
@@ -56,10 +56,11 @@
 
 <script>
     export default {
-        props: ['data', 'token'],
+        props: ['data', 'token', 'user'],
         data() {
             return {
                 question: JSON.parse(this.data),
+                userInfo: JSON.parse(this.user),
                 show: false,
             }
         },
