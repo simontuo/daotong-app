@@ -33,7 +33,7 @@ Route::resource('questions', 'QuestionsController', ['names' => [
     'show'   => 'questions.show',
 ]]);
 
-
+Route::post('/answers/store', 'AnswersController@store')->name('answers.store');
 
 Auth::routes();
 
