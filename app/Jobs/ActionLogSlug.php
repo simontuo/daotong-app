@@ -32,9 +32,9 @@ class ActionLogSlug implements ShouldQueue
      */
     public function __construct(User $user, $action, $model)
     {
-        $this->user = $user;
+        $this->user   = $user;
         $this->action = $action;
-        $this->model = $model;
+        $this->model  = $model;
     }
 
     /**

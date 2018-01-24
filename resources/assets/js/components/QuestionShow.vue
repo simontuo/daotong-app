@@ -37,6 +37,7 @@
             </div>
             <form id="answer-form" action="/answers/store" method="post">
                 <input type="hidden" name="_token" :value="token">
+                <input type="hidden" name="id" :value="question.id">
                 <div class="mdui-m-y-1">
                     <editor></editor>
                 </div>
@@ -48,9 +49,9 @@
             </form>
 
         </Card>
-        <Card class="mdui-m-y-1">
-
-        </Card>
+        <div class="mdui-m-y-1" v-for="item in answers">
+            <answer-card :model="item" :userInfo="item.user"></answer-card>
+        </div>
     </div>
 </template>
 
@@ -62,10 +63,14 @@
                 question: JSON.parse(this.data),
                 userInfo: JSON.parse(this.user),
                 show: false,
+                answers: [],
             }
         },
         mounted() {
-            // console.log(this.question);
+            axios.get('/api/questions/' + this.question.id + '/answers').then(response => {
+                this.answers = response.data.answers;
+                console.log(this.answers);
+            });
         },
         methods: {
             submit() {

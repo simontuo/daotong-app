@@ -17,6 +17,6 @@ class QuestionRepository
 
     public function byId(string $id)
     {
-        return Question::with('topics')->findOrFail($id);
+        return Question::with(['topics'])->findOrFail($id);
     }
 }

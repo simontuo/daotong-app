@@ -9,9 +9,17 @@ use App\Collections\AnswerCollection;
 
 class Answer extends Model
 {
+    use Traits\PublicOperation;
+    use Traits\ActionLog;
+
     protected $fillable = [
-        'user_id', 'question_id', 'bio', 'votes_count', 'comments_count', 'is_hidden', 'close_comment'
+        'user_id', 'question_id', 'bio', 'markdown_bio', 'votes_count', 'comments_count', 'is_hidden', 'close_comment'
     ];
+
+    public function newCollection(array $models = [])
+    {
+        return new AnswerCollection($models);
+    }
 
     public function user()
     {
@@ -26,10 +34,5 @@ class Answer extends Model
     public function comments()
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
-    }
-
-    public function newCollection(array $models = [])
-    {
-        return new AnswerCollection();
     }
 }

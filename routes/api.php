@@ -75,6 +75,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');
 
     Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
+    Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
     Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
 
 });

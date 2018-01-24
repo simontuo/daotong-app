@@ -43,4 +43,13 @@ class QuestionsController extends Controller
 
         return response()->json(['followed' => false]);
     }
+
+    public function answers($id)
+    {
+        $question = $this->question->byId($id);
+
+        $answers = $question->answers()->with('user')->latest()->get();
+
+        return response()->json(['answers' => $answers]);
+    }
 }

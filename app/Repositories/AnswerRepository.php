@@ -9,4 +9,8 @@ class AnswerRepository
     {
         return Answer::findOrFail($id);
     }
+    public function create(array $attributes)
+    {
+        return Answer::create($attributes);
+    }
 }
