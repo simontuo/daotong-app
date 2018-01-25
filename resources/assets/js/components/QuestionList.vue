@@ -7,11 +7,11 @@
             <h4 class="mdui-m-b-1"><small> {{ item.user.name }}</small> - <small>{{ item.created_time }}</small></h4>
             <h4 class="mdui-m-b-2">{{ item.title }}</h4>
             <ButtonGroup >
-                <Button type="ghost" size="small" class="question-list-button">
+                <Button type="text" size="small" class="question-list-button">
                     <Icon type="heart"></Icon>
                     22
                 </Button>
-                <Button class="question-list-button" type="ghost" size="small">
+                <Button class="question-list-button" type="text" size="small">
                     <Icon type="ios-chatboxes"></Icon>
                     10
                 </Button>

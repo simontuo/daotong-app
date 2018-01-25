@@ -9,19 +9,25 @@
             <div class="mdui-typo-title"><strong>{{ question.title }}</strong></div>
             <div class="mdui-typo-subheading mdui-m-y-1">{{ question.bio }}</div>
             <question-follow-button :model="question.id"></question-follow-button>
-            <Button type="ghost" class="question-button" icon="edit" @click="show = true"><strong>回答问题</strong></Button>
+            <Button type="ghost" class="question-button" icon="edit" @click="answerShow = answerShow ? false:true"><strong>回答问题</strong></Button>
             <ButtonGroup>
-                <Button type="text"  class="question-button question-button-color" icon="chatbubble"><strong>25 条评论</strong></Button>
+                <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="commentShow = commentShow ? false:true"><strong>25 条评论</strong></Button>
                 <Button type="text"  class="question-button question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
                 <Button type="text"  class="question-button question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
-             </ButtonGroup>
+            </ButtonGroup>
+
+            <div class="mdui-m-t-2 mdui-shadow-1" v-if="commentShow">
+                <comment-card></comment-card>
+            </div>
+
+
         </Card>
-        <Card class="mdui-m-y-1" v-if="!show">
+        <Card class="mdui-m-y-1" v-if="!answerShow">
             <div class=" mdui-valign">
                 <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#">查看全部 25 个回答</a></p>
             </div>
         </Card>
-        <Card class="mdui-m-y-1" v-if="show" dis-hover>
+        <Card class="mdui-m-y-1" v-if="answerShow" dis-hover>
             <div class="media">
                 <div class="media-left">
                     <a href="#">
@@ -47,10 +53,11 @@
                     document.getElementById('answer-form').submit();"><strong>提交答案</strong></Button>
                 </div>
             </form>
-
         </Card>
-        <div class="mdui-m-y-1" v-for="item in answers">
-            <answer-card :model="item" :userInfo="item.user"></answer-card>
+        <div>
+            <div class="mdui-m-y-1" v-for="item in answers">
+                <answer-card :model="item" :userInfo="item.user"></answer-card>
+            </div>
         </div>
     </div>
 </template>
@@ -62,8 +69,9 @@
             return {
                 question: JSON.parse(this.data),
                 userInfo: JSON.parse(this.user),
-                show: false,
+                answerShow: false,
                 answers: [],
+                commentShow: false,
             }
         },
         mounted() {
@@ -75,7 +83,7 @@
         methods: {
             submit() {
                 console.log(this.inputtext);
-            }
+            },
         }
     }
 </script>
