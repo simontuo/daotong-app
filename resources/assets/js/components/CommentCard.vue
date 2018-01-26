@@ -1,51 +1,29 @@
 <template>
     <Card dis-hover>
         <div class="mdui-valign">
-            <Spin class="mdui-center" size="large"></Spin>
+            <Spin class="mdui-center" size="large" v-if="spinShow"></Spin>
         </div>
         <p slot="title">
-            N 条评论
+            {{ this.count }} 条评论
         </p>
         <a slot="extra" @click.prevent="">
             <Icon size="20" type="arrow-swap"></Icon>
         </a>
-        <div class="mdui-m-b-1">
+        <div class="mdui-m-b-1" v-if="!spinShow" v-for="item in comments">
             <div class="media">
                 <div class="media-left">
                     <a href="#">
-                        <Avatar shape="square" size="small" style="line-height: 23px;" src="https://pic4.zhimg.com/v2-4b333dcd6dbcb4a2a14704a4a8414706_is.jpg" />
+                        <Avatar shape="square" size="small" style="line-height: 23px;" :src="item.user.avatar" />
                     </a>
                 </div>
                 <div class="media-body">
-                    <div class="" style="max-width: 90%;">
-                        <p class="media-heading mdui-text-capitalize" style="font-size:16px;">simontuo</p>
-                    </div>
-
+                    <p class="media-heading mdui-text-capitalize" style="font-size:16px;">
+                        {{ item.user.name }}
+                        <span class="pull-right question-button-color"><small>{{ item.created_time }}</small></span>
+                    </p>
                 </div>
             </div>
-            <p class="media-heading" style="font-size:16px;">我们希望道童图书馆能够成为一个让大家记录一些有意思、有意义东西的地方。我们希望大家能够遵守道童的相关约定，在记录不属于自己原创的东西时，应尊重原创作者，不要恶意转载！</p>
-            <ButtonGroup style="margin-left: -15px;">
-                <Button type="text"  class="question-button-color" icon="chatbubble"><strong>25 条评论</strong></Button>
-                <Button type="text"  class="question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
-                <Button type="text"  class="question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
-            </ButtonGroup>
-            <div class="mdui-divider"></div>
-        </div>
-        <div class="mdui-m-b-1">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#">
-                        <Avatar shape="square" size="small" style="line-height: 23px;" src="https://pic4.zhimg.com/v2-4b333dcd6dbcb4a2a14704a4a8414706_is.jpg" />
-                    </a>
-                </div>
-                <div class="media-body">
-                    <div class="" style="max-width: 90%;">
-                        <p class="media-heading mdui-text-capitalize" style="font-size:16px;">simontuo</p>
-                    </div>
-
-                </div>
-            </div>
-            <p class="media-heading" style="font-size:16px;">我们希望道童图书馆能够成为一个让大家记录一些有意思、有意义东西的地方。我们希望大家能够遵守道童的相关约定，在记录不属于自己原创的东西时，应尊重原创作者，不要恶意转载！</p>
+            <p class="media-heading" style="font-size:16px;">{{ item.bio }}</p>
             <ButtonGroup style="margin-left: -15px;">
                 <Button type="text"  class="question-button-color" icon="chatbubble"><strong>25 条评论</strong></Button>
                 <Button type="text"  class="question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
@@ -55,13 +33,12 @@
         </div>
 
         <div class="">
-
             <Form ref="formInline" inline>
                 <FormItem prop="user" style="margin-bottom: 0px;width: 90%;">
-                    <Input v-model="comment" :autosize="true"  type="textarea" :rows="1" size="large" placeholder="写下你的评论"></Input>
+                    <Input v-model="bio" :autosize="true"  type="textarea" :rows="1" size="large" placeholder="写下你的评论"></Input>
                 </FormItem>
                 <FormItem style="margin-bottom: 0px;">
-                    <Button type="primary" @click="handleSubmit('formInline')"  >评论</Button>
+                    <Button type="primary" @click="storeCommemt">评论</Button>
                 </FormItem>
             </Form>
         </div>
@@ -71,13 +48,47 @@
 
 <script>
     export default {
+        props: ['model', 'type'],
         data() {
             return {
-                comment: '',
+                bio: '',
+                parentId: 0,
+                spinShow: true,
+                comments: [],
+                count: '',
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/api/comments/' + this.type + '/' + this.model).then(response => {
+                this.count = response.data.comments.length;
+                if (this.count > 0) {
+                    this.comments = response.data.comments;
+                }
+                setTimeout(() => {
+                    this.spinShow = false;
+                }, 200);
+
+            })
+        },
+        methods: {
+            storeCommemt() {
+                axios.post('/api/comments/store', {'parentId': this.parentId, 'bio':this.bio, 'type': this.type, 'model': this.model}).then(response => {
+                    if (!response.data.status) {
+                        this.$Message.error({content: response.data.message, duration: 4});
+                    } else {
+                        this.count ++;
+                        this.comments.push(response.data.comment);
+                        this.$Message.success({content: response.data.message, duration: 2});
+                    }
+                }).catch(error => {
+                    this.$Notice.info({
+                        title: '请先登录再进行相关操作！',
+                        desc: error.response.data.message,
+                        duration: 2
+                    });
+                });
+                this.bio = '';
+            }
         }
     }
 </script>

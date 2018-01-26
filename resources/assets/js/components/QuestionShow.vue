@@ -17,7 +17,7 @@
             </ButtonGroup>
 
             <div class="mdui-m-t-2 mdui-shadow-1" v-if="commentShow">
-                <comment-card></comment-card>
+                <comment-card :model="question.id" type="Question"></comment-card>
             </div>
 
 
