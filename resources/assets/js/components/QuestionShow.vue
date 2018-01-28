@@ -11,7 +11,7 @@
             <question-follow-button :model="question.id"></question-follow-button>
             <Button type="ghost" class="question-button" icon="edit" @click="answerShow = answerShow ? false:true"><strong>回答问题</strong></Button>
             <ButtonGroup>
-                <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="commentShow = commentShow ? false:true"><strong>25 条评论</strong></Button>
+                <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="commentShow = commentShow ? false:true"><strong>{{ question.comments_count }} 条评论</strong></Button>
                 <Button type="text"  class="question-button question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
                 <Button type="text"  class="question-button question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
             </ButtonGroup>
@@ -77,7 +77,7 @@
         mounted() {
             axios.get('/api/questions/' + this.question.id + '/answers').then(response => {
                 this.answers = response.data.answers;
-                console.log(this.answers);
+                console.log(this.data);
             });
         },
         methods: {

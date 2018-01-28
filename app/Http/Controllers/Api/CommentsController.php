@@ -16,7 +16,7 @@ class CommentsController extends Controller
     protected $article;
 
     protected $allowComment = [
-        'Article', 'Calligraphy', 'Question'
+        'Article', 'Calligraphy', 'Question', 'Answer'
     ];
 
     public function __construct(CommentRepository $comment, ArticleRepository $article, UserRepository $user)

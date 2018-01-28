@@ -48,7 +48,7 @@ class QuestionsController extends Controller
     {
         $question = $this->question->byId($id);
 
-        $answers = $question->answers()->with('user')->latest()->get();
+        $answers = $question->answers()->with(['user'])->latest()->get();
 
         return response()->json(['answers' => $answers]);
     }

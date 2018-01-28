@@ -22,15 +22,18 @@
         <Button type="primary" size="small" icon="arrow-down-b" class="question-button">
         </Button>
         <ButtonGroup style="margin-left: -15px;" class="mdui-hidden-sm-up">
-            <Button type="text"  class="question-button question-button-color" icon="chatbubble"><strong>25 条评论</strong></Button>
+            <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="showComment = showComment ? false:true"><strong>{{ model.comments_count }} 条评论</strong></Button>
             <Button type="text"  class="question-button question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
             <Button type="text"  class="question-button question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
          </ButtonGroup>
         <ButtonGroup class="mdui-hidden-xs-down">
-            <Button type="text"  class="question-button question-button-color" icon="chatbubble"><strong>25 条评论</strong></Button>
+            <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="showComment = showComment ? false:true"><strong>{{ model.comments_count }} 条评论</strong></Button>
             <Button type="text"  class="question-button question-button-color" icon="android-share-alt"><strong>分享</strong></Button>
             <Button type="text"  class="question-button question-button-color" icon="star"><strong></Icon>邀请回答</strong></Button>
-         </ButtonGroup>
+        </ButtonGroup>
+
+        <comment-card v-if="showComment" :model="this.model.id" type="Answer"></comment-card>
+
     </Card>
 
 </template>
@@ -38,6 +41,17 @@
 <script>
     export default {
         props: ['model', 'userInfo'],
+        data() {
+            return {
+                showComment: false,
+            }
+        },
+        mounted() {
+
+        },
+        methods: {
+
+        }
     }
 </script>
 
