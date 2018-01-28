@@ -6,7 +6,7 @@
         <p slot="title">
             {{ this.count }} 条评论
         </p>
-        <a slot="extra" @click.prevent="">
+        <a slot="extra" @click.prevent="reverse">
             <Icon size="20" type="arrow-swap"></Icon>
         </a>
         <div class="mdui-m-b-1" v-if="!spinShow" v-for="item in comments">
@@ -88,6 +88,9 @@
                     });
                 });
                 this.bio = '';
+            },
+            reverse() {
+                this.comments = this.comments.reverse();
             }
         }
     }
