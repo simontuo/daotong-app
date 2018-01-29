@@ -48,7 +48,15 @@ class QuestionsController extends Controller
     {
         $question = $this->question->byId($id);
 
-        $answers = $question->answers()->with(['user'])->latest()->get();
+        $answers = $question->answers()->with([
+            'user',
+            'likes' => function($query) {
+                return $query->where('type', 0);
+            },
+            'dislikes' => function($query) {
+                return $query->where('type', 1);
+            }
+        ])->latest()->get();
 
         return response()->json(['answers' => $answers]);
     }

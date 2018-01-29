@@ -16,10 +16,11 @@
         <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#" class="mdui-text-color-blue-900"><small>查看全部 25 个回答</small></a></p>
         <div class="markdown-body code-github mdui-m-y-1" v-html="model.bio">
         </div>
-        <Button type="primary" size="small" icon="arrow-up-b" class="question-button">
-            <small>1234</small>
+        <Button type="primary" size="small" icon="arrow-up-b" class="question-button" @click="like">
+            <small>{{ model.likes.length }}</small>
         </Button>
-        <Button type="primary" size="small" icon="arrow-down-b" class="question-button">
+        <Button type="primary" size="small" icon="arrow-down-b" class="question-button" @click="dislike">
+            <small>{{ model.dislikes.length }}</small>
         </Button>
         <ButtonGroup style="margin-left: -15px;" class="mdui-hidden-sm-up">
             <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="showComment = showComment ? false:true"><strong>{{ model.comments_count }} 条评论</strong></Button>
@@ -50,7 +51,46 @@
 
         },
         methods: {
-
+            like() {
+                axios.post('/api/likes/store', {'type': 'Answer', 'id': this.model.id}).then(response => {
+                    if (!response.data.status) {
+                        if (response.data.message) {
+                            this.$Message.info({content: response.data.message, duration: 5});
+                        }else {
+                            this.$Message.error({content: '点赞失败！', duration: 5});
+                        }
+                    }else{
+                        this.$emit('child-say', response.data);
+                        this.$Message.success({content: '点赞成功！', duration: 2});
+                    }
+                }).catch(error => {
+                    this.$Notice.info({
+                        title: error.response.status,
+                        desc: error.response.data.message,
+                        duration: 2
+                    });
+                });
+            },
+            dislike() {
+                axios.post('/api/likes/dislikeStore', {'type': 'Answer', 'id': this.model.id}).then(response => {
+                    if (!response.data.status) {
+                        if (response.data.message) {
+                            this.$Message.info({content: response.data.message, duration: 5});
+                        }else {
+                            this.$Message.error({content: '不赞同失败！', duration: 5});
+                        }
+                    }else{
+                        this.$emit('child-say', response.data);
+                        this.$Message.success({content: '不赞同成功！', duration: 2});
+                    }
+                }).catch(error => {
+                    this.$Notice.info({
+                        title: error.response.status,
+                        desc: error.response.data.message,
+                        duration: 2
+                    });
+                });
+            }
         }
     }
 </script>

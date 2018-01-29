@@ -7,7 +7,7 @@ class LikeRepository
 {
     public function getTypeLikeById($type, $id)
     {
-        return app('App\Models\\'.$type)->findOrfail($id)->likes()->with('user')->get();
+        return app('App\Models\\'.$type)->findOrfail($id)->likes()->where('type', 0)->with('user')->get();
     }
 
     public function getTypeById($type, $id)

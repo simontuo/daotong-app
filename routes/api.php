@@ -42,6 +42,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/likes/{type}/{id}', 'LikesController@index');
     Route::middleware('auth:api')->post('/likes/store', 'LikesController@store');
+    Route::middleware('auth:api')->post('/likes/dislikeStore', 'LikesController@dislikeStore');
 
     Route::get('/comments/index', 'CommentsController@index');
     Route::get('/comments/search', 'CommentsController@search');
