@@ -69,7 +69,7 @@ class LikesController extends Controller
 
             user('api')->actionLog(user('api'), user('api')->name.'点赞了'.$like->likeable_type.'：'.$like->likeable->title);
 
-            return response()->json(['status' => true, 'user' => user('api')]);
+            return response()->json(['status' => true, 'change' => true, 'user' => user('api')]);
         }
 
         return response()->json(['status' => false, 'message' => "已经点过攒了！"]);
@@ -107,7 +107,7 @@ class LikesController extends Controller
 
             user('api')->actionLog(user('api'), user('api')->name.'不赞同了'.$like->likeable_type.'：'.$like->likeable->title);
 
-            return response()->json(['status' => true, 'user' => user('api')]);
+            return response()->json(['status' => true, 'change' => true, 'user' => user('api')]);
         }
 
         return response()->json(['status' => false, 'message' => "已经不赞同了！"]);

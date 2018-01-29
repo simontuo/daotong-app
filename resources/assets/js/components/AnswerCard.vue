@@ -17,10 +17,10 @@
         <div class="markdown-body code-github mdui-m-y-1" v-html="model.bio">
         </div>
         <Button type="primary" size="small" icon="arrow-up-b" class="question-button" @click="like">
-            <small>{{ model.likes.length }}</small>
+            <small>{{ likeCount = likeCount > 0 ? likeCount:'' }}</small>
         </Button>
         <Button type="primary" size="small" icon="arrow-down-b" class="question-button" @click="dislike">
-            <small>{{ model.dislikes.length }}</small>
+            <small>{{ dislikeCount = dislikeCount > 0 ? dislikeCount:''}}</small>
         </Button>
         <ButtonGroup style="margin-left: -15px;" class="mdui-hidden-sm-up">
             <Button type="text"  class="question-button question-button-color" icon="chatbubble" @click="showComment = showComment ? false:true"><strong>{{ model.comments_count }} 条评论</strong></Button>
@@ -45,6 +45,8 @@
         data() {
             return {
                 showComment: false,
+                likeCount: this.model.likes.length,
+                dislikeCount: this.model.dislikes.length,
             }
         },
         mounted() {
@@ -61,6 +63,10 @@
                         }
                     }else{
                         this.$emit('child-say', response.data);
+                        if (response.data.change) {
+                            this.dislikeCount --;
+                        }
+                        this.likeCount ++;
                         this.$Message.success({content: '点赞成功！', duration: 2});
                     }
                 }).catch(error => {
@@ -81,6 +87,11 @@
                         }
                     }else{
                         this.$emit('child-say', response.data);
+                        if (response.data.change) {
+                            this.likeCount --;
+
+                        }
+                        this.dislikeCount ++;
                         this.$Message.success({content: '不赞同成功！', duration: 2});
                     }
                 }).catch(error => {
