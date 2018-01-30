@@ -30,6 +30,10 @@ class LoginController extends Controller
         'is_ban_login' => 'F'
     ];
 
+    protected $type = [
+        'email', 'phone'
+    ];
+
     /**
      * Where to redirect users after login.
      *
@@ -119,5 +123,20 @@ class LoginController extends Controller
         alert()->success('已成功退出.', 'Good bye!');
 
         return redirect('/');
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        if (in_array(request()->type, $this->type)) {
+            return request()->type;
+        }
+
+        abort(500);
+
     }
 }

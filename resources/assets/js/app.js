@@ -76,6 +76,7 @@ Vue.component('question-follow-button', require('./components/QuestionFollowButt
 Vue.component('label-card', require('./components/LabelCard.vue'));
 Vue.component('answer-card', require('./components/AnswerCard.vue'));
 Vue.component('comment-card', require('./components/CommentCard.vue'));
+Vue.component('login-card', require('./components/LoginCard.vue'));
 
 
 
