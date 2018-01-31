@@ -7,7 +7,7 @@ class QuestionRepository
 {
     public function index()
     {
-        return Question::with(['user', 'topics'])->paginate('30');
+        return Question::with(['user', 'topics', 'answers'])->paginate('30');
     }
 
     public function create(array $attributes)
