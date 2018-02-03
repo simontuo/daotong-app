@@ -79,4 +79,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
     Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
 
+    Route::get('/verifyCodes/registerCode', 'SmsController@registerCode');
+    Route::get('/verifyCodes/verify/registerCode', 'SmsController@verifyRegisterCode');
+
+
 });

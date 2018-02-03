@@ -77,6 +77,7 @@ Vue.component('label-card', require('./components/LabelCard.vue'));
 Vue.component('answer-card', require('./components/AnswerCard.vue'));
 Vue.component('comment-card', require('./components/CommentCard.vue'));
 Vue.component('login-card', require('./components/LoginCard.vue'));
+Vue.component('verification-code-button', require('./components/VerificationCodeButton.vue'));
 
 
 

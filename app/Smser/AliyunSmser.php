@@ -5,12 +5,12 @@ use App\Smser\Smser;
 
 class AliyunSmser extends Smser
 {
-    public function registerSms($toPhone)
+    public function registerSms($toPhone, $verificationCode)
     {
         $template = config('easysms.aliyunTemplate.registerCode.template');
 
         $data = [
-            config('easysms.aliyunTemplate.registerCode.variable') => rand(pow(10,(6-1)), pow(10,6)-1),
+            config('easysms.aliyunTemplate.registerCode.variable') => $verificationCode,
         ];
 
         $this->aliyunSend($toPhone, $template, $data);

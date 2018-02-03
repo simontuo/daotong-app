@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Validator;
 
 class LoginController extends Controller
 {
@@ -114,7 +115,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        // user()->loginLog('登出');
+        user()->loginLog('登出');
 
         $this->guard()->logout();
 
@@ -132,11 +133,38 @@ class LoginController extends Controller
      */
     public function username()
     {
-        if (in_array(request()->type, $this->type)) {
-            return request()->type;
-        }
+        // if (in_array(request()->type, $this->type)) {
+        //     return request()->type;
+        // }
 
-        abort(500);
+        return filter_var(request()->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+    }
 
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return [
+            $this->username() => $request->username,
+            'password'        => $request->password,
+        ];
     }
 }

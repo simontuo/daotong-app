@@ -13,5 +13,6 @@ class Smser
             'template' => $template,
             'data'     => $data,
         ]);
+
     }
 }
