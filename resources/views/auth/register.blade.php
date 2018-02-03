@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="">
+                                    <input type="text" class="form-control" placeholder="" name="verificationCode" value="{{ old('verificationCode') }}">
                                     <span class="input-group-btn">
                                         <verification-code-button></verification-code-button>
                                     </span>

@@ -11,8 +11,11 @@
         },
         methods: {
             getVerificationCode() {
-                axios.get('/api/verifyCodes/registerCode', {params: {'phone':15918764270}}).then(response => {
+                axios.get('/api/verifyCodes/registerCode', {params: {'phone':15915863547}}).then(response => {
                     console.log(response.data);
+                    if (response.data.status) {
+                        this.$Message.success({content: '验证码发送成功！', duration: 2});
+                    }
                 });
             }
         }

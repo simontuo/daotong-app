@@ -11,20 +11,6 @@
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        <!-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">邮箱</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> -->
-
                         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                             <label for="username" class="col-md-4 control-label">手机/邮箱</label>
 
@@ -32,8 +18,18 @@
                                 <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required autofocus placeholder="11 位手机号 或 Email">
 
                                 @if ($errors->has('username'))
-                                    <span class="help-block">
+                                    <span class="help-block mdui-text-color-pink">
                                         <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                                @if ($errors->has('phone'))
+                                    <span class="help-block mdui-text-color-pink">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                                @if ($errors->has('email'))
+                                    <span class="help-block mdui-text-color-pink">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -46,7 +42,7 @@
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    <span class="help-block mdui-text-color-pink">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif

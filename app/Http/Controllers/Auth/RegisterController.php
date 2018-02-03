@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Mailer\UserMailer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Cache;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -49,9 +52,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'             => 'required|string|max:255',
+            'phone'            => 'required|numeric|size:11|unique:users',
+            'verificationCode' => 'required|numeric|size:6',
+            'email'            => 'required|string|email|max:255|unique:users',
+            'password'         => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -66,6 +71,7 @@ class RegisterController extends Controller
         $user =  User::create([
             'name'               => $data['name'],
             'email'              => $data['email'],
+            'phone'              => $data['phone'],
             'password'           => bcrypt($data['password']),
             'avatar'             => gravatar($data['name']),
             'confirmation_token' => str_random(40),
@@ -90,5 +96,34 @@ class RegisterController extends Controller
     public function sendVerifyEmailTo($user)
     {
         (new UserMailer())->regusterVerify($user);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+
+        $this->validator($request->all())->validate();
+
+        if (!$this->verifyRegisterCode($request->phone, $request->verificationCode)) {
+            alert()->error('请重新输入', '验证码验证失败！')->persistent('error');
+            return back();
+        }
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    public function verifyRegisterCode($phone, $verificationCode)
+    {
+        return Cache::get($phone) == $verificationCode;
     }
 }

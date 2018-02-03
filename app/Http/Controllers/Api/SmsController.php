@@ -17,7 +17,7 @@ class SmsController extends Controller
 
         (new AliyunSmser())->registerSms($phone, $verificationCode);
 
-        Cache::put($phone, $verificationCode, 10);
+        Cache::put($phone, $verificationCode, 5);
 
         return response()->json(['status' => true]);
     }
