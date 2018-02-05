@@ -84,6 +84,7 @@
     </div>
 
     <div class="col-md-9">
-        <messages-list user="{{ $user->id }}"></messages-list>
+        <messages-list class="mdui-m-b-2" user="{{ $user->id }}"></messages-list>
+        <notification-card model="{{ $user->id }}"></notification-card>
     </div>
 @endsection

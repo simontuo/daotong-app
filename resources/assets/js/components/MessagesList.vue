@@ -5,10 +5,6 @@
                 <Icon type="chatboxes"></Icon>
                 我的对话
             </p>
-            <a href="#" slot="extra">
-                <Icon type="ios-loop-strong"></Icon>
-                刷新
-            </a>
             <ul class="mdui-list">
                 <a :href="'/inboxs/' + user + '/' + item[0].dialog_id" v-for="item in messagesGroup">
                     <li class="mdui-list-item mdui-m-b-1">

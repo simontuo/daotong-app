@@ -11,4 +11,12 @@ class NotificationsRepository
             return $notification;
         });
     }
+
+    public function addCreatedTime($notifications)
+    {
+        return collect($notifications)->map(function ($notification) {
+            $notification->created_time = $notification->created_at->diffForHumans();
+            return $notification;
+        });
+    }
 }

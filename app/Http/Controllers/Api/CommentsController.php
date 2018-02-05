@@ -85,9 +85,10 @@ class CommentsController extends Controller
         $comment->addCreatedTime();
 
 
-        $commentable = app($comment->commentable_type)->findOrFail($comment->commentable_id);
+        $commentable = $comment->commentable;
         $commentable->increment('comments_count');
-        $commentableUser = $this->user->byId($comment->user_id)->notify(new NewCommentNotification());
+
+        $this->user->byId($commentable->user_id)->notify(new NewCommentNotification($comment, $commentable));
 
         $comment->actionLog(user('api'), '新增了评论:'.$comment->bio);
 

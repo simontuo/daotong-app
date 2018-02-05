@@ -25,6 +25,8 @@ class NotificationsController extends Controller
         $user = $this->user->byId($id);
 
         $notifications = $this->notification->addComponentType($user->notifications);
+        
+        $notifications = $this->notification->addCreatedTime($user->notifications);
 
         return response()->json(['notifications' => $notifications]);
     }

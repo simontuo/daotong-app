@@ -6,19 +6,25 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Models\Comment;
 
 class NewCommentNotification extends Notification
 {
     use Queueable;
+
+    protected $comment;
+
+    protected $commentable;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Comment $comment, $commentable)
     {
-        //
+        $this->comment = $comment;
+        $this->commentable = $commentable;
     }
 
     /**
@@ -40,8 +46,11 @@ class NewCommentNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'id'   => user('api')->id,
-            'name' => user('api')->name,
+            'id'             => user('api')->id,
+            'name'           => user('api')->name,
+            'bio'            => $this->comment->bio,
+            'title'          => $this->commentable->title,
+            'commentable_id' => $this->commentable->id,
         ];
     }
 
@@ -54,7 +63,11 @@ class NewCommentNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'id'             => user('api')->id,
+            'name'           => user('api')->name,
+            'bio'            => $this->comment->bio,
+            'title'          => $this->commentable->title,
+            'commentable_id' => $this->commentable->id,
         ];
     }
 }

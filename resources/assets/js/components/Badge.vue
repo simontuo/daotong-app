@@ -21,9 +21,9 @@
             }
         },
         mounted() {
-            axios.get('/api/notifications/' + this.user).then(response => {
-                this.count = response.data.notifications.length;
-            });
+            // axios.get('/api/notifications/' + this.user).then(response => {
+            //     this.count = response.data.notifications.length;
+            // });
         }
     }
 </script>
