@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use App\Repositories\CalligraphyRepository;
+use App\Notifications\HiddenNotification;
+use App\Notifications\CloseCommentNotification;
 
 class CalligraphysController extends Controller
 {
     protected $calligraphy;
 
-    public function __construct(CalligraphyRepository $calligraphy)
+    protected $user;
+
+    public function __construct(CalligraphyRepository $calligraphy, UserRepository $user)
     {
         $this->calligraphy = $calligraphy;
+        $this->user        = $user;
     }
 
     public function index()
@@ -73,6 +79,10 @@ class CalligraphysController extends Controller
 
         $calligraphy->save();
 
+        $user = $this->user->byId($calligraphy->user_id);
+
+        $user->notify(new CloseCommentNotification($calligraphy, $user));
+
         $action = $calligraphy->closeComment() ? '关闭了书法评论:'.$calligraphy->title : '取消关闭书法的评论:'.$calligraphy->title;
 
         $calligraphy->actionLog(user('api'), $action);
@@ -91,6 +101,10 @@ class CalligraphysController extends Controller
         $calligraphy->is_hidden = $state;
 
         $calligraphy->save();
+
+        $user = $this->user->byId($calligraphy->user_id);
+
+        $user->notify(new HiddenNotification($calligraphy, $user));
 
         $action = $calligraphy->isHidden() ? '屏蔽了书法:'.$calligraphy->title : '取消了屏蔽书法:'.$calligraphy->title;
 

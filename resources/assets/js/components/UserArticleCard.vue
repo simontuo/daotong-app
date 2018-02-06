@@ -4,18 +4,33 @@
             <p slot="title">文章专栏</p>
             <ul class="list-group">
                 <li class="list-group-item" v-for="item in articles">
-                    <a href="#">{{ item.title }}</a>
-                    <span class="meta mdui-m-l-1">
-                        <a href="" :title="item.user_name">
-                            {{ item.user_name }}
-                        </a>
-                        <span> ⋅ </span>
-                        {{ item.likes.length }} 点赞
-                        <span> ⋅ </span>
-                        {{ item.comments_count }} 回复
-                        <span> ⋅ </span>
-                        <span>{{ item.created_time }}</span>
-                    </span>
+                    <div class="mdui-typo-subheading mdui-typo">
+                        <a href="#">{{ item.title }}</a>
+                        <span class="mdui-m-l-1">
+                            <small class="pull-right mdui-hidden-sm-down">
+                                <a href="" :title="item.user_name">
+                                    {{ item.user_name }}
+                                </a>
+                                <span> ⋅ </span>
+                                {{ item.likes.length }} 点赞
+                                <span> ⋅ </span>
+                                {{ item.comments_count }} 回复
+                                <span> ⋅ </span>
+                                <span>{{ item.created_time }}</span>
+                            </small>
+                            <small class="mdui-hidden-sm-up">
+                                <a href="" :title="item.user_name">
+                                    {{ item.user_name }}
+                                </a>
+                                <span> ⋅ </span>
+                                {{ item.likes.length }} 点赞
+                                <span> ⋅ </span>
+                                {{ item.comments_count }} 回复
+                                <span> ⋅ </span>
+                                <span>{{ item.created_time }}</span>
+                            </small>
+                        </span>
+                    </div>
                 </li>
             </ul>
         </Card>

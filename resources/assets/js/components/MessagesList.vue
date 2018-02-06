@@ -2,8 +2,7 @@
     <div class="">
         <Card>
             <p slot="title">
-                <Icon type="chatboxes"></Icon>
-                我的对话
+                Messages
             </p>
             <ul class="mdui-list">
                 <a :href="'/inboxs/' + user + '/' + item[0].dialog_id" v-for="item in messagesGroup">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Notifications\BanUserLoginNotification;
+use App\Notifications\BanUserCommentNotification;
 use Storage;
 
 class UsersController extends Controller
@@ -44,6 +46,8 @@ class UsersController extends Controller
 
         $user->save();
 
+        $user->notify(new BanUserCommentNotification($user));
+
         return response()->json(['state' => $state]);
     }
 
@@ -56,6 +60,8 @@ class UsersController extends Controller
         $user->is_ban_login = $state;
 
         $user->save();
+
+        $user->notify(new BanUserLoginNotification($user));
 
         return response()->json(['state' => $state]);
     }

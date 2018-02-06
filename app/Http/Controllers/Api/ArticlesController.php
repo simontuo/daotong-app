@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use App\Repositories\ArticleRepository;
+use App\Notifications\HiddenNotification;
+use App\Notifications\CloseCommentNotification;
 
 class ArticlesController extends Controller
 {
     protected $article;
 
-    public function __construct(ArticleRepository $article)
+    protected $user;
+
+    public function __construct(ArticleRepository $article, UserRepository $user)
     {
         $this->article = $article;
+        $this->user    = $user;
     }
 
     public function index()
@@ -75,6 +81,10 @@ class ArticlesController extends Controller
 
         $article->save();
 
+        $user = $this->user->byId($article->user_id);
+
+        $user->notify(new CloseCommentNotification($article, $user));
+
         $action = $article->closeComment() ? '关闭了文章评论:'.$article->title : '取消关闭文章的评论:'.$article->title;
 
         $article->actionLog(user('api'), $action);
@@ -93,6 +103,10 @@ class ArticlesController extends Controller
         $article->is_hidden = $state;
 
         $article->save();
+
+        $user = $this->user->byId($article->user_id);
+
+        $user->notify(new HiddenNotification($article, $user));
 
         $action = $article->isHidden() ? '屏蔽了该文章:'.$article->title : '取消屏蔽了该文章:'.$article->title;
 
