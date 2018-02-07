@@ -1,84 +1,188 @@
 <template>
     <Card>
         <p slot="title">
-            Notifications
+            Notifications: {{ count }}
         </p>
-        <div class="list-group">
-            <div class="" v-for="item in notifications">
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'new_comment_notification'">
-                    <div class="mdui-typo-subheading mdui-typo">
-                        <Tag color="green">评论</Tag>
-                        <a :href="/users/ + item.data.id + '/center'">{{ item.data.name }}</a>
-                        评论了你的文章：
-                        <a :href="/articles/ + item.data.commentable_id">{{ item.data.title }}</a>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'new_user_follow_notification'">
-                    <div class="mdui-typo-subheading mdui-typo">
-                        <Tag color="blue">关注</Tag>
-                        <a href="#">{{ item.data.name }}</a> 关注了你!
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'ban_user_comment_notification'">
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_ban_comment == 'T'">
-                        <Tag color="red">评论</Tag>
-                        <a href="#">{{ item.data.name }}</a>
-                        <span>管理员将你禁止评论了！</span>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_ban_comment == 'F'">
-                        <Tag color="yellow">解除</Tag>
-                        <a href="#">{{ item.data.name }}</a>
-                        <span>管理员解除了你的禁止评论状态！</span>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'ban_user_login_notification'">
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_ban_login == 'T'">
-                        <Tag color="red">登录</Tag>
-                        <a href="#">{{ item.data.name }}</a>
-                        <span>管理员将禁止登录了！</span>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_ban_login == 'F'">
-                        <Tag color="yellow">解除</Tag>
-                        <a href="#">{{ item.data.name }}</a>
-                        <span>管理员解除了你的禁止登录状态！</span>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'close_comment_notification'">
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.close_comment == 'T'">
-                        <Tag color="red">评论</Tag>
-                        <span>管理员关闭了你的：</span>
-                        <a>{{ item.data.title }}</a> 评论！
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.close_comment == 'F'">
-                        <Tag color="yellow">解除</Tag>
-                        <span>管理员解除了你的：</span>
-                        <a>{{ item.data.title }}</a> 关闭评论的状态！
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item notification-list"  v-if="item.component_type == 'hidden_notification'">
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_hidden == 'T'">
-                        <Tag color="red">屏蔽</Tag>
-                        <span>管理员屏蔽了你的：</span>
-                        <a>{{ item.data.title }}</a>
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                    <div class="mdui-typo-subheading mdui-typo" v-if="item.data.is_hidden == 'F'">
-                        <Tag color="yellow">解除</Tag>
-                        <span>管理员解除了你的：</span>
-                        <a>{{ item.data.title }}</a> 屏蔽的状态！
-                        <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
-                    </div>
-                </a>
-            </div>
-
+        <a href="#" slot="extra" @click.prevent="hasRead" v-if="status">
+            已读
+        </a>
+        <a href="#" slot="extra" @click.prevent="noRead" v-if="!status">
+            未读
+        </a>
+        <div v-for="item in notifications" v-if="status">
+            <Alert type="success" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'new_comment_notification'">
+                评论
+                <span slot="desc"><a :href="/users/ + item.data.id + '/center'">{{ item.data.name }}</a>
+                评论了你的文章：
+                <a :href="/articles/ + item.data.commentable_id">{{ item.data.title }}</a>
+                <span class="pull-right">{{ item.created_time }}</span> </span>
+            </Alert>
+            <Alert type="success" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'new_message_notificaiton'">
+                消息
+                <span slot="desc"><a :href="/users/ + item.data.id + '/center'">{{ item.data.name }}</a>
+                发了一条信息给你，请查看与他的对话。
+                <span class="pull-right">{{ item.created_time }}</span> </span>
+            </Alert>
+            <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'new_user_follow_notification'">
+                关注
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a> 关注了你!
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="error" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'ban_user_comment_notification' & item.data.is_ban_comment == 'T'">
+                禁止评论
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止评论状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'ban_user_comment_notification' & item.data.is_ban_comment == 'F'">
+                解除禁止评论状态
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止评论状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="error" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'ban_user_login_notification' & item.data.is_ban_login == 'T'">
+                禁止登录
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员将禁止登录了！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'ban_user_login_notification' & item.data.is_ban_login == 'F'">
+                解除禁止登录状态
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止登录状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="warning" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'T'">
+                关闭评论
+                <span slot="desc">
+                    <span>管理员关闭了你的：</span>
+                    <a>{{ item.data.title }}</a> 评论！
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'F'">
+                解除关闭关闭评论状态
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="warning" show-icon @on-close="read(item.id)" closable v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'T'">
+                屏蔽
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'F'">
+                解除屏蔽状态
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 屏蔽的状态！
+                    <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+        </div>
+        <div v-for="item in notifications" v-if="!status">
+            <Alert type="success" show-icon v-if="item.component_type == 'new_comment_notification'">
+                评论
+                <span slot="desc"><a :href="/users/ + item.data.id + '/center'">{{ item.data.name }}</a>
+                评论了你的文章：
+                <a :href="/articles/ + item.data.commentable_id">{{ item.data.title }}</a>
+                <span class="pull-right">{{ item.created_time }}</span> </span>
+            </Alert>
+            <Alert type="success" v-if="item.component_type == 'new_message_notificaiton'">
+                消息
+                <span slot="desc"><a :href="/users/ + item.data.id + '/center'">{{ item.data.name }}</a>
+                发了一条信息给你，请查看与他的对话。
+                <span class="pull-right">{{ item.created_time }}</span> </span>
+            </Alert>
+            <Alert show-icon v-if="item.component_type == 'new_user_follow_notification'">
+                关注
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a> 关注了你!
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="error" show-icon v-if="item.component_type == 'ban_user_comment_notification' & item.data.is_ban_comment == 'T'">
+                禁止评论
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止评论状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon v-if="item.component_type == 'ban_user_comment_notification' & item.data.is_ban_comment == 'F'">
+                解除禁止评论状态
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止评论状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="error" show-icon v-if="item.component_type == 'ban_user_login_notification' & item.data.is_ban_login == 'T'">
+                禁止登录
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员将禁止登录了！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon v-if="item.component_type == 'ban_user_login_notification' & item.data.is_ban_login == 'F'">
+                解除禁止登录状态
+                <span slot="desc">
+                    <a href="#">{{ item.data.name }}</a>
+                    <span>管理员解除了你的禁止登录状态！</span>
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="warning" show-icon v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'T'">
+                关闭评论
+                <span slot="desc">
+                    <span>管理员关闭了你的：</span>
+                    <a>{{ item.data.title }}</a> 评论！
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'F'">
+                解除关闭关闭评论状态
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span class="pull-right">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert type="warning" show-icon @on-close="read(item.id)" closable v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'T'">
+                屏蔽
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+            <Alert show-icon v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'F'">
+                解除屏蔽状态
+                <span slot="desc">
+                    <span>管理员解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 屏蔽的状态！
+                    <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
+                </span>
+            </Alert>
+        </div>
+        <div class="mdui-typo mdui-valign" v-if="notifications.length == 0">
+            <p class="mdui-center"><a href="#">暂无通知~</a></p>
         </div>
     </Card>
 </template>
@@ -89,37 +193,39 @@
         data() {
             return {
                 'notifications': [],
+                'count': 0,
+                'status': true,
             }
         },
         mounted() {
-            axios.get('/api/notifications/' + this.model).then(response => {
+            axios.get('/api/notifications/noRead').then(response => {
                 this.notifications = response.data.notifications;
+                this.count = response.data.notifications.length;
             });
+        },
+        methods: {
+            read(id) {
+                axios.get('/api/notifications/' + id + '/read').then(response => {
+                    if (response.data.status) {
+                        this.$Message.success({content: " 已阅读了通知！", duration: 1});
+                        this.count --;
+                    }
+                });
+            },
+            hasRead() {
+                axios.get('/api/notifications/hasRead').then(response => {
+                    this.notifications = response.data.notifications;
+                    this.count = response.data.notifications.length;
+                    this.status = false;
+                });
+            },
+            noRead() {
+                axios.get('/api/notifications/noRead').then(response => {
+                    this.notifications = response.data.notifications;
+                    this.count = response.data.notifications.length;
+                    this.status = true;
+                });
+            }
         }
     }
 </script>
-
-
-<style>
-    .notification-list {
-        border: 0px;
-        border-bottom: 1px solid #d3e0e9;
-        margin-bottom: 0px;
-        padding:10px 0px;
-
-    }
-    .notification-list:first-child{
-        border-radius: 0px;
-    }
-    .notification-list:last-child{
-        border-radius: 0px;
-    }
-    .question-tag {
-        border: 0px solid #fff;
-        background: #eef4fa;
-        font-size: 15px;
-    }
-    .question-tag, .question-tag a, .question-tag a:hover {
-        color: #3e7ac2;
-    }
-</style>

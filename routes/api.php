@@ -59,8 +59,10 @@ Route::namespace('Api')->group(function () {
     Route::get('/messages/{id}/{dialog}', 'MessagesController@userMessageDialog');
     Route::middleware('auth:api')->post('/messages/{id}/isHidden', 'MessagesController@isHidden');
 
-    Route::middleware('auth:api')->get('/notifications/{id}', 'NotificationsController@index');
+    Route::middleware('auth:api')->get('/notifications/index', 'NotificationsController@index');
     Route::middleware('auth:api')->get('/notifications/noRead', 'NotificationsController@noRead');
+    Route::middleware('auth:api')->get('/notifications/hasRead', 'NotificationsController@hasRead');
+    Route::middleware('auth:api')->get('/notifications/{id}/read', 'NotificationsController@read');
 
     Route::get('/topics', 'TopicsController@index');
 

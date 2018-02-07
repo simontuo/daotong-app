@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\Repositories\NotificationsRepository;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationsController extends Controller
 {
@@ -20,13 +21,13 @@ class NotificationsController extends Controller
         $this->notification = $notification;
     }
 
-    public function index($id)
+    public function index()
     {
-        $user = $this->user->byId($id);
+        $notifications = user('api')->notifications;
 
-        $notifications = $this->notification->addComponentType($user->notifications);
-        
-        $notifications = $this->notification->addCreatedTime($user->notifications);
+        $notifications = $this->notification->addComponentType($notifications);
+
+        $notifications = $this->notification->addCreatedTime($notifications);
 
         return response()->json(['notifications' => $notifications]);
     }
@@ -35,6 +36,32 @@ class NotificationsController extends Controller
     {
         $notifications = user('api')->notifications()->whereNull('read_at')->get();
 
+        $notifications = $this->notification->addComponentType($notifications);
+
+        $notifications = $this->notification->addCreatedTime($notifications);
+
         return response()->json(['notifications' => $notifications]);
+    }
+
+    public function hasRead()
+    {
+        $notifications = user('api')->notifications()->whereNotNull('read_at')->get();
+
+        $notifications = $this->notification->addComponentType($notifications);
+
+        $notifications = $this->notification->addCreatedTime($notifications);
+
+        return response()->json(['notifications' => $notifications]);
+    }
+
+    public function read($id, DatabaseNotification $notification)
+    {
+        $notification = user('api')->notifications()->where('id', $id)->get();
+
+        $notification->read_at = now();
+
+        $notification->markAsRead();
+
+        return response()->json(['status' => true]);
     }
 }
