@@ -1,38 +1,33 @@
 <template>
     <div class="mdui-m-b-3">
         <Card dis-hover>
-            <p slot="title">书法专栏</p>
-            <ul class="list-group">
-                <li class="list-group-item" v-for="item in calligraphys">
-                    <div class="mdui-typo-subheading mdui-typo">
-                        <a href="#">{{ item.title }}</a>
-                        <span class="mdui-m-l-1">
-                            <small class="pull-right mdui-hidden-sm-down">
-                                <a href="" :title="item.user_name">
-                                    {{ item.user_name }}
-                                </a>
-                                <span> ⋅ </span>
-                                {{ item.likes.length }} 点赞
-                                <span> ⋅ </span>
-                                {{ item.comments_count }} 回复
-                                <span> ⋅ </span>
-                                <span>{{ item.created_time }}</span>
-                            </small>
-                            <small class="mdui-hidden-sm-up">
-                                <a href="" :title="item.user_name">
-                                    {{ item.user_name }}
-                                </a>
-                                <span> ⋅ </span>
-                                {{ item.likes.length }} 点赞
-                                <span> ⋅ </span>
-                                {{ item.comments_count }} 回复
-                                <span> ⋅ </span>
-                                <span>{{ item.created_time }}</span>
-                            </small>
+            <p slot="title">书法专栏: {{ calligraphys.length}}</p>
+            <div class="media" v-for="item in calligraphys">
+                <div class="media-body" style="border-bottom: 1px solid #f2f2f2;">
+                    <div class="media-heading mdui-typo-subheading ">
+                        <span class="mdui-typo">
+                            <a class="mdui-text-color-teal">{{ item.title }}</a>
                         </span>
+                        <small class="mdui-text-color-grey-500">
+                            {{ item.likes.length }} 点赞
+                            <span> ⋅ </span>
+                            {{ item.comments_count }} 评论
+                            <span> ⋅ </span>
+                            <span>{{ item.created_time }}</span>
+                        </small>
+                        <Dropdown class="pull-right">
+                            <Button type="text">
+                                <Icon type="arrow-down-b"></Icon>
+                            </Button>
+                            <DropdownMenu slot="list">
+                                <DropdownItem>编辑</DropdownItem>
+                                <DropdownItem>公开/隐藏</DropdownItem>
+                                <DropdownItem>关闭评论</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </Card>
     </div>
 </template>
@@ -51,14 +46,3 @@
         }
     }
 </script>
-<style>
-    .list-group-item {
-        border: none;
-        margin-bottom: 0px;
-        border-bottom: 1px solid #f2f2f2;
-    }
-    .meta , .meta a{
-        color: #d0d0d0;
-        font-size: 12px;
-    }
-</style>
