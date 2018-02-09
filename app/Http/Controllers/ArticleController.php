@@ -97,7 +97,11 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = $this->article->getArticleUserAndAuthorById($id);
+
+        $this->authorize('update', $article);
+
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -109,7 +113,33 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = $this->article->byId($id);
+
+        $this->authorize('update', $article);
+
+        $article->title = $request->get('title');
+
+        $article->bio = $request->get('bio');
+
+        $article->markdown_bio = $request->get('markdown_bio');
+
+        $article->save();
+
+        $topics  = $article->topics()->pluck('topics.id')->toArray();
+
+        $newTopics = collect($request->topics)->reject(function($item, $key) use($topics) {
+            return collect($topics)->contains($item);
+        })->toArray();
+
+        if (!empty($newTopics)) {
+            $article->topics()->sync(array_merge($topics,$this->topic->normalizeTopic($newTopics, 'articles_count')));
+
+            $article->actionLog(user(), '编辑了文章:'.$article->title);
+        }
+
+        alert()->success('编辑文章 '.$article->title.' 成功！')->autoclose(2000);
+
+        return redirect()->route('articles.show', ['article' => $article->id]);
     }
 
     /**

@@ -2,6 +2,7 @@
     <div id="editor">
         <mavon-editor :ishljs = "true"
             ref="md"
+            :value="old_markdown_bio"
             code_style="code-github"
             default_open="edit"
             :toolbars="toolbars"
@@ -21,6 +22,7 @@
     import 'mavon-editor/dist/js/hljs.xml'
 
     export default {
+        props: ['old_markdown_bio'],
         data() {
             return {
                 url: '/api/upload/markdownImage',
@@ -80,7 +82,7 @@
                     data: formdata,
                     headers: { 'Content-Type': 'multipart/form-data' },
                 }).then(response => {
-                    
+
                     md.$refs.toolbar_left.$imgDelByFilename(pos)
                     md.$img2Url(pos, response.data.url)
                     md.$refs.toolbar_left.$imgAddByFilename(response.data.url)

@@ -11,7 +11,6 @@
         <form action="{{ route('articles.store') }}" method="post">
             {{ csrf_field() }}
 
-            <!-- <cover></cover> -->
             <topics></topics>
 
             <div class="mdui-textfield">

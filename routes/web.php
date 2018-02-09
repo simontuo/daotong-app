@@ -19,6 +19,8 @@ Route::resource('articles', 'ArticleController', ['names' => [
     'create' => 'articles.create',
     'store'  => 'articles.store',
     'show'   => 'articles.show',
+    'edit'   => 'articles.edit',
+    'update' => 'articles.update'
 ]]);
 Route::resource('calligraphys', 'CalligraphysController', ['names' => [
     'index'  => 'calligraphys.index',
