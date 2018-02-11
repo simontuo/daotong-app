@@ -19,21 +19,33 @@
                             </Button>
                             <DropdownMenu slot="list">
                                 <DropdownItem><span @click="showEdit(item.id)">编辑</span></DropdownItem>
-                                <DropdownItem>公开/隐藏</DropdownItem>
-                                <DropdownItem>关闭评论</DropdownItem>
+                                <DropdownItem><span @click="showModal(item.id, item.is_hidden, type='hidden')">公开/隐藏</span></DropdownItem>
+                                <DropdownItem><span @click="showModal(item.id, item.close_comment, type='closeComment')">关闭评论</span></DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
                 </div>
             </div>
         </Card>
-        <Modal
-            v-model="editModel"
-            title="Common Modal dialog box title"
-            width="100">
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
+        <Modal v-model="modal" width="360">
+            <p slot="header" style="color:#f60;text-align:center">
+                <Icon  type="information-circled"></Icon>
+                <span v-if="modalType == 'hidden' && modalStatus == 'F'"> 屏蔽文章</span>
+                <span v-if="modalType == 'hidden' && modalStatus == 'T'"> 公开文章</span>
+                <span v-if="modalType =='closeComment' && modalStatus == 'F'"> 关闭评论</span>
+                <span v-if="modalType == 'closeComment' && modalStatus == 'T'"> 打开评论</span>
+            </p>
+            <div style="text-align:center">
+                <p v-if="modalType == 'hidden' && modalStatus == 'F'">屏蔽后其他用户将无法查看你的文章！</p>
+                <p v-if="modalType == 'hidden' && modalStatus == 'T'">公开后所有的用户均可以查看你的文章！</p>
+                <p v-if="modalType == 'closeComment' && modalStatus == 'F'">关闭评论后文章将无法评论！</p>
+                <p v-if="modalType == 'closeComment' && modalStatus == 'T'">A打开评论后文章将恢复评论功能！</p>
+                <p>你确定要这么做吗 ?</p>
+            </div>
+            <div slot="footer">
+                <Button v-if="modalStatus == 'F'" type="error" size="large" long :loading="modalLoading" @click="sure">确认</Button>
+                <Button v-if="modalStatus == 'T'" type="success" size="large" long :loading="modalLoading" @click="sure">确认</Button>
+            </div>
         </Modal>
     </div>
 </template>
@@ -43,7 +55,11 @@
         data () {
             return {
                 articles: [],
-                editModel: false,
+                modal: false,
+                modalLoading: false,
+                modalType: '',
+                modalStatus: '',
+                id: ''
             }
         },
         mounted () {
@@ -54,6 +70,54 @@
         methods: {
             showEdit(id) {
                 window.location.href = "/articles/" + id + '/edit';
+            },
+            showModal(id, status, type) {
+                this.modal      = true;
+                this.modalType  = type;
+                this.modalStatus = status;
+                this.id = id;
+            },
+            sure () {
+                this.modalLoading = true;
+                if (this.modalType == 'hidden') {
+                    axios.post('/api/articles/' + this.id + '/isHidden').then(response => {
+                        setTimeout(() => {
+                            this.modalLoading = false;
+                            this.modal = false;
+                            if (response.data.state === 'T') {
+                                this.$Message.success({content: "屏蔽成功！", duration: 2});
+                            } else {
+                                this.$Message.success({content: "公开成功！", duration: 2});
+                            }
+                        }, 1000);
+                    }).catch(error => {
+                        this.$Notice.info({
+                            title: error.response.status,
+                            desc: error.response.data.message,
+                            duration: 2
+                        });
+                    });
+                }
+
+                if (this.modalType == 'closeComment') {
+                    axios.post('/api/articles/' + this.id + '/closeComment').then(response => {
+                        setTimeout(() => {
+                            this.modalLoading = false;
+                            this.modal = false;
+                            if (response.data.state === 'T') {
+                                this.$Message.success({content: "关闭评论成功！", duration: 2});
+                            } else {
+                                this.$Message.success({content: "打开评论成功！", duration: 2});
+                            }
+                        }, 1000);
+                    }).catch(error => {
+                        this.$Notice.info({
+                            title: error.response.status,
+                            desc: error.response.data.message,
+                            duration: 2
+                        });
+                    });
+                }
             }
         }
 

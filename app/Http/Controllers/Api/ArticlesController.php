@@ -71,9 +71,9 @@ class ArticlesController extends Controller
 
     public function closeComment($id)
     {
-        $this->authorize('closeComment', user('api'));
-
         $article = $this->article->byId($id);
+
+        $this->authorize('closeComment', $article);
 
         $state = $article->closeComment() ? 'F' : 'T';
 
@@ -94,9 +94,9 @@ class ArticlesController extends Controller
 
     public function isHidden($id)
     {
-        $this->authorize('isHidden', user('api'));
-
         $article = $this->article->byId($id);
+
+        $this->authorize('isHidden', $article);
 
         $state = $article->isHidden() ? 'F' : 'T';
 

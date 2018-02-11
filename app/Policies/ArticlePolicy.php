@@ -40,4 +40,18 @@ class ArticlePolicy
             return true;
         }
     }
+
+    public function isHidden(User $user, Article $article)
+    {
+        if ($user->id == $article->user_id || $user->isAdmin()) {
+            return true;
+        }
+    }
+
+    public function closeComment(User $user, Article $article)
+    {
+        if ($user->id == $article->user_id || $user->isAdmin()) {
+            return true;
+        }
+    }
 }
