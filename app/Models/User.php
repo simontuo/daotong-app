@@ -11,6 +11,7 @@ use App\Models\Question;
 use App\Models\Calligraphy;
 use App\Models\Answer;
 use App\Jobs\LoginLogSlug;
+use App\Models\Motto;
 
 class User extends Authenticatable
 {
@@ -209,5 +210,10 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function mottos()
+    {
+        return $this->hasMany(Motto::class);
     }
 }

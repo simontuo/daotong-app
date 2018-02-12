@@ -5,14 +5,26 @@
             <div class="media" v-for="item in articles">
                 <div class="media-body mdui-typo-subheading" style="border-bottom: 1px solid #f2f2f2;">
                     <div class="media-heading">
-                        <span class="mdui-typo"><a class="mdui-text-color-indigo">{{ item.title }}</a></span>
-                        <small class="mdui-text-color-grey-500">
-                            {{ item.likes.length }} 点赞
-                            <span> ⋅ </span>
-                            {{ item.comments_count }} 评论
-                            <span> ⋅ </span>
-                            <span>{{ item.created_time }}</span>
-                        </small>
+                        <del v-if="item.is_hidden == 'T'">
+                            <span class="mdui-typo"><a class="mdui-text-color-indigo">{{ item.title }}</a></span>
+                            <small class="mdui-text-color-grey-500">
+                                {{ item.likes.length }} 点赞
+                                <span> ⋅ </span>
+                                {{ item.comments_count }} 评论
+                                <span> ⋅ </span>
+                                <span>{{ item.created_time }}</span>
+                            </small>
+                        </del>
+                        <span v-if="item.is_hidden == 'F'">
+                            <span class="mdui-typo"><a class="mdui-text-color-indigo">{{ item.title }}</a></span>
+                            <small class="mdui-text-color-grey-500">
+                                {{ item.likes.length }} 点赞
+                                <span> ⋅ </span>
+                                {{ item.comments_count }} 评论
+                                <span> ⋅ </span>
+                                <span>{{ item.created_time }}</span>
+                            </small>
+                        </span>
                         <Dropdown class="pull-right">
                             <Button type="text">
                                 <Icon type="arrow-down-b"></Icon>

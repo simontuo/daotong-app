@@ -79,6 +79,7 @@ Vue.component('comment-card', require('./components/CommentCard.vue'));
 Vue.component('notification-card', require('./components/NotificationCard.vue'));
 Vue.component('login-card', require('./components/LoginCard.vue'));
 Vue.component('verification-code-button', require('./components/VerificationCodeButton.vue'));
+Vue.component('motto-scroll', require('./components/MottoScroll.vue'));
 
 
 

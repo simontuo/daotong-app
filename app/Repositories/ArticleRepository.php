@@ -78,6 +78,9 @@ class ArticleRepository
 
     public function getArticlesByUser($id)
     {
+        if ($id == user('api')->id && \Request::ajax()) {
+            $this->prefixQuery = [];
+        }
         return Article::where($this->prefixQuery)->where('user_id', $id)->with(['user', 'likes', 'topics'])->get();
     }
 }

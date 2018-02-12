@@ -84,5 +84,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/verifyCodes/registerCode', 'SmsController@registerCode');
     Route::get('/verifyCodes/verify/registerCode', 'SmsController@verifyRegisterCode');
 
+    Route::get('/mottoes/index', 'MottoesController@index');
+    Route::get('/mottoes/randomOne', 'MottoesController@randomOne');
 
 });
