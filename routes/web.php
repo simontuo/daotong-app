@@ -27,6 +27,8 @@ Route::resource('calligraphys', 'CalligraphysController', ['names' => [
     'create' => 'calligraphys.create',
     'store'  => 'calligraphys.store',
     'show'   => 'calligraphys.show',
+    'edit'   => 'calligraphys.edit',
+    'update' => 'calligraphys.update'
 ]]);
 Route::resource('questions', 'QuestionsController', ['names' => [
     'index'  => 'questions.index',

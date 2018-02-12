@@ -21,7 +21,7 @@
                 ref="upload"
                 :headers="headers"
                 :show-upload-list="false"
-                :default-file-list="defaultList"
+                :default-file-list="images"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
                 :max-size="2048"
@@ -45,14 +45,13 @@
 </template>
 <script>
     export default {
+        props: ['calligraphy'],
         data () {
             return {
                 headers: {
                     Authorization: $('meta[name="api-token"]').attr('content')
                 },
-                defaultList: [
-
-                ],
+                defaultList: [],
                 imgName: '',
                 visible: false,
                 uploadList: [],
@@ -98,7 +97,22 @@
         },
         mounted () {
             this.uploadList = this.$refs.upload.fileList;
-        }
+        },
+        computed: {
+            images() {
+                if (this.calligraphy) {
+                    for (var i = 0; i < JSON.parse(this.calligraphy).images.length; i++) {
+                        this.defaultList.push({
+                            'name': JSON.parse(this.calligraphy).images[i],
+                            'url': JSON.parse(this.calligraphy).images[i]
+                        })
+                    }
+                    console.log(this.defaultList);
+                    return this.defaultList;
+                }
+                return this.defaultList = [];
+            }
+        },
     }
 </script>
 <style>

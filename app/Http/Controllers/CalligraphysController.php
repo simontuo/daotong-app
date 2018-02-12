@@ -82,7 +82,9 @@ class CalligraphysController extends Controller
      */
     public function edit($id)
     {
-        //
+        $calligraphy = $this->calligraphy->byId($id);
+
+        return view('calligraphys.edit', compact('calligraphy'));
     }
 
     /**
@@ -94,7 +96,21 @@ class CalligraphysController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $calligraphy = $this->calligraphy->byId($id);
+
+        $calligraphy->title = $request->title;
+
+        $calligraphy->images = $request->images;
+
+        $calligraphy->bio = $request->bio;
+
+        $calligraphy->save();
+
+        $calligraphy->actionLog(user(), '编辑了书法:'.$calligraphy->title);
+
+        alert()->success('编辑书法 '.$calligraphy->title.' 成功！')->autoclose(2000);
+
+        return redirect()->route('calligraphys.show', ['calligraphy' => $calligraphy->id]);
     }
 
     /**
