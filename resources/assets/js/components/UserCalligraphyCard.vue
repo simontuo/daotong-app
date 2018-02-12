@@ -20,7 +20,7 @@
                                 <Icon type="arrow-down-b"></Icon>
                             </Button>
                             <DropdownMenu slot="list">
-                                <DropdownItem>编辑</DropdownItem>
+                                <DropdownItem><span @click="showEdit(item.id)">编辑</span></DropdownItem>
                                 <DropdownItem>公开/隐藏</DropdownItem>
                                 <DropdownItem>关闭评论</DropdownItem>
                             </DropdownMenu>
@@ -43,6 +43,11 @@
             axios.get('/api/calligraphys/' + this.user).then(response => {
                 this.calligraphys = response.data.calligraphys;
             });
+        },
+        methods: {
+            showEdit(id) {
+                window.location.href = "/calligraphys/" + id + '/edit';
+            },
         }
     }
 </script>

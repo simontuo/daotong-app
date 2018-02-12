@@ -84,6 +84,8 @@ class CalligraphysController extends Controller
     {
         $calligraphy = $this->calligraphy->byId($id);
 
+        $this->authorize('update', $calligraphy);
+
         return view('calligraphys.edit', compact('calligraphy'));
     }
 
@@ -97,6 +99,8 @@ class CalligraphysController extends Controller
     public function update(Request $request, $id)
     {
         $calligraphy = $this->calligraphy->byId($id);
+
+        $this->authorize('update', $calligraphy);
 
         $calligraphy->title = $request->title;
 
