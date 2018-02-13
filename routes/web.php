@@ -22,6 +22,7 @@ Route::resource('articles', 'ArticleController', ['names' => [
     'edit'   => 'articles.edit',
     'update' => 'articles.update'
 ]]);
+
 Route::resource('calligraphys', 'CalligraphysController', ['names' => [
     'index'  => 'calligraphys.index',
     'create' => 'calligraphys.create',
@@ -30,12 +31,18 @@ Route::resource('calligraphys', 'CalligraphysController', ['names' => [
     'edit'   => 'calligraphys.edit',
     'update' => 'calligraphys.update'
 ]]);
+
 Route::resource('questions', 'QuestionsController', ['names' => [
     'index'  => 'questions.index',
     'create' => 'questions.create',
     'store'  => 'questions.store',
     'show'   => 'questions.show',
 ]]);
+
+Route::resource('suggestions', 'SuggestionsController', ['names' => [
+    'store'  => 'suggestions.store',
+]]);
+
 
 Route::post('/answers/store', 'AnswersController@store')->name('answers.store');
 

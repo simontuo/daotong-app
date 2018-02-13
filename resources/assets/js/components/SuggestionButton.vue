@@ -6,60 +6,52 @@
                 <span>提交反馈</span>
             </p>
             <Checkbox v-model="single">上传图片</Checkbox>
-            <div class="">
-                <div v-if="single">
-                    <!-- <Upload
-                        v-if="single"
-                        multiple
-                        type="drag"
-                        :default-file-list="defaultList"
-                        action="//jsonplaceholder.typicode.com/posts/">
-                        <div style="padding: 20px 0">
-                            <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                            <p>Click or drag files here to upload</p>
+            <form id="suggestionForm" action="/suggestions" method="post">
+                <input type="hidden" name="_token" :value="token">
+                <div class="">
+                    <div v-if="single">
+                        <div class="demo-upload-list" v-for="item in uploadList">
+                            <template v-if="item.status === 'finished'">
+                                <img :src="item.url">
+                                <div class="demo-upload-list-cover">
+                                    <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                                    <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
+                            </template>
                         </div>
-                    </Upload> -->
-                    <div class="demo-upload-list" v-for="item in uploadList">
-                        <template v-if="item.status === 'finished'">
-                            <img :src="item.url">
-                            <div class="demo-upload-list-cover">
-                                <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
-                                <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
+                        <input type="hidden" name="images[]" v-for="item in uploadList" :value="item.url">
+                        <Upload
+                            ref="upload"
+                            :headers="headers"
+                            :show-upload-list="false"
+                            :default-file-list="images"
+                            :on-success="handleSuccess"
+                            :format="['jpg','jpeg','png']"
+                            :max-size="2048"
+                            :on-format-error="handleFormatError"
+                            :on-exceeded-size="handleMaxSize"
+                            :before-upload="handleBeforeUpload"
+                            multiple
+                            type="drag"
+                            action="/api/upload/listImage"
+                            style="display: inline-block;width:58px;">
+                            <div style="width: 58px;height:58px;line-height: 58px;">
+                                <Icon type="camera" size="20"></Icon>
                             </div>
-                        </template>
-                        <template v-else>
-                            <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
-                        </template>
+                        </Upload>
+                        <Modal title="查看图片" v-model="visible">
+                            <img :src="imgName" v-if="visible" style="width: 100%">
+                        </Modal>
                     </div>
-                    <input type="hidden" name="images[]" v-for="item in uploadList" :value="item.url">
-                    <Upload
-                        ref="upload"
-                        :headers="headers"
-                        :show-upload-list="false"
-                        :default-file-list="images"
-                        :on-success="handleSuccess"
-                        :format="['jpg','jpeg','png']"
-                        :max-size="2048"
-                        :on-format-error="handleFormatError"
-                        :on-exceeded-size="handleMaxSize"
-                        :before-upload="handleBeforeUpload"
-                        multiple
-                        type="drag"
-                        action="/api/upload/listImage"
-                        style="display: inline-block;width:58px;">
-                        <div style="width: 58px;height:58px;line-height: 58px;">
-                            <Icon type="camera" size="20"></Icon>
-                        </div>
-                    </Upload>
-                    <Modal title="查看图片" v-model="visible">
-                        <img :src="imgName" v-if="visible" style="width: 100%">
-                    </Modal>
+                    <editor></editor>
                 </div>
-                <editor></editor>
-            </div>
+            </form>
 
             <div slot="footer">
-                <Button type="primary" size="large" :loading="modal_loading" @click="">提交</Button>
+                <Button type="primary" size="large" :loading="modal_loading" @click="submit">提交</Button>
             </div>
         </Modal>
     </span>
@@ -82,6 +74,7 @@
                 visible: false,
                 uploadList: [],
                 url: [],
+                token: $('meta[name="csrf-token"]').attr('content')
             }
         },
         methods: {
@@ -119,6 +112,10 @@
                     });
                 }
                 return check;
+            },
+            submit() {
+                event.preventDefault();
+                document.getElementById('suggestionForm').submit();
             }
         },
         mounted () {
