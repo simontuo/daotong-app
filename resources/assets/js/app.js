@@ -12,6 +12,8 @@ window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
 window.mavonEditor = require('mavon-editor');
+// window.html2canvas = require('html2canvas');
+
 // window.vSelect = require('vue-select');
 
 /**
