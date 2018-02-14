@@ -72,6 +72,9 @@ class CalligraphyRepository
 
     public function getCalligraphysByUser($id)
     {
+        if ($id == user('api')->id && \Request::ajax()) {
+            $this->prefixQuery = [];
+        }
         return Calligraphy::where($this->prefixQuery)->where('user_id', $id)->with(['user', 'likes'])->get();
     }
 }

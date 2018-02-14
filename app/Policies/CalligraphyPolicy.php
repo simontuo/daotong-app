@@ -33,4 +33,18 @@ class CalligraphyPolicy
             return true;
         }
     }
+
+    public function closeComment(User $user, Calligraphy $calligraphy)
+    {
+        if ($user->id == $calligraphy->user_id || $user->isAdmin()) {
+            return true;
+        }
+    }
+
+    public function isHidden(User $user, Calligraphy $calligraphy)
+    {
+        if ($user->id == $calligraphy->user_id || $user->isAdmin()) {
+            return true;
+        }
+    }
 }

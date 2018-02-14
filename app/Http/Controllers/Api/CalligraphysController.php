@@ -69,9 +69,9 @@ class CalligraphysController extends Controller
 
     public function closeComment($id)
     {
-        $this->authorize('closeComment', user('api'));
-
         $calligraphy = $this->calligraphy->byId($id);
+
+        $this->authorize('closeComment',$calligraphy);
 
         $state = $calligraphy->closeComment() ? 'F' : 'T';
 
@@ -81,7 +81,7 @@ class CalligraphysController extends Controller
 
         $user = $this->user->byId($calligraphy->user_id);
 
-        $user->notify(new CloseCommentNotification($calligraphy, $user));
+        $user->notify(new CloseCommentNotification($calligraphy, user('api')));
 
         $action = $calligraphy->closeComment() ? '关闭了书法评论:'.$calligraphy->title : '取消关闭书法的评论:'.$calligraphy->title;
 
@@ -92,9 +92,9 @@ class CalligraphysController extends Controller
 
     public function isHidden($id)
     {
-        $this->authorize('isHidden', user('api'));
-
         $calligraphy = $this->calligraphy->byId($id);
+
+        $this->authorize('isHidden', $calligraphy);
 
         $state = $calligraphy->isHidden() ? 'F' : 'T';
 
@@ -104,7 +104,7 @@ class CalligraphysController extends Controller
 
         $user = $this->user->byId($calligraphy->user_id);
 
-        $user->notify(new HiddenNotification($calligraphy, $user));
+        $user->notify(new HiddenNotification($calligraphy, user('api')));
 
         $action = $calligraphy->isHidden() ? '屏蔽了书法:'.$calligraphy->title : '取消了屏蔽书法:'.$calligraphy->title;
 

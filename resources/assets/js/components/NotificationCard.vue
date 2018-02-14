@@ -65,7 +65,8 @@
             <Alert type="warning" show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'T'">
                 关闭评论
                 <span slot="desc">
-                    <span>管理员关闭了你的：</span>
+                    <span v-if="this.model == item.data.id">你关闭了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）关闭了你的：</span>
                     <a>{{ item.data.title }}</a> 评论！
                     <span class="pull-right">{{ item.created_time }}</span>
                 </span>
@@ -73,28 +74,32 @@
             <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'F'">
                 解除关闭关闭评论状态
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
-                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span v-if="this.model == item.data.id">你解除了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）解除了你的：</span>
+                    <a>{{ item.data.title }}</a> 关闭评论状态！
                     <span class="pull-right">{{ item.created_time }}</span>
                 </span>
             </Alert>
             <Alert type="warning" show-icon @on-close="read(item.id)" closable v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'T'">
                 屏蔽
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
-                    <a>{{ item.data.title }}</a> 关闭评论的状态！
+                    <span v-if="this.model == item.data.id">你屏蔽了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）屏蔽了你的：</span>
+                    <a>{{ item.data.title }}</a> ！
                     <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
                 </span>
             </Alert>
             <Alert show-icon closable @on-close="read(item.id)" v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'F'">
                 解除屏蔽状态
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
+                    <span v-if="this.model == item.data.id">你解除了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）解除了你的：</span>
                     <a>{{ item.data.title }}</a> 屏蔽的状态！
                     <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
                 </span>
             </Alert>
         </div>
+
         <div v-for="item in notifications" v-if="!status">
             <Alert type="success" show-icon v-if="item.component_type == 'new_comment_notification'">
                 评论
@@ -151,15 +156,17 @@
             <Alert type="warning" show-icon v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'T'">
                 关闭评论
                 <span slot="desc">
-                    <span>管理员关闭了你的：</span>
+                    <span v-if="this.model == item.data.id">你关闭了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）关闭了你的：</span>
                     <a>{{ item.data.title }}</a> 评论！
                     <span class="pull-right">{{ item.created_time }}</span>
                 </span>
             </Alert>
             <Alert show-icon v-if="item.component_type == 'close_comment_notification' & item.data.close_comment == 'F'">
-                解除关闭关闭评论状态
+                解除关闭评论状态
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
+                    <span v-if="this.model == item.data.id">你解除了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）解除了你的：</span>
                     <a>{{ item.data.title }}</a> 关闭评论的状态！
                     <span class="pull-right">{{ item.created_time }}</span>
                 </span>
@@ -167,7 +174,8 @@
             <Alert type="warning" show-icon @on-close="read(item.id)" closable v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'T'">
                 屏蔽
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
+                    <span v-if="this.model == item.data.id">你屏蔽了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）屏蔽了你的：</span>
                     <a>{{ item.data.title }}</a> 关闭评论的状态！
                     <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
                 </span>
@@ -175,7 +183,8 @@
             <Alert show-icon v-if="item.component_type == 'hidden_notification' & item.data.is_hidden == 'F'">
                 解除屏蔽状态
                 <span slot="desc">
-                    <span>管理员解除了你的：</span>
+                    <span v-if="this.model == item.data.id">你解除了你的：</span>
+                    <span v-if="this.model != item.data.id">管理员（{{ item.data.name }}）解除了你的：</span>
                     <a>{{ item.data.title }}</a> 屏蔽的状态！
                     <span class="pull-right mdui-hidden-sm-down">{{ item.created_time }}</span>
                 </span>
