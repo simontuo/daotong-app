@@ -40,6 +40,12 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/calligraphys/{id}/closeComment', 'CalligraphysController@closeComment');
     Route::middleware('auth:api')->post('/calligraphys/{id}/isHidden', 'CalligraphysController@isHidden');
 
+    Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
+    Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
+    Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
+    Route::middleware('auth:api')->post('/questions/{id}/closeComment', 'QuestionsController@closeComment');
+    Route::middleware('auth:api')->post('/questions/{id}/isHidden', 'QuestionsController@isHidden');
+
     Route::get('/likes/{type}/{id}', 'LikesController@index');
     Route::middleware('auth:api')->post('/likes/store', 'LikesController@store');
     Route::middleware('auth:api')->post('/likes/dislikeStore', 'LikesController@dislikeStore');
@@ -76,10 +82,6 @@ Route::namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->get('/admin/logs/{file}/search', 'LogsController@search');
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');
-
-    Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
-    Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
-    Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
 
     Route::get('/verifyCodes/registerCode', 'SmsController@registerCode');
     Route::get('/verifyCodes/verify/registerCode', 'SmsController@verifyRegisterCode');

@@ -60,4 +60,50 @@ class QuestionsController extends Controller
 
         return response()->json(['answers' => $answers]);
     }
+
+    public function closeComment($id)
+    {
+        $question = $this->question->byId($id);
+
+        $this->authorize('closeComment', $question);
+
+        $state = $calligraphy->closeComment() ? 'F' : 'T';
+
+        $question->close_comment = $state;
+
+        $question->save();
+
+        $user = $this->user->byId($question->user_id);
+
+        $user->notify(new CloseCommentNotification($question, user('api')));
+
+        $action = $question->closeComment() ? '关闭了问题评论:'.$question->title : '取消关闭书法的评论:'.$question->title;
+
+        $question->actionLog(user('api'), $action);
+
+        return response()->json(['state' => $state]);
+    }
+
+    public function isHidden($id)
+    {
+        $question = $this->question->byId($id);
+
+        $this->authorize('isHidden', $question);
+
+        $state = $question->isHidden() ? 'F' : 'T';
+
+        $question->is_hidden = $state;
+
+        $question->save();
+
+        $user = $this->user->byId($question->user_id);
+
+        $user->notify(new HiddenNotification($question, user('api')));
+
+        $action = $question->isHidden() ? '屏蔽了问题:'.$question->title : '取消了屏蔽书法:'.$question->title;
+
+        $question->actionLog(user('api'), $action);
+
+        return response()->json(['state' => $state]);
+    }
 }
