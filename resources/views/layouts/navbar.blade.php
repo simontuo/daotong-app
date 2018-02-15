@@ -9,17 +9,17 @@
                 <ul class="mdui-menu " id="add-attr">
                     <li class="mdui-menu-item">
                         <a href="{{ route('calligraphys.create') }}" class="mdui-ripple">
-                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe6dd;</i>发布书法
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-green">&#xe6dd;</i>发布书法
                         </a>
                     </li>
                     <li class="mdui-menu-item">
                         <a href="{{ route('articles.create') }}" class="mdui-ripple">
-                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe865;</i>发布文章
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-indigo">&#xe865;</i>发布文章
                         </a>
                     </li>
                     <li class="mdui-menu-item">
                         <a href="{{ route('questions.create') }}" class="mdui-ripple">
-                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe887;</i>发布问题
+                            <i class="mdui-menu-item-icon mdui-icon material-icons mdui-text-color-red">&#xe887;</i>发布问题
                         </a>
                     </li>
                 </ul>
