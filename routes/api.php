@@ -71,6 +71,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->get('/notifications/{id}/read', 'NotificationsController@read');
 
     Route::get('/topics', 'TopicsController@index');
+    Route::get('/topics/hot', 'TopicsController@hot');
 
     Route::middleware('auth:api')->get('/users/index', 'UsersController@index');
     Route::middleware('auth:api')->get('/users/search', 'UsersController@search');

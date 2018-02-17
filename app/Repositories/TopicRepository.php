@@ -44,4 +44,9 @@ class TopicRepository
             return $newTopic->id;
         })->toArray();
     }
+
+    public function hot()
+    {
+        return Topic::orderBy('articles_count', 'DESC')->get();
+    }
 }

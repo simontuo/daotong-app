@@ -23,4 +23,11 @@ class TopicsController extends Controller
 
         return response()->json(['topics' => $topics]);
     }
+
+    public function hot()
+    {
+        $topics = $this->topic->hot();
+
+        return response()->json(['topics' => $topics]);
+    }
 }
