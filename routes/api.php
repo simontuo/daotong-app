@@ -80,6 +80,7 @@ Route::namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->get('/admin/articles/search', 'ArticlesController@adminSearch');
     Route::middleware('auth:api')->get('/admin/calligraphys/search', 'CalligraphysController@adminSearch');
+    Route::middleware('auth:api')->get('/admin/questions/search', 'QuestionsController@adminSearch');
 
     Route::middleware('auth:api')->get('/admin/logs/{file}/search', 'LogsController@search');
     Route::middleware('auth:api')->get('/admin/logs/getFiles', 'LogsController@getFiles');

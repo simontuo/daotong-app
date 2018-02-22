@@ -106,4 +106,19 @@ class QuestionsController extends Controller
 
         return response()->json(['state' => $state]);
     }
+
+    public function adminSearch(Request $request)
+    {
+        $this->authorize('viewAdmin', user('api'));
+
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
+
+        $questions = $this->question->search($request->get('query'), $request->get('quickQuery'), $pageSize);
+
+        $questions->addCreatedTime();
+
+        $questions->CombinationField();
+
+        return response()->json(['questions' => $questions]);
+    }
 }

@@ -40,6 +40,13 @@ class HomesController extends Controller
         return view('admins.calligraphys.index');
     }
 
+    public function questionIndex()
+    {
+        $this->authorize('viewAdmin', user());
+
+        return view('admins.questions.index');
+    }
+
     public function commentIndex()
     {
         $this->authorize('viewAdmin', user());

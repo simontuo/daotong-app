@@ -64,6 +64,7 @@ Vue.component('user-calligraphy-card', require('./components/UserCalligraphyCard
 Vue.component('user-table', require('./components/UserTable.vue'));
 Vue.component('article-table', require('./components/ArticleTable.vue'));
 Vue.component('calligraphy-table', require('./components/CalligraphyTable.vue'));
+Vue.component('question-table', require('./components/QuestionTable.vue'));
 Vue.component('comment-table', require('./components/CommentTable.vue'));
 Vue.component('message-table', require('./components/MessageTable.vue'));
 Vue.component('log-table', require('./components/LogTable.vue'));

@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\AnswerRepository;
+use App\Repositories\QuestionRepository;
 use App\Http\Requests\StoreAnswerRequest;
 use App\Models\Answer;
 
 class AnswersController extends Controller
 {
-    public function __construct(AnswerRepository $answer)
+    public function __construct(AnswerRepository $answer, QuestionRepository $question)
     {
-        $this->answer = $answer;
+        $this->answer   = $answer;
+        $this->question = $question;
     }
 
     public function store(StoreAnswerRequest $request)
@@ -24,6 +26,10 @@ class AnswersController extends Controller
         ];
 
         $answer = $this->answer->create($data);
+
+        $question = $this->question->byId($request->get('id'));
+
+        $question->increment('answers_count');
 
         $answer->actionLog(user(), '新增了答案');
 

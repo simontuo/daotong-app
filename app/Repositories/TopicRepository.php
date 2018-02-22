@@ -47,6 +47,8 @@ class TopicRepository
 
     public function hot()
     {
-        return Topic::orderBy('articles_count', 'DESC')->get();
+        // return Topic::orderBy('articles_count', 'DE')->get();
+        return Topic::orderByRaw('articles_count + questions_count + followers_count DESC')->get();
+
     }
 }

@@ -16,6 +16,11 @@ class Question extends Model
     protected $fillable = [
         'user_id', 'title', 'bio'
     ];
+    
+    protected $combinationField = [
+        'user_name'   => 'user.name',
+        'user_avatar' => 'user.avatar'
+    ];
 
     public function newCollection(array $models = [])
     {
