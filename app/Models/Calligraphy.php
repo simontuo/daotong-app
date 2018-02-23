@@ -15,16 +15,17 @@ class Calligraphy extends Model
         'user_id', 'title', 'bio', 'images'
     ];
 
-    protected $combinationField = [
-        'user_name' => 'user.name'
-    ];
-
     /**
      * [protected description]
      * @var [type]
      */
     protected $casts = [
         'images' => 'array'
+    ];
+
+    protected $combinationField = [
+        'user_name'   => 'user.name',
+        'user_avatar' => 'user.avatar'
     ];
 
     public function newCollection(array $models = [])

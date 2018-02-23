@@ -111,7 +111,7 @@ class QuestionsController extends Controller
     {
         $this->authorize('viewAdmin', user('api'));
 
-        $pageSize = request('pageSize') ? request('pageSize') : config('page.article');
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.question');
 
         $questions = $this->question->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 

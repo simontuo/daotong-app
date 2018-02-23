@@ -15,7 +15,7 @@ trait PublicOperation
 
             $filed = array_last(explode('.', $value));
 
-            $this->$key = $this->$group->$filed;
+            $this->$key = is_null($this->$group) ? '游客' : $this->$group->$filed;
         }
     }
 

@@ -67,4 +67,25 @@ class HomesController extends Controller
 
         return view('admins.logs.index');
     }
+
+    public function answerIndex()
+    {
+        $this->authorize('viewAdminLog', user());
+
+        return view('admins.answers.index');
+    }
+
+    public function mottoIndex()
+    {
+        $this->authorize('viewAdminLog', user());
+
+        return view('admins.mottoes.index');
+    }
+
+    public function suggestionIndex()
+    {
+        $this->authorize('viewAdminLog', user());
+
+        return view('admins.suggestions.index');
+    }
 }

@@ -26,4 +26,19 @@ class MottoesController extends Controller
 
         return response()->json(['motto' => $motto]);
     }
+
+    public function adminSearch(Request $request)
+    {
+        $this->authorize('viewAdmin', user('api'));
+
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.mottoe');
+
+        $mottoes = $this->motto->search($request->get('query'), $request->get('quickQuery'), $pageSize);
+
+        $mottoes->addCreatedTime();
+
+        $mottoes->CombinationField();
+
+        return response()->json(['mottoes' => $mottoes]);
+    }
 }

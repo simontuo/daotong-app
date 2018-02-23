@@ -74,6 +74,9 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/articles/index', 'HomesController@articleIndex')->name('admin.articles.index');
     Route::get('/calligraphys/index', 'HomesController@calligraphyIndex')->name('admin.calligraphys.index');
     Route::get('/questions/index', 'HomesController@questionIndex')->name('admin.questions.index');
+    Route::get('/answers/index', 'HomesController@answerIndex')->name('admin.answers.index');
+    Route::get('/mottoes/index', 'HomesController@mottoIndex')->name('admin.mottoes.index');
+    Route::get('/suggestions/index', 'HomesController@suggestionIndex')->name('admin.suggestions.index');
 
     Route::get('/comments/index', 'HomesController@commentIndex')->name('admin.comments.index');
     Route::get('/messages/index', 'HomesController@messageIndex')->name('admin.messages.index');

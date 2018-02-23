@@ -12,4 +12,19 @@ class AnswersController extends Controller
     {
         $this->answer = $answer;
     }
+
+    public function adminSearch(Request $request)
+    {
+        $this->authorize('viewAdmin', user('api'));
+
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.answer');
+
+        $answers = $this->answer->search($request->get('query'), $request->get('quickQuery'), $pageSize);
+
+        $answers->addCreatedTime();
+
+        $answers->CombinationField();
+
+        return response()->json(['answers' => $answers]);
+    }
 }

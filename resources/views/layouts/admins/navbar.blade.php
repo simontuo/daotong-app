@@ -81,6 +81,10 @@
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">&#xe887;</i>
 			<div class="mdui-list-item-content">问题管理</div>
 		</li>
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.answers.index') }}'">
+			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-amber">&#xe5ca;</i>
+			<div class="mdui-list-item-content">回答管理</div>
+		</li>
 
 		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.comments.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe0ca;</i>
@@ -90,11 +94,11 @@
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow">&#xe151;</i>
 			<div class="mdui-list-item-content">信息管理</div>
 		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.messages.index') }}'">
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.mottoes.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-grey">&#xe865;</i>
 			<div class="mdui-list-item-content">格言管理</div>
 		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.messages.index') }}'">
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.suggestions.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">&#xe156;</i>
 			<div class="mdui-list-item-content">建议管理</div>
 		</li>

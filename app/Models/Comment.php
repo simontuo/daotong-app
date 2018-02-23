@@ -16,7 +16,8 @@ class Comment extends Model
     ];
 
     protected $combinationField = [
-        'user_name' => 'user.name'
+        'user_name'   => 'user.name',
+        'user_avatar' => 'user.avatar'
     ];
 
     public function newCollection(array $models = [])
