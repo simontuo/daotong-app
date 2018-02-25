@@ -16,18 +16,58 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4" v-for="article in articles">
-                <a :href="'/articles/' + article.id">
+            <div class="col-md-4 visible-xs" v-for="item in articles">
+                <a :href="'/articles/' + item.id">
                     <article-card
-                    :user="article.user"
-                    :title="article.title"
-                    :createdTime="article.created_time"
-                    :readsCount="article.reads_count"
-                    :commentsCount="article.comments_count"
-                    :likesCount="article.likes.length"
-                    :topics="article.topics"
+                    :user="item.user"
+                    :title="item.title"
+                    :createdTime="item.created_time"
+                    :readsCount="item.reads_count"
+                    :commentsCount="item.comments_count"
+                    :likesCount="item.likes.length"
+                    :topics="item.topics"
                     ></article-card>
                 </a>
+            </div>
+
+            <div class="col-md-12 mdui-m-b-2 hidden-xs">
+                <ul class="media-list article-list">
+                    <div class="article-list-hover">
+                        <li class="media" style="margin-top: 0px;" v-for="item in articles">
+                            <div class="media-left">
+                                <a href="#">
+                                    <Avatar size="large" :src="item.user.avatar" style="line-height:0px;margin-top:7px;" />
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <p class="media-heading mdui-typo mdui-typo-subheading" style="line-height:1">
+                                    <a href="#" class="mdui-text-color-grey-800">{{ item.title }}</a>
+                                    <span  v-for="topic in item.topics">
+                                        <Tag checkable color="blue" size="small">{{ topic.name }}</Tag>
+                                    </span>
+                                    <span  v-if="item.topics.length == 0">
+                                        <Tag checkable color="yellow" size="small">无Topic</Tag>
+                                    </span>
+                                </p>
+                                <span class=" mdui-typo  mdui-typo-body-1">
+                                    <a href="#" class="mdui-text-color-grey-500">{{ item.user.name }}</a>
+                                </span>
+                                <span class="mdui-text-color-grey-500 mdui-typo-body-1">
+                                    - 创建于:{{ item.created_time }}
+                                </span>
+                                <span class="mdui-text-color-grey-500 mdui-typo-body-1">
+                                    | 阅读:{{ item.reads_count }}
+                                </span>
+                                <span class="mdui-text-color-grey-500 mdui-typo-body-1">
+                                    - 评论:{{ item.comments_count }}
+                                </span>
+                                <span class="mdui-text-color-grey-500 mdui-typo-body-1">
+                                    - 点赞:{{ item.likes.length }}
+                                </span>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
             </div>
         </div>
         <div class="row mdui-valign">
@@ -99,3 +139,17 @@
         }
     }
 </script>
+
+<style>
+    .article-list {
+        background-color: #fff;
+        border-radius: 3px;
+    }
+    .article-list li {
+        padding: 5px 10px;
+        border-bottom: 1px solid #e8eaf6;
+    }
+    .media:hover {
+        border-bottom: 2px solid #2d8cf0;
+    }
+</style>
