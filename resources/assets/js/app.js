@@ -42,6 +42,7 @@ Vue.component('new-message-notification', require('./components/notifications/ne
 Vue.component('user-comment-list', require('./components/UserCommentList.vue'));
 Vue.component('user-message-list', require('./components/UserMessageList.vue'));
 Vue.component('article-list', require('./components/ArticleList.vue'));
+Vue.component('index-list', require('./components/IndexList.vue'));
 Vue.component('navbar-menu', require('./components/NavbarMenu.vue'));
 Vue.component('upload-img-list', require('./components/UploadImgList.vue'));
 Vue.component('upload-img-button', require('./components/UploadImageButton.vue'));
@@ -73,6 +74,7 @@ Vue.component('suggestion-table', require('./components/SuggestionTable.vue'));
 Vue.component('log-table', require('./components/LogTable.vue'));
 
 Vue.component('type-card', require('./components/TypeCard.vue'));
+Vue.component('item-card', require('./components/ItemCard.vue'));
 Vue.component('article-card', require('./components/ArticleCard.vue'));
 Vue.component('calligraphy-card', require('./components/CalligraphyCard.vue'));
 

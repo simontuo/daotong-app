@@ -3,26 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mail;
-use App\Repositories\ArticleRepository;
-use App\Repositories\LikeRepository;
-use App\Repositories\CommentRepository;
-use App\Repositories\CalligraphyRepository;
-use Naux\Mail\SendCloudTemplate;
+use App\Repositories\HomeRepository;
 
 class HomeController extends Controller
 {
+    protected $home;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ArticleRepository $article, CalligraphyRepository $calligraphy, CommentRepository $comment, LikeRepository $like)
+    public function __construct(HomeRepository $home)
     {
-        $this->article     = $article;
-        $this->calligraphy = $calligraphy;
-        $this->comment     = $comment;
-        $this->like        = $like;
+        $this->home = $home;
     }
 
     /**
@@ -32,17 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articlesCount = $this->article->getAllArticlesCount();
-        $articlesReadsTotal = $this->article->getReadsTotal();
-        $articlesCommentsCount = $this->comment->getAllCommnetBy('Article');
-        $articlesLikesCount = $this->like->getAllLikesBy('Article');
-
-        $calligraphysCount = $this->calligraphy->getAllCalligraphysCount();
-        $calligraphysReadsTotal = $this->calligraphy->getReadsTotal();
-        $calligraphysCommentsCount = $this->comment->getAllCommnetBy('Calliaphy');
-        $calligraphysLikesCount = $this->like->getAllLikesBy('Calligraphy');
-
-        return view('index', compact('articlesReadsTotal', 'articlesCount', 'articlesCommentsCount', 'articlesLikesCount', 'calligraphysReadsTotal', 'calligraphysCount', 'calligraphysCommentsCount', 'calligraphysLikesCount'));
+        return view('index');
     }
 
+
+    public function search(Request $request)
+    {
+        $page = $request->get('page', 1);
+
+        $pageSize = $request->get('pageSize', config('page.answer'));
+
+        $items = $this->home->search($request->get('query'), $request->get('quickQuery'), $pageSize, $page, true);
+
+        return response()->json(['items' => $items]);
+    }
 }
