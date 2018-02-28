@@ -72,8 +72,8 @@
                         </li>
                         <li class="media" style="margin-top: 0px;" v-for="item in items">
                             <div class="media-left">
-                                <a href="#">
-                                    <Avatar size="large" :src="item.user_avatar" style="line-height:0px;margin-top:7px;" />
+                                <a href="#" class="like-avatar-lisl">
+                                    <Avatar :src="item.user_avatar" class="like-avatar" style="line-height:0px;" />
                                 </a>
                             </div>
                             <div class="media-body">
@@ -220,10 +220,26 @@
         border-radius: 3px;
     }
     .article-list li {
-        padding: 10px;
+        padding: 10px 0px 5px 10px;
         border-bottom: 1px solid #e8eaf6;
     }
     .media:hover {
         border-bottom: 2px solid #2d8cf0;
+    }
+    .like-avatar-lisl {
+        /* margin: 0px 4px; */
+    }
+    .like-avatar{
+        background-color: #fff;
+        border: 1px solid #ddd;
+        width: 45px;
+        height: 45px;
+        border-radius: 45px;
+    }
+    .like-avatar img{
+        margin: 4px;
+        width: 35px;
+        height: 35px;
+        border-radius: 35px;
     }
 </style>

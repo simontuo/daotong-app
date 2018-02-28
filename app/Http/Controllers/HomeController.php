@@ -34,7 +34,7 @@ class HomeController extends Controller
     {
         $page = $request->get('page', 1);
 
-        $pageSize = $request->get('pageSize', config('page.answer'));
+        $pageSize = $request->get('pageSize', config('page.union'));
 
         $items = $this->home->search($request->get('query'), $request->get('quickQuery'), $pageSize, $page, true);
 

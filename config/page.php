@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'union'       => 30,
     'user'        => 10,
     'article'     => 10,
     'calligraphy' => 10,
