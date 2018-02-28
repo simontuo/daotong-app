@@ -2,21 +2,21 @@
     <div class="mdui-m-y-3">
         <Card style="border-radius:6px">
             <div>
-                <img :src="this.user.avatar" class="type-card-image mdui-shadow-1 mdui-hoverable">
+                <img :src="this.userAvatar" class="type-card-image mdui-shadow-1 mdui-hoverable">
                 <div class="pull-right type-card-title">
-                    {{ this.user.name }}
+                    {{ this.userName }}
                     <span class="type-card-icon">
                         创建于：{{ this.createdTime }}
                     </span>
                 </div>
-                <div class="article-card-topic">
+                <!-- <div class="article-card-topic">
                     <span  v-for="item in topics">
                         <Tag checkable color="blue" size="small">{{ item.name }}</Tag>
                     </span>
                     <span  v-if="topics.length == 0">
                         <Tag checkable color="yellow" size="small">无Topic</Tag>
                     </span>
-                </div>
+                </div> -->
                 <p class="mdui-m-b-1 type-card-subtitle mdui-text-truncate">{{ this.title }}</p>
                 <div class="type-card-footer">
                     <span class="type-card-icon pull-left">
@@ -41,7 +41,7 @@
 </template>
 <script>
     export default {
-        props: ['title', 'user', 'createdTime', 'readsCount', 'commentsCount', 'likesCount', 'topics']
+        props: ['title', 'userName', 'userId', 'userAvatar', 'createdTime', 'readsCount', 'commentsCount', 'likesCount', 'topics']
     }
 </script>
 

@@ -29,7 +29,9 @@
             <div class="col-md-4 visible-xs" v-for="item in items">
                 <a :href="'/' + item.type + '/' + item.id">
                     <item-card
-                    :user="item.user"
+                    :userId="item.user_id"
+                    :userName="item.user_name"
+                    :userAvatar="item.user_avatar"
                     :title="item.title"
                     :createdTime="item.created_time"
                     :readsCount="item.reads_count"
@@ -71,21 +73,21 @@
                         <li class="media" style="margin-top: 0px;" v-for="item in items">
                             <div class="media-left">
                                 <a href="#">
-                                    <Avatar size="large" :src="item.user.avatar" style="line-height:0px;margin-top:7px;" />
+                                    <Avatar size="large" :src="item.user_avatar" style="line-height:0px;margin-top:7px;" />
                                 </a>
                             </div>
                             <div class="media-body">
                                 <p class="media-heading mdui-typo mdui-typo-subheading" style="line-height:1">
                                     <a :href="'/' + item.type + '/' + item.id" class="mdui-text-color-grey-800">{{ item.title }}</a>
-                                    <span  v-for="topic in item.topics">
-                                        <Tag checkable color="blue" size="small">{{ topic.name }}</Tag>
-                                    </span>
-                                    <span  v-if="item.topics.length == 0">
-                                        <Tag checkable color="yellow" size="small">无Topic</Tag>
-                                    </span>
                                 </p>
+
                                 <span class=" mdui-typo  mdui-typo-body-1">
-                                    <a href="#" class="mdui-text-color-grey-500">{{ item.user.name }}</a>
+                                    <Tag checkable color="blue" size="small" v-if="item.type == 'questions'">问道</Tag>
+                                    <Tag checkable color="green" size="small" v-if="item.type == 'articles'">文章</Tag>
+                                    <Tag checkable color="yellow" size="small" v-if="item.type == 'calligraphies'">书法</Tag>
+                                </span>
+                                <span class=" mdui-typo  mdui-typo-body-1">
+                                    <a href="#" class="mdui-text-color-grey-500">{{ item.user_name }}</a>
                                 </span>
                                 <span class="mdui-text-color-grey-500 mdui-typo-body-1">
                                     - 创建于:{{ item.created_time }}

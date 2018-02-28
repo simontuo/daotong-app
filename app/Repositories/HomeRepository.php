@@ -14,6 +14,10 @@ class HomeRepository
         'created_at',  'comments_count', 'votes_count'
     ];
 
+    protected $mergeUserColumn = [
+        'users.id as user_id', 'users.name as user_name', 'users.avatar as user_avatar'
+    ];
+
     protected $prefixQuery = [
         'articles' => [
                 'is_hidden' => 'F',
@@ -36,12 +40,8 @@ class HomeRepository
 
         $articles      = $this->query('Article', 'articles', $prefixQueryState, $query);
         $calligraphies = $this->query('Calligraphy', 'calligraphies', $prefixQueryState, $query);
-        $items         = $this->query('Question', 'questions', $prefixQueryState, $query)
-                                ->union($articles)
-                                ->union($calligraphies)
-                                ->with(['user', 'topics'])
-                                ->orderBy($quickQueryType, 'DESC')
-                                ->get();
+        $questions     = $this->query('Question', 'questions', $prefixQueryState, $query);
+        $items         = $articles->union($questions)->union($calligraphies)->orderBy($quickQueryType, 'DESC')->get();
 
         $items = $this->addCreatedTime($items);
 
@@ -74,7 +74,8 @@ class HomeRepository
     public function addCreatedTime($items)
     {
         return collect($items)->each(function($item, $key) {
-            return $item->created_time = $item->created_at->diffForHumans();
+            $item->created_time = $item->created_at->diffForHumans();
+            return $item;
         });
     }
 
@@ -83,12 +84,12 @@ class HomeRepository
         $prefixQuery = array_dot($this->checkPrefixQuery($prefixQueryState, $table));
 
         return app('App\Models\\'.$model)->join('users', function($join) use($table, $prefixQuery){
-                        $join->on($table.'.id', '=', 'users.id')
-                            ->select('users.id', 'users.name')
+                        $join->on($table.'.user_id', '=', 'users.id')
+                            ->select('users.id', 'users.name', 'user_avatar')
                             ->where($prefixQuery);
                     })->where('users.name', 'like', '%'.$query.'%')
                         ->orWhere($table.'.title', 'like', '%'.$query.'%')
-                        ->select($this->getColumn($table))
+                        ->select(array_merge($this->mergeUserColumn,$this->getColumn($table)))
                         ->selectRaw('? as type', [$table]);
     }
 }
