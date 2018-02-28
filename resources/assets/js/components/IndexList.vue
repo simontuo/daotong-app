@@ -9,7 +9,7 @@
             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8 mdui-m-b-1 pull-right">
                 <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                     <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
+                    <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:change="search" v-model="query"/>
                     <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9 pull-right">
                                     <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                                         <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                                        <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:input="search" v-model="query"/>
+                                        <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:change="search" v-model="query"/>
                                         <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                                     </div>
                                 </div>
@@ -88,7 +88,10 @@
                                     <a href="#" class="mdui-text-color-grey-500">{{ item.user.name }}</a>
                                 </span>
                                 <span class="mdui-text-color-grey-500 mdui-typo-body-1">
-                                    - 创建于:{{ item.created_at }}
+                                    - 创建于:{{ item.created_time }}
+                                </span>
+                                <span class="mdui-text-color-grey-500 mdui-typo-body-1">
+                                    | 阅读:{{ item.reads_count }}
                                 </span>
                                 <span class="mdui-text-color-grey-500 mdui-typo-body-1">
                                     - 评论:{{ item.comments_count }}
@@ -170,6 +173,16 @@
                 ]
             }
         },
+        mounted() {
+            axios.get('api/index/search', {'params': {'query': this.query, 'quickQuery':            this.quickQuery}}).then(response => {
+                this.items = response.data.items.data;
+                if (!response.data.items.next_page_url) {
+                    this.noMoreData = true;
+                }
+                this.nextPageUrl = response.data.items.next_page_url;
+                this.loading = false;
+            });
+        },
         methods: {
             toLoading () {
                 this.loading = true;
@@ -185,10 +198,13 @@
             search () {
                 axios.get('api/index/search', {'params': {'query': this.query, 'quickQuery':            this.quickQuery}}).then(response => {
                     this.items = response.data.items.data;
+                    this.nextPageUrl = response.data.items.next_page_url;
                     if (!response.data.items.next_page_url) {
                         this.noMoreData = true;
+                    }else {
+                        this.noMoreData = false;
                     }
-                    this.nextPageUrl = response.data.items.next_page_url;
+
                     this.loading = false;
                 });
             }

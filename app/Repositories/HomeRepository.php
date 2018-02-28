@@ -27,7 +27,7 @@ class HomeRepository
     ];
 
     protected $modelColumn = [
-        'id', 'user_id', 'title', 'created_at', 'comments_count', 'is_hidden', 'close_comment'
+        'id', 'user_id', 'title', 'created_at', 'comments_count', 'is_hidden', 'close_comment', 'reads_count'
     ];
 
     public function search($query, $quickQuery = null, $pageSize, $page, $prefixQueryState = false)
@@ -41,10 +41,11 @@ class HomeRepository
                                 ->union($calligraphies)
                                 ->with(['user', 'topics'])
                                 ->orderBy($quickQueryType, 'DESC')
-                                ->get()
-                                ->toArray();
+                                ->get();
 
-        $slice = array_slice($items, $pageSize * ($page - 1), $pageSize);
+        $items = $this->addCreatedTime($items);
+
+        $slice = array_slice($items->toArray(), $pageSize * ($page - 1), $pageSize);
 
         $result = new LengthAwarePaginator($slice, count($items), $pageSize, $page);
 
@@ -68,6 +69,13 @@ class HomeRepository
         return collect($this->modelColumn)->map(function($item, $key) use($table){
             return $table.'.'.$item;
         })->toArray();
+    }
+
+    public function addCreatedTime($items)
+    {
+        return collect($items)->each(function($item, $key) {
+            return $item->created_time = $item->created_at->diffForHumans();
+        });
     }
 
     public function query($model, $table, $prefixQueryState, $query)

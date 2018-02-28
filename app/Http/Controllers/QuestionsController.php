@@ -50,6 +50,8 @@ class QuestionsController extends Controller
     {
         $question = $this->question->byId($id);
 
+        $question->increment('reads_count');
+
         return view('questions.show', compact('question'));
     }
 }

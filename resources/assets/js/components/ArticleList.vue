@@ -197,6 +197,7 @@
                     this.nextPageUrl = response.data.articles.next_page_url;
                     this.loading = false;
                 });
+
             }
         }
     }
