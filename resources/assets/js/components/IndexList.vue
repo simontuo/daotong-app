@@ -82,9 +82,9 @@
                                 </p>
 
                                 <span class=" mdui-typo  mdui-typo-body-1">
-                                    <Tag checkable color="blue" size="small" v-if="item.type == 'questions'">问道</Tag>
-                                    <Tag checkable color="green" size="small" v-if="item.type == 'articles'">文章</Tag>
-                                    <Tag checkable color="yellow" size="small" v-if="item.type == 'calligraphies'">书法</Tag>
+                                    <Tag class="mdui-color-pink-accent" style="line-height:unset" size="small" v-if="item.type == 'questions'">问道</Tag>
+                                    <Tag color="green" size="small" v-if="item.type == 'articles'">文章</Tag>
+                                    <Tag color="yellow" size="small" v-if="item.type == 'calligraphies'">书法</Tag>
                                 </span>
                                 <span class=" mdui-typo  mdui-typo-body-1">
                                     <a href="#" class="mdui-text-color-grey-500">{{ item.user_name }}</a>
