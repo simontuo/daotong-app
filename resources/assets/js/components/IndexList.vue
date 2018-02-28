@@ -64,9 +64,10 @@
                                 <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9 pull-right">
                                     <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                                         <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></button>
-                                        <input class="mdui-textfield-input" type="text" placeholder="模糊搜索标题或用户名" v-on:change="search" v-model="query"/>
+                                        <input class="mdui-textfield-input" type="text" placeholder="按回车执行搜索" v-on:change="search" v-model="query"/>
                                         <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                                     </div>
+
                                 </div>
                             </div>
                         </li>
