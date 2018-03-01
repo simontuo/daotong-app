@@ -48,7 +48,9 @@
                         <li class="hidden-xs">
                             <div class="media-body">
                                 <Button style="padding:6px 15px 6px 5px" type="text" @click="to('')">
-                                    <span class="mdui-typo-subheading"><strong>全部</strong></span>
+                                    <span class="mdui-typo-subheading"><strong>全部</strong>
+                                        <div class="list-bottom-border"></div>
+                                    </span>
                                 </Button>
                                 <Button style="padding:6px 15px 6px 5px" type="text" @click="to('articles')">
                                     <span class="mdui-typo-subheading"><strong>文章</strong></span>
@@ -66,13 +68,12 @@
                                         <input class="mdui-textfield-input" type="text" placeholder="按回车执行搜索" v-on:change="search" v-model="query"/>
                                         <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">close</i></button>
                                     </div>
-
                                 </div>
                             </div>
                         </li>
                         <li class="media" style="margin-top: 0px;" v-for="item in items">
                             <div class="media-left">
-                                <a href="#" class="like-avatar-lisl">
+                                <a :href="'/users/' + item.user_id + '/center'" class="like-avatar-lisl">
                                     <Avatar :src="item.user_avatar" class="like-avatar" style="line-height:0px;" />
                                 </a>
                             </div>
@@ -86,7 +87,7 @@
                                     <Tag color="green" size="small" v-if="item.type == 'articles'">文章</Tag>
                                     <Tag color="yellow" size="small" v-if="item.type == 'calligraphies'">书法</Tag>
                                 </span>
-                                <span class=" mdui-typo  mdui-typo-body-1">
+                                <span class="mdui-typo  mdui-typo-body-1">
                                     <a href="#" class="mdui-text-color-grey-500">{{ item.user_name }}</a>
                                 </span>
                                 <span class="mdui-text-color-grey-500 mdui-typo-body-1">
@@ -239,9 +240,6 @@
     .media:hover {
         border-bottom: 2px solid #2d8cf0;
     }
-    .like-avatar-lisl {
-        /* margin: 0px 4px; */
-    }
     .like-avatar{
         background-color: #fff;
         border: 1px solid #ddd;
@@ -257,5 +255,9 @@
     }
     .spin-icon-load{
         animation: ani-demo-spin 1s linear infinite;
+    }
+    .list-bottom-border {
+        border-bottom: 2px solid #ff9800;
+        margin-top: 3px;
     }
 </style>
