@@ -101,9 +101,18 @@
                                 </span>
                             </div>
                         </li>
+
+                        <li class="hidden-xs" v-if="listLoading">
+                            <div class="media-body">
+                                <Spin fix>
+                                    <Icon type="load-c" size=18 class="spin-icon-load"></Icon>
+                                    <div>玩命加载中...</div>
+                                </Spin>
+                            </div>
+                        </li>
                     </div>
                 </ul>
-                <div class="row mdui-valign">
+                <div class="row mdui-valign" v-if="!listLoading">
                     <p class="mdui-center">
                         <Button type="primary" :loading="loading" @click="toLoading" v-if="!this.noMoreData">
                             <span v-if="!loading">加载更多</span>
@@ -152,6 +161,7 @@
                 value: 0,
                 show: true,
                 loading: false,
+                listLoading: true,
                 nextPageUrl: '',
                 noMoreData: false,
                 query: '',
@@ -184,6 +194,7 @@
                 }
                 this.nextPageUrl = response.data.items.next_page_url;
                 this.loading = false;
+                this.listLoading = false;
             });
         },
         methods: {
@@ -199,6 +210,7 @@
                 });
             },
             search () {
+                this.listLoading = true;
                 axios.get('api/index/search', {'params': {'query': this.query, 'quickQuery':            this.quickQuery}}).then(response => {
                     this.items = response.data.items.data;
                     this.nextPageUrl = response.data.items.next_page_url;
@@ -209,6 +221,7 @@
                     }
 
                     this.loading = false;
+                    this.listLoading = false;
                 });
             }
         }
@@ -242,5 +255,8 @@
         width: 35px;
         height: 35px;
         border-radius: 35px;
+    }
+    .spin-icon-load{
+        animation: ani-demo-spin 1s linear infinite;
     }
 </style>

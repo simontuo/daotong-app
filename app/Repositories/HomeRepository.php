@@ -10,6 +10,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeRepository
 {
+    protected $model = [
+        'Article' , 'Calligraphy', 'Question'
+    ];
+
     protected $quickQueryType = [
         'created_at',  'comments_count', 'votes_count'
     ];
@@ -38,16 +42,13 @@ class HomeRepository
     {
         $quickQueryType = is_null($quickQuery) ? 'created_at' : array_get($this->quickQueryType, $quickQuery, 'created_at');
 
-        $articles      = $this->query('Article', 'articles', $prefixQueryState, $query);
-        $calligraphies = $this->query('Calligraphy', 'calligraphies', $prefixQueryState, $query);
-        $questions     = $this->query('Question', 'questions', $prefixQueryState, $query);
-        $items         = $articles->union($questions)->union($calligraphies)->orderBy($quickQueryType, 'DESC')->get();
+        $total = $this->unionModelDataSum($prefixQueryState, $query);
 
-        $items = $this->addCreatedTime($items);
+        $items = $this->unionModelQuery($prefixQueryState, $query)->orderBy($quickQueryType, 'DESC')->skip(($page-1) *
 
-        $slice = array_slice($items->toArray(), $pageSize * ($page - 1), $pageSize);
+        $pageSize)->limit($pageSize)->get();
 
-        $result = new LengthAwarePaginator($slice, count($items), $pageSize, $page);
+        $result = new LengthAwarePaginator($this->addCreatedTime($items), $total, $pageSize, $page);
 
         return $result;
 
@@ -79,8 +80,10 @@ class HomeRepository
         });
     }
 
-    public function query($model, $table, $prefixQueryState, $query)
+    public function modelQuery($model, $prefixQueryState, $query)
     {
+        $table = str_plural(lcfirst($model));
+
         $prefixQuery = array_dot($this->checkPrefixQuery($prefixQueryState, $table));
 
         return app('App\Models\\'.$model)->join('users', function($join) use($table, $prefixQuery){
@@ -91,5 +94,27 @@ class HomeRepository
                         ->orWhere($table.'.title', 'like', '%'.$query.'%')
                         ->select(array_merge($this->mergeUserColumn,$this->getColumn($table)))
                         ->selectRaw('? as type', [$table]);
+    }
+
+    public function unionModelDataSum($prefixQueryState, $query)
+    {
+        return collect($this->model)->map(function($item, $key) use($prefixQueryState, $query){
+            return $this->modelQuery($item, $prefixQueryState, $query)->count();
+        })->sum();
+    }
+
+    public function unionModelQuery($prefixQueryState, $query)
+    {
+        $unionModelQuery = '';
+
+        foreach ($this->model as $key => $value) {
+            if ($key == 0) {
+                $unionModelQuery = $this->modelQuery($value, $prefixQueryState, $query);
+            }else{
+                $unionModelQuery = $unionModelQuery->union($this->modelQuery($value, $prefixQueryState, $query));
+            }
+        }
+
+        return $unionModelQuery;
     }
 }
