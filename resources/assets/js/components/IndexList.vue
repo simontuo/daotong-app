@@ -42,22 +42,21 @@
                 </a>
             </div>
 
-
             <div class="col-md-9 mdui-m-b-2 hidden-xs">
                 <ul class="media-list article-list mdui-m-y-1">
                     <div class="article-list-hover">
                         <li class="hidden-xs">
                             <div class="media-body">
-                                <Button style="padding:6px 15px 6px 5px" type="text">
+                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('')">
                                     <span class="mdui-typo-subheading"><strong>全部</strong></span>
                                 </Button>
-                                <Button style="padding:6px 15px 6px 5px" type="text">
+                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('articles')">
                                     <span class="mdui-typo-subheading"><strong>文章</strong></span>
                                 </Button>
-                                <Button style="padding:6px 15px 6px 5px" type="text">
+                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('calligraphys')">
                                     <span class="mdui-typo-subheading"><strong>书法</strong></span>
                                 </Button>
-                                <Button style="padding:6px 15px 6px 5px" type="text">
+                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('questions')">
                                     <span class="mdui-typo-subheading"><strong>问答</strong></span>
                                 </Button>
 
@@ -124,12 +123,9 @@
             </div>
 
             <div class="col-md-3 mdui-row-gapless mdui-m-b-2 hidden-xs">
-                <Card class="mdui-m-y-1">
-                    <p slot="title" style="text-align: center;">最受欢迎书法</p>
-                    <div style="text-align:center">
-                        <img width="100%" height="%" src="http://photo.maguas.com//list/images/82c1f4c32c8878a56ebb8845d33227b6.jpeg">
-                    </div>
-                </Card>
+
+                <hot-calligraphy-card></hot-calligraphy-card>
+
                 <Card class="mdui-m-y-1">
                     <div style="text-align:center">
                         <img src="https://file.iviewui.com/dist/76ecb6e76d2c438065f90cd7f8fa7371.png">
@@ -223,6 +219,9 @@
                     this.loading = false;
                     this.listLoading = false;
                 });
+            },
+            to(path) {
+                window.location.href = "/" + path;
             }
         }
     }

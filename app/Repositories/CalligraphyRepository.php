@@ -37,6 +37,11 @@ class CalligraphyRepository
         return Calligraphy::select('id', 'user_id', 'title', 'reads_count')->orderBy('reads_count', 'DESC')->with('user')->paginate(5);
     }
 
+    public function hot()
+    {
+        return Calligraphy::select('id', 'user_id', 'title', 'images')->orderBy('reads_count', 'DESC')->first();
+    }
+
     public function getAllCalligraphysCount()
     {
         return Calligraphy::count();

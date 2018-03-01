@@ -90,6 +90,8 @@ Vue.component('verification-code-button', require('./components/VerificationCode
 Vue.component('motto-scroll', require('./components/MottoScroll.vue'));
 Vue.component('suggestion-button', require('./components/SuggestionButton.vue'));
 
+Vue.component('hot-calligraphy-card', require('./components/HotCalligraphyCard.vue'));
+
 
 
 

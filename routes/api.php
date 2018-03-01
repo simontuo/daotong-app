@@ -38,7 +38,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/calligraphys/index', 'CalligraphysController@index');
     Route::get('/calligraphys/search', 'CalligraphysController@search');
-    Route::get('/calligraphys/rankingList', 'CalligraphysController@rankingList');
+    Route::get('/calligraphys/hot', 'CalligraphysController@hot');
     Route::get('/calligraphys/{id}', 'CalligraphysController@getUserCalligraphys');
     Route::middleware('auth:api')->post('/calligraphys/{id}/closeComment', 'CalligraphysController@closeComment');
     Route::middleware('auth:api')->post('/calligraphys/{id}/isHidden', 'CalligraphysController@isHidden');

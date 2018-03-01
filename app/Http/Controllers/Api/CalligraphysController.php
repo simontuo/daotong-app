@@ -39,6 +39,13 @@ class CalligraphysController extends Controller
         return response()->json(['rankingList' => $rankingList]);
     }
 
+    public function hot()
+    {
+        $calligraphy = $this->calligraphy->hot();
+
+        return response()->json(['calligraphy' => $calligraphy]);
+    }
+
     public function search(Request $request)
     {
         $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
