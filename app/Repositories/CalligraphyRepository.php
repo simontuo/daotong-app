@@ -42,7 +42,7 @@ class CalligraphyRepository
         return Calligraphy::select('id', 'user_id', 'title', 'images')->orderBy('reads_count', 'DESC')->first();
     }
 
-    public function getAllCalligraphysCount()
+    public function getAllCalligraphiesCount()
     {
         return Calligraphy::count();
     }
@@ -75,7 +75,7 @@ class CalligraphyRepository
         return $prefixQueryState ? $this->prefixQuery : [];
     }
 
-    public function getCalligraphysByUser($id)
+    public function getCalligraphiesByUser($id)
     {
         if ($id == user('api')->id && \Request::ajax()) {
             $this->prefixQuery = [];

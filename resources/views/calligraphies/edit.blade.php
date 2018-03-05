@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div class="row ivu-card ivu-card-bordered mdui-m-b-2">
             <div class="ivu-card-body">
-                <form action="{{ route('calligraphys.update', ['id' => $calligraphy->id]) }}" method="POST">
+                <form action="{{ route('calligraphies.update', ['id' => $calligraphy->id]) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
 

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4" v-for="calligraphy in this.calligraphys">
+            <div class="col-md-4" v-for="calligraphy in this.calligraphies">
                 <calligraphy-card
                     :calligraphy="calligraphy"
                 ></calligraphy-card>
@@ -38,7 +38,7 @@
     export default {
         data () {
             return {
-                calligraphys: [],
+                calligraphies: [],
                 imgName: '',
                 visible: false,
                 loading: false,
@@ -74,34 +74,34 @@
             toLoading () {
                 this.loading = true;
                 axios.get(this.nextPageUrl).then(response => {
-                    this.calligraphys = this.calligraphys.concat(response.data.calligraphys.data);
-                    if (!response.data.calligraphys.next_page_url) {
+                    this.calligraphies = this.calligraphies.concat(response.data.calligraphies.data);
+                    if (!response.data.calligraphies.next_page_url) {
                         this.noMoreData = true;
                     }
-                    this.nextPageUrl = response.data.calligraphys.next_page_url;
+                    this.nextPageUrl = response.data.calligraphies.next_page_url;
                     this.loading = false;
                 });
             },
             show (id) {
-                window.location.href = '/calligraphys/' + id;
+                window.location.href = '/calligraphies/' + id;
             },
             search () {
-                axios.get('/api/calligraphys/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery}}).then(response => {
-                    console.log(response.data.calligraphys.data)
-                    this.calligraphys = response.data.calligraphys.data;
-                    this.nextPageUrl = response.data.calligraphys.next_page_url;
-                    if (!response.data.calligraphys.next_page_url) {
+                axios.get('/api/calligraphies/search', {'params': {'query': this.query, 'quickQuery': this.quickQuery}}).then(response => {
+                    console.log(response.data.calligraphies.data)
+                    this.calligraphies = response.data.calligraphies.data;
+                    this.nextPageUrl = response.data.calligraphies.next_page_url;
+                    if (!response.data.calligraphies.next_page_url) {
                         this.noMoreData = true;
                     }
                 });
             }
         },
         mounted() {
-            // axios.get('/api/calligraphys/calligraphyList').then(response => {
-            //     console.log(response.data.calligraphys)
-            //     this.calligraphys = response.data.calligraphys.data;
-            //     this.nextPageUrl = response.data.calligraphys.next_page_url;
-            //     if (!response.data.calligraphys.next_page_url) {
+            // axios.get('/api/calligraphies/calligraphyList').then(response => {
+            //     console.log(response.data.calligraphies)
+            //     this.calligraphies = response.data.calligraphies.data;
+            //     this.nextPageUrl = response.data.calligraphies.next_page_url;
+            //     if (!response.data.calligraphies.next_page_url) {
             //         this.noMoreData = true;
             //     }
             // });

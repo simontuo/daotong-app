@@ -169,10 +169,10 @@ class User extends Authenticatable
     }
 
     /**
-     * [calligraphys description]
+     * [calligraphies description]
      * @return [type] [description]
      */
-    public function calligraphys()
+    public function calligraphies()
     {
         return $this->hasMany(Calligraphy::class);
     }

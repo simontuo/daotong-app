@@ -55,7 +55,7 @@
                                 <Button style="padding:6px 15px 6px 5px" type="text" @click="to('articles')">
                                     <span class="mdui-typo-subheading"><strong>文章</strong></span>
                                 </Button>
-                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('calligraphys')">
+                                <Button style="padding:6px 15px 6px 5px" type="text" @click="to('calligraphies')">
                                     <span class="mdui-typo-subheading"><strong>书法</strong></span>
                                 </Button>
                                 <Button style="padding:6px 15px 6px 5px" type="text" @click="to('questions')">

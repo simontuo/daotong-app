@@ -9,7 +9,7 @@ use App\Repositories\CalligraphyRepository;
 use App\Notifications\HiddenNotification;
 use App\Notifications\CloseCommentNotification;
 
-class CalligraphysController extends Controller
+class CalligraphiesController extends Controller
 {
     protected $calligraphy;
 
@@ -25,11 +25,11 @@ class CalligraphysController extends Controller
     {
         $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
 
-        $calligraphys = $this->calligraphy->index($pageSize);
+        $calligraphies = $this->calligraphy->index($pageSize);
 
-        $calligraphys->CombinationField();
+        $calligraphies->CombinationField();
 
-        return response()->json(['calligraphys' => $calligraphys]);
+        return response()->json(['calligraphies' => $calligraphies]);
     }
 
     public function rankingList()
@@ -50,13 +50,13 @@ class CalligraphysController extends Controller
     {
         $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
 
-        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize, true);
+        $calligraphies = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize, true);
 
-        $calligraphys->addCreatedTime();
+        $calligraphies->addCreatedTime();
 
-        $calligraphys->CombinationField();
+        $calligraphies->CombinationField();
 
-        return response()->json(['calligraphys' => $calligraphys]);
+        return response()->json(['calligraphies' => $calligraphies]);
     }
 
     public function adminSearch(Request $request)
@@ -65,13 +65,13 @@ class CalligraphysController extends Controller
 
         $pageSize = request('pageSize') ? request('pageSize') : config('page.calligraphy');
 
-        $calligraphys = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize);
+        $calligraphies = $this->calligraphy->search($request->get('query'), $request->get('quickQuery'), $pageSize);
 
-        $calligraphys->addCreatedTime();
+        $calligraphies->addCreatedTime();
 
-        $calligraphys->CombinationField();
+        $calligraphies->CombinationField();
 
-        return response()->json(['calligraphys' => $calligraphys]);
+        return response()->json(['calligraphies' => $calligraphies]);
     }
 
     public function closeComment($id)
@@ -120,14 +120,14 @@ class CalligraphysController extends Controller
         return response()->json(['state' => $state]);
     }
 
-    public function getUserCalligraphys($id)
+    public function getUserCalligraphies($id)
     {
-        $calligraphys = $this->calligraphy->getCalligraphysByUser($id);
+        $calligraphies = $this->calligraphy->getCalligraphiesByUser($id);
 
-        $calligraphys->addCreatedTime();
+        $calligraphies->addCreatedTime();
 
-        $calligraphys->CombinationField();
+        $calligraphies->CombinationField();
 
-        return response()->json(['calligraphys' => $calligraphys]);
+        return response()->json(['calligraphies' => $calligraphies]);
     }
 }

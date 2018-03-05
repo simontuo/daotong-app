@@ -73,7 +73,7 @@
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">&#xe838;</i>
 			<div class="mdui-list-item-content">文章管理</div>
 		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.calligraphys.index') }}'">
+		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.calligraphies.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">&#xe168;</i>
 			<div class="mdui-list-item-content">书法管理</div>
 		</li>

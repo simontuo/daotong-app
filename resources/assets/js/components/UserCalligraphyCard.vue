@@ -1,8 +1,8 @@
 <template>
     <div class="mdui-m-b-3">
         <Card dis-hover>
-            <p slot="title">书法专栏: {{ calligraphys.length}}</p>
-            <div class="media" v-for="item in calligraphys">
+            <p slot="title">书法专栏: {{ calligraphies.length}}</p>
+            <div class="media" v-for="item in calligraphies">
                 <div class="media-body" style="border-bottom: 1px solid #f2f2f2;">
                     <div class="media-heading mdui-typo-subheading ">
                         <del v-if="item.is_hidden == 'T'">
@@ -66,7 +66,7 @@
         props: ['user'],
         data () {
             return {
-                calligraphys: [],
+                calligraphies: [],
                 modal: false,
                 modalLoading: false,
                 modalType: '',
@@ -75,13 +75,13 @@
             }
         },
         mounted () {
-            axios.get('/api/calligraphys/' + this.user).then(response => {
-                this.calligraphys = response.data.calligraphys;
+            axios.get('/api/calligraphies/' + this.user).then(response => {
+                this.calligraphies = response.data.calligraphies;
             });
         },
         methods: {
             showEdit(id) {
-                window.location.href = "/calligraphys/" + id + '/edit';
+                window.location.href = "/calligraphies/" + id + '/edit';
             },
             showModal(id, status, type) {
                 this.modal      = true;
@@ -92,7 +92,7 @@
             sure () {
                 this.modalLoading = true;
                 if (this.modalType == 'hidden') {
-                    axios.post('/api/calligraphys/' + this.id + '/isHidden').then(response => {
+                    axios.post('/api/calligraphies/' + this.id + '/isHidden').then(response => {
                         setTimeout(() => {
                             this.modalLoading = false;
                             this.modal = false;
@@ -112,7 +112,7 @@
                 }
 
                 if (this.modalType == 'closeComment') {
-                    axios.post('/api/calligraphys/' + this.id + '/closeComment').then(response => {
+                    axios.post('/api/calligraphies/' + this.id + '/closeComment').then(response => {
                         setTimeout(() => {
                             this.modalLoading = false;
                             this.modal = false;

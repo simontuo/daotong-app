@@ -4,7 +4,7 @@
     <div class="col-md-9">
 
         <navbar-menu
-        calligraphy_url="{{ route('calligraphys.index') }}"
+        calligraphy_url="{{ route('calligraphies.index') }}"
         article_url="{{ route('articles.index') }}"
         question_url="{{ route('articles.index') }}"></navbar-menu>
 
@@ -37,6 +37,6 @@
 
 @section('rightBar')
     <div class="col-md-3">
-        <ranking-list type="calligraphys"></ranking-list>
+        <ranking-list type="calligraphies"></ranking-list>
     </div>
 @endsection

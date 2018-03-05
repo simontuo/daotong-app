@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CalligraphyRepository;
 use App\Http\Requests\StoreCalligraphyRequest;
 
-class CalligraphysController extends Controller
+class CalligraphiesController extends Controller
 {
     protected $calligraphy;
 
@@ -22,7 +22,7 @@ class CalligraphysController extends Controller
      */
     public function index()
     {
-        return view('calligraphys.index');
+        return view('calligraphies.index');
     }
 
     /**
@@ -32,7 +32,7 @@ class CalligraphysController extends Controller
      */
     public function create()
     {
-        return view('calligraphys.create');
+        return view('calligraphies.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class CalligraphysController extends Controller
 
         alert()->success('新增文章 '.$calligraphy->title.' 成功！')->autoclose(2000);
 
-        return redirect()->route('calligraphys.show', ['calligraphy' => $calligraphy->id]);
+        return redirect()->route('calligraphies.show', ['calligraphy' => $calligraphy->id]);
     }
 
     /**
@@ -71,7 +71,7 @@ class CalligraphysController extends Controller
 
         $calligraphy->increment('reads_count');
 
-        return view('calligraphys.show', compact('calligraphy'));
+        return view('calligraphies.show', compact('calligraphy'));
     }
 
     /**
@@ -86,7 +86,7 @@ class CalligraphysController extends Controller
 
         $this->authorize('update', $calligraphy);
 
-        return view('calligraphys.edit', compact('calligraphy'));
+        return view('calligraphies.edit', compact('calligraphy'));
     }
 
     /**
@@ -114,7 +114,7 @@ class CalligraphysController extends Controller
 
         alert()->success('编辑书法 '.$calligraphy->title.' 成功！')->autoclose(2000);
 
-        return redirect()->route('calligraphys.show', ['calligraphy' => $calligraphy->id]);
+        return redirect()->route('calligraphies.show', ['calligraphy' => $calligraphy->id]);
     }
 
     /**

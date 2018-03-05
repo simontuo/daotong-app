@@ -37,7 +37,7 @@ class HomesController extends Controller
     {
         $this->authorize('viewAdmin', user());
 
-        return view('admins.calligraphys.index');
+        return view('admins.calligraphies.index');
     }
 
     public function questionIndex()

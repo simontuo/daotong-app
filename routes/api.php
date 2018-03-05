@@ -36,12 +36,12 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/articles/{id}/closeComment', 'ArticlesController@closeComment');
     Route::middleware('auth:api')->post('/articles/{id}/isHidden', 'ArticlesController@isHidden');
 
-    Route::get('/calligraphys/index', 'CalligraphysController@index');
-    Route::get('/calligraphys/search', 'CalligraphysController@search');
-    Route::get('/calligraphys/hot', 'CalligraphysController@hot');
-    Route::get('/calligraphys/{id}', 'CalligraphysController@getUserCalligraphys');
-    Route::middleware('auth:api')->post('/calligraphys/{id}/closeComment', 'CalligraphysController@closeComment');
-    Route::middleware('auth:api')->post('/calligraphys/{id}/isHidden', 'CalligraphysController@isHidden');
+    Route::get('/calligraphies/index', 'CalligraphiesController@index');
+    Route::get('/calligraphies/search', 'CalligraphiesController@search');
+    Route::get('/calligraphies/hot', 'CalligraphiesController@hot');
+    Route::get('/calligraphies/{id}', 'CalligraphiesController@getUserCalligraphies');
+    Route::middleware('auth:api')->post('/calligraphies/{id}/closeComment', 'CalligraphiesController@closeComment');
+    Route::middleware('auth:api')->post('/calligraphies/{id}/isHidden', 'CalligraphiesController@isHidden');
 
     Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
     Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
@@ -82,7 +82,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/users/{id}/banLogin', 'UsersController@banLogin');
 
     Route::middleware('auth:api')->get('/admin/articles/search', 'ArticlesController@adminSearch');
-    Route::middleware('auth:api')->get('/admin/calligraphys/search', 'CalligraphysController@adminSearch');
+    Route::middleware('auth:api')->get('/admin/calligraphies/search', 'CalligraphiesController@adminSearch');
     Route::middleware('auth:api')->get('/admin/questions/search', 'QuestionsController@adminSearch');
     Route::middleware('auth:api')->get('/admin/answers/search', 'AnswersController@adminSearch');
     Route::middleware('auth:api')->get('/admin/mottoes/search', 'MottoesController@adminSearch');

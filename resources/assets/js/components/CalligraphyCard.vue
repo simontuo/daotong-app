@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="mdui-divider mdui-m-t-2  mdui-m-x-2"></div>
-            <p class="mdui-m-t-2 type-card-subtitle"><a :href="'/calligraphys/' + calligraphy.id">{{ this.calligraphy.bio }}</a></p>
+            <p class="mdui-m-t-2 type-card-subtitle"><a :href="'/calligraphies/' + calligraphy.id">{{ this.calligraphy.bio }}</a></p>
 
             <Modal title="查看图片" v-model="visible">
                 <img :src="imgName" v-if="visible" style="width: 100%">
@@ -53,7 +53,7 @@
         props: ['title', 'calligraphy', 'createdTime', 'readsCount', 'commentsCount', 'likesCount'],
         data () {
             return {
-                calligraphys: [],
+                calligraphies: [],
                 imgName: '',
                 visible: false,
                 loading: false,
@@ -69,7 +69,7 @@
 
             },
             show(id) {
-                window.location.href = '/calligraphys/' + id;
+                window.location.href = '/calligraphies/' + id;
             }
         },
     }

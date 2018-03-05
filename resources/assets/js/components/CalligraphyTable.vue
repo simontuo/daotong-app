@@ -73,7 +73,7 @@
                                 h('close-comment-button', {
                                     props: {
                                         model: params.row,
-                                        type: 'calligraphys'
+                                        type: 'calligraphies'
                                     },
                                     style: {
                                         marginRight: '5px'
@@ -82,7 +82,7 @@
                                 h('is-hidden-button', {
                                     props: {
                                         model: params.row,
-                                        type: 'calligraphys'
+                                        type: 'calligraphies'
                                     },
                                     style: {
                                         marginRight: '5px'
@@ -97,24 +97,24 @@
         },
         methods: {
             search () {
-                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.calligraphys.data;
-                    this.total = parseInt(response.data.calligraphys.total);
+                axios.get('/api/admin/calligraphies/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.calligraphies.data;
+                    this.total = parseInt(response.data.calligraphies.total);
                     this.loading = false;
                 });
             },
             changePage (page) {
-                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.calligraphys.data;
-                    this.total = parseInt(response.data.calligraphys.total);
+                axios.get('/api/admin/calligraphies/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': page, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.calligraphies.data;
+                    this.total = parseInt(response.data.calligraphies.total);
                     this.loading = false;
                 });
             },
             pageSizeChange (pageSize) {
                 this.pageSize = pageSize;
-                axios.get('/api/admin/calligraphys/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
-                    this.data = response.data.calligraphys.data;
-                    this.total = parseInt(response.data.calligraphys.total);
+                axios.get('/api/admin/calligraphies/search', {params: {'query': this.query, 'quickQuery': this.quickQuery, 'page': 1, 'pageSize': this.pageSize}}).then(response => {
+                    this.data = response.data.calligraphies.data;
+                    this.total = parseInt(response.data.calligraphies.total);
                     this.loading = false;
                 });
             }

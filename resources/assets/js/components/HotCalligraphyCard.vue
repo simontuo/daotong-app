@@ -15,7 +15,7 @@
             }
         },
         mounted() {
-            axios.get('/api/calligraphys/hot').then(response => {
+            axios.get('/api/calligraphies/hot').then(response => {
                 this.path = response.data.calligraphy.images.shift();
             });
         }

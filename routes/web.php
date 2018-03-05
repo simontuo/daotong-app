@@ -23,13 +23,13 @@ Route::resource('articles', 'ArticleController', ['names' => [
     'update' => 'articles.update'
 ]]);
 
-Route::resource('calligraphys', 'CalligraphysController', ['names' => [
-    'index'  => 'calligraphys.index',
-    'create' => 'calligraphys.create',
-    'store'  => 'calligraphys.store',
-    'show'   => 'calligraphys.show',
-    'edit'   => 'calligraphys.edit',
-    'update' => 'calligraphys.update'
+Route::resource('calligraphies', 'CalligraphiesController', ['names' => [
+    'index'  => 'calligraphies.index',
+    'create' => 'calligraphies.create',
+    'store'  => 'calligraphies.store',
+    'show'   => 'calligraphies.show',
+    'edit'   => 'calligraphies.edit',
+    'update' => 'calligraphies.update'
 ]]);
 
 Route::resource('questions', 'QuestionsController', ['names' => [
@@ -72,7 +72,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/', 'HomesController@index')->name('admin.home.index');
     Route::get('/users/index', 'HomesController@userIndex')->name('admin.users.index');
     Route::get('/articles/index', 'HomesController@articleIndex')->name('admin.articles.index');
-    Route::get('/calligraphys/index', 'HomesController@calligraphyIndex')->name('admin.calligraphys.index');
+    Route::get('/calligraphies/index', 'HomesController@calligraphyIndex')->name('admin.calligraphies.index');
     Route::get('/questions/index', 'HomesController@questionIndex')->name('admin.questions.index');
     Route::get('/answers/index', 'HomesController@answerIndex')->name('admin.answers.index');
     Route::get('/mottoes/index', 'HomesController@mottoIndex')->name('admin.mottoes.index');
