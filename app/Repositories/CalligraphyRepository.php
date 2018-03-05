@@ -65,7 +65,7 @@ class CalligraphyRepository
             ->select($this->modelColumn)
             ->where('users.name', 'like', '%'.$query.'%')
             ->orWhere('calligraphies.title', 'like', '%'.$query.'%')
-            ->with(['user', 'likes'])
+            ->with(['user', 'likes', 'topics'])
             ->orderBy($quickQueryType, 'DESC')
             ->paginate($pageSize);
     }

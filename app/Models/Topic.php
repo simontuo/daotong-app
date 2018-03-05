@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Article;
+use App\Models\Calligraphy;
 
 class Topic extends Model
 {
@@ -25,5 +26,10 @@ class Topic extends Model
     public function questions()
     {
         return $this->belongsToMany(Question::class)->withTimestamps();
+    }
+
+    public function calligraphys()
+    {
+        return $this->belongsToMany(Calligraphy::class)->withTimestamps();
     }
 }

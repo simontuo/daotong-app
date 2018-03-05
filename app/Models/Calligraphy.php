@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Topic;
 use App\Collections\CalligraphyCollection;
 
 class Calligraphy extends Model
@@ -67,5 +68,10 @@ class Calligraphy extends Model
     public function has_liked()
     {
         return !! $this->likes()->where('user_id', user()->id)->count();
+    }
+
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class)->withTimestamps();
     }
 }

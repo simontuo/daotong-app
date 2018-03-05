@@ -121,4 +121,17 @@ class QuestionsController extends Controller
 
         return response()->json(['questions' => $questions]);
     }
+
+    public function search(Request $request)
+    {
+        $pageSize = request('pageSize') ? request('pageSize') : config('page.question');
+
+        $questions = $this->question->search($request->get('query'), $request->get('quickQuery'), $pageSize, true);
+
+        $questions->addCreatedTime();
+
+        $questions->CombinationField();
+
+        return response()->json(['questions' => $questions]);
+    }
 }

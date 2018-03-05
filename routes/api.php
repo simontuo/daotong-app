@@ -44,6 +44,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/calligraphies/{id}/isHidden', 'CalligraphiesController@isHidden');
 
     Route::get('/questions/index', 'QuestionsController@index')->name('api.questions.index');
+    Route::get('/questions/search', 'QuestionsController@search')->name('api.questions.search');
     Route::get('/questions/{id}/answers', 'QuestionsController@answers')->name('api.questions.answers');
     Route::post('/questions/follow', 'QuestionsController@follow')->name('api.questions.follow');
     Route::middleware('auth:api')->post('/questions/{id}/closeComment', 'QuestionsController@closeComment');
