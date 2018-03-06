@@ -30,7 +30,7 @@ class ArticleRepository
 
     public function getArticleUserAndAuthorById($id)
     {
-        return Article::with(['user', 'author', 'topics'])->findOrFail($id);
+        return Article::with(['user', 'topics'])->findOrFail($id);
     }
 
     public function index($pageSize)

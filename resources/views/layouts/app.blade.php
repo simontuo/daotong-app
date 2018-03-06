@@ -25,7 +25,7 @@
         <div class="mdui-m-t-2 mdui-container">
             @include('layouts.note')
             @yield('content')
-            @yield('rightBar')
+            <!-- @yield('rightBar') -->
         </div>
 
         <back-top></back-top>

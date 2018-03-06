@@ -91,6 +91,7 @@ Vue.component('motto-scroll', require('./components/MottoScroll.vue'));
 Vue.component('suggestion-button', require('./components/SuggestionButton.vue'));
 
 Vue.component('hot-calligraphy-card', require('./components/HotCalligraphyCard.vue'));
+Vue.component('creater-card', require('./components/CreaterCard.vue'));
 
 
 

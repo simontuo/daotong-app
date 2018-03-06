@@ -202,6 +202,11 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     public function followedQuestion()
     {
         return $this->belongsToMany(Question::class, 'user_question')->withTimestamps();

@@ -42,57 +42,16 @@
             <comment-list title="{{ $article->title }}" model="{{ $article->id }}" type="Article"></comment-list>
         </div>
     </div>
-@endsection
 
-@section('rightBar')
-    <div class="col-md-3">
-        @if($article->user_id != $article->author_id)
-            <div class="mdui-card mdui-m-b-2 mdui-color-theme-accent">
-                <div class="mdui-valign mdui-m-y-2">
-                    <p class="mdui-center" style="font-size:18px">创建者信息</p>
-                </div>
-                <div class="mdui-valign mdui-m-y-2">
-                    <p class="mdui-center like-avatar"><img src="{{ $article->user->avatar }}" /></p>
-                </div>
-                <div class="mdui-valign mdui-m-y-1">
-                    <p class="mdui-center"><span class="label label-success">{{ $article->user->name }}</span></p>
-                </div>
-                <div class="mdui-valign mdui-m-b-2">
-                    <p class="mdui-center">
-                        <span>已关注：{{ $article->user->followers_count }}</span>
-                        <span>被关注：{{ $article->user->followings_count }}</span>
-                        <span>文章：311</span>
-                        <span>评论：{{ $article->user->comments_count }}</span>
-                    </p>
-                </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="mdui-m-b-2">
+                <creater-card
+                    user="{{ $article->user }}"
+                ></creater-card>
             </div>
-        @endif
-        <div class="mdui-card mdui-m-b-2">
-            <div class="mdui-valign mdui-m-y-2">
-                <p class="mdui-center" style="font-size:18px">作者信息</p>
-            </div>
-            <div class="mdui-valign mdui-m-y-2">
-                <p class="mdui-center like-avatar"><img src="{{ $article->author->avatar }}" /></p>
-            </div>
-            <div class="mdui-valign mdui-m-y-2">
-                <p class="mdui-center"><span class="label label-success">{{ $article->author->name }}</span></p>
-            </div>
-            <div class="mdui-valign mdui-m-b-2">
-                <p class="mdui-center">
-                    <span>已关注：{{ $article->user->followers_count }}</span>
-                    <span>被关注：{{ $article->user->followings_count }}</span>
-                    <span>文章：311</span>
-                    <span>评论：{{ $article->user->comments_count }}</span>
-                </p>
-            </div>
-            <div class="mdui-valign mdui-m-b-2">
-                <p class="mdui-center">
-                    <user-follow-button
-                        user="{{ $article->author_id }}"
-                    ></user-follow-button>
-                    <user-message-button user="{{ $article->author_id }}" name="{{ $article->author->name }}"></user-message-button>
-                </p>
-            </div>
+            <hot-calligraphy-card></hot-calligraphy-card>
         </div>
     </div>
+
 @endsection
