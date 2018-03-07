@@ -59,15 +59,20 @@ class LikesController extends Controller
 
             user('api')->actionLog(user('api'), user('api')->name.'点赞了'.$like->likeable_type.'：'.$like->likeable->title);
 
+            $like->likeable->user()->increment('likes_count');
+
             return response()->json(['status' => true, 'user' => user('api')]);
         }
 
         if ($like->type == 1) {
 
             $like->type = 0;
+
             $like->save();
 
             user('api')->actionLog(user('api'), user('api')->name.'点赞了'.$like->likeable_type.'：'.$like->likeable->title);
+
+            $like->likeable->user()->increment('likes_count');
 
             return response()->json(['status' => true, 'change' => true, 'user' => user('api')]);
         }
@@ -97,15 +102,20 @@ class LikesController extends Controller
 
             user('api')->actionLog(user('api'), user('api')->name.'不赞同了'.$like->likeable_type.'：'.$like->likeable->title);
 
+            $like->likeable->user()->decrement('likes_count');
+
             return response()->json(['status' => true, 'user' => user('api')]);
         }
 
         if ($like->type == 0) {
 
             $like->type = 1;
+
             $like->save();
 
             user('api')->actionLog(user('api'), user('api')->name.'不赞同了'.$like->likeable_type.'：'.$like->likeable->title);
+
+            $like->likeable->user()->decrement('likes_count');
 
             return response()->json(['status' => true, 'change' => true, 'user' => user('api')]);
         }

@@ -92,6 +92,8 @@ class CommentsController extends Controller
 
         $comment->actionLog(user('api'), '新增了评论:'.$comment->bio);
 
+        user('api')->increment('comments_count');
+
         return response()->json(['status' => true, 'message' => '评论新增成功！', 'comment' => $comment]);
     }
 

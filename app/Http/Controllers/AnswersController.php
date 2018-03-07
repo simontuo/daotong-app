@@ -33,6 +33,8 @@ class AnswersController extends Controller
 
         $answer->actionLog(user(), '新增了答案');
 
+        user()->increment('answers_count');
+
         alert()->success('新增了答案成功！')->autoclose(2000);
 
         return redirect()->route('questions.show', ['id' => $request->get('id')]);

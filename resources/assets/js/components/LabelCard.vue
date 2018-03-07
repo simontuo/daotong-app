@@ -19,7 +19,7 @@
         },
         mounted() {
             axios.get('/api/topics/hot').then(response => {
-                this.topics = response.data.topics;
+                this.topics = response.data.topics.data;
             });
         }
     }

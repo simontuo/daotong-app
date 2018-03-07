@@ -69,6 +69,8 @@ class ArticleController extends Controller
 
         $article->actionLog(user(), '新增了文章:'.$article->title);
 
+        user()->increment('articles_count');
+
         alert()->success('新增文章 '.$article->title.' 成功！')->autoclose(2000);
 
         return redirect()->route('articles.show', ['article' => $article->id]);

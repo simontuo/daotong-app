@@ -54,6 +54,8 @@ class CalligraphiesController extends Controller
 
         $calligraphy->actionLog(user(), '新增了书法:'.$calligraphy->title);
 
+        user()->increment('calligraphies_count');
+
         alert()->success('新增文章 '.$calligraphy->title.' 成功！')->autoclose(2000);
 
         return redirect()->route('calligraphies.show', ['calligraphy' => $calligraphy->id]);

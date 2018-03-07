@@ -41,6 +41,8 @@ class QuestionsController extends Controller
 
         $question->actionLog(user(), '新增了问题:'.$question->title);
 
+        user()->increment('questions_count');
+
         alert()->success('新增问题 '.$question->title.' 成功！')->autoclose(2000);
 
         return redirect()->route('questions.show', ['id' => $question->id]);
