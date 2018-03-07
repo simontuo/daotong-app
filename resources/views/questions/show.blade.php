@@ -2,9 +2,21 @@
 
 @section('content')
     <div class="col-md-9">
-        <question-show data="{{ $question }}" token="{{ csrf_token() }}" user="{{ user() }}"></question-show>
+        <div class="row">
+            <question-show data="{{ $question }}" token="{{ csrf_token() }}" user="{{ user() }}"></question-show>
+        </div>
+
     </div>
-    <div class="col-md-3">
-        <label-card></label-card>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="mdui-m-b-2">
+                <creater-card
+                    user="{{ $question->user }}"
+                ></creater-card>
+            </div>
+            <hot-calligraphy-card></hot-calligraphy-card>
+        </div>
     </div>
+
 @endsection

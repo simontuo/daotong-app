@@ -36,3 +36,18 @@
         }
     }
 </script>
+<style>
+    .like-avatar{
+        background-color: #fff;
+        border: 1px solid #ddd;
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+    }
+    .like-avatar img{
+        margin: 4px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+    }
+</style>
