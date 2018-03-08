@@ -24,7 +24,8 @@
         </Card>
         <Card class="mdui-m-y-1" v-if="!answerShow">
             <div class=" mdui-valign">
-                <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#">查看全部 25 个回答</a></p>
+                <p v-if="answers.length > 0" class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#">总共 {{ answers.length }} 个回答</a></p>
+                <p v-if="answers.length < 1" class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#">这个问题还有回答！</a></p>
             </div>
         </Card>
         <Card class="mdui-m-y-1" v-if="answerShow" dis-hover>
@@ -77,7 +78,6 @@
         mounted() {
             axios.get('/api/questions/' + this.question.id + '/answers').then(response => {
                 this.answers = response.data.answers;
-                console.log(this.data);
             });
         },
         methods: {

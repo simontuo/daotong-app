@@ -29,7 +29,7 @@ class QuestionRepository
 
     public function byId(string $id)
     {
-        return Question::with(['topics'])->findOrFail($id);
+        return Question::with(['topics', 'user'])->findOrFail($id);
     }
 
     public function search($query, $quickQuery = null, $pageSize, $prefixQueryState = false)

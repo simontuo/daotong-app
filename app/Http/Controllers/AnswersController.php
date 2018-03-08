@@ -12,6 +12,7 @@ class AnswersController extends Controller
 {
     public function __construct(AnswerRepository $answer, QuestionRepository $question)
     {
+        $this->middleware('auth')->except(['index', 'show']);
         $this->answer   = $answer;
         $this->question = $question;
     }
