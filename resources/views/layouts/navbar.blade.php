@@ -1,9 +1,11 @@
 <div class="mdui-appbar mdui-color-indigo-a200 mdui-appbar-fixed">
     <div class="mdui-container">
         <div class="mdui-toolbar">
+            @if(Auth::check())
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-hidden-md-up" mdui-drawer="{target: '#left-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+            @endif
             <a href="{{ route('index') }}" class="mdui-typo-title">{{ config('app.name', 'Laravel') }}</a>
             <div class="mdui-toolbar-spacer"></div>
-            <!-- <search-input></search-input> -->
             @if(Auth::check())
                 <a href="javascript:;" class="hidden-xs hidden-sm mdui-btn mdui-btn-icon" mdui-menu="{target: '#add-attr'}"><i class="mdui-icon material-icons">&#xe145;</i></a>
                 <ul class="mdui-menu " id="add-attr">
@@ -78,3 +80,74 @@
         </div>
     </div>
 </div>
+@if(Auth::check())
+    <div class="mdui-drawer mdui-drawer-close mdui-color-white" id="left-drawer">
+        <ul class="mdui-list">
+            <li class="mdui-list-item mdui-ripple mdui-center">
+                <div class="mdui-valign">
+                    <p class="mdui-center like-avatar"><img src="{{ user()->avatar }}" /></p>
+                </div>
+                <div class="mdui-valign mdui-m-y-1">
+                    <p class="mdui-center mdui-typo-title">{{ user()->name }}</p>
+                </div>
+            </li>
+            <li class="mdui-subheader">发布内容</li>
+            <a href="{{ route('calligraphies.create') }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">&#xe6dd;</i>
+                    <div class="mdui-list-item-content">发布书法</div>
+                </li>
+            </a>
+            <a href="{{ route('articles.create') }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">&#xe865;</i>
+                    <div class="mdui-list-item-content">发布文章</div>
+                </li>
+            </a>
+            <a href="{{ route('questions.create') }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">&#xe887;</i>
+                    <div class="mdui-list-item-content">发布问题</div>
+                </li>
+            </a>
+
+            <li class="mdui-subheader">个人中心</li>
+            <a href="{{ route('users.center', user()->id) }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow">&#xe853;</i>
+                    <div class="mdui-list-item-content">个人中心</div>
+                </li>
+            </a>
+            <a href="{{ route('users.edit', user()->id) }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal">&#xe8b8;</i>
+                    <div class="mdui-list-item-content">编辑资料</div>
+                </li>
+            </a>
+            <a href="{{ route('users.edit_password', user()->id) }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe898;</i>
+                    <div class="mdui-list-item-content">修改密码</div>
+                </li>
+            </a>
+            @can('viewAdmin', user())
+            <a href="{{ route('admin.home.index') }}" class="mdui-ripple">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue-grey">&#xe85e;</i>
+                    <div class="mdui-list-item-content">后台管理</div>
+                </li>
+            </a>
+            @endcan
+            <a href="javascript:;" class="mdui-ripple" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+                <li class="mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">&#xe566;</i>
+                    <div class="mdui-list-item-content">退出</div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            </a>
+        </ul>
+    </div>
+@endif

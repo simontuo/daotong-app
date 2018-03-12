@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="center-user-card col-md-3 mdui-m-b-2">
+    <div class="col-md-3 mdui-m-b-2">
         <Card>
             <div class="mdui-valign mdui-m-y-2">
                 <p class="mdui-center like-avatar"><img src="{{ $user->avatar }}" /></p>
@@ -27,21 +27,21 @@
                 <div class="col-xs-4">
                     <div class="mdui-valign mdui-m-b-1">
                         <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
-                            100
+                            {{ $user->followers_count }}
                         </p>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="mdui-valign mdui-m-b-1">
                         <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
-                            101
+                            {{ $user->comments_count }}
                         </p>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="mdui-valign mdui-m-b-1">
                         <p class="mdui-center center-user-card-font mdui-text-color-theme-accent">
-                            11
+                            {{ $user->articles_count + $user->calligraphies_count +  $user->answers_count  + $user->questions_count}}
                         </p>
                     </div>
                 </div>

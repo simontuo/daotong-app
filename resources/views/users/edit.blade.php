@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
     <div class="col-md-3">
         <div class="mdui-card mdui-p-a-1 mdui-m-b-1 mdui-valign">
             <div class="mdui-center">
@@ -138,5 +138,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @endsection
