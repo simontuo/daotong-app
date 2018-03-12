@@ -179,7 +179,9 @@ class User extends Authenticatable
 
     public function loginLog($action)
     {
-        dispatch(new LoginLogSlug($this, $action));
+        $ip = \Request::getClientIp();
+
+        dispatch(new LoginLogSlug($this, $action, $ip));
     }
 
     public function isSuperAdmin()

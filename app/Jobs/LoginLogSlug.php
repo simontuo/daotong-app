@@ -18,19 +18,22 @@ class LoginLogSlug implements ShouldQueue
 
     protected $user;
 
-    protected $allowUserField = ['id', 'name', 'email', 'phone'];
+    protected $allowUserField = ['id', 'name', 'email', 'phone', 'ip'];
 
     protected $action;
+
+    protected $ip;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, $action)
+    public function __construct(User $user, $action, $ip)
     {
         $this->user   = $user;
         $this->action = $action;
+        $this->ip     = $ip;
     }
 
     /**
@@ -46,12 +49,12 @@ class LoginLogSlug implements ShouldQueue
 
         $log->pushHandler(new StreamHandler($path, Logger::INFO));
 
-        $ip = \Request::ip();
+        // $ip = \Request::ip();
 
         $info = [
             'user' => array_only($this->user->toArray(), $this->allowUserField)
         ];
 
-        $log->addInfo('action:'.$this->action, array_add($info, 'ip', $ip));
+        $log->addInfo('action:'.$this->action, array_add($info, 'ip', $this->ip));
     }
 }

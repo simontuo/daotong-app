@@ -1,19 +1,24 @@
 <template>
     <Card>
         <div class="media">
-            <div class="media-left">
+            <div class="media-left" v-if="userInfo">
                 <a href="#">
                     <Avatar size="large" :src="userInfo.avatar" />
                 </a>
             </div>
-            <div class="media-body">
+            <div class="media-body" v-if="userInfo">
                 <div class="" style="max-width: 90%;">
                     <h4 class="media-heading mdui-text-capitalize">{{ userInfo.name }}</h4>
                     <p class="mdui-text-truncate" >{{ userInfo.settings.bio }}</p>
                 </div>
             </div>
+            <div class="media-body" v-if="!userInfo">
+                <div class="" style="max-width: 90%;">
+                    <h4 class="media-heading mdui-text-capitalize">游客</h4>
+                </div>
+            </div>
         </div>
-        <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#" class="mdui-text-color-blue-900"><small>查看全部 25 个回答</small></a></p>
+        <!-- <p class="mdui-typo mdui-center mdui-typo-subheading"> <a href="#" class="mdui-text-color-blue-900"><small>查看全部 25 个回答</small></a></p> -->
         <div class="markdown-body code-github mdui-m-y-1" v-html="model.bio">
         </div>
         <Button type="primary" size="small" icon="arrow-up-b" class="question-button" @click="like">
