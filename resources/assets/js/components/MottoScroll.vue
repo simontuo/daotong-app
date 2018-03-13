@@ -1,7 +1,9 @@
 <template>
-    <marquee class="mdui-typo-subheading" style="width: 100%;" scrollamount="3" direction="left" behaviour="Scroll">
+    <Card class="mdui-m-y-1">
+        <p slot="title" style="text-align: center;">每日一读</p>
         <span class="ivu-tag-dot-inner mdui-color-pink"></span>{{ motto.bio }}
-    </marquee>
+    </Card>
+
 </template>
 
 <script>

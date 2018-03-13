@@ -133,6 +133,7 @@
                         <h4>A high quality UI Toolkit based on Vue.js</h4>
                     </div>
                 </Card>
+                <motto-scroll></motto-scroll>
                 <label-card></label-card>
             </div>
         </div>
