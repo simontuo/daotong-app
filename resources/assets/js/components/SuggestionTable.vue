@@ -77,7 +77,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.show(params.index)
+                                            this.show(params.row.id)
                                         }
                                     }
                                 }, '查看'),
@@ -133,6 +133,9 @@
                 this.$refs.table.exportCsv({
                     filename: 'The original data'
                 });
+            },
+            show(id) {
+                window.location.href = '/admin/suggestions/' + id;
             }
         }
     }

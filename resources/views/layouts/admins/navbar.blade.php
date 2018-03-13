@@ -55,7 +55,7 @@
 	</div>
 </div>
 
-<div class="mdui-drawer mdui-color-grey-50" id="drawer">
+<div class="mdui-drawer mdui-color-white" id="drawer" >
 	<ul class="mdui-list" mdui-collapse="{accordion: true}">
 		<li class="mdui-collapse-item" onclick="javascrtpt:window.location.href='{{ route('admin.users.index') }}'">
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">

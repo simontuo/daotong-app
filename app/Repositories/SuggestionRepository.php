@@ -22,4 +22,9 @@ class SuggestionRepository
             ->orderBy('created_at', 'DESC')
             ->paginate($pageSize);
     }
+
+    public function byId($id)
+    {
+        return Suggestion::with('user')->findOrFail($id);
+    }
 }

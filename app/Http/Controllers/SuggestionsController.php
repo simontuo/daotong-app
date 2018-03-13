@@ -30,4 +30,11 @@ class SuggestionsController extends Controller
 
         return redirect()->back();
     }
+
+    public function show($id)
+    {
+        $suggestion = $this->suggestion->byId($id);
+
+        return view('admins.suggestions.show', compact('suggestion'));
+    }
 }
