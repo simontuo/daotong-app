@@ -93,6 +93,8 @@ Vue.component('suggestion-button', require('./components/SuggestionButton.vue'))
 Vue.component('hot-calligraphy-card', require('./components/HotCalligraphyCard.vue'));
 Vue.component('creater-card', require('./components/CreaterCard.vue'));
 
+Vue.component('resource-detail-card', require('./components/ResourceDetailCard.vue'));
+
 
 
 

@@ -61,38 +61,22 @@
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">&#xe7fb;</i>
 				<div class="mdui-list-item-content">用户管理</div>
-				<!-- <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i> -->
 			</div>
-			<!-- <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href=''">用户管理</li>
-				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/roleList') }}'">角色管理</li>
-				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ url('/permissionList') }}'">权限管理</li>
-			</ul> -->
 		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.articles.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">&#xe838;</i>
-			<div class="mdui-list-item-content">文章管理</div>
-		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.calligraphies.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">&#xe168;</i>
-			<div class="mdui-list-item-content">书法管理</div>
-		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.questions.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-red">&#xe887;</i>
-			<div class="mdui-list-item-content">问题管理</div>
-		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.answers.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-amber">&#xe5ca;</i>
-			<div class="mdui-list-item-content">回答管理</div>
-		</li>
-
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.comments.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">&#xe0ca;</i>
-			<div class="mdui-list-item-content">评论管理</div>
-		</li>
-		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.messages.index') }}'">
-			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-yellow">&#xe151;</i>
-			<div class="mdui-list-item-content">信息管理</div>
+		<li class="mdui-collapse-item">
+			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">&#xe5c3;</i>
+				<div class="mdui-list-item-content">资源管理</div>
+				<i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+			</div>
+			<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.articles.index') }}'">文章管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.calligraphies.index') }}'">书法管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.questions.index') }}'">问题管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.answers.index') }}'">回答管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.comments.index') }}'">评论管理</li>
+				<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.messages.index') }}'">信息管理</li>
+			</ul>
 		</li>
 		<li class="mdui-list-item mdui-ripple" onclick="javascrtpt:window.location.href='{{ route('admin.mottoes.index') }}'">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-grey">&#xe865;</i>
@@ -114,7 +98,7 @@
 				<i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
 			</div>
 			<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
-				<li class="mdui-list-item mdui-ripple" mdui-dialog="{target: '#themeDialog'}">主题设置</li>
+				<li class="mdui-list-item mdui-ripple">主题设置</li>
 				<li class="mdui-list-item mdui-ripple">常规设置</li>
 			</ul>
 		</li>

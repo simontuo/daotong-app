@@ -98,4 +98,6 @@ Route::namespace('Api')->group(function () {
     Route::get('/mottoes/index', 'MottoesController@index');
     Route::get('/mottoes/randomOne', 'MottoesController@randomOne');
 
+    Route::get('/statistics/resourceTotal', 'StatisticsController@resourceTotal');
+
 });
