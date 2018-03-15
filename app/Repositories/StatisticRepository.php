@@ -20,11 +20,40 @@ class StatisticRepository
         'Article', 'Calligraphy', 'Question', 'Like', 'Comment', 'Topic', 'Answer', 'Message'
     ];
 
+    protected $visitModel = [
+        'Article', 'Calligraphy', 'Question'
+    ];
+
     public function getResourceTotal()
     {
         return collect($this->resourceModel)->map(function($item, $key) {
             return App('App\Models\\'.$item)->count();
         })->sum();
+    }
+
+    public function getUserTotal()
+    {
+        return User::count();
+    }
+
+    public function getVisitTotal()
+    {
+        return collect($this->visitModel)->map(function($item, $key) {
+            return App('App\Models\\'.$item)->sum('reads_count');
+        })->sum();
+    }
+
+    public function getResourceDetail()
+    {
+        $modelKey = collect($this->resourceModel)->map(function($item, $key) {
+            return lcfirst($item);
+        });
+
+        $detail = collect($this->resourceModel)->map(function($item, $key) {
+            return App('App\Models\\'.$item)->count();
+        });
+
+        return $modelKey->combine($detail)->prepend($detail->sum(), 'total');
     }
 
 }

@@ -94,6 +94,7 @@ Vue.component('hot-calligraphy-card', require('./components/HotCalligraphyCard.v
 Vue.component('creater-card', require('./components/CreaterCard.vue'));
 
 Vue.component('resource-detail-card', require('./components/ResourceDetailCard.vue'));
+Vue.component('total-card', require('./components/TotalCard.vue'));
 
 
 

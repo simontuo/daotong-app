@@ -99,5 +99,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/mottoes/randomOne', 'MottoesController@randomOne');
 
     Route::get('/statistics/resourceTotal', 'StatisticsController@resourceTotal');
+    Route::get('/statistics/userTotal', 'StatisticsController@userTotal');
+    Route::get('/statistics/visitTotal', 'StatisticsController@visitTotal');
+    Route::get('/statistics/resourceDetail', 'StatisticsController@resourceDetail');
 
 });

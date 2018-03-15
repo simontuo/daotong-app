@@ -15,10 +15,36 @@ class StatisticsController extends Controller
         $this->statistic = $statistic;
     }
 
+    public function numberFormat(int $total)
+    {
+        return number_format($total);
+    }
+
     public function resourceTotal()
     {
-        $total = $this->statistic->getResourceTotal();
+        $total = $this->numberFormat($this->statistic->getResourceTotal());
 
         return response()->json(['total' => $total]);
+    }
+
+    public function userTotal()
+    {
+        $total = $this->numberFormat($this->statistic->getUserTotal());
+
+        return response()->json(['total' => $total]);
+    }
+
+    public function visitTotal()
+    {
+        $total = $this->numberFormat($this->statistic->getVisitTotal());
+
+        return response()->json(['total' => $total]);
+    }
+
+    public function resourceDetail()
+    {
+        $detail = $this->statistic->getResourceDetail();
+
+        return response()->json(['detail' => $detail]);
     }
 }
