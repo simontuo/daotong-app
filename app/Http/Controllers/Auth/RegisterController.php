@@ -77,6 +77,7 @@ class RegisterController extends Controller
             'confirmation_token' => str_random(40),
             'settings'           => ['city' => ''],
             'api_token'          => str_random(60),
+            'gender'             => 'male',
         ]);
 
         $this->sendVerifyEmailTo($user);

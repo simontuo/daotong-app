@@ -47,4 +47,11 @@ class StatisticsController extends Controller
 
         return response()->json(['detail' => $detail]);
     }
+
+    public function userDetail()
+    {
+        $detail = $this->statistic->getUserDetail();
+
+        return response()->json(['detail' => $detail]);
+    }
 }

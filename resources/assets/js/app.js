@@ -12,6 +12,8 @@ window.VueSimplemde = require('vue-simplemde');
 window.iView = require('iview');
 window.VueQuillEditor = require('vue-quill-editor');
 window.mavonEditor = require('mavon-editor');
+// window.echarts = require('echarts');
+
 // window.html2canvas = require('html2canvas');
 
 // window.vSelect = require('vue-select');
@@ -94,6 +96,9 @@ Vue.component('hot-calligraphy-card', require('./components/HotCalligraphyCard.v
 Vue.component('creater-card', require('./components/CreaterCard.vue'));
 
 Vue.component('resource-detail-card', require('./components/ResourceDetailCard.vue'));
+Vue.component('user-detail-card', require('./components/UserDetailCard.vue'));
+Vue.component('visit-detail-card', require('./components/VisitDetailCard.vue'));
+Vue.component('error-detail-card', require('./components/ErrorDetailCard.vue'));
 Vue.component('total-card', require('./components/TotalCard.vue'));
 
 

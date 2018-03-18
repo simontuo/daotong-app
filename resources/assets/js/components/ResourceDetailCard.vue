@@ -1,7 +1,6 @@
 <template >
-    <Card>
+    <Card style="min-height: 230px;">
         <div class="mdui-m-b-1">
-
             <span class="ivu-tag-dot-inner mdui-color-pink" style="margin-right:0"></span>
             <span class="mdui-m-r-1">文章 {{ detail.article }}</span>
             <span class="ivu-tag-dot-inner mdui-color-blue" style="margin-right:0"></span>

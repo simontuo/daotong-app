@@ -102,5 +102,6 @@ Route::namespace('Api')->group(function () {
     Route::get('/statistics/userTotal', 'StatisticsController@userTotal');
     Route::get('/statistics/visitTotal', 'StatisticsController@visitTotal');
     Route::get('/statistics/resourceDetail', 'StatisticsController@resourceDetail');
+    Route::get('/statistics/userDetail', 'StatisticsController@userDetail');
 
 });

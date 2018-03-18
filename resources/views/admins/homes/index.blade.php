@@ -18,13 +18,22 @@
                 1,000
             </p>
             <p style="text-align:center" class="mdui-typo-headline">
-                用户数量
+                报错量
             </p>
         </Card>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-6 mdui-m-b-2">
+        <user-detail-card></user-detail-card>
+    </div>
+    <div class="col-md-6 mdui-m-b-2">
         <resource-detail-card></resource-detail-card>
+    </div>
+    <div class="col-md-6 mdui-m-b-2">
+        <visit-detail-card></visit-detail-card>
+    </div>
+    <div class="col-md-6 mdui-m-b-2">
+        <error-detail-card></error-detail-card>
     </div>
 </div>
 

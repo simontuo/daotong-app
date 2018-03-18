@@ -56,4 +56,9 @@ class StatisticRepository
         return $modelKey->combine($detail)->prepend($detail->sum(), 'total');
     }
 
+    public function getUserDetail()
+    {
+        
+    }
+
 }
