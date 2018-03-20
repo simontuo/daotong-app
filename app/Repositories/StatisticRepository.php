@@ -69,18 +69,13 @@ class StatisticRepository
 
     public function getVisitDetail()
     {
-        // $modelKey = collect($this->visitModel)->map(function($item, $key) {
-        //     return lcfirst($item);
-        // });
-
         $opinionData = collect($this->visitModelLabel)->map(function($item, $key) {
             return [
                 'name'  => $item,
-                'value' => App('App\Models\\'.$key)->count()
+                'value' => App('App\Models\\'.$key)->sum('reads_count')
             ];
         })->toArray();
-        // dd($optionData);
-        // return $modelKey->combine($detail)->prepend($detail->sum(), 'total');
+
         return [
             'opinion'     => array_values($this->visitModelLabel),
             'opinionData' => array_values($opinionData)
