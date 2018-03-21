@@ -12,6 +12,7 @@ use App\Models\Suggestion;
 use App\Models\Topic;
 use App\Models\Answer;
 use App\Models\Message;
+use Carbon\Carbon;
 
 class StatisticRepository
 {
@@ -21,13 +22,13 @@ class StatisticRepository
     ];
 
     protected $visitModel = [
-        'Article', 'Calligraphy', 'Question'
-    ];
-
-    protected $visitModelLabel = [
         'Article'     => '文章',
         'Calligraphy' => '书法',
         'Question'    => '问题',
+    ];
+
+    protected $activeInterval =  [
+        'day', 'week', 'month'
     ];
 
     public function getResourceTotal()
@@ -45,7 +46,7 @@ class StatisticRepository
     public function getVisitTotal()
     {
         return collect($this->visitModel)->map(function($item, $key) {
-            return App('App\Models\\'.$item)->sum('reads_count');
+            return App('App\Models\\'.$key)->sum('reads_count');
         })->sum();
     }
 
@@ -64,12 +65,21 @@ class StatisticRepository
 
     public function getUserDetail()
     {
+        $detail = collect($this->activeInterval)->map(function($item, $key) {
+            return [
+                $item => User::whereBetween('updated_at', $this->getTimeInterval($item))->count()
+            ];
+        });
 
+        return [
+            'total'        => User::count(),
+            'opinionData'  => array_collapse($detail),
+        ];
     }
 
     public function getVisitDetail()
     {
-        $opinionData = collect($this->visitModelLabel)->map(function($item, $key) {
+        $opinionData = collect($this->visitModel)->map(function($item, $key) {
             return [
                 'name'  => $item,
                 'value' => App('App\Models\\'.$key)->sum('reads_count')
@@ -77,9 +87,28 @@ class StatisticRepository
         })->toArray();
 
         return [
-            'opinion'     => array_values($this->visitModelLabel),
+            'opinion'     => array_values($this->visitModel),
             'opinionData' => array_values($opinionData)
         ];
+    }
+
+
+    public function getTimeInterval(string $interval)
+    {
+        switch ($interval) {
+            case 'day':
+                return  array(Carbon::now()->toDateString(), Carbon::tomorrow()->toDateString());
+                break;
+
+            case 'week':
+                return  array(Carbon::now()->subDays(6)->toDateString(), Carbon::tomorrow()->toDateString());
+                break;
+
+            case 'month':
+                return  array(Carbon::now()->subMonth()->toDateString(), Carbon::tomorrow()->toDateString());
+                break;
+        }
+
     }
 
 }

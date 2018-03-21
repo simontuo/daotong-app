@@ -6,15 +6,15 @@
                     :size="150"
                     :trail-width="4"
                     :stroke-width="5"
-                    :percent="75"
+                    :percent="(this.opinionData.day / this.total).toFixed(2) * 100"
                     stroke-linecap="square"
                     stroke-color="#43a3fb">
                     <div class="demo-Circle-custom">
-                        <h1>776</h1>
-                        <p>消费人群规模</p>
+                        <h1>{{ this.opinionData.day }}</h1>
+                        <p>日活跃人群规模</p>
                         <span>
                             总占人数
-                            <i>75%</i>
+                            <i>{{ (this.opinionData.day / this.total).toFixed(2) * 100 }}%</i>
                         </span>
                     </div>
                 </i-circle>
@@ -24,15 +24,15 @@
                     :size="150"
                     :trail-width="4"
                     :stroke-width="5"
-                    :percent="75"
+                    :percent="(this.opinionData.week / this.total).toFixed(2) * 100"
                     stroke-linecap="square"
                     stroke-color="#ff5500">
                     <div class="demo-Circle-custom">
-                        <h1>776</h1>
-                        <p>消费人群规模</p>
+                        <h1>{{ this.opinionData.week }}</h1>
+                        <p>周活跃人群规模</p>
                         <span>
                             总占人数
-                            <i>75%</i>
+                            <i>{{ (this.opinionData.week / this.total).toFixed(2) * 100 }}%</i>
                         </span>
                     </div>
                 </i-circle>
@@ -42,15 +42,15 @@
                     :size="150"
                     :trail-width="4"
                     :stroke-width="5"
-                    :percent="75"
+                    :percent="(this.opinionData.month / this.total).toFixed(2) * 100"
                     stroke-linecap="square"
                     stroke-color="#5cb85c">
                     <div class="demo-Circle-custom">
-                        <h1>776</h1>
-                        <p>消费人群规模</p>
+                        <h1>{{ this.opinionData.month }}</h1>
+                        <p>月活跃人群规模</p>
                         <span>
                             总占人数
-                            <i>75%</i>
+                            <i>{{ (this.opinionData.month / this.total).toFixed(2) * 100 }}%</i>
                         </span>
                     </div>
                 </i-circle>
@@ -69,11 +69,16 @@
     export default {
         data() {
             return {
-                detail: [],
+                total: '',
+                opinionData: {},
             }
         },
         mounted() {
-
+            axios.get('/api/statistics/userDetail').then(response => {
+                this.total = response.data.detail.total;
+                this.opinionData = response.data.detail.opinionData;
+                // console.log(this.detail.opinionData.day);
+            });
         }
     }
 </script>
