@@ -101,6 +101,8 @@ Vue.component('visit-detail-card', require('./components/VisitDetailCard.vue'));
 Vue.component('error-detail-card', require('./components/ErrorDetailCard.vue'));
 Vue.component('total-card', require('./components/TotalCard.vue'));
 
+Vue.component('setting-poster-card', require('./components/SettingPosterCard.vue'));
+
 
 
 

@@ -56,12 +56,6 @@
                 </i-circle>
             </div>
         </div>
-
-
-
-
-
-
     </Card>
 </template>
 

@@ -88,4 +88,11 @@ class HomesController extends Controller
 
         return view('admins.suggestions.index');
     }
+
+    public function settingIndex()
+    {
+        $this->authorize('viewAdminLog', user());
+
+        return view('admins.homes.setting');
+    }
 }

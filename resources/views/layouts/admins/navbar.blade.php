@@ -91,16 +91,16 @@
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">&#xe241;</i>
 			<div class="mdui-list-item-content">日志</div>
 		</li>
-		<li class="mdui-collapse-item">
+		<li class="mdui-collapse-item" onclick="javascrtpt:window.location.href='{{ route('admin.settings.index') }}'">
 			<div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
 				<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-cyan">&#xe8b8;</i>
 				<div class="mdui-list-item-content">设置</div>
-				<i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+				<!-- <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i> -->
 			</div>
-			<ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
+			<!-- <ul class="mdui-collapse-item-body mdui-list mdui-list-dense">
 				<li class="mdui-list-item mdui-ripple">主题设置</li>
 				<li class="mdui-list-item mdui-ripple">常规设置</li>
-			</ul>
+			</ul> -->
 		</li>
 		<li class="mdui-list-item mdui-ripple">
 			<i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">&#xe872;</i>

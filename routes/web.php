@@ -85,6 +85,8 @@ Route::prefix('admin')->group(function() {
 
         Route::get('/logs', 'HomesController@logIndex')->name('admin.logs.index');
 
+        Route::get('/settings/index', 'HomesController@settingIndex')->name('admin.settings.index');
+
     });
 
     Route::get('/suggestions/{id}', 'SuggestionsController@show')->name('admin.suggestions.show');
