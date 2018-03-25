@@ -104,4 +104,15 @@ class UploadsController extends Controller
 
         abort(401);
     }
+
+    public function poster(Request $request)
+    {
+        $this->authorize('viewAdmin', user('api'));
+
+        if ($request->hasFile('file')) {
+            return (new UserUploader())->uploadPoster(user('api'), $request->file('file'));
+        }
+
+        abort(500);
+    }
 }

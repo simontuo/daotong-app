@@ -16,15 +16,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 visible-xs">
-                <Card class="mdui-m-b-1" v-if="show">
-                    <a href="#" slot="extra" @click="show = false">
-                        <Icon type="close"></Icon>
-                    </a>
-                    <div style="text-align:center">
-                        <img src="https://file.iviewui.com/dist/76ecb6e76d2c438065f90cd7f8fa7371.png">
-                        <h4>A high quality UI Toolkit based on Vue.js</h4>
-                    </div>
-                </Card>
+                <poster-card></poster-card>
             </div>
             <div class="col-md-4 visible-xs" v-for="item in articles">
                 <a :href="'/articles/' + item.id">
@@ -125,12 +117,7 @@
 
             <div class="col-md-3 mdui-row-gapless mdui-m-b-2 hidden-xs">
                 <hot-calligraphy-card></hot-calligraphy-card>
-                <Card class="mdui-m-y-1">
-                    <div style="text-align:center">
-                        <img src="https://file.iviewui.com/dist/76ecb6e76d2c438065f90cd7f8fa7371.png">
-                        <h4>A high quality UI Toolkit based on Vue.js</h4>
-                    </div>
-                </Card>
+                <poster-card></poster-card>
                 <motto-scroll></motto-scroll>
                 <label-card></label-card>
             </div>

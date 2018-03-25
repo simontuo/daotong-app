@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::get('/index/search', 'HomeController@search');
 
+Route::get('/settings/poster', 'SettingsController@poster');
+
 Route::namespace('Api')->group(function () {
 
     Route::middleware('auth:api')->post('/upload/cover', 'UploadsController@cover');
@@ -23,6 +25,7 @@ Route::namespace('Api')->group(function () {
     Route::middleware('auth:api')->post('/upload/users/{id}/avatar', 'UploadsController@avatar')->name('api.users.uploadAvatar');
     Route::middleware('auth:api')->post('/upload/users/{id}/wechatCode', 'UploadsController@wechatCode')->name('api.users.uploadWechatCode');
     Route::middleware('auth:api')->post('/upload/users/{id}/alipayCode', 'UploadsController@alipayCode')->name('api.users.uploadAlipayCode');
+    Route::middleware('auth:api')->post('/upload/poster', 'UploadsController@poster')->name('api.users.uploadPoster');
 
     Route::middleware('auth:api')->get('/user/followers/{id}', 'FollowersController@index');
     Route::middleware('auth:api')->post('/user/follow', 'FollowersController@follow');

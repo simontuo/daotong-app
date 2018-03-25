@@ -87,7 +87,9 @@ Route::prefix('admin')->group(function() {
 
         Route::get('/settings/index', 'HomesController@settingIndex')->name('admin.settings.index');
 
+
     });
 
     Route::get('/suggestions/{id}', 'SuggestionsController@show')->name('admin.suggestions.show');
+    Route::post('/settings/uploadPoster', 'SettingsController@uploadPoster')->name('admin.settings.uploadPoster');
 });

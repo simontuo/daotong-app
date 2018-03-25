@@ -99,4 +99,13 @@ class UserUploader extends Uploader
 
         return ['name' => $fileName, 'url' => $callBackUrl];
     }
+
+    public function uploadPoster(User $user, $file)
+    {
+        $fileName = '/poster/'.md5(time().$user->name).'.'.$file->getClientOriginalExtension();
+
+        $callBackUrl = $this->uploadQiniu($fileName, $file);
+
+        return ['name' => $fileName, 'url' => $callBackUrl];
+    }
 }
